@@ -28,58 +28,118 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
+            this.estado = new System.Windows.Forms.StatusStrip();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.alumnosMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.profesoresMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaAlumnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaResponsableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBMProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusStrip1
+            // estado
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 298);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(560, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
+            this.estado.Location = new System.Drawing.Point(0, 348);
+            this.estado.Name = "estado";
+            this.estado.Size = new System.Drawing.Size(651, 22);
+            this.estado.TabIndex = 4;
+            this.estado.Text = "estado";
             // 
-            // toolStripContainer1
+            // menu
             // 
-            this.toolStripContainer1.BottomToolStripPanelVisible = false;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alumnosMenu,
+            this.profesoresMenu,
+            this.ayudaToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(651, 24);
+            this.menu.TabIndex = 5;
+            this.menu.Tag = "Funciones del Sistema";
+            this.menu.Text = "menu";
             // 
-            // toolStripContainer1.ContentPanel
+            // alumnosMenu
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(535, 298);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(560, 298);
-            this.toolStripContainer1.TabIndex = 2;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            this.toolStripContainer1.TopToolStripPanelVisible = false;
+            this.alumnosMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaAlumnoToolStripMenuItem,
+            this.altaResponsableToolStripMenuItem,
+            this.inscripcionesToolStripMenuItem});
+            this.alumnosMenu.Name = "alumnosMenu";
+            this.alumnosMenu.Size = new System.Drawing.Size(67, 20);
+            this.alumnosMenu.Text = "Alumnos";
             // 
-            // panel1
+            // profesoresMenu
             // 
-            this.panel1.Location = new System.Drawing.Point(8, 8);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 0;
+            this.profesoresMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aBMProfesoresToolStripMenuItem});
+            this.profesoresMenu.Name = "profesoresMenu";
+            this.profesoresMenu.Size = new System.Drawing.Size(74, 20);
+            this.profesoresMenu.Text = "Profesores";
+            // 
+            // altaAlumnoToolStripMenuItem
+            // 
+            this.altaAlumnoToolStripMenuItem.Name = "altaAlumnoToolStripMenuItem";
+            this.altaAlumnoToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.altaAlumnoToolStripMenuItem.Text = "ABM Alumno";
+            // 
+            // altaResponsableToolStripMenuItem
+            // 
+            this.altaResponsableToolStripMenuItem.Name = "altaResponsableToolStripMenuItem";
+            this.altaResponsableToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.altaResponsableToolStripMenuItem.Text = "ABM Responsable";
+            // 
+            // aBMProfesoresToolStripMenuItem
+            // 
+            this.aBMProfesoresToolStripMenuItem.Name = "aBMProfesoresToolStripMenuItem";
+            this.aBMProfesoresToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aBMProfesoresToolStripMenuItem.Text = "ABM Profesores";
+            // 
+            // inscripcionesToolStripMenuItem
+            // 
+            this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
+            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ayudaToolStripMenuItem1,
+            this.acercaDeIAAIToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // ayudaToolStripMenuItem1
+            // 
+            this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
+            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.ayudaToolStripMenuItem1.Text = "Ayuda";
+            // 
+            // acercaDeIAAIToolStripMenuItem
+            // 
+            this.acercaDeIAAIToolStripMenuItem.Name = "acercaDeIAAIToolStripMenuItem";
+            this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             // 
             // Menu_inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 320);
-            this.Controls.Add(this.toolStripContainer1);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(651, 370);
+            this.Controls.Add(this.estado);
+            this.Controls.Add(this.menu);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menu;
             this.Name = "Menu_inicial";
-            this.Text = "Form1";
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "IAAI";
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,9 +147,18 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.StatusStrip estado;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem alumnosMenu;
+        private System.Windows.Forms.ToolStripMenuItem profesoresMenu;
+        private System.Windows.Forms.ToolStripMenuItem altaAlumnoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaResponsableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inscripcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBMProfesoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeIAAIToolStripMenuItem;
+
 
 
     }
