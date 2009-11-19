@@ -10,9 +10,9 @@ using iaai.Data_base;
 
 namespace iaai
 {
-    public partial class Form1 : Form
+    public partial class Menu_inicial : Form
     {
-        public Form1()
+        public Menu_inicial()
         {
             InitializeComponent();
         }
