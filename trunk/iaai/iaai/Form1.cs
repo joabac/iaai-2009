@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iaai.Data_base;
 
 namespace iaai
 {
@@ -14,6 +15,14 @@ namespace iaai
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Data_base.Data_base datos = new iaai.Data_base.Data_base();
+
+
+            datos.open_db();
         }
     }
 }
