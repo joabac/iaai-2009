@@ -17,7 +17,8 @@ namespace iaai
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void acercaDeIAAIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Data_base.Data_base datos = new iaai.Data_base.Data_base();
 
