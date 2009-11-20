@@ -117,13 +117,13 @@
             // ayudaToolStripMenuItem1
             // 
             this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
-            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.ayudaToolStripMenuItem1.Text = "Ayuda";
             // 
             // acercaDeIAAIToolStripMenuItem
             // 
             this.acercaDeIAAIToolStripMenuItem.Name = "acercaDeIAAIToolStripMenuItem";
-            this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
             // 
@@ -139,6 +139,7 @@
             this.Name = "Menu_inicial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IAAI";
+            
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
