@@ -31,11 +31,11 @@
             this.estado = new System.Windows.Forms.StatusStrip();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.alumnosMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.profesoresMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.altaAlumnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaResponsableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBMProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profesoresMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBMProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,14 +73,6 @@
             this.alumnosMenu.Size = new System.Drawing.Size(67, 20);
             this.alumnosMenu.Text = "Alumnos";
             // 
-            // profesoresMenu
-            // 
-            this.profesoresMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aBMProfesoresToolStripMenuItem});
-            this.profesoresMenu.Name = "profesoresMenu";
-            this.profesoresMenu.Size = new System.Drawing.Size(74, 20);
-            this.profesoresMenu.Text = "Profesores";
-            // 
             // altaAlumnoToolStripMenuItem
             // 
             this.altaAlumnoToolStripMenuItem.Name = "altaAlumnoToolStripMenuItem";
@@ -93,17 +85,25 @@
             this.altaResponsableToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.altaResponsableToolStripMenuItem.Text = "ABM Responsable";
             // 
-            // aBMProfesoresToolStripMenuItem
-            // 
-            this.aBMProfesoresToolStripMenuItem.Name = "aBMProfesoresToolStripMenuItem";
-            this.aBMProfesoresToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.aBMProfesoresToolStripMenuItem.Text = "ABM Profesores";
-            // 
             // inscripcionesToolStripMenuItem
             // 
             this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
             this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
+            // 
+            // profesoresMenu
+            // 
+            this.profesoresMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aBMProfesoresToolStripMenuItem});
+            this.profesoresMenu.Name = "profesoresMenu";
+            this.profesoresMenu.Size = new System.Drawing.Size(74, 20);
+            this.profesoresMenu.Text = "Profesores";
+            // 
+            // aBMProfesoresToolStripMenuItem
+            // 
+            this.aBMProfesoresToolStripMenuItem.Name = "aBMProfesoresToolStripMenuItem";
+            this.aBMProfesoresToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aBMProfesoresToolStripMenuItem.Text = "ABM Profesores";
             // 
             // ayudaToolStripMenuItem
             // 
@@ -125,6 +125,7 @@
             this.acercaDeIAAIToolStripMenuItem.Name = "acercaDeIAAIToolStripMenuItem";
             this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
+            this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
             // 
             // Menu_inicial
             // 
