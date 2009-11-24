@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alumno\Alumno.cs" />
     <Compile Include="Data_base\Data_base.cs" />
     <Compile Include="Menu_inicial.cs">
       <SubType>Form</SubType>
@@ -91,7 +92,6 @@
     <Content Include="icono.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="alumno\" />
     <Folder Include="profesor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
