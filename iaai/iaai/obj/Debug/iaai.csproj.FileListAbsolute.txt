@@ -1,8 +1,0 @@
-C:\iaai\iaai\iaai\bin\Debug\iaai.exe
-C:\iaai\iaai\iaai\bin\Debug\iaai.pdb
-C:\iaai\iaai\iaai\obj\Debug\ResolveAssemblyReference.cache
-C:\iaai\iaai\iaai\obj\Debug\iaai.Menu_inicial.resources
-C:\iaai\iaai\iaai\obj\Debug\iaai.Properties.Resources.resources
-C:\iaai\iaai\iaai\obj\Debug\iaai.csproj.GenerateResource.Cache
-C:\iaai\iaai\iaai\obj\Debug\iaai.exe
-C:\iaai\iaai\iaai\obj\Debug\iaai.pdb
