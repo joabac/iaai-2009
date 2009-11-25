@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using iaai.Data_base;
+using iaai.alumno;
 
 namespace iaai
 {
@@ -24,6 +25,13 @@ namespace iaai
 
 
             datos.open_db();
+        }
+
+        private void altaAlumnoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AltaAlumno a = new AltaAlumno();
+            this.SetVisibleCore(false);
+            a.Show();
         }
 
         
