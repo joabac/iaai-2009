@@ -99,6 +99,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Documentos de referencia\Documentacion.txt" />
     <Content Include="icono.ico" />
   </ItemGroup>
   <ItemGroup>

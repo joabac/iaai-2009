@@ -254,6 +254,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nombre);
             this.Name = "AltaAlumno";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Alta Alumno";
             this.Load += new System.EventHandler(this.AltaAlumno_Load);
             this.ResumeLayout(false);
