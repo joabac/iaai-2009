@@ -1,4 +1,6 @@
-﻿namespace iaai
+﻿
+
+namespace iaai
 {
     partial class Menu_inicial
     {
@@ -39,6 +41,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaAlumnoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +78,8 @@
             // 
             // altaAlumnoToolStripMenuItem
             // 
+            this.altaAlumnoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaAlumnoToolStripMenuItem1});
             this.altaAlumnoToolStripMenuItem.Name = "altaAlumnoToolStripMenuItem";
             this.altaAlumnoToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.altaAlumnoToolStripMenuItem.Text = "ABM Alumno";
@@ -127,6 +132,13 @@
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
             // 
+            // altaAlumnoToolStripMenuItem1
+            // 
+            this.altaAlumnoToolStripMenuItem1.Name = "altaAlumnoToolStripMenuItem1";
+            this.altaAlumnoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.altaAlumnoToolStripMenuItem1.Text = "Alta Alumno";
+            this.altaAlumnoToolStripMenuItem1.Click += new System.EventHandler(this.altaAlumnoToolStripMenuItem1_Click);
+            // 
             // Menu_inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,7 +151,6 @@
             this.Name = "Menu_inicial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IAAI";
-            
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -160,6 +171,7 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem acercaDeIAAIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaAlumnoToolStripMenuItem1;
 
 
 
