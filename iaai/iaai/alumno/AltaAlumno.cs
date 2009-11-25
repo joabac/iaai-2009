@@ -41,31 +41,34 @@ namespace iaai.alumno
         private Boolean validar()
         {
             if (nombre.Text.Length == 0)
-                error = error + "Ingrese el Nombre. /n";
+                error = error + "Ingrese el Nombre. \r\n";
             if (apellido.Text.Length == 0)
-                error = error + "Ingrese el Apellido. /n";
+                error = error + "Ingrese el Apellido. \r\n";
             if (dni.Text.Length == 0)
-                error = error + "Ingrese el DNI. /n";
+                error = error + "Ingrese el DNI. \r\n";
             if (fecha_nacimiento.Text.Length == 0)
-                error = error + "Ingrese la fecha de nacimiento. /n";
-
-            if (fecha_nacimiento.Text.ToCharArray[fecha_nacimiento.Text.Length - 1] != "_")
+                error = error + "Ingrese la fecha de nacimiento. \r\n";
+            
+            
+            //[fecha_nacimiento.Text.Length-1]!= '_'
+            bool validar = fecha_nacimiento.Text.Contains("");
+            if (!validar)
             {
-                if (DateTime.Parse(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
+                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
                 {
                     if (telefono_numero.Text.Length == 0)
-                        error = error + "Ingrese el teléfono. /n";
+                        error = error + "Ingrese el teléfono. \r\n";
                     if (direccion.Text.Length == 0)
-                        error = error + "Ingrese la dirección. /n";
+                        error = error + "Ingrese la dirección. \r\n";
                 }
             }
             if (escuela_nombre.Text.Length > 0)
                 if(escuela_año.Text.Length == 0)
-                    error = error + "Ingrese el año de cursado. /n";
+                    error = error + "Ingrese el año de cursado. \r\n";
 
             if (error.Length > 0)
             {
-                error = "Se han producido errores: /n" + error;
+                error = "Se han producido errores: \r\n" + error;
                 MessageBox.Show(error);
                 return false;
             }

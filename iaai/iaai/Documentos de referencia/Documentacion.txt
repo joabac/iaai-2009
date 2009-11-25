@@ -1,0 +1,3 @@
+﻿Pagina interesante de ayuda y referencia sobre c#
+
+http://es.csharp-online.net/Agregar_y_configurar_un_Formulario_Windows
