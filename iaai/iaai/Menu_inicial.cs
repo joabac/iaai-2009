@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using iaai.Data_base;
 using iaai.alumno;
+using iaai.responsable;
 
 namespace iaai
 {
@@ -42,6 +43,15 @@ namespace iaai
         private void Menu_inicial_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void altaResponsableToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AltaResponsable r = new AltaResponsable();
+            r.Parent = this.Parent;
+            r.MdiParent = this;
+
+            r.Show();
         }
 
         
