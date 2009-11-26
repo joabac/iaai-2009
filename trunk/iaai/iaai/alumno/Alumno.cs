@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace iaai.alumno
 {
@@ -22,17 +23,21 @@ namespace iaai.alumno
         //CONSTRUCTOR DE LA CLASE
         public Alumno(IDictionary<string,object> datos)
         {
-            id_alumno = (int)datos["id"];
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
-            dni = (int)datos["dni"];
-            fecha_nac = (DateTime)datos["fecha_nac"];
-            telefono_carac =(int)datos["telefono_carac"];
-            telefono_numero = (int)datos["telefono_numero"];
-            escuela_nombre = (string)datos["escuela_nombre"];
-            escuela_año = (int)datos["escuela_año"];
+            dni = int.Parse(datos["dni"].ToString());
+            fecha_nac = DateTime.Parse(datos["fecha_nac"].ToString());
+            if (datos["telefono_carac"] != null)
+                telefono_carac =int.Parse(datos["telefono_carac"].ToString());
+            telefono_numero = int.Parse(datos["telefono_numero"].ToString());
+            if (datos["escuela_nombre"] != null)
+            {
+                escuela_nombre = (string)datos["escuela_nombre"];
+                escuela_año = int.Parse(datos["escuela_año"].ToString());
+            }
             direccion = (string)datos["direccion"];
-            id_responsable = (int)datos["id_responsable"];
+            if (datos["id_responsable"] != null)
+                id_responsable = int.Parse(datos["id_responsable"].ToString());
         }
 
 
@@ -85,11 +90,6 @@ namespace iaai.alumno
 
         //ESTOS SON LOS SET VITEH
 
-
-        public void setId_alumno(int id)
-        {
-            id_alumno = id;
-        }
         public void setNombre(string nom)
         {
             nombre = nom;
