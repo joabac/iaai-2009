@@ -14,7 +14,7 @@ namespace iaai
 {
     public partial class Menu_inicial : Form
     {
-        
+        AltaAlumno a;
 
         public Menu_inicial()
         {
@@ -33,12 +33,11 @@ namespace iaai
 
         private void altaAlumnoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-          AltaAlumno a = new AltaAlumno();
-          a.Parent = this.Parent;
-          a.MdiParent = this;
-          
-          a.Show();
-        }
+                a = new AltaAlumno();
+                a.Parent = this.Parent;
+                a.MdiParent = this;
+                a.Show();
+         }
 
         private void Menu_inicial_Load(object sender, EventArgs e)
         {

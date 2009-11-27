@@ -19,13 +19,13 @@ namespace iaai.responsable
         //CONSTRUCTOR DE LA CLASE
         public Responsable(IDictionary<string,object> datos)
         {
-            id_responsable = (int)datos["id"];
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
-            dni = (int)datos["dni"];
-            fecha_nac = (DateTime)datos["fecha_nac"];
-            telefono_carac =(int)datos["telefono_carac"];
-            telefono_numero = (int)datos["telefono_numero"];
+            dni = int.Parse(datos["dni"].ToString());
+            fecha_nac = DateTime.Parse(datos["fecha_nac"].ToString());
+            if (datos["telefono_carac"] != null)
+                telefono_carac = int.Parse(datos["telefono_carac"].ToString());
+            telefono_numero = int.Parse(datos["telefono_numero"].ToString());
             direccion = (string)datos["direccion"];
         }
 

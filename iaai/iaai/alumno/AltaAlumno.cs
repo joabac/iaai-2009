@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iaai.responsable;
 
 namespace iaai.alumno
 {
@@ -14,6 +15,7 @@ namespace iaai.alumno
         private string error = "";
         private int responsable = -1;
         IDictionary<string, object> datos = new Dictionary<string, object>();
+        Data_base.Data_base db = new iaai.Data_base.Data_base();
 
         public AltaAlumno()
         {
@@ -27,22 +29,28 @@ namespace iaai.alumno
 
         private void aceptar_MouseClick(object sender, MouseEventArgs e)
         {
-            validar();
-            guardarDatos();
+            if (validar())
+            {
+                guardarDatos();
 
-            Alumno alumno = new Alumno(datos);
+                Alumno alumno = new Alumno(datos);
 
-            Data_base.Data_base db = new iaai.Data_base.Data_base();
 
-            if (db.altaAlumno(alumno))
-                MessageBox.Show("El alumno fué dado de alta con éxito.");
-            else
-                MessageBox.Show("Ocurrió un error en base de datos.");
+
+                if (db.altaAlumno(alumno))
+                {
+                    MessageBox.Show("El alumno fué dado de alta con éxito.");
+
+                }
+                else
+                    MessageBox.Show("Ocurrió un error en base de datos.");
+            }
+            
         }
 
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
-
+            this.Close();
         }
 
         private void agregarResponsable_MouseClick(object sender, MouseEventArgs e)
@@ -54,6 +62,12 @@ namespace iaai.alumno
             else if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
             {
                 MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
+            }
+            else
+            {
+                AsignarResponsable asignarResponsable = new AsignarResponsable();
+                this.SetVisibleCore(false);
+                asignarResponsable.Show();
             }
         }
 
@@ -105,8 +119,14 @@ namespace iaai.alumno
                 MessageBox.Show(error);
                 return false;
             }
-            
-            return true;
+            if (db.validarDniAlumno(dni.Text))
+                return true;
+            else
+            {
+                error = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
+                MessageBox.Show(error);
+                return false;
+            }
        }
         public void asignarResponsable(int resp)
         {
