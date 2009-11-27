@@ -12,7 +12,8 @@ namespace iaai.responsable
     public partial class AltaResponsable : Form
     {
         private string error = "";
-        private int responsable = -1;
+        IDictionary<string, object> datos = new Dictionary<string, object>();
+        Data_base.Data_base db = new iaai.Data_base.Data_base();
 
         public AltaResponsable()
         {
@@ -21,7 +22,19 @@ namespace iaai.responsable
 
         private void aceptar_MouseClick(object sender, MouseEventArgs e)
         {
-            validar();
+            if (validar())
+            {
+                guardarDatos();
+
+                Responsable responsable = new Responsable(datos);
+
+
+
+                if (db.altaResponsable(responsable))
+                    MessageBox.Show("El responsable fué dado de alta con éxito.");
+                else
+                    MessageBox.Show("Ocurrió un error en base de datos.");
+            }
 
         }
 
@@ -61,12 +74,37 @@ namespace iaai.responsable
                 MessageBox.Show(error);
                 return false;
             }
-            
-            return true;
+
+            if (db.validarDniResponsable(dni.Text))
+                return true;
+            else
+            {
+                error = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
+                MessageBox.Show(error);
+                return false;
+            }
+
        }
-        public void asignarResponsable(int resp)
+
+
+        private void guardarDatos()
         {
-            this.responsable = resp;
+            datos["nombre"] = nombre.Text;
+            datos["apellido"] = apellido.Text;
+            datos["dni"] = dni.Text;
+            datos["fecha_nac"] = (object)fecha_nacimiento.Text;
+            if (telefono_carac.Text.Length > 0)
+            {
+                datos["telefono_carac"] = telefono_carac.Text;
+            }
+            else
+            {
+                datos["telefono_carac"] = null;
+            }
+            datos["telefono_numero"] = (object)telefono_numero.Text;
+
+            datos["direccion"] = direccion.Text;
+
         }
 
     }
