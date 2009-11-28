@@ -215,6 +215,7 @@
             this.aceptar.TabIndex = 10;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             this.aceptar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.aceptar_MouseClick);
             // 
             // cancelar
@@ -255,7 +256,7 @@
             this.Controls.Add(this.nombre);
             this.Name = "AltaAlumno";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta Alumno";
             this.Load += new System.EventHandler(this.AltaAlumno_Load);
             this.ResumeLayout(false);
