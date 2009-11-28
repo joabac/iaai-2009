@@ -87,13 +87,53 @@ namespace iaai_test
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
+            dni = "288593MF";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "288593FM";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "288593";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "288593F0123";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
             dni= "28s89394";
             esperado =false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
 
-            
+            dni = "28F893944";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "28893943F";  
+            esperado = true;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "28893943M";
+            esperado = true;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "12345678F0";
+            esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+
         }
        
 

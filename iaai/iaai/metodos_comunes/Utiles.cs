@@ -11,14 +11,27 @@ namespace iaai.metodos_comunes
         public bool ValidarDni(string dni)
         {
 
-            if (dni.Length < 8)
+            if (dni.Length > 9)
                 return false;
-
-            foreach (char c in dni) 
+            else
             {
-                if (!char.IsDigit(c))
+                if (dni.Length < 8)
                     return false;
             }
+
+            if (dni.Length == 9 ){
+                if (dni[8] != 'F' && dni[8] != 'M')
+                    return false;
+                
+            }
+            
+            
+            for(int i=0;i<8; i++) 
+            {
+                    if (!char.IsDigit(dni[i]))
+                        return false;
+            }
+
             return true;
         }
 
