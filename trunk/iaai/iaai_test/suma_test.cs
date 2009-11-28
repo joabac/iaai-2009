@@ -68,7 +68,7 @@ namespace iaai_test
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void test_suma()
         {
             //
             // TODO: Agregar aquí la lógica de las pruebas
