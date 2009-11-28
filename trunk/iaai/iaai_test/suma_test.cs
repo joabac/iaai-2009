@@ -13,12 +13,12 @@ namespace iaai_test
     /// Descripción resumida de UnitTest1
     /// </summary>
     [TestClass]
-    public class UnitTest1
+    public class suma_test
     {
 
         iaai.profesor.Altaprofesor profe;
 
-        public UnitTest1()
+        public suma_test()
         {
             //
             // TODO: Agregar aquí la lógica del constructor

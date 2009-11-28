@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentos de referencia\Documentacion.txt" />
+    <Content Include="Documentos de referencia\codigo fuente\validar_e_mail.txt" />
     <Content Include="icono.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
