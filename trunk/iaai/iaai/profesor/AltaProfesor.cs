@@ -232,18 +232,20 @@ namespace iaai.profesor
                         error = "El profesor ya fue dado de alta en el sistema";
                         MessageBox.Show(error);
                     }
-                    
-                
-                
+                                 
             }
             else
             {
                 error = "El DNI ingresado no es valido";
                 MessageBox.Show(error);
             }
+
+            if (error == "") {
+                guardarDatos();
+            }
         }
         
-
+        //TODO: comentar y especificar que guarda?
         private void guardarDatos()
         {
             datos["nombre"] = nombre.Text;
