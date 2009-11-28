@@ -1,0 +1,141 @@
+﻿private void validar_email(object sender, EventArgs e)
+        {
+            bool estado_email = true;
+
+            int i = 0;
+
+            if (email.Text.Length != 0)
+            {
+                if (email.Text[i] == '@' || email.Text[i] == '_' || email.Text[i] == '-' || email.Text[i] == '.')
+                {
+                    MessageBox.Show(this, "El primer caracter debe ser una letra o numero", "Atención", MessageBoxButtons.OK);
+                    estado_email = false;
+                    email.Focus();
+                }
+                else
+                {
+                    for (int j = 0; j < email.Text.Length - 1; j++)//verifico por caracteres especiales junto a un punto
+                    {
+
+                        if (((email.Text[j] == '.' || email.Text[j] == '_' || email.Text[j] == '-') && (email.Text[j + 1] == '.' || email.Text[j + 1] == '@')))
+                            estado_email = false;
+                    }
+
+                    if (estado_email == true)
+                    {
+
+                        while (email.Text[i] != '@' && i < email.Text.Length - 1)//verifico primera parte aaaa@
+                        {
+                            if (Char.IsDigit(email.Text[i]) || Char.IsLetter(email.Text[i]) ||
+                                email.Text[i] == '_' || email.Text[i] == '-' || email.Text[i] == '.')
+                            {
+                            }
+                            else
+                            {
+
+                                MessageBox.Show(this, "El caracter: " + email.Text[i].ToString() + " no es valido posicion: " + (i+1).ToString(), "Atención", MessageBoxButtons.OK);
+                                estado_email = false;
+                                email.Focus();
+                            }
+                            i++;
+                        }
+
+                        if (email.Text[i] == '@' && estado_email == true && email.Text.Length-1 > i)
+                        { //verifico luego del arroba  @aaaa.
+
+                            i++;
+
+                            if (email.Text[i] == '_' || email.Text[i] == '-' || email.Text[i] == '.')
+                            { //primer caracter luego de arroba
+                                MessageBox.Show(this, "El caracter: " + email.Text[i].ToString() + " no es valido posicion: " + (i + 1).ToString(), "Atención", MessageBoxButtons.OK);
+                                estado_email = false;
+                                email.Focus();
+                            }
+                            else
+                            { //verifico sean o digitos o letras o los caracteres permitidos
+
+                                //desde el caracter 1 luego del arroba asta el primer punto
+                                while (email.Text[i] != '.' && i < email.Text.Length - 1)//verifico primera parte aaaa@
+                                {
+                                    if (Char.IsDigit(email.Text[i]) || Char.IsLetter(email.Text[i]) ||
+                                        email.Text[i] == '_' || email.Text[i] == '-' || email.Text[i] == '.')
+                                    {
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(this, "El caracter: " + email.Text[i].ToString() + " no es valido posicion: " + (i + 1).ToString(), "Atención", MessageBoxButtons.OK);
+                                        estado_email = false;
+                                        email.Focus();
+                                    }
+                                    i++;
+                                }
+
+                                if (email.Text[i] == '.' && estado_email == true && email.Text.Length-1 > i)
+                                { //todo lo demas
+
+                                    i++;
+
+                                    while (i < email.Text.Length - 1)//verifico la ultima parte
+                                    {
+
+                                        if (email.Text[i] == '_' || email.Text[i] == '-')
+                                        {
+                                            MessageBox.Show(this, "El caracter: " + email.Text[i].ToString() + " no es valido posicion: " + (i + 1).ToString(), "Atención", MessageBoxButtons.OK);
+                                            estado_email = false;
+                                            email.Focus();
+                                        }
+
+                                        else
+                                        {
+                                            if (Char.IsDigit(email.Text[i]) || Char.IsLetter(email.Text[i]) || email.Text[i] == '.')
+                                            {
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(this, "El caracter: " + email.Text[i].ToString() + " no es valido posicion: " + (i + 1).ToString(), "Atención", MessageBoxButtons.OK);
+                                                estado_email = false;
+                                                email.Focus();
+                                            }
+                                        }
+                                        i++;
+                                    }
+                                    if (!Char.IsLetterOrDigit(email.Text[i]))
+                                    {
+                                        MessageBox.Show(this, "El caracter: " + email.Text[i] + " no es valido", "Atención", MessageBoxButtons.OK);
+                                        estado_email = false;
+                                        email.Focus();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show(this, "El e.mail no es valido Ej: abc@abc.com.ar", "Atención", MessageBoxButtons.OK);
+                                    estado_email = false;
+                                    email.Focus();
+                                }
+
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "El e.mail debe contener un arroba Ej: abc@abc.com.ar", "Atención", MessageBoxButtons.OK);
+                            estado_email = false;
+                            email.Focus();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "No se puede escribir dos caracteres especiales juntos", "Atención", MessageBoxButtons.OK);
+                        estado_email = false;
+                        email.Focus();
+                    }
+
+                }
+            }
+            else {
+                MessageBox.Show(this, "Debe ingresar un E-mail", "Atención", MessageBoxButtons.OK);
+                estado_email = false;
+                email.Focus();
+            }
+
+        }
