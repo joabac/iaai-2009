@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace iaai_test
 {
+    //TODO: borra esta clase
     /// <summary>
     /// Descripción resumida de UnitTest1
     /// </summary>
