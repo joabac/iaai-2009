@@ -1,6 +1,11 @@
 ﻿using iaai.metodos_comunes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using iaai.metodos_comunes;
+using System.Windows.Forms;
+
 namespace iaai_test
+
 {
     
     
@@ -68,13 +73,30 @@ namespace iaai_test
         [TestMethod()]
         public void ValidarDniTest()
         {
+                   
             Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
-            string dni = "28889394"; // TODO: Inicializar en un valor adecuado
-            bool expected = true; // TODO: Inicializar en un valor adecuado
-            bool actual;
+            
+            string dni = "28889394";  //caso de prueba
+            bool esperado= true;      //valor esperado
+            bool actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+            
+
+            dni="28889.394";
+            esperado= false;
             actual = target.ValidarDni(dni);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(esperado, actual);
+
+            dni= "28s89394";
+            esperado =false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+
             
         }
+       
+
+        
     }
 }

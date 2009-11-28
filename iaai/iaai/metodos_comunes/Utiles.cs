@@ -22,6 +22,27 @@ namespace iaai.metodos_comunes
             return true;
         }
 
-       
+        struct prueba
+        {
+            string cadena;
+            bool esperado;
+
+            public prueba(string val, bool valor)
+            {
+                cadena = val;
+                esperado = valor;
+            }
+
+            public string get_cadena()
+            {
+
+                return cadena;
+            }
+
+            public bool get_esperado()
+            {
+                return esperado;
+            }
+        }
     }
 }
