@@ -23,13 +23,23 @@ namespace iaai.Data_base
 
         public bool open_db(){
 
-            conexion.Open();
-
-           // if (conexion.State == System.Data.ConnectionState.Open)
-             //   MessageBox.Show("la base esta abierta");
+            try
+            {
+                conexion.Open();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    return true;
+            }
+            catch (MySqlException my_ex)
+            {
+                MessageBox.Show("Error al abrir la base de Datos:\r\n"+my_ex.Message);
+                return true;
+            }
 
             return true;
+            
         }
+
+        //TODO: cambiar nombre del metodo resulta ambiguo seria mejor buscar...
         //Se valida que no exista el alumno en la base de datos.
         public bool validarDniAlumno(string dni)
         {
@@ -40,7 +50,9 @@ namespace iaai.Data_base
             conexion.Dispose();
             return aux;
         }
-
+        //
+        //TODO: cambiar nombre del metodo validarDniResponsable resulta ambiguo seria mejor buscar...
+        //
         public bool validarDniResponsable(string dni)
         {
             this.open_db();
@@ -51,6 +63,7 @@ namespace iaai.Data_base
             return aux;
         }
 
+        //TODO: Agregar comentarios y bloques try catch
         public bool altaAlumno(Alumno a)
         {
            
@@ -65,6 +78,8 @@ namespace iaai.Data_base
             return true;
         }
 
+
+        //TODO: Agregar comentarios y bloques try catch
         public bool altaResponsable(Responsable r)
         {
             this.open_db();
@@ -78,6 +93,8 @@ namespace iaai.Data_base
             return true;
         }
 
+
+        //TODO: Agregar comentarios y bloques try catch
         public List<List<string>> buscarResponsable(string consulta)
         {
             this.open_db();
@@ -108,7 +125,16 @@ namespace iaai.Data_base
             MessageBox.Show(MyDataReader.GetValue(2).ToString());
         }
 
-
+        /// <summary>
+        /// Busca el DNI del profesor solicitado en base de datos,
+        /// <param name="dni_profesor">
+        /// Se debe ingresar un dni valido en formato String
+        /// </param>
+        /// <returns>
+        ///{true= si existe el docente}  
+        ///{false= si no existen registros del mismo} 
+        /// </returns>
+        /// </summary>
         internal bool BuscarDniProfesor(string dni_profesor)
         {
             bool aux= false;

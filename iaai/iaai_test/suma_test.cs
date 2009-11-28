@@ -20,9 +20,8 @@ namespace iaai_test
 
         public suma_test()
         {
-            //
-            // TODO: Agregar aquí la lógica del constructor
-            //
+                      
+            
           profe = new Altaprofesor();
 
         }
@@ -71,7 +70,7 @@ namespace iaai_test
         public void test_suma()
         {
             //
-            // TODO: Agregar aquí la lógica de las pruebas
+            
             //
             int a = 2;
             int b = 2;
