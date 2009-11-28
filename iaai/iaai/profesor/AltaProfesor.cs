@@ -6,11 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iaai.metodos_comunes;
 
 namespace iaai.profesor
 {
     public partial class Altaprofesor : Form
     {
+
+        private string error = "";
+        IDictionary<string, object> datos = new Dictionary<string, object>();
+        Data_base.Data_base db = new iaai.Data_base.Data_base();
+        Utiles metodo = new Utiles();
+
         public Altaprofesor()
         {
             InitializeComponent();
@@ -166,6 +173,96 @@ namespace iaai.profesor
                 
             }
             return estado_email;
+        }
+
+        private void validar_mail(object sender, EventArgs e)
+        {
+            if (email.Text != "")
+            {
+                if (validar_email(email.Text) == false)
+                {
+                    MessageBox.Show("Formato de email no valido");
+                    email.Focus();
+                }
+            }
+            
+        }
+
+        private void guardar_Click(object sender, EventArgs e)
+        {
+            error = "";
+            if (nombre.Text.Length == 0)
+                error = error + "Ingrese el Nombre. \r\n";
+            if (apellido.Text.Length == 0)
+                error = error + "Ingrese el Apellido. \r\n";
+            if (dni.Text.Length == 0)
+                error = error + "Ingrese el DNI. \r\n";
+            if (fecha_nacimiento.Text.Contains(' '))
+                error = error + "Ingrese la fecha de nacimiento. \r\n";
+            if (telefono_numero.Text.Length == 0)
+                error = error + "Ingrese el teléfono. \r\n";
+            if (direccion.Text.Length == 0)
+                error = error + "Ingrese la dirección. \r\n";
+
+
+
+            
+
+            bool validar = fecha_nacimiento.Text.Contains(' ');
+            if (!validar)//si la fecha esta ingresada
+            {
+                //si menor de 21 años hay que controlar que se le haya asignado un responsable
+                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
+                {
+                    MessageBox.Show("El profesor debe ser mayor de Edad");
+                    fecha_nacimiento.Focus();
+                }
+            }
+
+            if (error.Length > 0)
+            {
+                error = "Se han producido errores: \r\n" + error;
+                MessageBox.Show(error);
+                
+            }
+            if (metodo.ValidarDni(dni.Text) == true )
+            {
+                    if (!db.BuscarDniProfesor(dni.Text)) {
+
+                        error = "El profesor ya fue dado de alta en el sistema";
+                        MessageBox.Show(error);
+                    }
+                    
+                
+                
+            }
+            else
+            {
+                error = "El DNI ingresado no es valido";
+                MessageBox.Show(error);
+            }
+        }
+        
+
+        private void guardarDatos()
+        {
+            datos["nombre"] = nombre.Text;
+            datos["apellido"] = apellido.Text;
+            datos["dni"] = dni.Text;
+            datos["fecha_nac"] = (object)fecha_nacimiento.Text;
+            if (telefono_carac.Text.Length > 0)
+            {
+                datos["telefono_carac"] = telefono_carac.Text;
+            }
+            else
+            {
+                datos["telefono_carac"] = null;
+            }
+            datos["telefono_numero"] = (object)telefono_numero.Text;
+
+            
+            datos["direccion"] = direccion.Text;
+            
         }
     }
 

@@ -9,12 +9,13 @@ using System.Windows.Forms;
 using iaai.Data_base;
 using iaai.alumno;
 using iaai.responsable;
+using iaai.profesor;
 
 namespace iaai
 {
     public partial class Menu_inicial : Form
     {
-        AltaAlumno a;
+        
 
         public Menu_inicial()
         {
@@ -33,10 +34,10 @@ namespace iaai
 
         private void altaAlumnoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-                a = new AltaAlumno();
-                a.Parent = this.Parent;
-                a.MdiParent = this;
-                a.Show();
+                AltaAlumno alta_alumno_form = new AltaAlumno();
+                alta_alumno_form.Parent = this.Parent;
+                alta_alumno_form.MdiParent = this;
+                alta_alumno_form.Show();
          }
 
         private void Menu_inicial_Load(object sender, EventArgs e)
@@ -46,11 +47,21 @@ namespace iaai
 
         private void altaResponsableToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AltaResponsable r = new AltaResponsable();
-            r.Parent = this.Parent;
-            r.MdiParent = this;
+            AltaResponsable alta_resp = new AltaResponsable();
+            alta_resp.Parent = this.Parent;
+            alta_resp.MdiParent = this;
 
-            r.Show();
+            alta_resp.Show();
+        }
+
+        private void aBMProfesoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Altaprofesor profesor_form = new Altaprofesor();
+
+            profesor_form.Parent = this.Parent;
+            profesor_form.MdiParent = this;
+
+            profesor_form.Show();
         }
 
         

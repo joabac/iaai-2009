@@ -108,5 +108,23 @@ namespace iaai.Data_base
             MessageBox.Show(MyDataReader.GetValue(2).ToString());
         }
 
+
+        internal bool BuscarDniProfesor(string dni_profesor)
+        {
+            bool aux= false;
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from profesor where dni = '" + dni_profesor + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                aux =  !(MyDataReader.Read());
+                conexion.Close();
+            }
+            catch (MySqlException e) {
+
+                MessageBox.Show("Error de lectura en base de Datos: \r\n"+e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return aux;
+        }
     }
 }
