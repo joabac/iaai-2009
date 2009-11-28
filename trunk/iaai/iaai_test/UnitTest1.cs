@@ -3,20 +3,28 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using iaai.profesor;
+using System.Windows.Forms;
 
-namespace iaai_pruebas
+
+namespace iaai_test
 {
     /// <summary>
-    /// Descripción resumida de validar_email
+    /// Descripción resumida de UnitTest1
     /// </summary>
     [TestClass]
-    public class validar_email
+    public class UnitTest1
     {
-        public validar_email()
+
+        iaai.profesor.Altaprofesor profe;
+
+        public UnitTest1()
         {
             //
             // TODO: Agregar aquí la lógica del constructor
             //
+          profe = new Altaprofesor();
+
         }
 
         private TestContext testContextInstance;
@@ -65,6 +73,22 @@ namespace iaai_pruebas
             //
             // TODO: Agregar aquí la lógica de las pruebas
             //
+            int a = 2;
+            int b = 2;
+
+            int esperado = 4;
+
+            Assert.AreEqual(profe.sumar(a,b),esperado);
+
+            a = 2;
+            b = 2;
+
+            esperado = 2;
+
+            Assert.AreNotEqual(profe.sumar(a, b), esperado);
+
+
+
         }
     }
 }
