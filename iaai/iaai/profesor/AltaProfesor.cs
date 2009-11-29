@@ -75,7 +75,7 @@ namespace iaai.profesor
             {
                 if (metodo.ValidarDni(dni.Text) == true)
                 {
-                    if (!db.BuscarDniProfesor(dni.Text))
+                    if (!db.buscarDniProfesor(dni.Text))
                     {
                         error = error + "El profesor ya fue dado de alta en el sistema. \r\n";
                     }
@@ -115,7 +115,7 @@ namespace iaai.profesor
             }
             if (metodo.ValidarDni(dni.Text) == true)
             {
-                if (!db.BuscarDniProfesor(dni.Text))
+                if (!db.buscarDniProfesor(dni.Text))
                 {
 
                     error = "El profesor ya fue dado de alta en el sistema";
