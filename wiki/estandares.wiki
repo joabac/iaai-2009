@@ -2,12 +2,42 @@
 
 = Estandares de Programacion a utilizar =
 
-Add your content here.
+= Comentarios =
+
+Utilizar Comentarios del tipo *XML*
+
+_*Ejemplo*_
+
+{{{
+
+/// <summary>
+        /// Valida caracteres validos para campo direccion
+        /// </summary>
+        /// <example>
+        /// Urquiza 3225
+        /// D'agostino 325 7º B
+        /// Avda. San Martin 3452
+        /// San juan 3225 (Pasillo) dto. 2º
+        /// </example>
+        /// <param name="cadena">Direccion a validar en formato String</param>
+        /// <returns>
+        /// true: si es valido  
+        /// false: si no es valido 
+        /// </returns>
+
+}}}
 
 
-= Details =
+= Nombres =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Para todas las variables que se generen utilizar nombres *autoexplicativos* 
+
+_*Ejemplo*_
+
+*Prohibido*
+
+{{{Alumno a = new Alumno();}}}
+
+*Deberia ser*
+
+{{{Alumno alumno = new Alumno();}}}
