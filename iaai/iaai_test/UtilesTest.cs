@@ -181,6 +181,11 @@ namespace iaai_test
             expected = false;
             actual = target.validar_Nombre_App(cadena);
             Assert.AreEqual(expected, actual);
+
+            cadena = "Anrés Ñares D`Luca";
+            expected = true;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
             
 
         }
