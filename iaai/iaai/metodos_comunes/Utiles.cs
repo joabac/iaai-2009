@@ -8,6 +8,15 @@ namespace iaai.metodos_comunes
     class Utiles
     {
 
+
+        /// <summary>
+        /// Valida la estructura de un DNI para los formatos aceptados como validos (xxxxxxxxF o xxxxxxxxM)  (xxxxxxxx).
+        /// </summary>
+        /// <param name="dni">string DNI</param>
+        /// <returns>true: si es valido 
+        /// false: si no es valido
+        /// </returns>
+        /// 
         public bool ValidarDni(string dni)
         {
 

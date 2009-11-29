@@ -92,6 +92,7 @@
     <Compile Include="profesor\AltaProfesor.Designer.cs">
       <DependentUpon>AltaProfesor.cs</DependentUpon>
     </Compile>
+    <Compile Include="profesor\Profesor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="alumno\AltaAlumno.resx">
