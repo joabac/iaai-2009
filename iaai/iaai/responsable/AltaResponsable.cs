@@ -75,7 +75,7 @@ namespace iaai.responsable
                 return false;
             }
 
-            if (db.validarDniResponsable(dni.Text))
+            if (db.buscarDniResponsable(dni.Text))
                 return true;
             else
             {

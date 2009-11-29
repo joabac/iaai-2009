@@ -122,7 +122,7 @@ namespace iaai.alumno
                 MessageBox.Show(error);
                 return false;
             }
-            if (db.validarDniAlumno(dni.Text))
+            if (db.buscarDniAlumno(dni.Text))
                 return true;
             else
             {
