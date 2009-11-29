@@ -184,8 +184,11 @@ namespace iaai.metodos_comunes
         /// juan.gonzales
         /// 
         /// </example>
-        /// <param name="cadena"></param>
-        /// <returns></returns>
+        /// <param name="cadena">Nombre o apellido a validar</param>
+        /// <returns>
+        /// true: si es valido
+        /// false: si no es valido
+        ///</returns>
         public bool validar_Nombre_App(String cadena)
         {
 
@@ -215,6 +218,7 @@ namespace iaai.metodos_comunes
         /// Urquiza 3225
         /// D'agostino 325 7º B
         /// Avda. San Martin 3452
+        /// San juan 3225 (Pasillo) dto. 2º
         /// </example>
         /// <param name="cadena">Direccion a validar en formato String</param>
         /// <returns>
@@ -228,7 +232,8 @@ namespace iaai.metodos_comunes
 
             foreach (char c in cadena)
             {
-                if (Char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.' || c == 96)
+                if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' || 
+                    c == 96 || c== 'º' || c == '(' || c== ')')
                 {
                     valido = true;
                 }
