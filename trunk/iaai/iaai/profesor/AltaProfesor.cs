@@ -128,7 +128,7 @@ namespace iaai.profesor
 
                 if (db.altaProfesor(profe))
                 {
-                    MessageBox.Show("El alumno fué dado de alta con éxito.");
+                    MessageBox.Show("El profesor fué dado de alta con éxito.");
 
                 }
                 else

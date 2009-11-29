@@ -39,70 +39,121 @@ namespace iaai.Data_base
             
         }
 
-        //TODO: cambiar nombre del metodo resulta ambiguo seria mejor buscar...
-        //TODO: agregar tray y catch
         //Se valida que no exista el alumno en la base de datos.
-        public bool validarDniAlumno(string dni)
+        public bool buscarDniAlumno(string dni)
         {
-            this.open_db();
-            MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni = '"+ dni +"'", conexion);
-            MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
-            bool aux = !(MyDataReader.Read());
-            conexion.Dispose();
-            return aux;
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni = '" + dni + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                
+                if (MyDataReader.Read())
+                {
+                    conexion.Close();
+                    return false;
+                }
+                else
+                {
+                    conexion.Close();
+                    return true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al buscar el alumno: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return true;
         }
 
         //
-        //TODO: cambiar nombre del metodo validarDniResponsable resulta ambiguo seria mejor buscar...
-        //TODO: agregar tray y catch
+        //TODO: comentar
         //
-        public bool validarDniResponsable(string dni)
+        public bool buscarDniResponsable(string dni)
         {
-            this.open_db();
-            MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where dni = '" + dni + "'", conexion);
-            MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
-            bool aux = !(MyDataReader.Read());
-            conexion.Dispose();
-            return aux;
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where dni = '" + dni + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                if (MyDataReader.Read())
+                {
+                    conexion.Close();
+                    return false;
+                }
+                else
+                {
+                    conexion.Close();
+                    return true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error en base de Datos al buscar el dni del responsable: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return true;
         }
 
-        //TODO: Agregar comentarios y bloques try catch
+        //TODO: Agregar comentarios
         public bool altaAlumno(Alumno a)
         {
-           
-            this.open_db();
-            //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-            MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + a.getNombre() + "', '" + a.getApellido() + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + a.getEscuela_nombre() + "', '" + a.getEscuela_año() + "', '" + a.getDireccion() + "', '" + a.getId_responsable() + "')", conexion);
-            //MyCommand.Connection.Open();
-            MyCommand.ExecuteNonQuery();
-            conexion.Dispose();
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + a.getNombre() + "', '" + a.getApellido() + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + a.getEscuela_nombre() + "', '" + a.getEscuela_año() + "', '" + a.getDireccion() + "', '" + a.getId_responsable() + "')", conexion);
+                //MyCommand.Connection.Open();
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de escritura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+                return true;
             
             
-            return true;
         }
 
 
-        //TODO: Agregar comentarios y bloques try catch
+        //agregar comentarios
         public bool altaResponsable(Responsable r)
         {
-            this.open_db();
-            //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-            MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + r.getNombre() + "', '" + r.getApellido() + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + r.getDireccion() + "')", conexion);
-            //MyCommand.Connection.Open();
-            MyCommand.ExecuteNonQuery();
-            conexion.Dispose();
-
-
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + r.getNombre() + "', '" + r.getApellido() + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + r.getDireccion() + "')", conexion);
+                //MyCommand.Connection.Open();
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de escritura en base de Datos al dar de alta un responsable: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             return true;
         }
 
 
-        //TODO: Agregar comentarios y bloques try catch
+        //TODO: Agregar comentarios
         public List<List<string>> buscarResponsable(string consulta)
         {
-            this.open_db();
             List<List<string>> datos = new List<List<string>>();
             List<string> d = new List<string>();
+
+            try
+            {
+            this.open_db();
             MySqlCommand MyCommand = new MySqlCommand("select * from responsable where " + consulta, conexion);
             MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
             while (MyDataReader.Read())
@@ -114,7 +165,14 @@ namespace iaai.Data_base
                 d.Add(MyDataReader.GetValue(4).ToString());
                 datos.Add(d);
             }
-            conexion.Dispose();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al buscar el responsable: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
            
             return datos;
         }
@@ -140,26 +198,48 @@ namespace iaai.Data_base
         /// </returns>
         internal bool BuscarDniProfesor(string dni_profesor)
         {
-            bool aux= false;
+            
             try
             {
                 this.open_db();
                 MySqlCommand MyCommand = new MySqlCommand("select dni from profesor where dni = '" + dni_profesor + "'", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
-                aux =  !(MyDataReader.Read());
-                conexion.Close();
+                
+                if (MyDataReader.Read())
+                {
+                    conexion.Close();
+                    return false;
+                }
+                else
+                {
+                    conexion.Close();
+                    return true;
+                }
+                
             }
-            catch (MySqlException e) {
-
-                MessageBox.Show("Error de lectura en base de Datos: \r\n"+e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al buscar dni profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return aux;
+            return true;
         }
 
-        //TODO: Agregar comentarios y bloques try catch
+        /// <summary>
+        /// Da de alta un profesor
+        /// </summary>
+        /// <param name="profe">
+        /// Se debe ingresar un instancia de Profesor
+        /// </param>
+        /// <returns>
+        /// {true= si se dio de alta el profesor}  
+        /// {false= si no se pudo dar de alta}
+        /// </returns>
         public bool altaProfesor(Profesor profe)
         {
-
+            try
+            {
             this.open_db();
             //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
             MySqlCommand MyCommand = new MySqlCommand("insert into profesor(nombre, apellido, dni, telefono_carac,"+
@@ -170,9 +250,19 @@ namespace iaai.Data_base
                                                         profe.getFecha_nac().ToString("yyyy-MM-dd") +
                                                         "', '" + profe.getDireccion() +
                                                         "', '" + profe.getEmail() + "')", conexion);
-            //MyCommand.Connection.Open();
             MyCommand.ExecuteNonQuery();
-            conexion.Dispose();
+            conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos al dar de alta un profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
 
 
             return true;
