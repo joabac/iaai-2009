@@ -40,6 +40,7 @@ namespace iaai.Data_base
         }
 
         //TODO: cambiar nombre del metodo resulta ambiguo seria mejor buscar...
+        //TODO: agregar tray y catch
         //Se valida que no exista el alumno en la base de datos.
         public bool validarDniAlumno(string dni)
         {
@@ -50,8 +51,10 @@ namespace iaai.Data_base
             conexion.Dispose();
             return aux;
         }
+
         //
         //TODO: cambiar nombre del metodo validarDniResponsable resulta ambiguo seria mejor buscar...
+        //TODO: agregar tray y catch
         //
         public bool validarDniResponsable(string dni)
         {
