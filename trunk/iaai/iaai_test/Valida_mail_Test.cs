@@ -1,6 +1,6 @@
-﻿using iaai.profesor;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using iaai.metodos_comunes;
 
 
 namespace iaai_test
@@ -72,7 +72,7 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void validar_emailTest()
         {
-            Altaprofesor_Accessor target = new Altaprofesor_Accessor(); // TODO: Inicializar en un valor adecuado         
+            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado         
 
             string mail = "joabac@gmail.com";  //caso de prueba
             bool esperado = true;      //valor esperado

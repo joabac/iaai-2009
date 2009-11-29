@@ -39,7 +39,7 @@ namespace iaai.profesor
         {
             if (email.Text != "")
             {
-                if (validar_email(email.Text) == false)
+                if (metodo.validar_email(email.Text) == false)
                 {
                     MessageBox.Show("Formato de email no valido");
                     email.Focus();

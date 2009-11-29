@@ -49,9 +49,9 @@ namespace iaai.metodos_comunes
         /// </summary>
         /// <param name="email">String con email a validar</param>
         /// <returns>true o false en funcion del resultado obtenido</returns>
-        private bool validar_email(string email)
+        public bool validar_email(string email)
         {
-            if (email = "")
+            if (email == "")
             {
                 bool estado_email = true;
 
@@ -192,7 +192,9 @@ namespace iaai.metodos_comunes
                 }
                 return estado_email;
             }
+            return true;
         }
+        
 
         struct prueba
         {
