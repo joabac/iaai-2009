@@ -11,7 +11,7 @@ namespace iaai.profesor
         private int id_profesor;
         private string nombre;
         private string apellido;
-        private int dni;
+        private string dni;
         private DateTime fecha_nac;
         private int telefono_carac;
         private int telefono_numero;
@@ -24,7 +24,7 @@ namespace iaai.profesor
         {
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
-            dni = int.Parse(datos["dni"].ToString());
+            dni = (string) datos["dni"];
             fecha_nac = DateTime.Parse(datos["fecha_nac"].ToString());
             
             if (datos["telefono_carac"] != null)
@@ -53,7 +53,7 @@ namespace iaai.profesor
         {
             return apellido;
         }
-        public int getDni()
+        public string getDni()
         {
             return dni;
         }
@@ -91,7 +91,7 @@ namespace iaai.profesor
         {
             apellido = ap;
         }
-        public void setDni(int denei)
+        public void setDni(string denei)
         {
             dni = denei;
         }

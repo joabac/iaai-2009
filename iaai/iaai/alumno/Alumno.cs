@@ -11,7 +11,7 @@ namespace iaai.alumno
         private int id_alumno;
         private string nombre;
         private string apellido;
-        private int dni;
+        private string dni;
         private DateTime fecha_nac;
         private int telefono_carac;
         private int telefono_numero;
@@ -25,7 +25,7 @@ namespace iaai.alumno
         {
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
-            dni = int.Parse(datos["dni"].ToString());
+            dni = (string) datos["dni"];
             fecha_nac = DateTime.Parse(datos["fecha_nac"].ToString());
             if (datos["telefono_carac"] != null)
                 telefono_carac =int.Parse(datos["telefono_carac"].ToString());
@@ -55,7 +55,7 @@ namespace iaai.alumno
         {
             return apellido;
         }
-        public int getDni()
+        public string getDni()
         {
             return dni;
         }
@@ -98,7 +98,7 @@ namespace iaai.alumno
         {
             apellido = ap;
         }
-        public void setDni(int denei)
+        public void setDni(string denei)
         {
             dni = denei;
         }
