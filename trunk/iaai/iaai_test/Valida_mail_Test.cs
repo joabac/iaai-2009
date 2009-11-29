@@ -74,6 +74,8 @@ namespace iaai_test
         {
             Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado         
 
+
+
             string mail = "joabac@gmail.com";  //caso de prueba
             bool esperado = true;      //valor esperado
             bool actual = target.validar_email(mail);
@@ -84,7 +86,24 @@ namespace iaai_test
             actual = target.validar_email(mail);
             Assert.AreEqual(esperado, actual);
 
-           
+
+            mail = "";  //caso de prueba
+            esperado = true;      //valor esperado
+            actual = target.validar_email(mail);
+            Assert.AreEqual(esperado, actual);
+
+
+            mail = "_";  //caso de prueba
+            esperado = false;      //valor esperado
+            actual = target.validar_email(mail);
+            Assert.AreEqual(esperado, actual);
+
+            mail = "-";  //caso de prueba
+            esperado = false;      //valor esperado
+            actual = target.validar_email(mail);
+            Assert.AreEqual(esperado, actual);
+
+
             mail = "^joabac@gmail.com";  //caso de prueba
             esperado = false;      //valor esperado
             actual = target.validar_email(mail);

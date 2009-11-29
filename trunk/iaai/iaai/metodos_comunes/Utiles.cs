@@ -51,7 +51,7 @@ namespace iaai.metodos_comunes
         /// <returns>true o false en funcion del resultado obtenido</returns>
         public bool validar_email(string email)
         {
-            if (email == "")
+            if (email != "")
             {
                 bool estado_email = true;
 
@@ -192,6 +192,7 @@ namespace iaai.metodos_comunes
                 }
                 return estado_email;
             }
+
             return true;
         }
         
