@@ -196,7 +196,7 @@ namespace iaai.Data_base
         ///{true= si existe el docente}  
         ///{false= si no existen registros del mismo} 
         /// </returns>
-        internal bool BuscarDniProfesor(string dni_profesor)
+        internal bool buscarDniProfesor(string dni_profesor)
         {
             
             try
