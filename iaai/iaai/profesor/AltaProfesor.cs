@@ -63,7 +63,7 @@ namespace iaai.profesor
                 error = error + "Ingrese el Apellido. \r\n";
             else
             {
-                if (!metodo.validar_Nombre_App(nombre.Text))
+                if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
             if (dni.Text.Length == 0)
