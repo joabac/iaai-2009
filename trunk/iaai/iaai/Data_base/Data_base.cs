@@ -130,6 +130,7 @@ namespace iaai.Data_base
 
         /// <summary>
         /// Busca el DNI del profesor solicitado en base de datos,
+        /// </summary>
         /// <param name="dni_profesor">
         /// Se debe ingresar un dni valido en formato String
         /// </param>
@@ -137,7 +138,6 @@ namespace iaai.Data_base
         ///{true= si existe el docente}  
         ///{false= si no existen registros del mismo} 
         /// </returns>
-        /// </summary>
         internal bool BuscarDniProfesor(string dni_profesor)
         {
             bool aux= false;

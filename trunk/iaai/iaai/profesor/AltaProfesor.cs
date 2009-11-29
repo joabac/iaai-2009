@@ -188,8 +188,9 @@ namespace iaai.profesor
             
         }
 
-        private void guardar_Click(object sender, EventArgs e)
-        {
+
+        private bool validar() {
+
             error = "";
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
@@ -203,10 +204,11 @@ namespace iaai.profesor
                 error = error + "Ingrese el teléfono. \r\n";
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
-
-
-
+            if(email.Text.Length == 0)
+                error = error + "Ingrese un Email. \r\n";
             
+
+
 
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
@@ -223,16 +225,17 @@ namespace iaai.profesor
             {
                 error = "Se han producido errores: \r\n" + error;
                 MessageBox.Show(error);
-                
-            }
-            if (metodo.ValidarDni(dni.Text) == true )
-            {
-                    if (!db.BuscarDniProfesor(dni.Text)) {
 
-                        error = "El profesor ya fue dado de alta en el sistema";
-                        MessageBox.Show(error);
-                    }
-                                 
+            }
+            if (metodo.ValidarDni(dni.Text) == true)
+            {
+                if (!db.BuscarDniProfesor(dni.Text))
+                {
+
+                    error = "El profesor ya fue dado de alta en el sistema";
+                    MessageBox.Show(error);
+                }
+
             }
             else
             {
@@ -240,18 +243,51 @@ namespace iaai.profesor
                 MessageBox.Show(error);
             }
 
-            if (error == "") {
+          
+
+            if (error == "")
+            {
+                return true;
+
+            }
+
+            return false;
+        
+        
+        }
+
+        
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            if (validar())
+            {
                 guardarDatos();
+
+                Profesor profe = new Profesor(datos);
+
+
+
+                if (db.altaProfesor(profe))
+                {
+                    MessageBox.Show("El alumno fué dado de alta con éxito.");
+
+                }
+                else
+                    MessageBox.Show("Ocurrió un error en base de datos.");
             }
         }
         
         //TODO: comentar y especificar que guarda?
         private void guardarDatos()
         {
+
+            //cargo datos basicos del profesor
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
             datos["dni"] = dni.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
+
+            //argo los 
             if (telefono_carac.Text.Length > 0)
             {
                 datos["telefono_carac"] = telefono_carac.Text;
@@ -260,10 +296,13 @@ namespace iaai.profesor
             {
                 datos["telefono_carac"] = null;
             }
+
             datos["telefono_numero"] = (object)telefono_numero.Text;
 
             
             datos["direccion"] = direccion.Text;
+
+            datos["email"] = email.Text;
             
         }
     }

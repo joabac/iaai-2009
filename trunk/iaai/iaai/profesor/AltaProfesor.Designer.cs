@@ -44,7 +44,7 @@
             this.telefono_numero = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
-            this.guardar = new System.Windows.Forms.Button();
+            this.aceptar = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -179,15 +179,15 @@
             this.nombre.Size = new System.Drawing.Size(137, 20);
             this.nombre.TabIndex = 18;
             // 
-            // guardar
+            // aceptar
             // 
-            this.guardar.Location = new System.Drawing.Point(146, 158);
-            this.guardar.Name = "guardar";
-            this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 36;
-            this.guardar.Text = "Aceptar";
-            this.guardar.UseVisualStyleBackColor = true;
-            this.guardar.Click += new System.EventHandler(this.guardar_Click);
+            this.aceptar.Location = new System.Drawing.Point(146, 158);
+            this.aceptar.Name = "aceptar";
+            this.aceptar.Size = new System.Drawing.Size(75, 23);
+            this.aceptar.TabIndex = 36;
+            this.aceptar.Text = "Aceptar";
+            this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // Cancel
             // 
@@ -204,7 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(563, 204);
             this.Controls.Add(this.Cancel);
-            this.Controls.Add(this.guardar);
+            this.Controls.Add(this.aceptar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.direccion);
             this.Controls.Add(this.label7);
@@ -246,7 +246,7 @@
         private System.Windows.Forms.TextBox telefono_numero;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox nombre;
-        private System.Windows.Forms.Button guardar;
+        private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button Cancel;
     }
 }
