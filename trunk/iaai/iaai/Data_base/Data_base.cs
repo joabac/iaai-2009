@@ -165,8 +165,7 @@ namespace iaai.Data_base
             MySqlCommand MyCommand = new MySqlCommand("insert into profesor(nombre, apellido, dni, telefono_carac,"+
                                                       "  telefono_numero, fecha_nac, direccion,email) values('" + 
                                                         profe.getNombre() + "', '" + profe.getApellido() + "', '" +
-                                                        profe.getDni() + "', '" +
-                                                        "', '" + profe.getTelefono_carac() + "', '" +
+                                                        profe.getDni() + "', '" + profe.getTelefono_carac() + "', '" +
                                                         profe.getTelefono_numero() + "', '" +
                                                         profe.getFecha_nac().ToString("yyyy-MM-dd") +
                                                         "', '" + profe.getDireccion() +
