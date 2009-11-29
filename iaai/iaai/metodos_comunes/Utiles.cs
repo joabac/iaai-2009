@@ -189,9 +189,6 @@ namespace iaai.metodos_comunes
         public bool validar_Nombre_App(String cadena)
         {
 
-            if (cadena == "")
-                return false;
-
             bool valido = true;
 
             foreach (char c in cadena)
@@ -204,6 +201,41 @@ namespace iaai.metodos_comunes
                     return false;
 
                 
+            }
+
+            return valido;
+        }
+
+
+
+        /// <summary>
+        /// Valida caracteres validos para campo direccion
+        /// </summary>
+        /// <example>
+        /// Urquiza 3225
+        /// D'agostino 325 7º B
+        /// Avda. San Martin 3452
+        /// </example>
+        /// <param name="cadena">Direccion a validar en formato String</param>
+        /// <returns>
+        /// true: si es valido  
+        /// false: si no es valido 
+        /// </returns>
+        public bool validar_Direccion(String cadena)
+        {
+
+            bool valido = true;
+
+            foreach (char c in cadena)
+            {
+                if (Char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.' || c == 96)
+                {
+                    valido = true;
+                }
+                else
+                    return false;
+
+
             }
 
             return valido;
