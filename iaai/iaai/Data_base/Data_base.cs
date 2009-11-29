@@ -162,11 +162,13 @@ namespace iaai.Data_base
 
             this.open_db();
             //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-            MySqlCommand MyCommand = new MySqlCommand("insert into profesor(nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion,email) values('" +
+            MySqlCommand MyCommand = new MySqlCommand("insert into profesor(nombre, apellido, dni, telefono_carac,"+
+                                                      "  telefono_numero, fecha_nac, direccion,email) values('" + 
                                                         profe.getNombre() + "', '" + profe.getApellido() + "', '" +
                                                         profe.getDni() + "', '" +
                                                         "', '" + profe.getTelefono_carac() + "', '" +
-                                                        profe.getTelefono_numero() + "', '" + profe.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                        profe.getTelefono_numero() + "', '" +
+                                                        profe.getFecha_nac().ToString("yyyy-MM-dd") +
                                                         "', '" + profe.getDireccion() +
                                                         "', '" + profe.getEmail() + "')", conexion);
             //MyCommand.Connection.Open();
