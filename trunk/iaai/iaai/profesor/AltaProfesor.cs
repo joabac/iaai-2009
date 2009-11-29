@@ -54,10 +54,34 @@ namespace iaai.profesor
             error = "";
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
+            else
+            {
+                if (!metodo.validar_Nombre_App(nombre.Text))
+                    error = error + "Formato de nombre no válido \r\n";
+            }
             if (apellido.Text.Length == 0)
                 error = error + "Ingrese el Apellido. \r\n";
+            else
+            {
+                if (!metodo.validar_Nombre_App(nombre.Text))
+                    error = error + "Formato de apellido no válido \r\n";
+            }
             if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
+            else
+            {
+                if (metodo.ValidarDni(dni.Text) == true)
+                {
+                    if (!db.BuscarDniProfesor(dni.Text))
+                    {
+                        error = error + "El profesor ya fue dado de alta en el sistema. \r\n";
+                    }
+                }
+                else
+                {
+                    error = error + "El DNI ingresado no es valido. \r\n";
+                }
+            }
             if (fecha_nacimiento.Text.Contains(' '))
                 error = error + "Ingrese la fecha de nacimiento. \r\n";
             if (telefono_numero.Text.Length == 0)
@@ -99,7 +123,6 @@ namespace iaai.profesor
             else
             {
                 error = "El DNI ingresado no es valido";
-                MessageBox.Show(error);
             }
 
           
