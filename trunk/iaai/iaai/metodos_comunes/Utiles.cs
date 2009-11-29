@@ -175,6 +175,17 @@ namespace iaai.metodos_comunes
             return true;
         }
 
+
+        /// <summary>
+        /// Valida caracteres validos para el nombre y apellido
+        /// </summary>
+        /// <example>
+        /// andres gomez
+        /// juan.gonzales
+        /// 
+        /// </example>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
         public bool validar_Nombre_App(String cadena)
         {
 
@@ -185,7 +196,7 @@ namespace iaai.metodos_comunes
 
             foreach (char c in cadena)
             {
-                if (Char.IsLetter(c)  || char.IsWhiteSpace(c) || c == '.')
+                if (Char.IsLetter(c)  || char.IsWhiteSpace(c) || c == '.' || c==96)
                 {
                     valido = true;
                 }
