@@ -136,8 +136,53 @@ namespace iaai_test
 
 
         }
-       
 
-        
+
+
+
+        /// <summary>
+        ///Una prueba de validar_Nombre_App
+        ///</summary>
+        [TestMethod()]
+        public void validar_Nombre_AppTest()
+        {
+            Utiles target = new Utiles();
+            bool actual;
+
+            string cadena = "joaquin";
+            bool expected = true; 
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "Joaquin Andres";
+            expected = true;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "Joaquin ^Andres";
+            expected = false;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "";
+            expected = false;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = ". - _";
+            expected = false;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "&/$";
+            expected = false;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+            
+
+        }
     }
 }
