@@ -54,11 +54,14 @@ namespace iaai.profesor
             error = "";
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
+
+
             else
             {
                 if (!metodo.validar_Nombre_App(nombre.Text))
                     error = error + "Formato de nombre no válido \r\n";
             }
+
             if (apellido.Text.Length == 0)
                 error = error + "Ingrese el Apellido. \r\n";
             else
