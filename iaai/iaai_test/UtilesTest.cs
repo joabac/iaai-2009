@@ -190,5 +190,22 @@ namespace iaai_test
 
 
         }
+
+        /// <summary>
+        ///Una prueba de validar_Direccion
+        ///</summary>
+        [TestMethod()]
+        public void validar_DireccionTest()
+        {
+            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
+
+            bool actual;
+            string cadena = "Urquiza 3225"; // TODO: Inicializar en un valor adecuado
+            bool expected = true; // TODO: Inicializar en un valor adecuado
+            
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+            
+        }
     }
 }
