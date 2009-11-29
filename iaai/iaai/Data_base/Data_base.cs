@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using iaai.alumno;
 using System.Data.SqlClient;
 using iaai.responsable;
-
+using iaai.profesor;
 
 
 namespace iaai.Data_base
@@ -154,6 +154,27 @@ namespace iaai.Data_base
                 MessageBox.Show("Error de lectura en base de Datos: \r\n"+e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return aux;
+        }
+
+        //TODO: Agregar comentarios y bloques try catch
+        public bool altaProfesor(Profesor profe)
+        {
+
+            this.open_db();
+            //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+            MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, direccion, id_responsable, email) values('" +
+                                                        profe.getNombre() + "', '" + profe.getApellido() + "', '" +
+                                                        profe.getDni() + "', '" + profe.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                        "', '" + profe.getTelefono_carac() + "', '" +
+                                                        profe.getTelefono_numero() + "', '" +
+                                                        "', '" + "', '" + profe.getDireccion() +
+                                                        "', '" + "')", conexion);
+            //MyCommand.Connection.Open();
+            MyCommand.ExecuteNonQuery();
+            conexion.Dispose();
+
+
+            return true;
         }
     }
 }
