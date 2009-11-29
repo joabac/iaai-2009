@@ -204,8 +204,7 @@ namespace iaai.profesor
                 error = error + "Ingrese el teléfono. \r\n";
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
-            if(email.Text.Length == 0)
-                error = error + "Ingrese un Email. \r\n";
+           
             
 
 
@@ -213,7 +212,7 @@ namespace iaai.profesor
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
             {
-                //si menor de 21 años hay que controlar que se le haya asignado un responsable
+                //si el profesor es menor de 21 años
                 if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
                 {
                     MessageBox.Show("El profesor debe ser mayor de Edad");

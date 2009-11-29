@@ -69,22 +69,12 @@ namespace iaai.profesor
         {
             return telefono_numero;
         }
-        public int getEscuela_año()
-        {
-            return escuela_año;
-        }
-        public string getEscuela_nombre()
-        {
-            return escuela_nombre;
-        }
+        
         public string getDireccion()
         {
             return direccion;
         }
-        public int getId_responsable()
-        {
-            return id_responsable;
-        }
+        
 
         //ESTOS SON LOS SET VITEH
 
@@ -112,22 +102,12 @@ namespace iaai.profesor
         {
             telefono_numero = num;
         }
-        public void setEscuela_año(int año)
-        {
-            escuela_año = año;
-        }
-        public void setEscuela_nombre(string esc )
-        {
-            escuela_nombre = esc;
-        }
+        
         public void setDireccion(string dir)
         {
             direccion = dir;
         }
-        public void setId_responsable(int resp)
-        {
-            id_responsable = resp;
-        }
+        
 
         static void Main()
         {
@@ -146,9 +126,9 @@ namespace iaai.profesor
             index["direccion"] = "conchabamba 1123";
             index["id_responsable"] = 2;
 
-            Alumno t = new Alumno(index);
+            Profesor t = new Profesor(index);
 
-            Console.WriteLine(t.getApellido());
+            
             
         }
 
