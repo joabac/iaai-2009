@@ -53,7 +53,7 @@
             this.email.Location = new System.Drawing.Point(396, 66);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(100, 20);
-            this.email.TabIndex = 1;
+            this.email.TabIndex = 7;
             this.email.Leave += new System.EventHandler(this.validar_mail);
             // 
             // label1
@@ -79,7 +79,7 @@
             this.direccion.Location = new System.Drawing.Point(396, 38);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(137, 20);
-            this.direccion.TabIndex = 27;
+            this.direccion.TabIndex = 6;
             // 
             // label7
             // 
@@ -96,7 +96,7 @@
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
-            this.fecha_nacimiento.TabIndex = 23;
+            this.fecha_nacimiento.TabIndex = 3;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -113,7 +113,7 @@
             this.apellido.Location = new System.Drawing.Point(137, 38);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(137, 20);
-            this.apellido.TabIndex = 19;
+            this.apellido.TabIndex = 1;
             // 
             // label5
             // 
@@ -129,7 +129,7 @@
             this.dni.Location = new System.Drawing.Point(137, 63);
             this.dni.Name = "dni";
             this.dni.Size = new System.Drawing.Size(137, 20);
-            this.dni.TabIndex = 21;
+            this.dni.TabIndex = 2;
             // 
             // label4
             // 
@@ -145,7 +145,7 @@
             this.telefono_carac.Location = new System.Drawing.Point(396, 12);
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.Size = new System.Drawing.Size(41, 20);
-            this.telefono_carac.TabIndex = 24;
+            this.telefono_carac.TabIndex = 4;
             // 
             // label3
             // 
@@ -161,7 +161,7 @@
             this.telefono_numero.Location = new System.Drawing.Point(459, 12);
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.Size = new System.Drawing.Size(74, 20);
-            this.telefono_numero.TabIndex = 25;
+            this.telefono_numero.TabIndex = 5;
             // 
             // label10
             // 
@@ -177,14 +177,14 @@
             this.nombre.Location = new System.Drawing.Point(137, 12);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(137, 20);
-            this.nombre.TabIndex = 18;
+            this.nombre.TabIndex = 0;
             // 
             // aceptar
             // 
             this.aceptar.Location = new System.Drawing.Point(146, 158);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 36;
+            this.aceptar.TabIndex = 8;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -194,7 +194,7 @@
             this.Cancel.Location = new System.Drawing.Point(362, 158);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 37;
+            this.Cancel.TabIndex = 9;
             this.Cancel.Text = "Cancelar";
             this.Cancel.UseVisualStyleBackColor = true;
             // 
