@@ -74,7 +74,12 @@ namespace iaai.profesor
         {
             return direccion;
         }
-        
+
+        public string getEmail()
+        {
+            return email;
+        }
+
 
         //ESTOS SON LOS SET VITEH
 
@@ -131,6 +136,7 @@ namespace iaai.profesor
             
             
         }
+
 
     }
 }
