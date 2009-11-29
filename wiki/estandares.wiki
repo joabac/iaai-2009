@@ -28,7 +28,7 @@ _*Ejemplo*_
 }}}
 
 
-= Nombres =
+= Nombres de Variables =
 
 Para todas las variables que se generen utilizar nombres *autoexplicativos* 
 
@@ -41,3 +41,17 @@ _*Ejemplo*_
 *Deberia ser*
 
 {{{Alumno alumno = new Alumno();}}}
+
+
+=Nombres de Metodos=
+
+Para todos los metodos generados utilizar una sintaxis como se explica a continuacion
+
+
+_*Priera letra en minuscula*_ + resto en minuscula + [separador] + _*Siguente palabra comienza con mayuscula*_
+
+separador = {'*'|NULL}
+
+_*Ejemplo*_
+
+{{{public void *altaAlumno()*}}}
