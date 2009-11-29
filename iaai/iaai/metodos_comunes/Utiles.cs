@@ -85,10 +85,7 @@ namespace iaai.metodos_comunes
                                 }
                                 else
                                 {
-
-
                                     estado_email = false;
-
                                 }
                                 i++;
                             }
@@ -102,7 +99,6 @@ namespace iaai.metodos_comunes
                                 { //primer caracter luego de arroba
 
                                     estado_email = false;
-
                                 }
                                 else
                                 { //verifico sean o digitos o letras o los caracteres permitidos
@@ -116,9 +112,7 @@ namespace iaai.metodos_comunes
                                         }
                                         else
                                         {
-
                                             estado_email = false;
-
                                         }
                                         i++;
                                     }
@@ -133,9 +127,7 @@ namespace iaai.metodos_comunes
 
                                             if (email[i] == '_' || email[i] == '-')
                                             {
-
                                                 estado_email = false;
-
                                             }
 
                                             else
@@ -145,49 +137,36 @@ namespace iaai.metodos_comunes
                                                 }
                                                 else
                                                 {
-
                                                     estado_email = false;
-
                                                 }
                                             }
                                             i++;
                                         }
                                         if (!Char.IsLetterOrDigit(email[i]))
                                         {
-
                                             estado_email = false;
-
                                         }
                                     }
                                     else
                                     {
-
                                         estado_email = false;
-
                                     }
-
                                 }
-
                             }
                             else
                             {
-
                                 estado_email = false;
-
                             }
                         }
                         else
                         {
-
                             estado_email = false;
                         }
-
-                    }
+                                            }
                 }
                 else
                 {
-
-                    estado_email = false;
+                     estado_email = false;
 
                 }
                 return estado_email;
@@ -195,29 +174,28 @@ namespace iaai.metodos_comunes
 
             return true;
         }
-        
 
-        struct prueba
+        public bool validar_Nombre_App(String cadena)
         {
-            string cadena;
-            bool esperado;
 
-            public prueba(string val, bool valor)
+            if (cadena == "")
+                return false;
+
+            bool valido = true;
+
+            foreach (char c in cadena)
             {
-                cadena = val;
-                esperado = valor;
+                if (Char.IsLetter(c)  || char.IsWhiteSpace(c) || c == '.')
+                {
+                    valido = true;
+                }
+                else
+                    return false;
+
+                
             }
 
-            public string get_cadena()
-            {
-
-                return cadena;
-            }
-
-            public bool get_esperado()
-            {
-                return esperado;
-            }
+            return valido;
         }
     }
 }
