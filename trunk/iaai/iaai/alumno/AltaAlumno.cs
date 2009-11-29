@@ -14,7 +14,10 @@ namespace iaai.alumno
     {
         private string error = "";
         private int responsable = -1;
+
+        //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
         IDictionary<string, object> datos = new Dictionary<string, object>();
+        
         Data_base.Data_base db = new iaai.Data_base.Data_base();
 
         public AltaAlumno()
