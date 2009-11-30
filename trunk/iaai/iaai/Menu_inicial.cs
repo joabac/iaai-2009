@@ -54,7 +54,13 @@ namespace iaai
             alta_resp.Show();
         }
 
-        private void aBMProfesoresToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void modificarProfesorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void altaProfesorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Altaprofesor profesor_form = new Altaprofesor();
 
