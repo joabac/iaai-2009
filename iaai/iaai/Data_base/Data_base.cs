@@ -17,7 +17,7 @@ namespace iaai.Data_base
     
     class Data_base
     {
-        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
+        MySqlConnection conexion = new MySqlConnection("server=192.168.0.100;user=iaai;database=iaai;port=3306;password=iaai;");
 
 
 
@@ -310,5 +310,41 @@ namespace iaai.Data_base
             return true;
 
         }
+
+        /// <summary>
+        /// Ejecuta comando del tipo del especificando consulta completa
+        /// </summary>
+        /// <param name="consulta">recibe cualquier tipod e consulta en formato string</param>
+        /// <returns>true: pudo completar la consulta 
+        /// false: no pudo completar consulta</returns>
+        /// <remarks>Solo se utiliza para ejecutar consultas genericas o simples</remarks>
+        public Profesor Buscar_Profesor(string dni)
+        {
+            Profesor profe = null;
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("", conexion);
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos al dar de alta un profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return profe;
+
+        }
     }
+
 }
