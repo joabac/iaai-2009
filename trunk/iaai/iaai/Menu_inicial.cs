@@ -55,8 +55,13 @@ namespace iaai
         }
 
 
-        private void modificarProfesorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ModificarProfesorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ModificarProfesor modifica_profesor = new ModificarProfesor();
+            modifica_profesor.Parent = this.Parent;
+            modifica_profesor.MdiParent = this;
+
+            modifica_profesor.Show();
 
         }
 

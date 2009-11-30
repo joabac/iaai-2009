@@ -351,7 +351,7 @@ namespace iaai.Data_base
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
-                    MessageBox.Show("Error de escritura en base de Datos al dar de alta un profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
@@ -360,6 +360,48 @@ namespace iaai.Data_base
 
             return profe;
 
+        }
+
+
+        /// <summary>
+        /// Modifica un profesor en la base de datos
+        /// </summary>
+        /// <param name="profe">
+        /// Se debe ingresar un instancia de Profesor
+        /// </param>
+        /// <returns>
+        /// {true= si se dio la modificación del profesor}  
+        /// {false= si no se pudo modificar}
+        /// </returns>
+        public bool modificarProfesor(Profesor profe)
+        {
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("update profesor set nombre = '" +
+                                                            profe.getNombre() + "',apellido = '" + profe.getApellido() + "',dni = '" +
+                                                            profe.getDni() + "', telefono_carac = " + profe.getTelefono_carac() + ",telefono_numero = " +
+                                                            profe.getTelefono_numero() + ",fecha_nac = '" +
+                                                            profe.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                            "',direccion = '" + profe.getDireccion() +
+                                                            "',email = '" + profe.getEmail() + "'" + " where dni = " + profe.getDni(), conexion);
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
         }
     }
 
