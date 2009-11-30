@@ -54,4 +54,11 @@ separador = { `_` |NULL}
 
 _*Ejemplo*_
 
-{{{public void *altaAlumno()*}}}
+{{{
+
+public void altaAlumno()
+{
+     //codigo correctamente indentado
+} 
+
+}}}
