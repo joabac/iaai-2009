@@ -179,10 +179,9 @@ namespace iaai_test
         [TestMethod()]
         public void altaProfesorTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base metodo = new Data_base(); 
             IDictionary<string, object> datos = new Dictionary<string, object>();
-            bool expected;
-            bool actual;
+            
 
             datos["nombre"] = "nombre_prueba";
             datos["apellido"] = "apellido_prueba";
@@ -195,13 +194,19 @@ namespace iaai_test
 
             Profesor profe = new Profesor(datos) ;
 
-            expected = true;
-            target.altaProfesor(profe);
-            actual = true;
-            target.Buscar_Profesor("");
-            Assert.AreEqual(expected, actual);
+            metodo.altaProfesor(profe); //cargo el profesor
+            
+            Profesor actual = metodo.Buscar_Profesor("11111111M"); //busco el profesor si quedo cargado
 
-            target.consulta("delete from profesor where dni= '11111111M' ");
+            if (actual.getDni().Equals("11111111M")) // comparo si lo que se grabo es lo que se especifico
+            { 
+            
+                
+            }
+
+           // Assert.AreEqual(expected, actual);
+
+            metodo.consulta("delete from profesor where dni= '11111111M' ");
 
            
 
@@ -215,6 +220,7 @@ namespace iaai_test
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
             string dni = "12345678"; // TODO: Inicializar en un valor adecuado
+            bool igual = false;
 
             IDictionary<string, object> index = new Dictionary<string, object>();
 
@@ -232,7 +238,10 @@ namespace iaai_test
 
             Profesor actual = target.Buscar_Profesor(dni);
 
-            //Assert.(expected, actual);
+            if(expected.getDni().Equals(actual.getDni()) && expected.getFecha_nac() == actual.getFecha_nac() && expected.getNombre().Equals(actual.getNombre()))
+                igual= true;
+
+            Assert.IsTrue(igual);
             
         }
     }
