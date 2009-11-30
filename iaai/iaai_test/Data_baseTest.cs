@@ -155,7 +155,7 @@ namespace iaai_test
             bool actual;
             actual = target.altaAlumno(a);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace iaai_test
             bool actual;
             actual = target.altaResponsable(r);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            
         }
 
         /// <summary>
@@ -205,6 +205,35 @@ namespace iaai_test
 
            
 
+        }
+
+        /// <summary>
+        ///Una prueba de Buscar_Profesor
+        ///</summary>
+        [TestMethod()]
+        public void Buscar_ProfesorTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            string dni = "12345678"; // TODO: Inicializar en un valor adecuado
+
+            IDictionary<string, object> index = new Dictionary<string, object>();
+
+            
+            index["nombre"] = "asd";
+            index["apellido"] = "fgh";
+            index["dni"] = "12345678";
+            index["fecha_nac"] = "25/09/1980";
+            index["telefono_carac"] = 789;
+            index["telefono_numero"] = 963;
+            index["direccion"] = "asdf";
+            index["email"] = "";
+
+            Profesor expected = new Profesor(index);
+
+            Profesor actual = target.Buscar_Profesor(dni);
+
+            Assert.(expected, actual);
+            
         }
     }
 }
