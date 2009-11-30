@@ -212,7 +212,7 @@ namespace iaai.metodos_comunes
 
 
         /// <summary>
-        /// Valida caracteres validos para campo direccion
+        /// Valida caracteres validos para campo direccion Permitidos ( ) . º [a-z] [A-Z] [0-9]
         /// </summary>
         /// <example>
         /// Urquiza 3225
