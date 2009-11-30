@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data_baseTest.cs" />
     <Compile Include="Valida_mail_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="suma_test.cs" />

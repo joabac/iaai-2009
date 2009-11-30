@@ -145,7 +145,15 @@ namespace iaai.Data_base
         }
 
 
-        //TODO: Agregar comentarios
+        /// <summary>
+        /// Busca un responsable especificando una porcion de consulta SQL
+        /// </summary>
+        /// <param name="consulta">
+        /// consulta: 
+        /// </param>
+        /// <returns>
+        /// ?
+        /// </returns>
         public List<List<string>> buscarResponsable(string consulta)
         {
             List<List<string>> datos = new List<List<string>>();
@@ -258,6 +266,40 @@ namespace iaai.Data_base
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Ejecuta comando del tipo del especificando consulta completa
+        /// </summary>
+        /// <param name="consulta">recibe cualquier tipod e consulta en formato string</param>
+        /// <returns>true: pudo completar la consulta 
+        /// false: no pudo completar consulta</returns>
+        /// <remarks>Solo se utiliza para ejecutar consultas genericas o simples</remarks>
+        public bool consulta(string consulta)
+        {
+
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand(consulta, conexion);
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
                     MessageBox.Show("Error de escritura en base de Datos al dar de alta un profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
@@ -266,6 +308,7 @@ namespace iaai.Data_base
 
 
             return true;
+
         }
     }
 }
