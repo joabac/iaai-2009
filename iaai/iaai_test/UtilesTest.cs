@@ -197,14 +197,43 @@ namespace iaai_test
         [TestMethod()]
         public void validar_DireccionTest()
         {
-            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
-
+            Utiles target = new Utiles(); 
             bool actual;
-            string cadena = "Urquiza 3225"; // TODO: Inicializar en un valor adecuado
-            bool expected = true; // TODO: Inicializar en un valor adecuado
-            
+
+            string cadena = "Urquiza 3225"; 
+            bool expected = true; 
             actual = target.validar_Direccion(cadena);
             Assert.AreEqual(expected, actual);
+
+
+            cadena = "D'agostino 325 7º B"; 
+            expected = true; 
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "Avda. San Martin 3452";
+            expected = true;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "San juan 3225 (Pasillo) dto. 2º";
+            expected = true;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "[Pasillo] dto. 2º";
+            expected = true;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "{Pasillo} dto. 2º";
+            expected = true;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
             
         }
     }
