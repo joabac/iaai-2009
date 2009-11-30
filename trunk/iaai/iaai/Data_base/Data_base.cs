@@ -315,19 +315,34 @@ namespace iaai.Data_base
         /// <summary>
         /// Ejecuta comando del tipo del especificando consulta completa
         /// </summary>
-        /// <param name="consulta">recibe cualquier tipod e consulta en formato string</param>
-        /// <returns>true: pudo completar la consulta 
-        /// false: no pudo completar consulta</returns>
-        /// <remarks>Solo se utiliza para ejecutar consultas genericas o simples</remarks>
+        /// <param name="dni">recibe el dni de profesro a buscar</param>
+        /// <returns>Profesor si encontro el profesor buscado
+        /// null: si no encontro el dni solicitado</returns>
+        /// 
         public Profesor Buscar_Profesor(string dni)
         {
-            Profesor profe = null;
+            Profesor profe = new Profesor();
             try
             {
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                MySqlCommand MyCommand = new MySqlCommand("", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email"+
+                                                          "from profesor "+
+                                                          "where dni = " + dni , conexion);
+
                 MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    profe.setNombre(reader[0].ToString());
+                    profe.setApellido(reader[1].ToString());
+                    profe.setDni(reader[2].ToString());
+                    profe.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
+                    profe.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                    profe.setFecha_nac(Convert.ToDateTime(reader[5]));
+                    profe.setDireccion(reader[6].ToString());
+
+                }
                 
                 conexion.Close();
             }
