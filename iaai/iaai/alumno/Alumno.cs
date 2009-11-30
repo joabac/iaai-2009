@@ -131,7 +131,7 @@ namespace iaai.alumno
             id_responsable = resp;
         }
 
-        static void Main()
+        /*static void Main()
         {
             
             IDictionary<string, object> index = new Dictionary<string, object>();
@@ -152,7 +152,7 @@ namespace iaai.alumno
 
             Console.WriteLine(t.getApellido());
             
-        }
+        }*/
 
         
     }
