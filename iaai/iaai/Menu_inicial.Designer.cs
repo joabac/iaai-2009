@@ -43,6 +43,8 @@ namespace iaai
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarProfesorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaProfesorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,10 +125,13 @@ namespace iaai
             // 
             // aBMProfesoresToolStripMenuItem
             // 
+            this.aBMProfesoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificarProfesorToolStripMenuItem,
+            this.altaProfesorToolStripMenuItem});
             this.aBMProfesoresToolStripMenuItem.Name = "aBMProfesoresToolStripMenuItem";
             this.aBMProfesoresToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.aBMProfesoresToolStripMenuItem.Text = "ABM Profesores";
-            this.aBMProfesoresToolStripMenuItem.Click += new System.EventHandler(this.aBMProfesoresToolStripMenuItem_Click);
+            
             // 
             // ayudaToolStripMenuItem
             // 
@@ -149,6 +154,20 @@ namespace iaai
             this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
+            // 
+            // modificarProfesorToolStripMenuItem
+            // 
+            this.modificarProfesorToolStripMenuItem.Name = "modificarProfesorToolStripMenuItem";
+            this.modificarProfesorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.modificarProfesorToolStripMenuItem.Text = "Modificar Profesor";
+            this.modificarProfesorToolStripMenuItem.Click += new System.EventHandler(this.modificarProfesorToolStripMenuItem_Click);
+            // 
+            // altaProfesorToolStripMenuItem
+            // 
+            this.altaProfesorToolStripMenuItem.Name = "altaProfesorToolStripMenuItem";
+            this.altaProfesorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.altaProfesorToolStripMenuItem.Text = "Alta Profesor";
+            this.altaProfesorToolStripMenuItem.Click += new System.EventHandler(this.altaProfesorToolStripMenuItem_Click);
             // 
             // Menu_inicial
             // 
@@ -186,6 +205,8 @@ namespace iaai
         private System.Windows.Forms.ToolStripMenuItem acercaDeIAAIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaAlumnoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem altaResponsableToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem modificarProfesorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaProfesorToolStripMenuItem;
 
 
 
