@@ -15,7 +15,7 @@ namespace iaai.Data_base
 {
     
     
-    class Data_base
+    class Data_base 
     {
         MySqlConnection conexion = new MySqlConnection("server=192.168.0.100;user=iaai;database=iaai;port=3306;password=iaai;");
 
@@ -166,11 +166,12 @@ namespace iaai.Data_base
             MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
             while (MyDataReader.Read())
             {
-                d.Add(MyDataReader.GetValue(1).ToString());
-                d.Add(MyDataReader.GetValue(2).ToString());
-                d.Add(MyDataReader.GetValue(7).ToString());
-                d.Add(MyDataReader.GetValue(5).ToString() + " " + MyDataReader.GetValue(6).ToString());
-                d.Add(MyDataReader.GetValue(4).ToString());
+                d = new List<string>();
+                d.Add(MyDataReader.GetValue(1).ToString());//nombre
+                d.Add(MyDataReader.GetValue(2).ToString());//apellido
+                d.Add(MyDataReader.GetValue(7).ToString());//dni
+                d.Add(MyDataReader.GetValue(5).ToString() + " " + MyDataReader.GetValue(6).ToString());//telefono
+                d.Add(MyDataReader.GetValue(4).ToString());//direccion
                 datos.Add(d);
             }
                 conexion.Close();

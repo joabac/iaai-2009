@@ -31,22 +31,48 @@ namespace iaai.responsable
                 llenarTabla();
             }
         }
+        //método que controla que no se seleccione más de un responsable para un alumno dado.
+        //está pendiente de terminarse ya que nos funcionaba mal.
+        private void grid1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            /*   int fila = e.RowIndex;
+           
+           if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[5].Value))
+            {
+                for (int x = 0; x < tablaResultado.RowCount; x++)
+                {
+                    if (e.ColumnIndex == 5 && x != fila)
+                    {
+                        tablaResultado.Rows[x].Cells[5].Value = false;
+                    }
+                }
+            }*/
+            
+        }
 
         private void llenarTabla()
         {
-            string aux = "";
+            string[] row;
+            int indice = 0;
+            tablaResultado.Rows.Clear();
+            
             foreach (List<string> fila in resultado)
             {
-                aux = aux + fila[0] + "- " + fila[1];
-                    MessageBox.Show(aux);
-                //llenar la tabla
+                row = new string[5];
+                foreach (string dato in fila)
+                {
+                    row[indice] = dato;
+                    indice++;
+                }
+                tablaResultado.Rows.Add(row);
+                indice = 0;
             }
 
         }
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(tablaResultado.Rows[0].Cells[5].Value.ToString());
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -73,22 +99,43 @@ namespace iaai.responsable
         {
             consulta = "";
             if (nombreBusqueda.Text.Length > 0)
-                consulta = "nombre_respon LIKE '" + nombreBusqueda.Text + "'";
+                consulta = "nombre_respon LIKE '" + nombreBusqueda.Text + "%'";
             if (apellidoBusqueda.Text.Length > 0)
             {
                 if (consulta.Length > 0)
-                    consulta = consulta + " AND apellido_respon LIKE '" + apellidoBusqueda.Text + "'";
+                    consulta = consulta + " AND apellido_respon LIKE '" + apellidoBusqueda.Text + "%'";
                 else
-                    consulta = "apellido_respon LIKE '" + apellidoBusqueda.Text + "'";
+                    consulta = "apellido_respon LIKE '" + apellidoBusqueda.Text + "%'";
             }
             if (dniBusqueda.Text.Length > 0)
             {
                 if (consulta.Length > 0)
-                    consulta = consulta + " AND dni = '" + dniBusqueda.Text + "'";
+                    consulta = consulta + " AND dni = '" + dniBusqueda.Text + "%'";
                 else
-                    consulta = "dni = '" + dniBusqueda.Text + "'";
+                    consulta = "dni = '" + dniBusqueda.Text + "%'";
             }
         }
+
+        private void tablaResultado_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+         /*   int fila = e.RowIndex;
+           
+           if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[5].Value))
+            {
+                for (int x = 0; x < tablaResultado.RowCount; x++)
+                {
+                    if (e.ColumnIndex == 5 && x != fila)
+                    {
+                        tablaResultado.Rows[x].Cells[5].Value = false;
+                    }
+                }
+            }*/
+        }
+
+
+
+
 
     }
 }

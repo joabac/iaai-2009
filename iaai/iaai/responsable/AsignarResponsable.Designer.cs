@@ -36,7 +36,7 @@
             this.apellidoBusqueda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.nombreBusqueda = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tablaResultado = new System.Windows.Forms.DataGridView();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,7 +47,7 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaResultado)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -124,20 +124,26 @@
             this.nombreBusqueda.Size = new System.Drawing.Size(100, 20);
             this.nombreBusqueda.TabIndex = 0;
             // 
-            // dataGridView1
+            // tablaResultado
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tablaResultado.AllowUserToAddRows = false;
+            this.tablaResultado.AllowUserToDeleteRows = false;
+            this.tablaResultado.AllowUserToResizeColumns = false;
+            this.tablaResultado.AllowUserToResizeRows = false;
+            this.tablaResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaResultado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
             this.apellido,
             this.dni,
             this.telefono,
             this.direccion,
             this.asignar});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 134);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(633, 148);
-            this.dataGridView1.TabIndex = 1;
+            this.tablaResultado.Location = new System.Drawing.Point(12, 134);
+            this.tablaResultado.Name = "tablaResultado";
+            this.tablaResultado.Size = new System.Drawing.Size(633, 148);
+            this.tablaResultado.TabIndex = 1;
+            this.tablaResultado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellValueChanged);
+            this.tablaResultado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaResultado_CellClick);
             // 
             // nombre
             // 
@@ -218,13 +224,13 @@
             this.Controls.Add(this.nuevo);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tablaResultado);
             this.Controls.Add(this.groupBox1);
             this.Name = "AsignarResponsable";
             this.Text = "Asignar Responsable";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaResultado)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,7 +245,7 @@
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox dniBusqueda;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView tablaResultado;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;
