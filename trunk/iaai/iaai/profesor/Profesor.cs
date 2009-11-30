@@ -116,9 +116,12 @@ namespace iaai.profesor
         {
             direccion = dir;
         }
-        
+        public void setMail(string mail)
+        {
+            email = mail;
+        }
 
-        static void Main()
+        /*static void Main()
         {
             
             IDictionary<string, object> index = new Dictionary<string, object>();
@@ -139,7 +142,7 @@ namespace iaai.profesor
 
             
             
-        }
+        }*/
 
 
     }

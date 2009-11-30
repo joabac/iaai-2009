@@ -326,7 +326,7 @@ namespace iaai.Data_base
             {
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email"+
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email "+
                                                           "from profesor "+
                                                           "where dni = " + dni , conexion);
 
@@ -341,7 +341,7 @@ namespace iaai.Data_base
                     profe.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
                     profe.setFecha_nac(Convert.ToDateTime(reader[5]));
                     profe.setDireccion(reader[6].ToString());
-
+                    profe.setMail(reader[7].ToString());
                 }
                 
                 conexion.Close();
