@@ -160,7 +160,7 @@ namespace iaai
             this.modificarProfesorToolStripMenuItem.Name = "modificarProfesorToolStripMenuItem";
             this.modificarProfesorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.modificarProfesorToolStripMenuItem.Text = "Modificar Profesor";
-            this.modificarProfesorToolStripMenuItem.Click += new System.EventHandler(this.modificarProfesorToolStripMenuItem_Click);
+            this.modificarProfesorToolStripMenuItem.Click += new System.EventHandler(this.ModificarProfesorToolStripMenuItem_Click);
             // 
             // altaProfesorToolStripMenuItem
             // 
