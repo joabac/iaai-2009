@@ -38,6 +38,10 @@ namespace iaai.profesor
             
         }
 
+        public Profesor() { 
+        
+        }
+
 
         //ESTOS SON LOS GET
 
