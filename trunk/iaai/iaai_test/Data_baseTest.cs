@@ -179,7 +179,7 @@ namespace iaai_test
         [TestMethod()]
         public void altaProfesorTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
             IDictionary<string, object> datos = new Dictionary<string, object>();
             bool expected;
             bool actual;
@@ -196,30 +196,14 @@ namespace iaai_test
             Profesor profe = new Profesor(datos) ;
 
             expected = true;
-            actual = target.altaProfesor(profe);
+            target.altaProfesor(profe);
+            actual = true;
+            target.Buscar_Profesor("");
             Assert.AreEqual(expected, actual);
 
             target.consulta("delete from profesor where dni= '11111111M' ");
 
-            //objetivo: probar que no permite el ingreso de campos vacios
-            datos["nombre"] = "";
-            datos["apellido"] = "";
-            datos["dni"] = "12345678M";
-            datos["fecha_nac"] = "1981-12-01";
-            datos["telefono_carac"] = "123";
-            datos["telefono_numero"] = "123456";
-            datos["direccion"] = "";
-            datos["email"] = "";
-
-            profe = null;
-            profe = new Profesor(datos);
-
-            expected = false;
-            actual = target.altaProfesor(profe);
-            Assert.AreEqual(expected, actual);
-
-            target.consulta("delete from profesor where dni = '12345678M' ");
-
+           
 
         }
     }
