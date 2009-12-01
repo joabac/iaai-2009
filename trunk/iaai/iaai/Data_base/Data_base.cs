@@ -39,7 +39,15 @@ namespace iaai.Data_base
             
         }
 
-        //Se valida que no exista el alumno en la base de datos.
+        /// <summary>
+        /// Se valida que no exista el alumno en la base de datos.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns>
+        /// true: si no lo encontro
+        /// false: si lo encontro
+        /// </returns>
+
         public bool buscarDniAlumno(string dni)
         {
             try
@@ -68,9 +76,14 @@ namespace iaai.Data_base
             return true;
         }
 
-        //
-        //TODO: comentar
-        //
+       /// <summary>
+        /// Se valida que no exista el responsable en la base de datos.
+       /// </summary>
+       /// <param name="dni"></param>
+       /// <returns>
+       /// true: si no lo encontro
+       /// false: si lo encontro
+       /// </returns>
         public bool buscarDniResponsable(string dni)
         {
             try
@@ -98,15 +111,21 @@ namespace iaai.Data_base
             return true;
         }
 
-        //TODO: Agregar comentarios
+
+        /// <summary>
+        /// Da de alta un alumno en la base de datos
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns>
+        /// true: si se subio a la base de datos
+        /// false:si no lo subio a la base de datos
+        /// </returns>
         public bool altaAlumno(Alumno a)
         {
             try
             {
                 this.open_db();
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + a.getNombre() + "', '" + a.getApellido() + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + a.getEscuela_nombre() + "', '" + a.getEscuela_año() + "', '" + a.getDireccion() + "', '" + a.getId_responsable() + "')", conexion);
-                //MyCommand.Connection.Open();
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -123,15 +142,20 @@ namespace iaai.Data_base
         }
 
 
-        //agregar comentarios
+        /// <summary>
+        /// Da de alta un responsable en la base de datos
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns>
+        /// true: si se subio a la base de datos
+        /// false:si no lo subio a la base de datos
+        /// </returns>
         public bool altaResponsable(Responsable r)
         {
             try
             {
                 this.open_db();
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + r.getNombre() + "', '" + r.getApellido() + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + r.getDireccion() + "')", conexion);
-                //MyCommand.Connection.Open();
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -436,7 +460,6 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
 
                 MySqlCommand MyCommand = new MySqlCommand("update profesor set activo = 0 "+
                                                            "where dni like '"+dni+"'", conexion);

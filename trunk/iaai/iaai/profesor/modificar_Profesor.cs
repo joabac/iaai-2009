@@ -23,21 +23,24 @@ namespace iaai.profesor
             InitializeComponent();
         }
 
-        private void modificarProfesor_Load(object sender, EventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// Se modifican los datos personales de un profesor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void aceptar_Click(object sender, EventArgs e)
         {
+            //valida que los datos ingresados no contengan errores
             if (validar())
             {
+                //carga los datos ingresados en la variable "datos (IDictionary)"
                 guardarDatos();
 
+
                 Profesor profe = new Profesor(datos);
-
-
-
+                
+                //si se pudieron modificar los datos del profesor
                 if (db.modificarProfesor(profe))
                 {
                     MessageBox.Show("El profesor fué modificado con éxito.");
@@ -49,7 +52,9 @@ namespace iaai.profesor
             }
         }
 
-        //TODO: comentar y especificar que guarda?
+        /// <summary>
+        /// Carga los datos ingresados en la interfaz, en una variable IDictionary
+        /// </summary>
         private void guardarDatos()
         {
 
@@ -59,7 +64,7 @@ namespace iaai.profesor
             datos["dni"] = dni.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
 
-            //argo los 
+         
             if (telefono_carac.Text.Length > 0)
             {
                 datos["telefono_carac"] = telefono_carac.Text;
@@ -78,6 +83,12 @@ namespace iaai.profesor
 
         }
 
+        /// <summary>
+        /// Se validan los datos personales del profesor y se muestran los errores si existen
+        /// </summary>
+        /// <returns>true: si no tiene errores
+        ///          false: si tiene errores
+        /// </returns>
         private bool validar()
         {
 
@@ -99,32 +110,13 @@ namespace iaai.profesor
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
-            /*if (dni.Text.Length == 0)
-                error = error + "Ingrese el DNI. \r\n";
-            else
-            {
-                if (metodo.ValidarDni(dni.Text) == true)
-                {
-                    if (!db.buscarDniProfesor(dni.Text))
-                    {
-                        error = error + "El profesor ya fue dado de alta en el sistema. \r\n";
-                    }
-                }
-                else
-                {
-                    error = error + "El DNI ingresado no es valido. \r\n";
-                }
-            }*/
+        
             if (fecha_nacimiento.Text.Contains(' '))
                 error = error + "Ingrese la fecha de nacimiento. \r\n";
             if (telefono_numero.Text.Length == 0)
                 error = error + "Ingrese el teléfono. \r\n";
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
-
-
-
-
 
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
@@ -143,22 +135,6 @@ namespace iaai.profesor
                 MessageBox.Show(error);
 
             }
-            if (metodo.ValidarDni(dni.Text) == true)
-            {
-                /*if (!db.buscarDniProfesor(dni.Text))
-                {
-
-                    error = "El profesor ya fue dado de alta en el sistema";
-                    MessageBox.Show(error);
-                }*/
-
-            }
-            else
-            {
-                error = "El DNI ingresado no es valido";
-            }
-
-
 
             if (error == "")
             {
@@ -171,17 +147,25 @@ namespace iaai.profesor
 
         }
 
+        /// <summary>
+        /// Busca el profesor, dado su DNI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void button_buscar_Click(object sender, EventArgs e)
         {
-
+            //si el dni es correcto
             if (metodo.ValidarDni(dni.Text))
             {
+                //Busca el profesor en la base de datos
                 profesor_encontrado = db.Buscar_Profesor(dni.Text);
 
                 if (profesor_encontrado == null)
                     MessageBox.Show("El DNI no es de un profesor del Instituto");
                 else
                 {
+                    //se habilitan los textBox
                     nombre.Enabled = true;
                     apellido.Enabled = true;
                     fecha_nacimiento.Enabled = true;
@@ -190,6 +174,7 @@ namespace iaai.profesor
                     direccion.Enabled = true;
                     email.Enabled = true;
 
+                    //se cargan los datos del profesor, en los textBox
                     nombre.Text = profesor_encontrado.getNombre();
                     apellido.Text = profesor_encontrado.getApellido();
                     fecha_nacimiento.Text = profesor_encontrado.getFecha_nac().ToString();
@@ -198,10 +183,7 @@ namespace iaai.profesor
                     direccion.Text = profesor_encontrado.getDireccion();
                     email.Text = profesor_encontrado.getEmail();
 
-
                 }
-
-
 
             }
             else

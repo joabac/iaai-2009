@@ -243,7 +243,6 @@
             this.Controls.Add(this.email);
             this.Name = "ModificarProfesor";
             this.Text = "ModificarProfesor";
-            this.Load += new System.EventHandler(this.modificarProfesor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
