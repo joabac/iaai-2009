@@ -248,7 +248,63 @@ namespace iaai.metodos_comunes
             return valido;
         }
 
-        
+        /// <summary>
+        /// Valida caracteres validos para campo telefono 7 x [0-9]
+        /// </summary>
+        /// <param name="cadena">telefono a validar en formato String</param>
+        /// <returns>
+        /// true: si es valido  
+        /// false: si no es valido 
+        /// </returns>
+        public bool telefono(String cadena)
+        {
+
+            bool valido = true;
+
+            foreach (char c in cadena)
+            {
+                if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' ||
+                    c == 96 || c == 'º' || c == '(' || c == ')' || c == 39)
+                {
+                    valido = true;
+                }
+                else
+                    return false;
+
+
+            }
+
+            return valido;
+        }
+
+        /// <summary>
+        /// Valida caracteres validos para campo caracteristica 5 x [0-9]
+        /// </summary>
+        /// <param name="cadena">caracteristica a validar en formato String</param>
+        /// <returns>
+        /// true: si es valido  
+        /// false: si no es valido 
+        /// </returns>
+        public bool caracteristica(String cadena)
+        {
+
+            bool valido = true;
+
+            foreach (char c in cadena)
+            {
+                if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' ||
+                    c == 96 || c == 'º' || c == '(' || c == ')' || c == 39)
+                {
+                    valido = true;
+                }
+                else
+                    return false;
+
+
+            }
+
+            return valido;
+        }
     }
 
     
