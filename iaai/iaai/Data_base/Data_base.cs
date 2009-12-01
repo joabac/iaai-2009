@@ -416,6 +416,32 @@ namespace iaai.Data_base
 
             return true;
         }
+
+        public bool eliminarProfesor(String dni)
+        {
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("update profesor set activo = '" + 0 
+                                                           + " where dni = " + dni, conexion);
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            return true;
+            
+        }
+
     }
 
 }
