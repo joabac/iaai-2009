@@ -159,37 +159,37 @@ namespace iaai_test
             //genero un profesor para poder manipular los datos ingresados
             datos["nombre"] = "nombre_prueba";
             datos["apellido"] = "apellido_prueba";
-            datos["dni"] = "11111111M";
+            datos["dni"] = "22222222M";
             datos["fecha_nac"] = "1981-12-01";
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "123456";
             datos["direccion"] = "San martin 314 7º B";
             datos["email"] = "prueba@prueba.com";
 
-            Profesor profe = new Profesor(datos) ;  //cargo el nuevo profesor
+            Profesor esperado = new Profesor(datos) ;  //cargo el nuevo profesor
 
             //prueba 1
             //++++++++++++codigo que se prueba 
 
-            metodo.altaProfesor(profe); //Doy de alta el profesor
+            metodo.altaProfesor(esperado); //Doy de alta el profesor
             
             //+++++++++++++++++++++++++++++++++++++++++++
 
             //busco el profesor en la base de datos para ver como quedo cargado
 
-            Profesor actual = metodo.Buscar_Profesor("11111111M"); 
+            Profesor recuperado = metodo.Buscar_Profesor("22222222M"); 
 
             //verifico campo a campo los datos registrados
-            Assert.AreEqual(actual.getDni().ToString(), profe.getDni().ToString()); // comparo si lo que se grabo es lo que se especifico
-            Assert.AreEqual(actual.getNombre().ToString(), profe.getNombre().ToString());
-            Assert.AreEqual(actual.getApellido().ToString(), profe.getApellido().ToString());
-            Assert.AreEqual(actual.getDireccion().ToString(), profe.getDireccion().ToString());
-            Assert.AreEqual(actual.getEmail().ToString(), profe.getEmail().ToString());
-            Assert.AreEqual(actual.getFecha_nac().ToString("yyyy-MM-dd"), profe.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); // comparo si lo que se grabo es lo que se especifico
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getEmail().ToString(), recuperado.getEmail().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
  
 
             //elimino manualmente el profesor de prueba generado
-            metodo.consulta("delete from profesor where dni like '11111111M' ");
+            metodo.consulta("delete from profesor where dni like '22222222M' ");
 
 
         }
@@ -206,7 +206,7 @@ namespace iaai_test
             //genero un profesor para poder manipular los datos ingresados
             datos["nombre"] = "nombre_prueba";
             datos["apellido"] = "apellido_prueba";
-            datos["dni"] = "11111111M";
+            datos["dni"] = "33333333M";
             datos["fecha_nac"] = "1981-12-01";
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "123456";
@@ -221,7 +221,7 @@ namespace iaai_test
 
             //busco el profesor en la base de datos para ver como quedo cargado
             //++++++++++++codigo que se prueba
-            Profesor actual = metodo.Buscar_Profesor("11111111M");
+            Profesor actual = metodo.Buscar_Profesor("33333333M");
             //+++++++++++++++++++++++++++++++++++++++++++
 
             //verifico campo a campo los datos registrados
@@ -237,25 +237,25 @@ namespace iaai_test
              //prueba 2
             //+++++++++++++++++++++++++++++
             //buscar profesor marcado como eliminado
-            metodo.eliminarProfesor("11111111M");
+            metodo.eliminarProfesor("33333333M");
 
             //busco el profesor 
-            actual = metodo.Buscar_Profesor("11111111F");
+            actual = metodo.Buscar_Profesor("33333333M");
             Profesor esperado = null;
 
             Assert.AreEqual(esperado, actual);
 
 
             //elimino manualmente el profesor de prueba generado
-            
-            metodo.consulta("delete from profesor where dni like '11111111M' ");
+
+            metodo.consulta("delete from profesor where dni like '33333333M' ");
             
 
             //prueba 3
             //++++++++++++++++++++++++++++++
-            //busco el profesor en la base pero este no existe
+            //busco profesor que no existe
 
-            actual = metodo.Buscar_Profesor("11111111M");
+            actual = metodo.Buscar_Profesor("34563456M");
             esperado = null;
 
             Assert.AreEqual(esperado, actual);
@@ -332,8 +332,9 @@ namespace iaai_test
 
             //reutilizo el objeto creado para generar modificaciones
             datos["nombre"] = "nombre_modificado";
-            datos["dni"] = "12345667F";
+            datos["dni"] = "11111111M";
             datos["fecha_nac"] = "2000-01-01";
+            datos["telefono_numero"] = "123456";
 
             Profesor profe_modif = new Profesor(datos);
             //cargo las modificaciones 
