@@ -405,7 +405,7 @@ namespace iaai.Data_base
                                                             profe.getTelefono_numero() + ",fecha_nac = '" +
                                                             profe.getFecha_nac().ToString("yyyy-MM-dd") +
                                                             "',direccion = '" + profe.getDireccion() +
-                                                            "',email = '" + profe.getEmail() + "'" + " where dni like " + profe.getDni(), conexion);
+                                                            "',email = '" + profe.getEmail() + "'" + " where dni like '" + profe.getDni()+"'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
