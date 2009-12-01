@@ -326,14 +326,8 @@ namespace iaai.metodos_comunes
         {
 
             bool valido= true;
-            DateTime fecha_Naciemiento = Convert.ToDateTime(cadena);
-
-            if (fecha_Naciemiento.AddYears(21) > DateTime.Now)
-                return 0;
-
-            else
-            {
-                int pos = 0; 
+            
+            int pos = 0; 
 
                 for (int i = pos; i < 2; i++ )  
                 {
@@ -383,10 +377,15 @@ namespace iaai.metodos_comunes
                 }
 
                 //validado hasta XX/XX/XXXX
-            }
-            if (valido)
+            
+            if (valido) //si el formato es valido
             {
-                return 1;
+                DateTime fecha_Naciemiento = Convert.ToDateTime(cadena); //convierto a date time
+
+                if (fecha_Naciemiento.AddYears(21) > DateTime.Now) //controlo por mayoria de edad
+                    return 0; // si menor  de edad pero fecha correcta retorno 0
+                else
+                    return 1; //si fecha correcta y mayor de edad retorno 1
             }
             else
                 return -1;
