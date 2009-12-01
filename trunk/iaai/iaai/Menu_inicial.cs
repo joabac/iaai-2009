@@ -75,6 +75,16 @@ namespace iaai
             profesor_form.Show();
         }
 
+        private void eliminarProfesorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Eliminar_Profesor elimina_profesor_form = new Eliminar_Profesor();
+
+            elimina_profesor_form.Parent = this.Parent;
+            elimina_profesor_form.MdiParent = this;
+
+            elimina_profesor_form.Show();
+        }
+
         
     }
 }

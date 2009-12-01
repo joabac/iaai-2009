@@ -54,16 +54,17 @@
             this.Cancel.Location = new System.Drawing.Point(497, 196);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 46;
+            this.Cancel.TabIndex = 10;
             this.Cancel.Text = "Cancelar";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // aceptar
             // 
             this.aceptar.Location = new System.Drawing.Point(395, 196);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 45;
+            this.aceptar.TabIndex = 9;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -83,7 +84,7 @@
             this.direccion.Location = new System.Drawing.Point(386, 104);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(137, 20);
-            this.direccion.TabIndex = 43;
+            this.direccion.TabIndex = 7;
             // 
             // label7
             // 
@@ -101,7 +102,7 @@
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
-            this.fecha_nacimiento.TabIndex = 40;
+            this.fecha_nacimiento.TabIndex = 4;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -119,7 +120,7 @@
             this.apellido.Location = new System.Drawing.Point(136, 108);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(137, 20);
-            this.apellido.TabIndex = 37;
+            this.apellido.TabIndex = 3;
             // 
             // label5
             // 
@@ -135,7 +136,7 @@
             this.dni.Location = new System.Drawing.Point(136, 22);
             this.dni.Name = "dni";
             this.dni.Size = new System.Drawing.Size(137, 20);
-            this.dni.TabIndex = 38;
+            this.dni.TabIndex = 0;
             // 
             // label4
             // 
@@ -152,7 +153,7 @@
             this.telefono_carac.Location = new System.Drawing.Point(386, 78);
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.Size = new System.Drawing.Size(41, 20);
-            this.telefono_carac.TabIndex = 41;
+            this.telefono_carac.TabIndex = 5;
             // 
             // label3
             // 
@@ -169,7 +170,7 @@
             this.telefono_numero.Location = new System.Drawing.Point(449, 78);
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.Size = new System.Drawing.Size(74, 20);
-            this.telefono_numero.TabIndex = 42;
+            this.telefono_numero.TabIndex = 6;
             // 
             // label10
             // 
@@ -187,7 +188,7 @@
             this.nombre.Location = new System.Drawing.Point(136, 82);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(137, 20);
-            this.nombre.TabIndex = 36;
+            this.nombre.TabIndex = 2;
             // 
             // label1
             // 
@@ -204,14 +205,14 @@
             this.email.Location = new System.Drawing.Point(386, 132);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(100, 20);
-            this.email.TabIndex = 44;
+            this.email.TabIndex = 8;
             // 
             // button_buscar
             // 
             this.button_buscar.Location = new System.Drawing.Point(303, 22);
             this.button_buscar.Name = "button_buscar";
             this.button_buscar.Size = new System.Drawing.Size(75, 23);
-            this.button_buscar.TabIndex = 54;
+            this.button_buscar.TabIndex = 1;
             this.button_buscar.Text = "Buscar";
             this.button_buscar.UseVisualStyleBackColor = true;
             this.button_buscar.Click += new System.EventHandler(this.button_buscar_Click);
