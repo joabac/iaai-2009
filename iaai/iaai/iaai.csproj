@@ -86,11 +86,11 @@
       <DependentUpon>Menu_inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="metodos_comunes\Utiles.cs" />
-    <Compile Include="profesor\AltaProfesor.cs">
+    <Compile Include="profesor\Alta_Profesor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="profesor\AltaProfesor.Designer.cs">
-      <DependentUpon>AltaProfesor.cs</DependentUpon>
+    <Compile Include="profesor\Alta_Profesor.Designer.cs">
+      <DependentUpon>Alta_Profesor.cs</DependentUpon>
     </Compile>
     <Compile Include="profesor\Eliminar_Profesor.cs">
       <SubType>Form</SubType>
@@ -115,8 +115,8 @@
       <DependentUpon>Menu_inicial.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="profesor\AltaProfesor.resx">
-      <DependentUpon>AltaProfesor.cs</DependentUpon>
+    <EmbeddedResource Include="profesor\Alta_Profesor.resx">
+      <DependentUpon>Alta_Profesor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="profesor\Eliminar_Profesor.resx">
