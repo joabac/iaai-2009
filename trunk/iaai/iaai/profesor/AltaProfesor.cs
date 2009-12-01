@@ -144,7 +144,7 @@ namespace iaai.profesor
         
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (validar())
+            if (validar()) 
             {
                 guardarDatos();
 
