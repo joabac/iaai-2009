@@ -96,7 +96,7 @@ namespace iaai.profesor
 
             else
             {
-                if(!metodo.validar_Caracteristica(telefono_carac.Text)
+                if(!metodo.validar_Caracteristica(telefono_carac.Text))
                     error = error + "Formato de característica de teléfono no válido \r\n";
             }
 
@@ -107,14 +107,17 @@ namespace iaai.profesor
 
             else
             {
-                if(!metodo.validar_Telefono(telefono_numero.Text)
+                if(!metodo.validar_Telefono(telefono_numero.Text))
                     error = error + "Formato de número de teléfono no válido \r\n";
             }
 
             //validación de la dirección
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
-           
+            else
+            {
+
+            }
             
 
 
