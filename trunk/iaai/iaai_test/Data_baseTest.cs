@@ -344,14 +344,19 @@ namespace iaai_test
             //recupero de base el profesor modificado
             Profesor recuperado = metodo.Buscar_Profesor(profe_modif.getDni());
 
-            //verifico campo a campo los datos registrados
-            Assert.AreEqual(profe_modif.getDni(), recuperado.getDni()); // comparo si lo que se grabo es lo que se especifico
-            Assert.AreEqual(profe_modif.getNombre(), recuperado.getNombre().ToString());
-            Assert.AreEqual(profe_modif.getApellido(), recuperado.getApellido().ToString());
-            Assert.AreEqual(profe_modif.getDireccion(), recuperado.getDireccion().ToString());
-            Assert.AreEqual(profe_modif.getEmail(), recuperado.getEmail().ToString());
-            Assert.AreEqual(profe_modif.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
-
+            if (recuperado != null)
+            {
+                //verifico campo a campo los datos registrados
+                Assert.AreEqual(profe_modif.getDni(), recuperado.getDni()); // comparo si lo que se grabo es lo que se especifico
+                Assert.AreEqual(profe_modif.getNombre(), recuperado.getNombre().ToString());
+                Assert.AreEqual(profe_modif.getApellido(), recuperado.getApellido().ToString());
+                Assert.AreEqual(profe_modif.getDireccion(), recuperado.getDireccion().ToString());
+                Assert.AreEqual(profe_modif.getEmail(), recuperado.getEmail().ToString());
+                Assert.AreEqual(profe_modif.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            }
+            else {
+                Assert.Inconclusive("No se pudo recuperar el profesor con los nuevos datos");
+            }
  
             
             //borro manualmente el prfesor de prueba generado
