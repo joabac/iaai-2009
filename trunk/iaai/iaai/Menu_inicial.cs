@@ -85,6 +85,18 @@ namespace iaai
             elimina_profesor_form.Show();
         }
 
+
+        private void listadoSeguroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListadoSeguro listado_seguro = new ListadoSeguro();
+
+            listado_seguro.Parent = this.Parent;
+            listado_seguro.MdiParent = this;
+
+            listado_seguro.Show();
+        }
+
+
         private void consultaProfesorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Consulta_Profesor consulta_profesor_form = new Consulta_Profesor();
@@ -94,6 +106,7 @@ namespace iaai
 
             consulta_profesor_form.Show();
         }
+
 
         
     }
