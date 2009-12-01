@@ -236,5 +236,35 @@ namespace iaai_test
 
             
         }
+
+        /// <summary>
+        ///Una prueba de validar_Telefono
+        ///</summary>
+        [TestMethod()]
+        public void validar_TelefonoTest()
+        {
+            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
+            string cadena = string.Empty; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de validar_Caracteristica
+        ///</summary>
+        [TestMethod()]
+        public void validar_CaracteristicaTest()
+        {
+            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
+            string cadena = string.Empty; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }
