@@ -52,16 +52,17 @@ namespace iaai.profesor
         private bool validar() {
 
             error = "";
+
+            //validacion nombre
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
-
-
             else
             {
                 if (!metodo.validar_Nombre_App(nombre.Text))
                     error = error + "Formato de nombre no válido \r\n";
             }
 
+            //validación apellido
             if (apellido.Text.Length == 0)
                 error = error + "Ingrese el Apellido. \r\n";
             else
@@ -69,6 +70,8 @@ namespace iaai.profesor
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
+
+            //validación dni
             if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
@@ -82,20 +85,40 @@ namespace iaai.profesor
                 }
                 else
                 {
-                    error = error + "El DNI ingresado no es valido. \r\n";
+                    error = error + "El DNI ingresado no es válido. \r\n";
                 }
             }
-            if (fecha_nacimiento.Text.Contains(' '))
-                error = error + "Ingrese la fecha de nacimiento. \r\n";
+
+           
+            //validación caracteristica del telefono
+            if (telefono_carac.Text.Length == 0)
+                error = error + "Ingrese la característica del teléfono. \r\n";
+
+            else
+            {
+                if(!metodo.validar_Caracteristica(telefono_carac.Text)
+                    error = error + "Formato de característica de teléfono no válido \r\n";
+            }
+
+
+            //validación numero del telefono
             if (telefono_numero.Text.Length == 0)
-                error = error + "Ingrese el teléfono. \r\n";
+                error = error + "Ingrese el número de teléfono. \r\n";
+
+            else
+            {
+                if(!metodo.validar_Telefono(telefono_numero.Text)
+                    error = error + "Formato de número de teléfono no válido \r\n";
+            }
+
+            //validación de la dirección
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
            
             
 
 
-
+            //validación fehca de nacimiento
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
             {
@@ -108,12 +131,16 @@ namespace iaai.profesor
                 }
             }
 
+
+            //si se producen errores
             if (error.Length > 0)
             {
                 error = "Se han producido errores: \r\n" + error;
                 MessageBox.Show(error);
 
             }
+
+            //si el profesor ya fue dado de alta
             if (metodo.ValidarDni(dni.Text) == true)
             {
                 if (!db.buscarDniProfesor(dni.Text))
@@ -126,11 +153,11 @@ namespace iaai.profesor
             }
             else
             {
-                error = "El DNI ingresado no es valido";
+                error = "El DNI ingresado no es válido";
             }
 
           
-
+            //si no hubo errores
             if (error == "")
             {
                 return true;
