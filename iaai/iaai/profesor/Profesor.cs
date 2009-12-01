@@ -86,7 +86,7 @@ namespace iaai.profesor
         }
 
 
-        //ESTOS SON LOS SET VITEH
+        //ESTOS SON LOS SET
 
         public void setNombre(string nom)
         {
@@ -121,29 +121,6 @@ namespace iaai.profesor
         {
             email = mail;
         }
-
-        /*static void Main()
-        {
-            
-            IDictionary<string, object> index = new Dictionary<string, object>();
-
-            index["id"] = 1;
-            index["nombre"] = "Matías";
-            index["apellido"] = "Milesi";
-            index["dni"] = "2222";
-            index["fecha_nac"] = "28/06/1984";
-            index["telefono_carac"] = 342;
-            index["telefono_numero"] = 4550871;
-            index["escuela_nombre"] = "comercial";
-            index["escuela_año"] = 2001;
-            index["direccion"] = "conchabamba 1123";
-            index["id_responsable"] = 2;
-
-            Profesor t = new Profesor(index);
-
-            
-            
-        }*/
 
 
     }
