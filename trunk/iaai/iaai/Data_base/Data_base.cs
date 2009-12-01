@@ -32,7 +32,7 @@ namespace iaai.Data_base
             catch (MySqlException my_ex)
             {
                 MessageBox.Show("Error al abrir la base de Datos:\r\n"+my_ex.Message);
-                return true;
+                return false;
             }
 
             return true;
