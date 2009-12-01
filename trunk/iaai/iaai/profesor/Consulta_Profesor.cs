@@ -65,8 +65,8 @@ namespace iaai.profesor
                 if (textBoxBuscar.Text.Length == 0)
                     MessageBox.Show("Ingrese el apellido. \r\n");
                 else
-                {       //si el formato del dni es correcto
-                    if (metodo.ValidarDni(textBoxBuscar.Text) == true)
+                {       //si el formato del apellido es correcto
+                    if (metodo.validar_Nombre_App(textBoxBuscar.Text) == true)
                     {
                         //si el profesor ya fue dado de alta en el sistema
                         if (!db.buscarDniProfesor(textBoxBuscar.Text))
