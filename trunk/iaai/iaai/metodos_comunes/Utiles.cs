@@ -319,19 +319,77 @@ namespace iaai.metodos_comunes
         /// <param name="cadena">fecha validar en formato String</param>
         /// <returns>
         /// -1: si no es valida  
-        /// 0: si es menor
+        /// 0: si es menor de 21
         /// 1: si es valida
         /// </returns>
         public int validar_Fecha_Nacimiento(String cadena)
         {
 
+            bool valido= true;
             DateTime fecha_Naciemiento = Convert.ToDateTime(cadena);
 
             if (fecha_Naciemiento.AddYears(21) > DateTime.Now)
                 return 0;
 
+            else
+            {
+                int pos = 0; 
 
-            return true;
+                for (int i = pos; i < 2; i++ )  
+                {
+                    if (char.IsDigit(cadena[i]))
+                    {
+                        valido = true;
+                    }
+                    else return -1;
+
+                    pos = i;
+                }
+                
+                pos += 1;
+                
+                if(cadena[pos] != '/')
+                    return -1;  // encontro caracter no valido
+
+                //validado hasta XX/
+
+                pos += 1;
+
+                for (int j= pos; j < 5; j++)
+                {
+                    if (char.IsDigit(cadena[j]))
+                    {
+                        valido = true;
+                    }
+                    else return -1;
+
+                    pos = j;
+                }
+
+                pos += 1;
+                if (cadena[pos] != '/')
+                    return -1;  // encontro caracter no valido
+
+                //validado hasta XX/XX/
+
+                pos += 1;
+                for (int s = pos; s < 10; s++)
+                {
+                    if (char.IsDigit(cadena[s]))
+                    {
+                        valido = true;
+                    }
+                    else return -1;
+                }
+
+                //validado hasta XX/XX/XXXX
+            }
+            if (valido)
+            {
+                return 1;
+            }
+            else
+                return -1;
         }
 
     }
