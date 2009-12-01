@@ -328,7 +328,7 @@ namespace iaai.Data_base
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email "+
                                                           "from profesor "+
-                                                          "where dni = " + dni , conexion);
+                                                          "where dni like '" + dni +"'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
 
