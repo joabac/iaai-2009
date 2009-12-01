@@ -243,13 +243,57 @@ namespace iaai_test
         [TestMethod()]
         public void validar_TelefonoTest()
         {
-            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
-            string cadena = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Utiles target = new Utiles();
+
+            string cadena = "123456789";
+            bool expected = true;
             bool actual;
             actual = target.validar_Telefono(cadena);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            cadena = "1234567890";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "12345678s";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "a23456789";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "12&%390$";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "12345";
+            expected = true;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "1234";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "";
+            expected = false;
+            actual = target.validar_Telefono(cadena);
+            Assert.AreEqual(expected, actual);
+            
+
         }
 
         /// <summary>
@@ -258,13 +302,52 @@ namespace iaai_test
         [TestMethod()]
         public void validar_CaracteristicaTest()
         {
-            Utiles target = new Utiles(); // TODO: Inicializar en un valor adecuado
-            string cadena = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Utiles target = new Utiles(); 
+            
+            string cadena = "12345"; 
+            bool expected = true; 
             bool actual;
             actual = target.validar_Caracteristica(cadena);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            cadena = "123456"; 
+            expected = false; 
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "234,5";
+            expected = false;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "asgh5";
+            expected = false;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "3ghdr";
+            expected = false;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+            cadena = "";
+            expected = false;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "123";
+            expected = true;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            cadena = "12";
+            expected = false;
+            actual = target.validar_Caracteristica(cadena);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

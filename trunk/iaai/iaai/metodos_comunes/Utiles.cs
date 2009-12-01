@@ -264,7 +264,7 @@ namespace iaai.metodos_comunes
 
             bool valido = true;
 
-            if (cadena.Length > 9)
+            if (cadena.Length > 9 || cadena.Length < 5)
                 return false;
 
             foreach (char c in cadena)
@@ -295,7 +295,7 @@ namespace iaai.metodos_comunes
 
             bool valido = true;
 
-            if (cadena.Length > 5)
+            if (cadena.Length > 5 || cadena.Length < 3)
                 return false;
 
             foreach (char c in cadena)
