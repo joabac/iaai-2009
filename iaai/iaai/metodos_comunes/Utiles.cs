@@ -256,7 +256,7 @@ namespace iaai.metodos_comunes
         /// true: si es valido  
         /// false: si no es valido 
         /// </returns>
-        public bool telefono(String cadena)
+        public bool validar_Telefono(String cadena)
         {
 
             bool valido = true;
@@ -285,7 +285,7 @@ namespace iaai.metodos_comunes
         /// true: si es valido  
         /// false: si no es valido 
         /// </returns>
-        public bool caracteristica(String cadena)
+        public bool validar_Caracteristica(String cadena)
         {
 
             bool valido = true;
