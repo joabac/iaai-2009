@@ -313,6 +313,20 @@ namespace iaai.metodos_comunes
             return valido;
         }
 
+        /// <summary>
+        /// Valida caracteres validos para campo caracteristica 5 x [0-9]
+        /// </summary>
+        /// <param name="cadena">caracteristica a validar en formato String</param>
+        /// <returns>
+        /// true: si es valido  
+        /// false: si no es valido 
+        /// </returns>
+        public bool validar_Fecha_Nacimiento(String cadena)
+        {
+
+            return true;
+        }
+
     }
 
     
