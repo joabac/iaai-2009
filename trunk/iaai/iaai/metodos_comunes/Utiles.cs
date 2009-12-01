@@ -232,6 +232,8 @@ namespace iaai.metodos_comunes
 
             bool valido = true;
 
+
+
             foreach (char c in cadena)
             {
                 if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' || 
@@ -261,10 +263,12 @@ namespace iaai.metodos_comunes
 
             bool valido = true;
 
+            if (cadena.Length > 9)
+                return false;
+
             foreach (char c in cadena)
             {
-                if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' ||
-                    c == 96 || c == 'º' || c == '(' || c == ')' || c == 39)
+                if (Char.IsDigit(c))
                 {
                     valido = true;
                 }
@@ -290,10 +294,12 @@ namespace iaai.metodos_comunes
 
             bool valido = true;
 
+            if (cadena.Length > 5)
+                return false;
+
             foreach (char c in cadena)
             {
-                if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' ||
-                    c == 96 || c == 'º' || c == '(' || c == ')' || c == 39)
+                if (Char.IsDigit(c))
                 {
                     valido = true;
                 }
