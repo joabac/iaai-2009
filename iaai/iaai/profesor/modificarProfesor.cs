@@ -178,7 +178,7 @@ namespace iaai.profesor
             {
                 profesor_encontrado = db.Buscar_Profesor(dni.Text);
 
-                if (profesor_encontrado.getDni() == null)
+                if (profesor_encontrado == null)
                     MessageBox.Show("El DNI no es de un profesor del Instituto");
                 else
                 {
