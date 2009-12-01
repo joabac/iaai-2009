@@ -343,6 +343,8 @@ namespace iaai.Data_base
                     profe.setDireccion(reader[6].ToString());
                     profe.setMail(reader[7].ToString());
                 }
+                else
+                    return null;
                 
                 conexion.Close();
             }
