@@ -52,10 +52,21 @@ namespace iaai.profesor
 
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
+            DialogResult resultado =  MessageBox.Show("¿Usted está seguro que desea eliminar?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
 
-            db.eliminarProfesor(profesor_encontrado.getDni());
+            if (resultado == DialogResult.OK)
+            {
+                if (db.eliminarProfesor(profesor_encontrado.getDni()))
+                {
+                    MessageBox.Show("El profesor ha sido eliminado con éxito");
 
-            this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("El profesor no ha sido eliminado");
+                }
+            }
 
         }
 
