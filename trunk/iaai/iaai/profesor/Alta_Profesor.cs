@@ -75,9 +75,10 @@ namespace iaai.profesor
             if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
-            {
+            {       //si el formato del dni es correcto
                 if (metodo.ValidarDni(dni.Text) == true)
-                {
+                {   
+                    //si el profesor ya fue dado de alta en el sistema
                     if (!db.buscarDniProfesor(dni.Text))
                     {
                         error = error + "El profesor ya fue dado de alta en el sistema. \r\n";
@@ -95,7 +96,7 @@ namespace iaai.profesor
                 error = error + "Ingrese la característica del teléfono. \r\n";
 
             else
-            {
+            {   
                 if(!metodo.validar_Caracteristica(telefono_carac.Text))
                     error = error + "Formato de característica de teléfono no válido \r\n";
             }
@@ -116,23 +117,25 @@ namespace iaai.profesor
                 error = error + "Ingrese la dirección. \r\n";
             else
             {
-
+                if (!metodo.validar_Direccion(direccion.Text))
+                    error = error + "Formato de dirección no válido \r\n";
             }
             
 
 
             //validación fehca de nacimiento
             bool validar = fecha_nacimiento.Text.Contains(' ');
-            if (!validar)//si la fecha esta ingresada
+            if (validar)//si la fecha esta ingresada
             {
-                //si el profesor es menor de 21 años
-                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
-                {
-                    error = "El profesor no puede ser menor de edad.";
-                    
-                    fecha_nacimiento.Focus();
-                }
+                error = error + "Ingrese el número de teléfono. \r\n";
+                
             }
+            else
+            {
+                if(!metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text))
+                    error = error + "Formato de fecha de nacimiento no válido \r\n";
+            }
+
 
 
             //si se producen errores
@@ -141,22 +144,6 @@ namespace iaai.profesor
                 error = "Se han producido errores: \r\n" + error;
                 MessageBox.Show(error);
 
-            }
-
-            //si el profesor ya fue dado de alta
-            if (metodo.ValidarDni(dni.Text) == true)
-            {
-                if (!db.buscarDniProfesor(dni.Text))
-                {
-
-                    error = "El profesor ya fue dado de alta en el sistema";
-                    MessageBox.Show(error);
-                }
-
-            }
-            else
-            {
-                error = "El DNI ingresado no es válido";
             }
 
           
