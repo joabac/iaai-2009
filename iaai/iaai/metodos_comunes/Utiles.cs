@@ -314,15 +314,22 @@ namespace iaai.metodos_comunes
         }
 
         /// <summary>
-        /// Valida caracteres validos para campo caracteristica 5 x [0-9]
+        /// Valida fecha de nacimiento y verifica si la fecha representa a un mayor de edad o a un menor
         /// </summary>
-        /// <param name="cadena">caracteristica a validar en formato String</param>
+        /// <param name="cadena">fecha validar en formato String</param>
         /// <returns>
-        /// true: si es valido  
-        /// false: si no es valido 
+        /// -1: si no es valida  
+        /// 0: si es menor
+        /// 1: si es valida
         /// </returns>
-        public bool validar_Fecha_Nacimiento(String cadena)
+        public int validar_Fecha_Nacimiento(String cadena)
         {
+
+            DateTime fecha_Naciemiento = Convert.ToDateTime(cadena);
+
+            if (fecha_Naciemiento.AddYears(21) > DateTime.Now)
+                return 0;
+
 
             return true;
         }
