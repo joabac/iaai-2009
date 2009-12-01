@@ -290,8 +290,10 @@ namespace iaai.Data_base
 
             try
             {
-                this.open_db();
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+               if(conexion.State == System.Data.ConnectionState.Closed)
+                   this.open_db();
+
+                
                 MySqlCommand MyCommand = new MySqlCommand(consulta, conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
@@ -358,7 +360,7 @@ namespace iaai.Data_base
                 }
                 else
                 {
-                    conexion.Clone();
+                    conexion.Close();
                     return null;
                 }
                 

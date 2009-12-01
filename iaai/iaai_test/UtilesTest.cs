@@ -225,12 +225,12 @@ namespace iaai_test
 
 
             cadena = "[Pasillo] dto. 2º";
-            expected = true;
+            expected = false;
             actual = target.validar_Direccion(cadena);
             Assert.AreEqual(expected, actual);
 
             cadena = "{Pasillo} dto. 2º";
-            expected = true;
+            expected = false;
             actual = target.validar_Direccion(cadena);
             Assert.AreEqual(expected, actual);
 
