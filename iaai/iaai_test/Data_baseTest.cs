@@ -260,17 +260,31 @@ namespace iaai_test
  
 
             //elimino manualmente el profesor de prueba generado
-            metodo.consulta("delete from profesor where dni like '11111111M' ");
             
 
              //prueba 2
             //+++++++++++++++++++++++++++++
+            //buscar profesor marcado como eliminado
+            metodo.eliminarProfesor("11111111F");
+
+            actual = metodo.Buscar_Profesor("11111111F");
+            Profesor esperado = null;
+
+            Assert.AreEqual(esperado, actual);
+
+
+            metodo.consulta("delete from profesor where dni like '11111111M' ");
+            
+
+            //prueba 3
+            //++++++++++++++++++++++++++++++
             //busco el profesor en la base pero este no existe
 
             actual = metodo.Buscar_Profesor("11111111F");
             Profesor esperado = null;
 
             Assert.AreEqual(esperado, actual);
+
 
         }
     }

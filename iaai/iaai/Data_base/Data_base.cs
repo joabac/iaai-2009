@@ -417,6 +417,13 @@ namespace iaai.Data_base
             return true;
         }
 
+
+        /// <summary>
+        /// Marca como eliminado un profesor de la base de datos
+        /// </summary>
+        /// <param name="dni">String del profesor a elimnar</param>
+        /// <remarks>este debe ser valido y existir en la base</remarks>
+        /// <returns>true: si pudo eliminar false: si no pudo realizar la eliminacion</returns>
         public bool eliminarProfesor(String dni)
         {
             try
