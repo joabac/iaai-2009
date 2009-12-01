@@ -233,8 +233,6 @@ namespace iaai_test
             Assert.AreEqual(actual.getFecha_nac().ToString("yyyy-MM-dd"), profe.getFecha_nac().ToString("yyyy-MM-dd"));
  
 
-            //elimino manualmente el profesor de prueba generado
-            
 
              //prueba 2
             //+++++++++++++++++++++++++++++
@@ -248,6 +246,8 @@ namespace iaai_test
             Assert.AreEqual(esperado, actual);
 
 
+            //elimino manualmente el profesor de prueba generado
+            
             metodo.consulta("delete from profesor where dni like '11111111M' ");
             
 
@@ -261,6 +261,102 @@ namespace iaai_test
             Assert.AreEqual(esperado, actual);
 
 
+        }
+
+        /// <summary>
+        ///Una prueba de eliminarProfesor
+        ///</summary>
+        [TestMethod()]
+        public void eliminarProfesorTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //genero un profesor para poder manipular los datos ingresados
+            datos["nombre"] = "nombre_prueba";
+            datos["apellido"] = "apellido_prueba";
+            datos["dni"] = "11111111M";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "123456";
+            datos["direccion"] = "San martin 314 7º B";
+            datos["email"] = "prueba@prueba.com";
+
+            Profesor profe = new Profesor(datos);  //cargo el nuevo profesor
+
+            metodo.altaProfesor(profe); //Doy de alta el profesor
+
+           
+            //elimino el profesor de la base marcandolo como eliminado
+            //pasandole como parametro el dni generado
+            //++++++++++++codigo que se prueba
+            metodo.eliminarProfesor(profe.getDni());
+
+            //busco el profesor para ver si esta en base como activo
+            Profesor actual = metodo.Buscar_Profesor("11111111M");
+            Profesor esperado = null;
+
+            //prueba
+            Assert.AreEqual(esperado, actual);
+
+
+            //borro manualmente el prfesor de prueba generado
+            metodo.consulta("delete from profesor where dni like '11111111M' ");
+            
+        }
+
+        /// <summary>
+        ///Una prueba de modificarProfesor
+        ///</summary>
+        [TestMethod()]
+        public void modificarProfesorTest()
+        {
+
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //genero un profesor para poder manipular los datos ingresados
+            datos["nombre"] = "nombre_prueba";
+            datos["apellido"] = "apellido_prueba";
+            datos["dni"] = "11111111M";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "123456";
+            datos["direccion"] = "San martin 314 7º B";
+            datos["email"] = "prueba@prueba.com";
+
+            Profesor profe = new Profesor(datos);  //cargo el nuevo profesor
+
+            metodo.altaProfesor(profe); //Doy de alta el profesor
+
+
+            //reutilizo el objeto creado para generar modificaciones
+            datos["nombre"] = "nombre_modificado";
+            datos["dni"] = "12345667F";
+            datos["fecha_nac"] = "2000-01-01";
+
+            Profesor profe_modif = new Profesor(datos);
+            //cargo las modificaciones 
+            //++++++++++++codigo que se prueba
+            metodo.modificarProfesor(profe_modif);
+            //+++++++++++++++++++++++++++++++++++++++++++
+
+            //recupero de base el profesor modificado
+            Profesor recuperado = metodo.Buscar_Profesor(profe_modif.getDni());
+
+            //verifico campo a campo los datos registrados
+            Assert.AreEqual(profe_modif.getDni(), recuperado.getDni()); // comparo si lo que se grabo es lo que se especifico
+            Assert.AreEqual(profe_modif.getNombre(), recuperado.getNombre().ToString());
+            Assert.AreEqual(profe_modif.getApellido(), recuperado.getApellido().ToString());
+            Assert.AreEqual(profe_modif.getDireccion(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(profe_modif.getEmail(), recuperado.getEmail().ToString());
+            Assert.AreEqual(profe_modif.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+
+ 
+            
+            //borro manualmente el prfesor de prueba generado
+            metodo.consulta("delete from profesor where dni like '12345667F' ");
+            
         }
     }
 }
