@@ -127,13 +127,21 @@ namespace iaai.profesor
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (validar)//si la fecha esta ingresada
             {
-                error = error + "Ingrese el número de teléfono. \r\n";
+                error = error + "Ingrese la fecha de nacimiento. \r\n";
                 
             }
             else
             {
-                if(!metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text))
-                    error = error + "Formato de fecha de nacimiento no válido \r\n";
+                int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
+                if(resultado == -1)
+                    error = error + "Formato de fecha de nacimiento no válido. \r\n";
+                else
+                {
+                    if(resultado == 0)
+                    {
+                        error = error + "El profesor es menor a 21 años. \r\n";
+                    }
+                }
             }
 
 
