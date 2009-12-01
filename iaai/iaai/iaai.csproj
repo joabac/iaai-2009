@@ -92,6 +92,12 @@
     <Compile Include="profesor\Alta_Profesor.Designer.cs">
       <DependentUpon>Alta_Profesor.cs</DependentUpon>
     </Compile>
+    <Compile Include="profesor\Consulta_Profesor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="profesor\Consulta_Profesor.Designer.cs">
+      <DependentUpon>Consulta_Profesor.cs</DependentUpon>
+    </Compile>
     <Compile Include="profesor\Eliminar_Profesor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="profesor\Alta_Profesor.resx">
       <DependentUpon>Alta_Profesor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="profesor\Consulta_Profesor.resx">
+      <DependentUpon>Consulta_Profesor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="profesor\Eliminar_Profesor.resx">

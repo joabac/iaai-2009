@@ -85,6 +85,16 @@ namespace iaai
             elimina_profesor_form.Show();
         }
 
+        private void consultaProfesorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consulta_Profesor consulta_profesor_form = new Consulta_Profesor();
+
+            consulta_profesor_form.Parent = this.Parent;
+            consulta_profesor_form.MdiParent = this;
+
+            consulta_profesor_form.Show();
+        }
+
         
     }
 }

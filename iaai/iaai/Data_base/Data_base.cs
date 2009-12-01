@@ -481,6 +481,57 @@ namespace iaai.Data_base
             
         }
 
+
+        public Profesor consultarProfesor(string dni)
+        {
+
+
+            Profesor profe = new Profesor();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
+                                                          "from profesor " +
+                                                          "where dni like '" + dni + "' and activo = 1", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    profe.setNombre(reader[0].ToString());
+                    profe.setApellido(reader[1].ToString());
+                    profe.setDni(reader[2].ToString());
+                    profe.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
+                    profe.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                    profe.setFecha_nac(Convert.ToDateTime(reader[5]));
+                    profe.setDireccion(reader[6].ToString());
+                    profe.setMail(reader[7].ToString());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return profe;
+        }
     }
 
 }
