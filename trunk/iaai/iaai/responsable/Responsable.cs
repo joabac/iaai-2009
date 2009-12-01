@@ -19,6 +19,7 @@ namespace iaai.responsable
         //CONSTRUCTOR DE LA CLASE
         public Responsable(IDictionary<string,object> datos)
         {
+            id_responsable = -1;
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
             dni = int.Parse(datos["dni"].ToString());

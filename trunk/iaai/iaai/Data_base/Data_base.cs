@@ -317,7 +317,7 @@ namespace iaai.Data_base
         /// </summary>
         /// <param name="dni">recibe el dni de profesro a buscar</param>
         /// <returns>Lista de profesores eliminados</returns>
-        /// <seealso cref=""/>
+        
         public MySqlDataAdapter Buscar_Profesor_inactivos()
         {
             return null ;
@@ -335,7 +335,9 @@ namespace iaai.Data_base
             Profesor profe = new Profesor();
             try
             {
-                this.open_db();
+                if(conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email "+
                                                           "from profesor "+
@@ -355,7 +357,10 @@ namespace iaai.Data_base
                     profe.setMail(reader[7].ToString());
                 }
                 else
+                {
+                    conexion.Clone();
                     return null;
+                }
                 
                 conexion.Close();
             }
