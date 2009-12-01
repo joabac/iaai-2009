@@ -102,6 +102,7 @@ namespace iaai.profesor
             {
                 busca_apellido.Items.Clear();
                 caracter.KeyChar = '\0';
+
             }
             
             if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3)
