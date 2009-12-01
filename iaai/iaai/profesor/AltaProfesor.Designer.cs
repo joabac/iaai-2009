@@ -239,7 +239,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.email);
             this.Name = "Altaprofesor";
-            this.Text = "Form1";
+            this.Text = "Alta Profesor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
