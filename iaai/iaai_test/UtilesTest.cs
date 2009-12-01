@@ -399,7 +399,7 @@ namespace iaai_test
             
             //calculo 21 años para atras desde hoy menos 1 dia para que sea menor de edad
             int año = DateTime.Now.Year - 21;
-            int dia_menos = DateTime.Now.Subtract(TimeSpan.FromDays(1)).Day;
+            int dia_menos = DateTime.Now.AddDays(1).Day;
 
             cadena = new DateTime(año,DateTime.Now.Month,dia_menos).ToString("dd/MM/yyyy");
             
