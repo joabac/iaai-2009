@@ -74,11 +74,11 @@ namespace iaai_test
         public void open_dbTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool expected = true; // TODO: Inicializar en un valor adecuado
             bool actual;
             actual = target.open_db();
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
         }
 
         
@@ -89,12 +89,7 @@ namespace iaai_test
         [TestMethod()]
         public void buscarResponsableTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string consulta = string.Empty; // TODO: Inicializar en un valor adecuado
-            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
-            List<List<string>> actual;
-            actual = target.buscarResponsable(consulta);
-            Assert.AreEqual(expected, actual);
+           
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
@@ -104,12 +99,7 @@ namespace iaai_test
         [TestMethod()]
         public void buscarDniResponsableTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string dni = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.buscarDniResponsable(dni);
-            Assert.AreEqual(expected, actual);
+          
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
@@ -119,12 +109,7 @@ namespace iaai_test
         [TestMethod()]
         public void buscarDniProfesorTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string dni_profesor = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.buscarDniProfesor(dni_profesor);
-            Assert.AreEqual(expected, actual);
+            
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
@@ -134,12 +119,7 @@ namespace iaai_test
         [TestMethod()]
         public void buscarDniAlumnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string dni = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.buscarDniAlumno(dni);
-            Assert.AreEqual(expected, actual);
+          
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
@@ -149,12 +129,7 @@ namespace iaai_test
         [TestMethod()]
         public void altaAlumnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno a = null; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.altaAlumno(a);
-            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
             
         }
 
@@ -164,12 +139,7 @@ namespace iaai_test
         [TestMethod()]
         public void altaResponsableTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Responsable r = null; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.altaResponsable(r);
-            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
             
         }
 

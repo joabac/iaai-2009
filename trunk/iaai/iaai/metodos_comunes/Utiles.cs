@@ -191,6 +191,8 @@ namespace iaai.metodos_comunes
         ///</returns>
         public bool validar_Nombre_App(String cadena)
         {
+            if (cadena == "")
+                return false;
 
             bool valido = true;
 
@@ -233,7 +235,7 @@ namespace iaai.metodos_comunes
             foreach (char c in cadena)
             {
                 if (Char.IsLetter(c) || Char.IsDigit(c) || char.IsWhiteSpace(c) || c == '.' || 
-                    c == 96 || c== 'º' || c == '(' || c== ')')
+                    c == 96 || c== 'º' || c == '(' || c== ')' || c== 39)
                 {
                     valido = true;
                 }
