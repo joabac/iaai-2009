@@ -86,6 +86,7 @@
             this.buttonCancelar.TabIndex = 3;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // label9
             // 
@@ -98,12 +99,11 @@
             // 
             // direccion
             // 
-            this.direccion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.direccion.Enabled = false;
+            this.direccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.direccion.Location = new System.Drawing.Point(396, 135);
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
-            this.direccion.Size = new System.Drawing.Size(137, 13);
+            this.direccion.Size = new System.Drawing.Size(137, 20);
             this.direccion.TabIndex = 60;
             // 
             // label7
@@ -117,13 +117,12 @@
             // 
             // fecha_nacimiento
             // 
-            this.fecha_nacimiento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.fecha_nacimiento.Enabled = false;
+            this.fecha_nacimiento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fecha_nacimiento.Location = new System.Drawing.Point(146, 168);
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.ReadOnly = true;
-            this.fecha_nacimiento.Size = new System.Drawing.Size(68, 13);
+            this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
             this.fecha_nacimiento.TabIndex = 57;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
@@ -138,12 +137,11 @@
             // 
             // apellido
             // 
-            this.apellido.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.apellido.Enabled = false;
+            this.apellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.apellido.Location = new System.Drawing.Point(146, 139);
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
-            this.apellido.Size = new System.Drawing.Size(137, 13);
+            this.apellido.Size = new System.Drawing.Size(137, 20);
             this.apellido.TabIndex = 55;
             // 
             // label4
@@ -157,12 +155,11 @@
             // 
             // telefono_carac
             // 
-            this.telefono_carac.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.telefono_carac.Enabled = false;
+            this.telefono_carac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.telefono_carac.Location = new System.Drawing.Point(396, 109);
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.ReadOnly = true;
-            this.telefono_carac.Size = new System.Drawing.Size(41, 13);
+            this.telefono_carac.Size = new System.Drawing.Size(41, 20);
             this.telefono_carac.TabIndex = 58;
             // 
             // label3
@@ -176,12 +173,11 @@
             // 
             // telefono_numero
             // 
-            this.telefono_numero.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.telefono_numero.Enabled = false;
+            this.telefono_numero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.telefono_numero.Location = new System.Drawing.Point(459, 109);
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.ReadOnly = true;
-            this.telefono_numero.Size = new System.Drawing.Size(74, 13);
+            this.telefono_numero.Size = new System.Drawing.Size(74, 20);
             this.telefono_numero.TabIndex = 59;
             // 
             // label10
@@ -195,13 +191,12 @@
             // 
             // nombre
             // 
-            this.nombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nombre.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.nombre.Enabled = false;
             this.nombre.Location = new System.Drawing.Point(146, 113);
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Size = new System.Drawing.Size(137, 13);
+            this.nombre.Size = new System.Drawing.Size(137, 20);
             this.nombre.TabIndex = 54;
             // 
             // label1
@@ -215,12 +210,11 @@
             // 
             // email
             // 
-            this.email.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email.Enabled = false;
+            this.email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.email.Location = new System.Drawing.Point(396, 163);
             this.email.Name = "email";
             this.email.ReadOnly = true;
-            this.email.Size = new System.Drawing.Size(100, 13);
+            this.email.Size = new System.Drawing.Size(100, 20);
             this.email.TabIndex = 61;
             // 
             // textBoxDni
@@ -231,7 +225,7 @@
             this.textBoxDni.TabIndex = 68;
             this.textBoxDni.TabStop = false;
             // 
-            // EliminarProfesor
+            // Eliminar_Profesor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -255,7 +249,7 @@
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.textBox1);
-            this.Name = "EliminarProfesor";
+            this.Name = "Eliminar_Profesor";
             this.Text = "EliminarProfesor";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -102,7 +102,8 @@ namespace iaai.profesor
                 //si el profesor es menor de 21 años
                 if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
                 {
-                    MessageBox.Show("El profesor debe ser mayor de Edad");
+                    error = "El profesor no puede ser menor de edad.";
+                    
                     fecha_nacimiento.Focus();
                 }
             }
@@ -157,10 +158,13 @@ namespace iaai.profesor
                 {
                     MessageBox.Show("El profesor fué dado de alta con éxito.");
 
+                    this.Close();
                 }
                 else
                     MessageBox.Show("Ocurrió un error en base de datos.");
             }
+
+            
         }
         
         //TODO: comentar y especificar que guarda?
@@ -194,7 +198,7 @@ namespace iaai.profesor
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void label9_Click(object sender, EventArgs e)

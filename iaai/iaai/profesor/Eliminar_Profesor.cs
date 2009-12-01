@@ -33,7 +33,13 @@ namespace iaai.profesor
                     MessageBox.Show("El DNI no es de un profesor del Instituto");
                 else
                 {
-                    db.eliminarProfesor(profesor_encontrado.getDni());
+                    nombre.Text = profesor_encontrado.getNombre();
+                    apellido.Text = profesor_encontrado.getApellido();
+                    fecha_nacimiento.Text = profesor_encontrado.getFecha_nac().ToString();
+                    telefono_carac.Text = profesor_encontrado.getTelefono_carac().ToString();
+                    telefono_numero.Text = profesor_encontrado.getTelefono_numero().ToString();
+                    direccion.Text = profesor_encontrado.getDireccion();
+                    email.Text = profesor_encontrado.getEmail();
 
                 }
             }
@@ -47,7 +53,20 @@ namespace iaai.profesor
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
 
+            db.eliminarProfesor(profesor_encontrado.getDni());
+
+            this.Close();
+
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        
+
+       
 
         
     }
