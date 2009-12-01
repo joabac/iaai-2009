@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
+using System;
 
 namespace iaai_test
 
@@ -348,6 +349,66 @@ namespace iaai_test
             expected = false;
             actual = target.validar_Caracteristica(cadena);
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///Una prueba de validar_Fecha_Nacimiento
+        ///</summary>
+        [TestMethod()]
+        public void validar_Fecha_NacimientoTest()
+        {
+            Utiles target = new Utiles();
+
+            //fecha valida
+            string cadena = "25/08/1980";
+            int expected = 1; 
+            int actual;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            //formato valido pero menor de 21
+            cadena = "25/08/2000";
+            expected = 0;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
+            cadena = "25-08-2000";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
+            cadena = "25/set/2000";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
+            cadena = "25/0I/20s2";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
+            cadena = "aa/0I/20s2";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+            
+            //calculo 21 años para atras desde hoy menos 1 dia para que sea menor de edad
+            int año = DateTime.Now.Year - 21;
+            int dia_menos = DateTime.Now.Subtract(TimeSpan.FromDays(1)).Day;
+
+            cadena = new DateTime(año,DateTime.Now.Month,dia_menos).ToString("dd/MM/yyyy");
+            
+            expected = 0;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+
         }
     }
 }
