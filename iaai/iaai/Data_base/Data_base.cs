@@ -435,8 +435,10 @@ namespace iaai.Data_base
             {
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+
                 MySqlCommand MyCommand = new MySqlCommand("update profesor set activo = 0 "+
                                                            "where dni like '"+dni+"'", conexion);
+
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
