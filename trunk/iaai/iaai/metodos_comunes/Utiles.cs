@@ -250,6 +250,7 @@ namespace iaai.metodos_comunes
             return valido;
         }
 
+
         /// <summary>
         /// Valida caracteres validos para campo telefono 7 x [0-9]
         /// </summary>
@@ -311,6 +312,7 @@ namespace iaai.metodos_comunes
 
             return valido;
         }
+
     }
 
     
