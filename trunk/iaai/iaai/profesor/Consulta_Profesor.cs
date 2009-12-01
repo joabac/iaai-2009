@@ -15,6 +15,7 @@ namespace iaai.profesor
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
         Profesor profe = new Profesor();
+        List<Profesor> profes_encontrados = new List<Profesor>();
 
         public Consulta_Profesor()
         {
@@ -91,6 +92,54 @@ namespace iaai.profesor
 
 
             }
+        }
+
+        
+
+        private void buscar(object sender, KeyPressEventArgs caracter)
+        {
+            if (caracter.KeyChar == 8)
+            {
+                busca_apellido.Items.Clear();
+                caracter.KeyChar = '\0';
+            }
+            
+            if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3)
+            {
+                profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text+caracter.KeyChar);
+
+                if (profes_encontrados != null)
+                {
+                    
+                    foreach (Profesor profe in profes_encontrados)
+                    {
+                        busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
+                    }
+
+                }
+                
+                
+                profes_encontrados = new List<Profesor>();
+            }
+
+        }
+
+        private void radioButtonPorApellido_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonPorApellido.Enabled == true)
+            {
+                panel1.Visible = true;
+            }
+
+        }
+
+        private void radioButtonPorDni_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonPorApellido.Enabled == true)
+            {
+                panel1.Visible = false;
+            }
+
         }
 
         
