@@ -313,12 +313,23 @@ namespace iaai.Data_base
         }
 
         /// <summary>
-        /// Ejecuta comando del tipo del especificando consulta completa
+        /// Busca un profesor activo en base de datos
+        /// </summary>
+        /// <param name="dni">recibe el dni de profesro a buscar</param>
+        /// <returns>Lista de profesores eliminados</returns>
+        /// <seealso cref=""/>
+        public MySqlDataAdapter Buscar_Profesor_inactivos()
+        {
+            return null ;
+        }
+
+        /// <summary>
+        /// Busca un profesor activo en base de datos
         /// </summary>
         /// <param name="dni">recibe el dni de profesro a buscar</param>
         /// <returns>Profesor si encontro el profesor buscado
         /// null: si no encontro el dni solicitado</returns>
-        /// 
+        /// <seealso cref="Buscar_Profesor_inactivos()"/>
         public Profesor Buscar_Profesor(string dni)
         {
             Profesor profe = new Profesor();
@@ -328,7 +339,7 @@ namespace iaai.Data_base
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email "+
                                                           "from profesor "+
-                                                          "where dni like '" + dni +"'", conexion);
+                                                          "where dni like '" + dni +"' and activo = 1", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
 
@@ -387,7 +398,7 @@ namespace iaai.Data_base
                                                             profe.getTelefono_numero() + ",fecha_nac = '" +
                                                             profe.getFecha_nac().ToString("yyyy-MM-dd") +
                                                             "',direccion = '" + profe.getDireccion() +
-                                                            "',email = '" + profe.getEmail() + "'" + " where dni = " + profe.getDni(), conexion);
+                                                            "',email = '" + profe.getEmail() + "'" + " where dni like " + profe.getDni(), conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }

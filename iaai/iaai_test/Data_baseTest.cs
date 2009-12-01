@@ -194,7 +194,8 @@ namespace iaai_test
 
             Profesor profe = new Profesor(datos) ;  //cargo el nuevo profesor
 
-            //++++++++++++codigo que se prueba
+            //prueba 1
+            //++++++++++++codigo que se prueba 
 
             metodo.altaProfesor(profe); //Doy de alta el profesor
             
@@ -214,9 +215,8 @@ namespace iaai_test
  
 
             //elimino manualmente el profesor de prueba generado
-            metodo.consulta("delete from profesor where dni= '11111111M' ");
+            metodo.consulta("delete from profesor where dni like '11111111M' ");
 
-           
 
         }
 
@@ -241,15 +241,14 @@ namespace iaai_test
 
             Profesor profe = new Profesor(datos) ;  //cargo el nuevo profesor
 
-            //++++++++++++codigo que se prueba
-
             metodo.altaProfesor(profe); //Doy de alta el profesor
             
-            //+++++++++++++++++++++++++++++++++++++++++++
+            
 
             //busco el profesor en la base de datos para ver como quedo cargado
-
-            Profesor actual = metodo.Buscar_Profesor("11111111M"); 
+            //++++++++++++codigo que se prueba
+            Profesor actual = metodo.Buscar_Profesor("11111111M");
+            //+++++++++++++++++++++++++++++++++++++++++++
 
             //verifico campo a campo los datos registrados
             Assert.AreEqual(actual.getDni().ToString(), profe.getDni().ToString()); // comparo si lo que se grabo es lo que se especifico
@@ -261,8 +260,18 @@ namespace iaai_test
  
 
             //elimino manualmente el profesor de prueba generado
-            metodo.consulta("delete from profesor where dni= '11111111M' ");
+            metodo.consulta("delete from profesor where dni like '11111111M' ");
             
+
+             //prueba 2
+            //+++++++++++++++++++++++++++++
+            //busco el profesor en la base pero este no existe
+
+            actual = metodo.Buscar_Profesor("11111111F");
+            Profesor esperado = null;
+
+            Assert.AreEqual(esperado, actual);
+
         }
     }
 }
