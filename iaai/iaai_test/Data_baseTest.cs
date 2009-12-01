@@ -265,7 +265,7 @@ namespace iaai_test
              //prueba 2
             //+++++++++++++++++++++++++++++
             //buscar profesor marcado como eliminado
-            metodo.eliminarProfesor("11111111F");
+            metodo.eliminarProfesor("11111111M");
 
             //busco el profesor 
             actual = metodo.Buscar_Profesor("11111111F");
@@ -281,7 +281,7 @@ namespace iaai_test
             //++++++++++++++++++++++++++++++
             //busco el profesor en la base pero este no existe
 
-            actual = metodo.Buscar_Profesor("11111111F");
+            actual = metodo.Buscar_Profesor("11111111M");
             esperado = null;
 
             Assert.AreEqual(esperado, actual);
