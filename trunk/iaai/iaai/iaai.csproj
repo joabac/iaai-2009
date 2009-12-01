@@ -92,12 +92,6 @@
     <Compile Include="profesor\AltaProfesor.Designer.cs">
       <DependentUpon>AltaProfesor.cs</DependentUpon>
     </Compile>
-    <Compile Include="profesor\ModificarProfesor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="profesor\ModificarProfesor.Designer.cs">
-      <DependentUpon>ModificarProfesor.cs</DependentUpon>
-    </Compile>
     <Compile Include="profesor\Profesor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,10 +105,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="profesor\AltaProfesor.resx">
       <DependentUpon>AltaProfesor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="profesor\ModificarProfesor.resx">
-      <DependentUpon>ModificarProfesor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
