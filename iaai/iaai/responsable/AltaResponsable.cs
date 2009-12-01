@@ -107,5 +107,10 @@ namespace iaai.responsable
 
         }
 
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -48,6 +48,9 @@
             this.nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.busca_apellido = new System.Windows.Forms.ComboBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButtonPorDni
@@ -60,6 +63,7 @@
             this.radioButtonPorDni.TabStop = true;
             this.radioButtonPorDni.Text = "por DNI";
             this.radioButtonPorDni.UseVisualStyleBackColor = true;
+            this.radioButtonPorDni.CheckedChanged += new System.EventHandler(this.radioButtonPorDni_CheckedChanged);
             // 
             // radioButtonPorApellido
             // 
@@ -71,6 +75,7 @@
             this.radioButtonPorApellido.TabStop = true;
             this.radioButtonPorApellido.Text = "porApellido";
             this.radioButtonPorApellido.UseVisualStyleBackColor = true;
+            this.radioButtonPorApellido.CheckedChanged += new System.EventHandler(this.radioButtonPorApellido_CheckedChanged);
             // 
             // textBoxBuscar
             // 
@@ -235,11 +240,30 @@
             this.email.Size = new System.Drawing.Size(100, 20);
             this.email.TabIndex = 44;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.busca_apellido);
+            this.panel1.Location = new System.Drawing.Point(62, 104);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 40);
+            this.panel1.TabIndex = 52;
+            // 
+            // busca_apellido
+            // 
+            this.busca_apellido.FormattingEnabled = true;
+            this.busca_apellido.Location = new System.Drawing.Point(4, 8);
+            this.busca_apellido.Name = "busca_apellido";
+            this.busca_apellido.Size = new System.Drawing.Size(181, 21);
+            this.busca_apellido.Sorted = true;
+            this.busca_apellido.TabIndex = 0;
+            this.busca_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);
+            // 
             // Consulta_Profesor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 297);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.direccion);
             this.Controls.Add(this.label7);
@@ -263,6 +287,7 @@
             this.Name = "Consulta_Profesor";
             this.Text = "Consulta_Profesor";
             this.Load += new System.EventHandler(this.Consulta_Profesor_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +315,7 @@
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox email;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox busca_apellido;
     }
 }
