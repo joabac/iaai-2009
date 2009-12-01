@@ -482,6 +482,47 @@ namespace iaai.Data_base
         }
 
 
+        /// <summary>
+        /// Arma el listado de alumnos para presentar al seguro
+        /// </summary>
+        /// <returns>
+        /// List<List<string>>
+        /// </returns>
+        public List<List<string>> listadoSeguro()
+        {
+            List<List<string>> datos = new List<List<string>>();
+            List<string> d = new List<string>();
+
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, direccion from alumno where id_alumno IN(select id_alumno from matricula);", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                while (MyDataReader.Read())
+                {
+                    d = new List<string>();
+                    d.Add(MyDataReader.GetValue(0).ToString());//nombre
+                    d.Add(MyDataReader.GetValue(1).ToString());//apellido
+                    d.Add(MyDataReader.GetValue(2).ToString());//dni
+                    d.Add(Convert.ToDateTime(MyDataReader.GetValue(3)).ToString("dd-MM-yyy"));//fecha nacimiento
+                    d.Add(MyDataReader.GetValue(4).ToString() + " " + MyDataReader.GetValue(5).ToString());//telefono
+                    d.Add(MyDataReader.GetValue(6).ToString());//direccion
+                    datos.Add(d);
+                }
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al recuperar el listado: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return datos;
+        }
+
+
+
         public Profesor consultarProfesor(string dni)
         {
 
@@ -532,6 +573,7 @@ namespace iaai.Data_base
 
             return profe;
         }
+
     }
 
 }
