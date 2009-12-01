@@ -22,6 +22,7 @@ namespace iaai.profesor
         //CONSTRUCTOR DE LA CLASE
         public Profesor(IDictionary<string,object> datos)
         {
+            id_profesor = -1;
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
             dni = (string) datos["dni"];

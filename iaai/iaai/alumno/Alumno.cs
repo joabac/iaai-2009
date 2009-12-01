@@ -23,6 +23,7 @@ namespace iaai.alumno
         //CONSTRUCTOR DE LA CLASE
         public Alumno(IDictionary<string,object> datos)
         {
+            id_alumno = -1;
             nombre = (string)datos["nombre"];
             apellido = (string)datos["apellido"];
             dni = (string) datos["dni"];
