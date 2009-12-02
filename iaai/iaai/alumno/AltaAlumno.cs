@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using iaai.responsable;
+using iaai.metodos_comunes;
 
 namespace iaai.alumno
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class AltaAlumno : Form
     {
         private string error = "";
         private int responsable = -1;
+        Utiles metodo = new Utiles();
 
         //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
         IDictionary<string, object> datos = new Dictionary<string, object>();
@@ -80,16 +85,57 @@ namespace iaai.alumno
             error = "";
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
+            else
+            {
+                if (!metodo.validar_Nombre_App(nombre.Text))
+                    error = error + "Formato de nombre no válido \r\n";
+            }
             if (apellido.Text.Length == 0)
                 error = error + "Ingrese el Apellido. \r\n";
+            else
+            {
+                if (!metodo.validar_Nombre_App(apellido.Text))
+                    error = error + "Formato de apellido no válido \r\n";
+            }
             if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
+            else
+            {       //si el formato del dni es correcto
+                if (metodo.ValidarDni(dni.Text) == true)
+                {
+                    //si el alumno ya fue dado de alta en el sistema
+                    if (!db.buscarDniAlumno(dni.Text))
+                    {
+                        error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
+                    }
+                }
+                else
+                {
+                    error = error + "El DNI ingresado no es válido. \r\n";
+                }
+            }
             if (fecha_nacimiento.Text.Contains(' '))
                 error = error + "Ingrese la fecha de nacimiento. \r\n";
+            else
+            {
+                int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
+                if (resultado == -1)
+                    error = error + "Formato de fecha de nacimiento no válido. \r\n";
+            }
             if (telefono_numero.Text.Length == 0)
                 error = error + "Ingrese el teléfono. \r\n";
+            else
+            {
+                if (!metodo.validar_Telefono(telefono_numero.Text))
+                    error = error + "Formato de número de teléfono no válido \r\n";
+            }
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
+            else
+            {
+                if (!metodo.validar_Direccion(direccion.Text))
+                    error = error + "Formato de dirección no válido \r\n";
+            }
             
  
  
@@ -132,6 +178,8 @@ namespace iaai.alumno
                 return false;
             }
        }
+
+
         public void asignarResponsable(int resp)
         {
             this.responsable = resp;
