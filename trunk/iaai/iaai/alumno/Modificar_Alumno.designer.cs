@@ -225,6 +225,7 @@
             // 
             // escuela_año
             // 
+            this.escuela_año.Enabled = false;
             this.escuela_año.Location = new System.Drawing.Point(386, 163);
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.Size = new System.Drawing.Size(137, 20);
@@ -241,6 +242,7 @@
             // 
             // escuela_nombre
             // 
+            this.escuela_nombre.Enabled = false;
             this.escuela_nombre.Location = new System.Drawing.Point(386, 137);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
@@ -274,6 +276,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.nombre);
             this.Name = "ModificarAlumno";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModificarProfesor";
             this.ResumeLayout(false);
             this.PerformLayout();
