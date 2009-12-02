@@ -69,6 +69,7 @@ namespace iaai.alumno
             else
             {
                 AsignarResponsable asignarResponsable = new AsignarResponsable();
+                asignarResponsable.Owner = this;
                 this.SetVisibleCore(false);
                 asignarResponsable.Show();
             }
@@ -178,6 +179,8 @@ namespace iaai.alumno
         {
 
         }
+
+
 
         
 

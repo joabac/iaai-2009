@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iaai.alumno;
 
 namespace iaai.responsable
 {
@@ -51,18 +52,21 @@ namespace iaai.responsable
         //está pendiente de terminarse ya que nos funcionaba mal.
         private void grid1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            /*   int fila = e.RowIndex;
-           
-           if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[5].Value))
-            {
-                for (int x = 0; x < tablaResultado.RowCount; x++)
-                {
-                    if (e.ColumnIndex == 5 && x != fila)
-                    {
-                        tablaResultado.Rows[x].Cells[5].Value = false;
-                    }
-                }
-            }*/
+           int fila = e.RowIndex;
+          
+           if (fila >= 0)
+           {
+               if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[6].Value))
+               {
+                   for (int x = 0; x < tablaResultado.RowCount; x++)
+                   {
+                       if (e.ColumnIndex == 6 && x != fila)
+                       {
+                           tablaResultado.Rows[x].Cells[6].Value = false;
+                       }
+                   }
+               }
+           }
             
         }
 
@@ -74,7 +78,7 @@ namespace iaai.responsable
             
             foreach (List<string> fila in resultado)
             {
-                row = new string[5];
+                row = new string[6];
                 foreach (string dato in fila)
                 {
                     row[indice] = dato;
@@ -88,7 +92,16 @@ namespace iaai.responsable
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(tablaResultado.Rows[0].Cells[5].Value.ToString());
+            for (int fila = 0; fila < tablaResultado.RowCount; fila++)
+            {
+                if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[6].Value))
+                {
+                    ((AltaAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
+                    break;
+                }
+
+            }
+            this.Close();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -147,6 +160,15 @@ namespace iaai.responsable
                     }
                 }
             }*/
+        }
+
+        private void tablaResultado_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (tablaResultado.IsCurrentCellDirty)
+            {
+                tablaResultado.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+
         }
 
 
