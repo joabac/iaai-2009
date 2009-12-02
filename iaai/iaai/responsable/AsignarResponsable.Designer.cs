@@ -238,6 +238,7 @@
             this.Controls.Add(this.tablaResultado);
             this.Controls.Add(this.groupBox1);
             this.Name = "AsignarResponsable";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignar Responsable";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
