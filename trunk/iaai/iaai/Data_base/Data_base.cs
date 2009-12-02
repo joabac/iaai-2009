@@ -483,13 +483,72 @@ namespace iaai.Data_base
         }
 
         /// <summary>
-        /// Busca un profesor activo en base de datos
+        /// Busca el consjunto de profesores dados de baja del sistema
         /// </summary>
-        /// <returns>Lista de profesores eliminados</returns>
+       
+        /// <returns>Lista de profesores inactivos</returns>
         
-        public MySqlDataAdapter Buscar_Profesor_inactivos()
+        public List<Profesor> Buscar_Profesor_inactivos()
         {
-            return null ;
+
+            List<Profesor> profe = new List<Profesor>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
+                                                          "from profesor " +
+                                                          "where activo = 0", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Profesor profesor_tem = new Profesor();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+
+
+                        profesor_tem.setNombre(reader[0].ToString());
+                        profesor_tem.setApellido(reader[1].ToString());
+                        profesor_tem.setDni(reader[2].ToString());
+                        profesor_tem.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
+                        profesor_tem.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                        profesor_tem.setFecha_nac(Convert.ToDateTime(reader[5]));
+                        profesor_tem.setDireccion(reader[6].ToString());
+                        profesor_tem.setMail(reader[7].ToString());
+
+                        profe.Add(profesor_tem); //agrega a la lista de retorno
+
+                        profesor_tem = new Profesor();
+
+                    } while (reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return profe;
         }
 
         /// <summary>
