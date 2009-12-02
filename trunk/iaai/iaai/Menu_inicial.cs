@@ -116,6 +116,33 @@ namespace iaai
             modifica_alumno.Show();
         }
 
+        private void eliminarAlumnoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EliminarAlumno elimina_alumno = new EliminarAlumno();
+            elimina_alumno.Parent = this.Parent;
+            elimina_alumno.MdiParent = this;
+
+            elimina_alumno.Show();
+        }
+
+        private void modificarResponsableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModificarResponsable modifica_responsable = new ModificarResponsable();
+            modifica_responsable.Parent = this.Parent;
+            modifica_responsable.MdiParent = this;
+
+            modifica_responsable.Show();
+        }
+
+        private void eliminarResponsableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EliminarResponsable elimina_responsable = new EliminarResponsable();
+            elimina_responsable.Parent = this.Parent;
+            elimina_responsable.MdiParent = this;
+
+            elimina_responsable.Show();
+        }
+
 
         
     }
