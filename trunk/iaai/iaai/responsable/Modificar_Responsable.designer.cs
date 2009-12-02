@@ -37,7 +37,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.apellido = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dni = new System.Windows.Forms.TextBox();
+            this.dni_busqueda = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.telefono_carac = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,11 +45,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.button_buscar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dni = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(501, 190);
+            this.Cancel.Location = new System.Drawing.Point(501, 199);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 10;
@@ -59,7 +61,7 @@
             // 
             // aceptar
             // 
-            this.aceptar.Location = new System.Drawing.Point(399, 190);
+            this.aceptar.Location = new System.Drawing.Point(399, 199);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
             this.aceptar.TabIndex = 9;
@@ -96,7 +98,7 @@
             // fecha_nacimiento
             // 
             this.fecha_nacimiento.Enabled = false;
-            this.fecha_nacimiento.Location = new System.Drawing.Point(136, 137);
+            this.fecha_nacimiento.Location = new System.Drawing.Point(136, 160);
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
@@ -129,17 +131,17 @@
             this.label5.TabIndex = 50;
             this.label5.Text = "DNI";
             // 
-            // dni
+            // dni_busqueda
             // 
-            this.dni.Location = new System.Drawing.Point(136, 22);
-            this.dni.Name = "dni";
-            this.dni.Size = new System.Drawing.Size(137, 20);
-            this.dni.TabIndex = 0;
+            this.dni_busqueda.Location = new System.Drawing.Point(136, 22);
+            this.dni_busqueda.Name = "dni_busqueda";
+            this.dni_busqueda.Size = new System.Drawing.Size(137, 20);
+            this.dni_busqueda.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 140);
+            this.label4.Location = new System.Drawing.Point(22, 163);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 13);
             this.label4.TabIndex = 49;
@@ -198,11 +200,30 @@
             this.button_buscar.UseVisualStyleBackColor = true;
             this.button_buscar.Click += new System.EventHandler(this.button_buscar_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(103, 138);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "DNI";
+            // 
+            // dni
+            // 
+            this.dni.Enabled = false;
+            this.dni.Location = new System.Drawing.Point(136, 134);
+            this.dni.Name = "dni";
+            this.dni.Size = new System.Drawing.Size(137, 20);
+            this.dni.TabIndex = 61;
+            // 
             // ModificarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 235);
+            this.ClientSize = new System.Drawing.Size(588, 245);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dni);
             this.Controls.Add(this.button_buscar);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.aceptar);
@@ -213,7 +234,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.apellido);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dni);
+            this.Controls.Add(this.dni_busqueda);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.telefono_carac);
             this.Controls.Add(this.label3);
@@ -239,7 +260,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox apellido;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox dni;
+        private System.Windows.Forms.TextBox dni_busqueda;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox telefono_carac;
         private System.Windows.Forms.Label label3;
@@ -248,5 +269,7 @@
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Button button_buscar;
         private System.Windows.Forms.Button modificarResponsable;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox dni;
     }
 }

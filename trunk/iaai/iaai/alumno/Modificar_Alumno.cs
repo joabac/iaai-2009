@@ -19,6 +19,7 @@ namespace iaai.alumno
         IDictionary<string, object> datos = new Dictionary<string, object>();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
+        string dni_viejo;
 
         private int responsable = -1;
 
@@ -65,7 +66,7 @@ namespace iaai.alumno
             //cargo datos basicos del profesor
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
-            datos["dni"] = dni.Text;
+            datos["dni"] = dni_buqueda.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
 
          
@@ -128,21 +129,25 @@ namespace iaai.alumno
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
-            if (dni.Text.Length == 0)
+            if (dni_buqueda.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
-            {       //si el formato del dni es correcto
-                if (metodo.ValidarDni(dni.Text) == true)
+            {
+                if (!dni.Text.Equals(dni_viejo))
                 {
-                    //si el alumno ya fue dado de alta en el sistema
-                    if (!db.buscarDniAlumno(dni.Text))
+                    //si el formato del dni es correcto
+                    if (metodo.ValidarDni(dni_buqueda.Text) == true)
                     {
-                        error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
+                        //si el alumno ya fue dado de alta en el sistema
+                        if (!db.buscarDniAlumno(dni_buqueda.Text))
+                        {
+                            error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
+                        }
                     }
-                }
-                else
-                {
-                    error = error + "El DNI ingresado no es válido. \r\n";
+                    else
+                    {
+                        error = error + "El DNI ingresado no es válido. \r\n";
+                    }
                 }
             }
             if (fecha_nacimiento.Text.Contains(' '))
@@ -192,6 +197,10 @@ namespace iaai.alumno
                         error = error + "Debe asignar un responsable. \n";
                     }
                 }
+                else
+                {
+                    responsable = -1;
+                }
             }
 
             if (error.Length > 0)
@@ -200,14 +209,8 @@ namespace iaai.alumno
                 MessageBox.Show(error);
                 return false;
             }
-            if (db.buscarDniAlumno(dni.Text))
-                return true;
-            else
-            {
-                error = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
-                MessageBox.Show(error);
-                return false;
-            }
+            return true;
+            
         }
 
         /// <summary>
@@ -219,10 +222,10 @@ namespace iaai.alumno
         private void button_buscar_Click(object sender, EventArgs e)
         {
             //si el dni es correcto
-            if (metodo.ValidarDni(dni.Text))
+            if (metodo.ValidarDni(dni_buqueda.Text))
             {
                 //Busca el alumno en la base de datos
-                alumno_encontrado = db.Buscar_Alumno(dni.Text);
+                alumno_encontrado = db.Buscar_Alumno(dni_buqueda.Text);
 
                 if (alumno_encontrado == null)
                     MessageBox.Show("El DNI no es de un alumno registrado en el Instituto");
@@ -231,6 +234,7 @@ namespace iaai.alumno
                     //se habilitan los textBox
                     nombre.Enabled = true;
                     apellido.Enabled = true;
+                    dni.Enabled = true;
                     fecha_nacimiento.Enabled = true;
                     telefono_carac.Enabled = true;
                     telefono_numero.Enabled = true;
@@ -242,6 +246,8 @@ namespace iaai.alumno
                     //se cargan los datos del alumno, en los textBox
                     nombre.Text = alumno_encontrado.getNombre();
                     apellido.Text = alumno_encontrado.getApellido();
+                    dni.Text = alumno_encontrado.getDni();
+                    dni_viejo = alumno_encontrado.getDni();
                     fecha_nacimiento.Text = alumno_encontrado.getFecha_nac().ToString();
                     if (alumno_encontrado.getTelefono_carac() != 0)
                     {
