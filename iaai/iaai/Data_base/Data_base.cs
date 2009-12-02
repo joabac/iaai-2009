@@ -792,6 +792,43 @@ namespace iaai.Data_base
             return datos;
         }
 
+        /// <summary>
+        /// Arma el listado de alumnos del curso pasado como parametro para la toma de asistencia
+        /// </summary>
+        /// <param name="curso">int del curso del cual se quiere obtener el listado de alumnos</param>
+        /// <returns>
+        /// List de Strings
+        /// </returns>
+        public List<List<string>> listaAsistencia(int curso)
+        {
+            List<List<string>> datos = new List<List<string>>();
+            List<string> d = new List<string>();
+
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni from alumno where id_alumno IN(select id_alumno from matricula);", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                while (MyDataReader.Read())
+                {
+                    d = new List<string>();
+                    d.Add(MyDataReader.GetValue(0).ToString());//nombre
+                    d.Add(MyDataReader.GetValue(1).ToString());//apellido
+                    d.Add(MyDataReader.GetValue(2).ToString());//dni
+                    datos.Add(d);
+                }
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al recuperar el listado: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return datos;
+        }
+
 //metodo duplicado
 /*   
         public Profesor consultarProfesor(string dni)
