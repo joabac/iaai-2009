@@ -19,6 +19,7 @@ namespace iaai.responsable
         IDictionary<string, object> datos = new Dictionary<string, object>();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
+        string dni_viejo;
 
         public ModificarResponsable()
         {
@@ -63,7 +64,7 @@ namespace iaai.responsable
             //cargo datos basicos del profesor
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
-            datos["dni"] = dni.Text;
+            datos["dni"] = dni_busqueda.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
 
          
@@ -106,21 +107,25 @@ namespace iaai.responsable
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
-            if (dni.Text.Length == 0)
+            if (dni_busqueda.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
-            {       //si el formato del dni es correcto
-                if (metodo.ValidarDni(dni.Text) == true)
+            {
+                if (!dni.Text.Equals(dni_viejo))
                 {
-                    //si el responsable ya fue dado de alta en el sistema
-                    if (!db.buscarDniResponsable(dni.Text))
+                    //si el formato del dni es correcto
+                    if (metodo.ValidarDni(dni_busqueda.Text) == true)
                     {
-                        error = error + "El responsable ya fue dado de alta en el sistema. \r\n";
+                        //si el responsable ya fue dado de alta en el sistema
+                        if (!db.buscarDniResponsable(dni_busqueda.Text))
+                        {
+                            error = error + "El responsable ya fue dado de alta en el sistema. \r\n";
+                        }
                     }
-                }
-                else
-                {
-                    error = error + "El DNI ingresado no es válido. \r\n";
+                    else
+                    {
+                        error = error + "El DNI ingresado no es válido. \r\n";
+                    }
                 }
             }
             if (fecha_nacimiento.Text.Contains(' '))
@@ -159,14 +164,7 @@ namespace iaai.responsable
                 MessageBox.Show(error);
                 return false;
             }
-            if (db.buscarDniResponsable(dni.Text))
-                return true;
-            else
-            {
-                error = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
-                MessageBox.Show(error);
-                return false;
-            }
+            return true;
         }
 
         /// <summary>
@@ -178,10 +176,10 @@ namespace iaai.responsable
         private void button_buscar_Click(object sender, EventArgs e)
         {
             //si el dni es correcto
-            if (metodo.ValidarDni(dni.Text))
+            if (metodo.ValidarDni(dni_busqueda.Text))
             {
                 //Busca el responsable en la base de datos
-                responsable_encontrado = db.Buscar_Responsable(dni.Text);
+                responsable_encontrado = db.Buscar_Responsable(dni_busqueda.Text);
 
                 if (responsable_encontrado == null)
                     MessageBox.Show("El DNI no es de un responsable registrado en el Instituto");
@@ -190,6 +188,7 @@ namespace iaai.responsable
                     //se habilitan los textBox
                     nombre.Enabled = true;
                     apellido.Enabled = true;
+                    dni.Enabled = true;
                     fecha_nacimiento.Enabled = true;
                     telefono_carac.Enabled = true;
                     telefono_numero.Enabled = true;
@@ -198,6 +197,8 @@ namespace iaai.responsable
                     //se cargan los datos del responsable, en los textBox
                     nombre.Text = responsable_encontrado.getNombre();
                     apellido.Text = responsable_encontrado.getApellido();
+                    dni.Text = responsable_encontrado.getDni().ToString();
+                    dni_viejo = responsable_encontrado.getDni().ToString();
                     fecha_nacimiento.Text = responsable_encontrado.getFecha_nac().ToString();
                     if (responsable_encontrado.getTelefono_carac() != 0)
                     {

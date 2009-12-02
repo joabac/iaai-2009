@@ -37,7 +37,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.apellido = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dni = new System.Windows.Forms.TextBox();
+            this.dni_buqueda = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.telefono_carac = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +50,8 @@
             this.escuela_año = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.escuela_nombre = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dni = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Cancel
@@ -101,7 +103,7 @@
             // fecha_nacimiento
             // 
             this.fecha_nacimiento.Enabled = false;
-            this.fecha_nacimiento.Location = new System.Drawing.Point(136, 137);
+            this.fecha_nacimiento.Location = new System.Drawing.Point(136, 162);
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
@@ -120,7 +122,7 @@
             // apellido
             // 
             this.apellido.Enabled = false;
-            this.apellido.Location = new System.Drawing.Point(136, 108);
+            this.apellido.Location = new System.Drawing.Point(136, 104);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(137, 20);
             this.apellido.TabIndex = 3;
@@ -134,17 +136,17 @@
             this.label5.TabIndex = 50;
             this.label5.Text = "DNI";
             // 
-            // dni
+            // dni_buqueda
             // 
-            this.dni.Location = new System.Drawing.Point(136, 22);
-            this.dni.Name = "dni";
-            this.dni.Size = new System.Drawing.Size(137, 20);
-            this.dni.TabIndex = 0;
+            this.dni_buqueda.Location = new System.Drawing.Point(136, 22);
+            this.dni_buqueda.Name = "dni_buqueda";
+            this.dni_buqueda.Size = new System.Drawing.Size(137, 20);
+            this.dni_buqueda.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 140);
+            this.label4.Location = new System.Drawing.Point(22, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 13);
             this.label4.TabIndex = 49;
@@ -188,7 +190,7 @@
             // 
             this.nombre.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nombre.Enabled = false;
-            this.nombre.Location = new System.Drawing.Point(136, 82);
+            this.nombre.Location = new System.Drawing.Point(136, 78);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(137, 20);
             this.nombre.TabIndex = 2;
@@ -234,7 +236,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(335, 140);
+            this.label2.Location = new System.Drawing.Point(335, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 54;
@@ -243,16 +245,35 @@
             // escuela_nombre
             // 
             this.escuela_nombre.Enabled = false;
-            this.escuela_nombre.Location = new System.Drawing.Point(386, 137);
+            this.escuela_nombre.Location = new System.Drawing.Point(386, 133);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
             this.escuela_nombre.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(104, 140);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "DNI";
+            // 
+            // dni
+            // 
+            this.dni.Enabled = false;
+            this.dni.Location = new System.Drawing.Point(136, 133);
+            this.dni.Name = "dni";
+            this.dni.Size = new System.Drawing.Size(137, 20);
+            this.dni.TabIndex = 59;
             // 
             // ModificarAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 297);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dni);
             this.Controls.Add(this.modificarResponsable);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.escuela_año);
@@ -268,7 +289,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.apellido);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dni);
+            this.Controls.Add(this.dni_buqueda);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.telefono_carac);
             this.Controls.Add(this.label3);
@@ -277,7 +298,7 @@
             this.Controls.Add(this.nombre);
             this.Name = "ModificarAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModificarProfesor";
+            this.Text = "Modificar Profesor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,7 +315,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox apellido;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox dni;
+        private System.Windows.Forms.TextBox dni_buqueda;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox telefono_carac;
         private System.Windows.Forms.Label label3;
@@ -307,5 +328,7 @@
         private System.Windows.Forms.TextBox escuela_año;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox escuela_nombre;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox dni;
     }
 }
