@@ -102,21 +102,29 @@ namespace iaai.profesor
             {
                 busca_apellido.Items.Clear();
                 busca_apellido.Text = "";
-                profes_encontrados = new List<Profesor>();
+                profes_encontrados.Clear();
             }
+
 
             
             if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
             {
                 profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text+caracter.KeyChar);
 
+
                 if (profes_encontrados != null)
                 {
-                    
+                    if (busca_apellido.Items.Count > 0)
+                    {
+                        busca_apellido.Items.Clear();
+
+                    }
+
                     foreach (Profesor profe in profes_encontrados)
                     {
                         busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
                     }
+                    busca_apellido.SelectedItem = 0;
                     SendKeys.Send("{F4}");
                 }
                 
@@ -146,6 +154,13 @@ namespace iaai.profesor
 
         private void cargar(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right) 
+            {
+                busca_apellido.Items.Clear();
+                busca_apellido.Text = "";
+                profes_encontrados.Clear();
+            }
+
             if (profes_encontrados != null)
             {
                 if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
@@ -165,6 +180,7 @@ namespace iaai.profesor
                         email.Text = profe.getEmail();
                     }
                 }
+
             }
         }
 
