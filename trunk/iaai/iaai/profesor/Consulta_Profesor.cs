@@ -152,6 +152,7 @@ namespace iaai.profesor
 
         }
 
+
         private void cargar(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right) 
