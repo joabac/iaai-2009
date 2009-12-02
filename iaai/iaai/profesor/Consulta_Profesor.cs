@@ -148,7 +148,7 @@ namespace iaai.profesor
         {
             if (profes_encontrados != null)
             {
-                if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
                 {
 
                     Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
