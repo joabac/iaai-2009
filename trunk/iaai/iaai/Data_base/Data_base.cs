@@ -84,7 +84,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Se valida que no exista el responsable en la base de datos.
         /// </summary>
-        /// <param name="dni"></param>
+        /// <param name="id"></param>
         /// <returns>
         /// true: si no lo encontro
         /// false: si lo encontro
@@ -187,7 +187,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Da de alta un responsable en la base de datos
         /// </summary>
-        /// <param name="a"></param>
+        /// <param name="r"></param>
         /// <returns>
         /// true: si se subio a la base de datos
         /// false:si no lo subio a la base de datos
@@ -484,7 +484,6 @@ namespace iaai.Data_base
         /// <summary>
         /// Busca un profesor activo en base de datos
         /// </summary>
-        /// <param name="dni">recibe el dni de profesro a buscar</param>
         /// <returns>Lista de profesores eliminados</returns>
         
         public MySqlDataAdapter Buscar_Profesor_inactivos()
@@ -551,9 +550,9 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Busca un profesor activo en base de datos por apellido
+        /// Busca un profesor activo en base de datos por apellido completo o parcial
         /// </summary>
-        /// <param name="dni">recibe el dni de profesro a buscar</param>
+        /// <param name="apellido">recibe una procion de apellido</param>
         /// <returns>Profesor si encontro el profesor buscado
         /// null: si no encontro el dni solicitado</returns>
         /// <seealso cref="Buscar_Profesor_inactivos()"/>
@@ -698,7 +697,7 @@ namespace iaai.Data_base
         /// Arma el listado de alumnos para presentar al seguro
         /// </summary>
         /// <returns>
-        /// List<List<string>>
+        /// List de Strings
         /// </returns>
         public List<List<string>> listadoSeguro()
         {
@@ -733,8 +732,8 @@ namespace iaai.Data_base
             return datos;
         }
 
-
-
+//metodo duplicado
+/*   
         public Profesor consultarProfesor(string dni)
         {
 
@@ -785,7 +784,7 @@ namespace iaai.Data_base
 
             return profe;
         }
-
+        */
     }
 
 }

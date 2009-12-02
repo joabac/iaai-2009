@@ -50,6 +50,7 @@
             this.email = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.busca_apellido = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,10 +71,10 @@
             this.radioButtonPorApellido.AutoSize = true;
             this.radioButtonPorApellido.Location = new System.Drawing.Point(66, 72);
             this.radioButtonPorApellido.Name = "radioButtonPorApellido";
-            this.radioButtonPorApellido.Size = new System.Drawing.Size(77, 17);
+            this.radioButtonPorApellido.Size = new System.Drawing.Size(81, 17);
             this.radioButtonPorApellido.TabIndex = 1;
             this.radioButtonPorApellido.TabStop = true;
-            this.radioButtonPorApellido.Text = "porApellido";
+            this.radioButtonPorApellido.Text = "Por Apellido";
             this.radioButtonPorApellido.UseVisualStyleBackColor = true;
             this.radioButtonPorApellido.CheckedChanged += new System.EventHandler(this.radioButtonPorApellido_CheckedChanged);
             // 
@@ -109,13 +110,13 @@
             this.direccion.Location = new System.Drawing.Point(405, 166);
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
-            this.direccion.Size = new System.Drawing.Size(137, 20);
+            this.direccion.Size = new System.Drawing.Size(181, 20);
             this.direccion.TabIndex = 43;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(452, 143);
+            this.label7.Location = new System.Drawing.Point(470, 140);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(10, 13);
             this.label7.TabIndex = 50;
@@ -128,7 +129,7 @@
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.ReadOnly = true;
-            this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
+            this.fecha_nacimiento.Size = new System.Drawing.Size(57, 20);
             this.fecha_nacimiento.TabIndex = 40;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
@@ -147,7 +148,7 @@
             this.apellido.Location = new System.Drawing.Point(405, 63);
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
-            this.apellido.Size = new System.Drawing.Size(137, 20);
+            this.apellido.Size = new System.Drawing.Size(181, 20);
             this.apellido.TabIndex = 37;
             // 
             // label5
@@ -165,7 +166,7 @@
             this.dni.Location = new System.Drawing.Point(405, 88);
             this.dni.Name = "dni";
             this.dni.ReadOnly = true;
-            this.dni.Size = new System.Drawing.Size(137, 20);
+            this.dni.Size = new System.Drawing.Size(181, 20);
             this.dni.TabIndex = 38;
             // 
             // label4
@@ -183,7 +184,7 @@
             this.telefono_carac.Location = new System.Drawing.Point(405, 140);
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.ReadOnly = true;
-            this.telefono_carac.Size = new System.Drawing.Size(41, 20);
+            this.telefono_carac.Size = new System.Drawing.Size(59, 20);
             this.telefono_carac.TabIndex = 41;
             // 
             // label3
@@ -198,10 +199,10 @@
             // telefono_numero
             // 
             this.telefono_numero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.telefono_numero.Location = new System.Drawing.Point(468, 140);
+            this.telefono_numero.Location = new System.Drawing.Point(486, 140);
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.ReadOnly = true;
-            this.telefono_numero.Size = new System.Drawing.Size(74, 20);
+            this.telefono_numero.Size = new System.Drawing.Size(100, 20);
             this.telefono_numero.TabIndex = 42;
             // 
             // label10
@@ -219,7 +220,7 @@
             this.nombre.Location = new System.Drawing.Point(405, 37);
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Size = new System.Drawing.Size(137, 20);
+            this.nombre.Size = new System.Drawing.Size(181, 20);
             this.nombre.TabIndex = 36;
             // 
             // label1
@@ -237,7 +238,7 @@
             this.email.Location = new System.Drawing.Point(405, 194);
             this.email.Name = "email";
             this.email.ReadOnly = true;
-            this.email.Size = new System.Drawing.Size(100, 20);
+            this.email.Size = new System.Drawing.Size(181, 20);
             this.email.TabIndex = 44;
             // 
             // panel1
@@ -254,15 +255,25 @@
             this.busca_apellido.Location = new System.Drawing.Point(4, 8);
             this.busca_apellido.Name = "busca_apellido";
             this.busca_apellido.Size = new System.Drawing.Size(181, 21);
-            this.busca_apellido.Sorted = true;
             this.busca_apellido.TabIndex = 0;
             this.busca_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);
+            this.busca_apellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cargar);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(161, 13);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Seleccione Criterio de Busqueda";
             // 
             // Consulta_Profesor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 297);
+            this.ClientSize = new System.Drawing.Size(598, 248);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.direccion);
@@ -317,5 +328,6 @@
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox busca_apellido;
+        private System.Windows.Forms.Label label2;
     }
 }
