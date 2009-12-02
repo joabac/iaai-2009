@@ -17,6 +17,10 @@ namespace iaai.responsable
         private string direccion;
 
         //CONSTRUCTOR DE LA CLASE
+        public Responsable()
+        {
+
+        }
         public Responsable(IDictionary<string,object> datos)
         {
             id_responsable = -1;
@@ -96,6 +100,11 @@ namespace iaai.responsable
         public void setDireccion(string dir)
         {
             direccion = dir;
+        }
+
+        public void setIdResponsable(int id)
+        {
+            id_responsable = id;
         }
     }
 }

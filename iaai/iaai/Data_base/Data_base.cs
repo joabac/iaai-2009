@@ -18,7 +18,7 @@ namespace iaai.Data_base
     class Data_base 
     {
 
-        MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
+        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
         //MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
@@ -298,6 +298,47 @@ namespace iaai.Data_base
         }
 
         /// <summary>
+        /// Modifica un responsable en la base de datos
+        /// </summary>
+        /// <param name="alumno">
+        /// Se debe ingresar un instancia de Responsable
+        /// </param>
+        /// <returns>
+        /// {true= si se dio la modificación del responsable}  
+        /// {false= si no se pudo modificar}
+        /// </returns>
+        public bool modificarResponsable(Responsable responsable)
+        {
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("update responsable set nombre_respon = '" +
+                                                            responsable.getNombre() + "',apellido_respon = '" + responsable.getApellido() + "',dni = '" +
+                                                            responsable.getDni() + "', telefono_carac = " + responsable.getTelefono_carac() + ",telefono_numero = " +
+                                                            responsable.getTelefono_numero() + ",fecha_nac = '" +
+                                                            responsable.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                            "',direccion = '" + responsable.getDireccion() + "' where dni like '" + responsable.getDni() + "'", conexion);
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+        }
+
+
+        /// <summary>
         /// Busca un alumno en base de datos
         /// </summary>
         /// <param name="dni">recibe el dni del alumno a buscar</param>
@@ -351,6 +392,61 @@ namespace iaai.Data_base
 
 
             return alumno;
+
+        }
+
+        /// <summary>
+        /// Busca un responsable en base de datos
+        /// </summary>
+        /// <param name="dni">recibe el dni del responsable a buscar</param>
+        /// <returns>Responsable si encontro el responsable buscado
+        /// null: si no encontro el dni solicitado</returns>
+        public Responsable Buscar_Responsable(string dni)
+        {
+            Responsable responsable = new Responsable();
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("select nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, id_responsable " +
+                                                          "from responsable " +
+                                                          "where dni like '" + dni + "'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    responsable.setNombre(reader[0].ToString());
+                    responsable.setApellido(reader[1].ToString());
+                    responsable.setDni(Convert.ToInt32(reader[2]));
+                    responsable.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
+                    responsable.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                    responsable.setFecha_nac(Convert.ToDateTime(reader[5]));
+                    responsable.setDireccion(reader[6].ToString());
+                    responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return responsable;
 
         }
 
@@ -752,6 +848,70 @@ namespace iaai.Data_base
             
         }
 
+        /// <summary>
+        /// Marca como eliminado un alumno de la base de datos
+        /// </summary>
+        /// <param name="dni">String del alumno a elimnar</param>
+        /// <remarks>este debe ser valido y existir en la base</remarks>
+        /// <returns>true: si pudo eliminar false: si no pudo realizar la eliminacion</returns>
+        public bool eliminarAlumno(String dni)
+        {
+            try
+            {
+                this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 0 " +
+                                                           "where dni like '" + dni + "'", conexion);
+
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            return true;
+
+        }
+
+        /// <summary>
+        /// Marca como eliminado un responsable de la base de datos
+        /// </summary>
+        /// <param name="dni">String del responsable a elimnar</param>
+        /// <remarks>este debe ser valido y existir en la base</remarks>
+        /// <returns>true: si pudo eliminar false: si no pudo realizar la eliminacion</returns>
+        public bool eliminarResponsable(String dni)
+        {
+            try
+            {
+                this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("update responsable set activo = 0 " +
+                                                           "where dni like '" + dni + "'", conexion);
+
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            return true;
+
+        }
+
 
         /// <summary>
         /// Arma el listado de alumnos para presentar al seguro
@@ -775,7 +935,7 @@ namespace iaai.Data_base
                     d.Add(MyDataReader.GetValue(0).ToString());//nombre
                     d.Add(MyDataReader.GetValue(1).ToString());//apellido
                     d.Add(MyDataReader.GetValue(2).ToString());//dni
-                    d.Add(Convert.ToDateTime(MyDataReader.GetValue(3)).ToString("dd-MM-yyy"));//fecha nacimiento
+                    d.Add(Convert.ToDateTime(MyDataReader.GetValue(3)).ToString("dd-MM-yyyy"));//fecha nacimiento
                     d.Add(MyDataReader.GetValue(4).ToString() + " " + MyDataReader.GetValue(5).ToString());//telefono
                     d.Add(MyDataReader.GetValue(6).ToString());//direccion
                     datos.Add(d);
@@ -827,6 +987,46 @@ namespace iaai.Data_base
             }
 
             return datos;
+        }
+
+        /// <summary>
+        /// Valida que el responsable no tenga asociado un alumno
+        /// </summary>
+        /// <param name="dni_profesor">
+        /// Se debe ingresar un dni valido en formato String
+        /// </param>
+        /// <returns>
+        ///{true= si no tiene alumnos asociados}  
+        ///{false= si tiene alumnos asociados} 
+        /// </returns>
+        internal bool validoEliminarResponsable(int id)
+        {
+
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select id_responsable from responsable where id_responsable IN (select id_responsable from alumno) AND id_responsable = '" + id + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+
+                if (MyDataReader.Read())
+                {
+                    conexion.Close();
+                    return false;
+                }
+                else
+                {
+                    conexion.Close();
+                    return true;
+                }
+
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return true;
         }
 
 //metodo duplicado
