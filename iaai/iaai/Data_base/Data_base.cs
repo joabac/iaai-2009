@@ -17,7 +17,11 @@ namespace iaai.Data_base
     
     class Data_base 
     {
-        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
+
+        MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
+
+        //MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
+
 
 
 
@@ -229,6 +233,7 @@ namespace iaai.Data_base
             while (MyDataReader.Read())
             {
                 d = new List<string>();
+                d.Add(MyDataReader.GetValue(0).ToString());//id_responsable
                 d.Add(MyDataReader.GetValue(1).ToString());//nombre
                 d.Add(MyDataReader.GetValue(2).ToString());//apellido
                 d.Add(MyDataReader.GetValue(7).ToString());//dni

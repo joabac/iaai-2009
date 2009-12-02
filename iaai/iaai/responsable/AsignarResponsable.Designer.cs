@@ -37,15 +37,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nombreBusqueda = new System.Windows.Forms.TextBox();
             this.tablaResultado = new System.Windows.Forms.DataGridView();
+            this.aceptar = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.nuevo = new System.Windows.Forms.Button();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_responsable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asignar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.aceptar = new System.Windows.Forms.Button();
-            this.cancelar = new System.Windows.Forms.Button();
-            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaResultado)).BeginInit();
             this.SuspendLayout();
@@ -133,6 +134,7 @@
             this.tablaResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaResultado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
+            this.id_responsable,
             this.apellido,
             this.dni,
             this.telefono,
@@ -144,6 +146,37 @@
             this.tablaResultado.TabIndex = 1;
             this.tablaResultado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellValueChanged);
             this.tablaResultado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaResultado_CellClick);
+            this.tablaResultado.CurrentCellDirtyStateChanged += new System.EventHandler(this.tablaResultado_CurrentCellDirtyStateChanged);
+            // 
+            // aceptar
+            // 
+            this.aceptar.Location = new System.Drawing.Point(216, 325);
+            this.aceptar.Name = "aceptar";
+            this.aceptar.Size = new System.Drawing.Size(75, 23);
+            this.aceptar.TabIndex = 2;
+            this.aceptar.Text = "Aceptar";
+            this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
+            // 
+            // cancelar
+            // 
+            this.cancelar.Location = new System.Drawing.Point(372, 325);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(75, 23);
+            this.cancelar.TabIndex = 3;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
+            // nuevo
+            // 
+            this.nuevo.Location = new System.Drawing.Point(570, 288);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 4;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // nombre
             // 
@@ -151,6 +184,14 @@
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
+            // 
+            // id_responsable
+            // 
+            this.id_responsable.Frozen = true;
+            this.id_responsable.HeaderText = "";
+            this.id_responsable.Name = "id_responsable";
+            this.id_responsable.ReadOnly = true;
+            this.id_responsable.Visible = false;
             // 
             // apellido
             // 
@@ -186,36 +227,6 @@
             this.asignar.HeaderText = "Responsable";
             this.asignar.Name = "asignar";
             // 
-            // aceptar
-            // 
-            this.aceptar.Location = new System.Drawing.Point(216, 325);
-            this.aceptar.Name = "aceptar";
-            this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 2;
-            this.aceptar.Text = "Aceptar";
-            this.aceptar.UseVisualStyleBackColor = true;
-            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
-            // 
-            // cancelar
-            // 
-            this.cancelar.Location = new System.Drawing.Point(372, 325);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 3;
-            this.cancelar.Text = "Cancelar";
-            this.cancelar.UseVisualStyleBackColor = true;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // nuevo
-            // 
-            this.nuevo.Location = new System.Drawing.Point(570, 288);
-            this.nuevo.Name = "nuevo";
-            this.nuevo.Size = new System.Drawing.Size(75, 23);
-            this.nuevo.TabIndex = 4;
-            this.nuevo.Text = "Nuevo";
-            this.nuevo.UseVisualStyleBackColor = true;
-            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
-            // 
             // AsignarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,14 +257,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox dniBusqueda;
         private System.Windows.Forms.DataGridView tablaResultado;
+        private System.Windows.Forms.Button aceptar;
+        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button nuevo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_responsable;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
         private System.Windows.Forms.DataGridViewCheckBoxColumn asignar;
-        private System.Windows.Forms.Button aceptar;
-        private System.Windows.Forms.Button cancelar;
-        private System.Windows.Forms.Button nuevo;
     }
 }
