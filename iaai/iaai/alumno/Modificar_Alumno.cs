@@ -276,16 +276,16 @@ namespace iaai.alumno
             else
             {
                 AsignarResponsable modificarResponsable = new AsignarResponsable(alumno_encontrado.getId_responsable());
+                modificarResponsable.Owner = this;
+                this.SetVisibleCore(false);
                 modificarResponsable.Show();
             }
         }
 
-       
-
-
+        public void asignarResponsable(int resp)
+        {
+            this.responsable = resp;
+        }
         
-
-
-
     }
 }
