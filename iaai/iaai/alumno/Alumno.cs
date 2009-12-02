@@ -41,6 +41,9 @@ namespace iaai.alumno
                 id_responsable = int.Parse(datos["id_responsable"].ToString());
         }
 
+        public Alumno()
+        { }
+
 
         //ESTOS SON LOS GET
 
