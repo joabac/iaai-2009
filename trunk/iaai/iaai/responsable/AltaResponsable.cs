@@ -40,7 +40,7 @@ namespace iaai.responsable
 
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
-
+            this.Close();
         }
 
         private Boolean validar()

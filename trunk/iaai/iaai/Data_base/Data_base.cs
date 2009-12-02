@@ -277,7 +277,8 @@ namespace iaai.Data_base
                                                             alumno.getFecha_nac().ToString("yyyy-MM-dd") +
                                                             "',direccion = '" + alumno.getDireccion() +
                                                             "',escuela_nombre = '" + alumno.getEscuela_nombre() +
-                                                            "', escuela_año = '" + alumno.getEscuela_año() + "' where dni like '" + alumno.getDni() + "'", conexion);
+                                                            "', escuela_año = '" + alumno.getEscuela_año() + 
+                                                            "', id_responsable = '" + alumno.getId_responsable() + "' where dni like '" + alumno.getDni() + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }

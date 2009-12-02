@@ -40,8 +40,8 @@
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.nuevo = new System.Windows.Forms.Button();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_responsable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,8 +133,8 @@
             this.tablaResultado.AllowUserToResizeRows = false;
             this.tablaResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaResultado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombre,
             this.id_responsable,
+            this.nombre,
             this.apellido,
             this.dni,
             this.telefono,
@@ -178,13 +178,6 @@
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
-            // nombre
-            // 
-            this.nombre.Frozen = true;
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
             // id_responsable
             // 
             this.id_responsable.Frozen = true;
@@ -192,6 +185,13 @@
             this.id_responsable.Name = "id_responsable";
             this.id_responsable.ReadOnly = true;
             this.id_responsable.Visible = false;
+            // 
+            // nombre
+            // 
+            this.nombre.Frozen = true;
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
             // 
             // apellido
             // 
@@ -260,8 +260,8 @@
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button nuevo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_responsable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;

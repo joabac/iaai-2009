@@ -35,7 +35,7 @@ namespace iaai.responsable
                 armarConsulta();
                 resultado = db.buscarResponsable(consulta);
                 llenarTabla();
-                tablaResultado.Rows[0].Cells[5].Value = true;
+                tablaResultado.Rows[0].Cells[6].Value = true;
             }
         }
 
@@ -79,8 +79,10 @@ namespace iaai.responsable
             foreach (List<string> fila in resultado)
             {
                 row = new string[6];
+                string aux = "";
                 foreach (string dato in fila)
                 {
+                    aux = aux + dato;
                     row[indice] = dato;
                     indice++;
                 }
@@ -96,7 +98,14 @@ namespace iaai.responsable
             {
                 if (Convert.ToBoolean(tablaResultado.Rows[fila].Cells[6].Value))
                 {
-                    ((AltaAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
+                    try
+                    {
+                        ((AltaAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
+                    }
+                    catch (Exception exception)
+                    {
+                        ((ModificarAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
+                    }
                     break;
                 }
 
@@ -106,12 +115,14 @@ namespace iaai.responsable
 
         private void cancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void nuevo_Click(object sender, EventArgs e)
         {
-            
+            AltaResponsable alta_resp = new AltaResponsable();
+            alta_resp.Parent = this.Parent;
+            alta_resp.Show();
         }
 
         private bool valido()
