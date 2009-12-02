@@ -155,7 +155,7 @@ namespace iaai.alumno
             if (escuela_nombre.Text.Length > 0)
             {
                 datos["escuela_nombre"] = escuela_nombre.Text;
-                datos["escuela_año"] = 2001;
+                datos["escuela_año"] = escuela_año.Text;
             }
             else
             {
@@ -165,7 +165,7 @@ namespace iaai.alumno
             datos["direccion"] = direccion.Text;
             if (responsable != -1)
             {
-                datos["id_responsable"] = 2;
+                datos["id_responsable"] = (object)responsable;
             }
             else
             {

@@ -17,7 +17,7 @@ namespace iaai.Data_base
     
     class Data_base 
     {
-        MySqlConnection conexion = new MySqlConnection("server=192.168.0.100;user=iaai;database=iaai;port=3306;password=iaai;");
+        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
 
 
@@ -74,6 +74,44 @@ namespace iaai.Data_base
                 MessageBox.Show("Error de lectura en base de Datos al buscar el alumno: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return true;
+        }
+
+
+        /// <summary>
+        /// Se valida que no exista el responsable en la base de datos.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns>
+        /// true: si no lo encontro
+        /// false: si lo encontro
+        /// </returns>
+        public string obtenerDniResponsable(int id)
+        {
+            string dni_responsable = "";
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where id_responsable = '" + id + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                if (MyDataReader.Read())
+                {
+                    dni_responsable = MyDataReader[0].ToString();
+                    conexion.Close();
+                    return dni_responsable;
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error en base de Datos al buscar el dni del responsable: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dni_responsable;
         }
 
        /// <summary>
@@ -208,6 +246,106 @@ namespace iaai.Data_base
             }
            
             return datos;
+        }
+
+
+        /// <summary>
+        /// Modifica un alumno en la base de datos
+        /// </summary>
+        /// <param name="alumno">
+        /// Se debe ingresar un instancia de Alumno
+        /// </param>
+        /// <returns>
+        /// {true= si se dio la modificación del alumno}  
+        /// {false= si no se pudo modificar}
+        /// </returns>
+        public bool modificarAlumno(Alumno alumno)
+        {
+            try
+            {
+                this.open_db();
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("update alumno set nombre = '" +
+                                                            alumno.getNombre() + "',apellido = '" + alumno.getApellido() + "',dni = '" +
+                                                            alumno.getDni() + "', telefono_carac = " + alumno.getTelefono_carac() + ",telefono_numero = " +
+                                                            alumno.getTelefono_numero() + ",fecha_nac = '" +
+                                                            alumno.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                            "',direccion = '" + alumno.getDireccion() +
+                                                            "',escuela_nombre = '" + alumno.getEscuela_nombre() +
+                                                            "', escuela_año = '" + alumno.getEscuela_año() + "' where dni like '" + alumno.getDni() + "'", conexion);
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+        }
+
+        /// <summary>
+        /// Busca un alumno en base de datos
+        /// </summary>
+        /// <param name="dni">recibe el dni del alumno a buscar</param>
+        /// <returns>Alumno si encontro el alumno buscado
+        /// null: si no encontro el dni solicitado</returns>
+        public Alumno Buscar_Alumno(string dni)
+        {
+            Alumno alumno = new Alumno();
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                                                          "from alumno " +
+                                                          "where dni like '" + dni + "'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    alumno.setNombre(reader[0].ToString());
+                    alumno.setApellido(reader[1].ToString());
+                    alumno.setDni(reader[2].ToString());
+                    alumno.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
+                    alumno.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                    alumno.setFecha_nac(Convert.ToDateTime(reader[5]));
+                    alumno.setDireccion(reader[6].ToString());
+                    alumno.setEscuela_nombre(reader[7].ToString());
+                    alumno.setEscuela_año(Convert.ToInt32(reader[8].ToString()));
+                    alumno.setId_responsable(Convert.ToInt32(reader[9].ToString()));
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Alumnos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return alumno;
+
         }
 
 

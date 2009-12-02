@@ -107,6 +107,15 @@ namespace iaai
             consulta_profesor_form.Show();
         }
 
+        private void modificarAlumnoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModificarAlumno modifica_alumno = new ModificarAlumno();
+            modifica_alumno.Parent = this.Parent;
+            modifica_alumno.MdiParent = this;
+
+            modifica_alumno.Show();
+        }
+
 
         
     }

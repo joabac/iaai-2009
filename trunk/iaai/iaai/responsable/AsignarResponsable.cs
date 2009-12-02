@@ -16,10 +16,26 @@ namespace iaai.responsable
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<List<string>> resultado;
 
-
+        // CONSTRUCTORES DE LA CLASE
         public AsignarResponsable()
         {
             InitializeComponent();
+        }
+
+        //Este constructor es utilizado cuando para modificar el responsable de un alumno menor de 21(para cambiar el resp. asignado)
+        public AsignarResponsable(int responsable)
+        {
+            string dni_responsable;
+            InitializeComponent();
+            dni_responsable = db.obtenerDniResponsable(responsable);
+            dniBusqueda.Text = dni_responsable;
+            if (valido())
+            {
+                armarConsulta();
+                resultado = db.buscarResponsable(consulta);
+                llenarTabla();
+                tablaResultado.Rows[0].Cells[5].Value = true;
+            }
         }
 
         private void buscar_Click(object sender, EventArgs e)
