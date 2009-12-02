@@ -41,7 +41,7 @@ namespace iaai.profesor
                         //si el profesor ya fue dado de alta en el sistema
                         if (!db.buscarDniProfesor(textBoxBuscar.Text))
                         {
-                            profe = db.consultarProfesor(textBoxBuscar.Text);
+                            profe = db.Buscar_Profesor(textBoxBuscar.Text);
 
                             nombre.Text = profe.getNombre();
                             apellido.Text = profe.getApellido();
@@ -71,7 +71,7 @@ namespace iaai.profesor
                         //si el profesor ya fue dado de alta en el sistema
                         if (!db.buscarDniProfesor(textBoxBuscar.Text))
                         {
-                            profe = db.consultarProfesor(textBoxBuscar.Text);
+                            profe = db.Buscar_Profesor(textBoxBuscar.Text);
 
                             nombre.Text = profe.getNombre();
                             apellido.Text = profe.getApellido();
@@ -98,14 +98,15 @@ namespace iaai.profesor
 
         private void buscar(object sender, KeyPressEventArgs caracter)
         {
-            if (caracter.KeyChar == 8)
+            if (caracter.KeyChar == '\b')//si presionan back space
             {
                 busca_apellido.Items.Clear();
-                caracter.KeyChar = '\0';
-
+                busca_apellido.Text = "";
+                profes_encontrados = new List<Profesor>();
             }
+
             
-            if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3)
+            if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
             {
                 profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text+caracter.KeyChar);
 
@@ -116,11 +117,11 @@ namespace iaai.profesor
                     {
                         busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
                     }
-
+                    SendKeys.Send("{F4}");
                 }
                 
                 
-                profes_encontrados = new List<Profesor>();
+                
             }
 
         }
@@ -142,6 +143,32 @@ namespace iaai.profesor
             }
 
         }
+
+        private void cargar(object sender, KeyEventArgs e)
+        {
+            if (profes_encontrados != null)
+            {
+                if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                {
+
+                    Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
+
+                    if (profe != null)
+                    {
+                        nombre.Text = profe.getNombre();
+                        apellido.Text = profe.getApellido();
+                        dni.Text = profe.getDni();
+                        fecha_nacimiento.Text = profe.getFecha_nac().ToString();
+                        telefono_carac.Text = profe.getTelefono_carac().ToString();
+                        telefono_numero.Text = profe.getTelefono_numero().ToString();
+                        direccion.Text = profe.getDireccion();
+                        email.Text = profe.getEmail();
+                    }
+                }
+            }
+        }
+
+        
 
         
       
