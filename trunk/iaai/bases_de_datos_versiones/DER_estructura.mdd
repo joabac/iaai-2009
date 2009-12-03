@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DBMODEL Version="1.0" TYPE="MySQL">
+<MODELSETTINGS MDDVERSION="1.9.6 (build 442)" ModelProject="" ModelName="DER_estructura" ModelCompany="" ModelAuthor="" ModelVersion="" ModelVersionAI="0" ModelCreated="2009-12-03 11:01:21" MaintainModelUpdated="1" ModelCopyright="\169" ModelUpdated="2009-12-03 11:01:21" Description="" Annotation="" ZoomFac="33.00" XPos="0" YPos="0" PrintLink="object MDDPrinterLink: TcxImageReportLink\n  Active = True\n  Component = fmPrintImage.imPrint\n  DesignerCaption = \aFormat Output\a\n  PrinterPage.DMPaper = 257\n  PrinterPage.Footer = 200\n  PrinterPage.Header = 200\n  PrinterPage.Margins.Bottom = 500\n  PrinterPage.Margins.Left = 500\n  PrinterPage.Margins.Right = 500\n  PrinterPage.Margins.Top = 500\n  PrinterPage.Orientation = poLandscape\n  PrinterPage.PageFooter.CenterTitle.Strings = (\n    \a\a)\n  PrinterPage.PageFooter.LeftTitle.Strings = (\n    \a\a)\n  PrinterPage.PageFooter.RightTitle.Strings = (\n    \a\a)\n  PrinterPage.PageHeader.CenterTitle.Strings = (\n    \a\a)\n  PrinterPage.PageHeader.LeftTitle.Strings = (\n    \a\a)\n  PrinterPage.PageHeader.RightTitle.Strings = (\n    \a\a)\n  PrinterPage.PageOrder = poDownThenOver\n  PrinterPage.PageSize.X = 16500\n  PrinterPage.PageSize.Y = 23400\n  PrinterPage._dxMeasurementUnits_ = 1\n  PrinterPage._dxLastMU_ = 1\n  ReportDocument.CreationDate = 38745.893309814810000000\n  Center = True\n  TransparentColor = clWhite\n  BuiltInReportLink = True\nend\n" WorkspaceColor="16777215" SnapGrid="1" DisplaySnap="1" SnapSize="10" ShowPages="1" ShowTableColumns="1" ShowTableIndeces="1" ShowColumnTypes="1" ShowDomains="0" ShowIndexInd="0" ShowNullInd="0" ShowForeignKeys="1" EntityFillColor="16777215" EntityLineColor="8388608" EntityFontColor="0" ShowTableColumnComment="0" ShowTableTriggers="1" ShowTableComment="0" ShowRefName="1" ShowCardinality="0" ShowJoin="0" Notation="0" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" DefaultDelete="3" DefaultUpdate="3" DefaultTableType="0" DefaultDataType="3" CreateFKRef="0" FKPrefix="" QueryDelimiter=";" DBQuoteCharacter="`" EncloseNames="1" HPageCount="5" VPageCount="5" SPFillColor="13499135" SPLineColor="8388608" SPFontColor="0" ViewFillColor="3329434" ViewLineColor="8388608" ViewFontColor="0" TrimSPBody="0" MinimapBackColor="16777215" MinimapShapesStyle="2" MinimapVisibleAreaStyle="2" />
+<GENERATIONSETTINGS TextCharCase="2" NameInComment="0" ModelCheck="1" ISQL="0" Delimiter="||" TypeInsteadOfEngine="0">
+  <DBGENSETTINGS DBCreate="0" BeginScript="0" Comment="0" Drop="0" EndScript="0" />
+  <FKGENSETTINGS CreateFK="1" GenerateInsideTables="1" /> + EOL  <SPGENSETTINGS BeginScript="0" Comment="0" Drop="1" EndScript="0" SPCreate="1" OrderStr="" />
+  <TABLEGENSETTINGS Annotation="0" BeginScript="0" Comment="1" CreateIndex="1" CreateOption="1" CreatePK="1" Drop="1" EndScript="0" TableCreate="1" TriggersCreate="1" TriggersDrop="0" OrderStr="" />
+  <VIEWGENSETTINGS BeginScript="0" Comment="0" Drop="1" EndScript="0" ViewCreate="1" OrderStr="" />
+  <EVENTGENSETTINGS BeginScript="0" Comment="0" Drop="1" EndScript="0" EventCreate="1" OrderStr="" />
+</GENERATIONSETTINGS>
+<DATABASE Name="Database_1" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="0" />
+<STAMPS>
+</STAMPS>
+<DOMAINS>
+</DOMAINS>
+<METADATA>
+<ENTITIES>
+<ENTITY ID="1000" Name="alumno" XPos="1180" YPos="800" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1012" Name="id_alumno" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1013" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1014" Name="apellido" DomainID="-1" Pos="3" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1015" Name="dni" DomainID="-1" Pos="4" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1016" Name="fecha_nac" DomainID="-1" Pos="5" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1017" Name="telefono_carac" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="5" Prec="0" NotNull="0" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1018" Name="telefono_numero" DomainID="-1" Pos="7" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1019" Name="escuela_nombre" DomainID="-1" Pos="8" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="0" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1020" Name="escuela_a\241o" DomainID="-1" Pos="9" Datatype="3" Type="int" Width="1" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1021" Name="direccion" DomainID="-1" Pos="10" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1022" Name="id_responsable" DomainID="-1" Pos="11" Datatype="3" Type="int" Width="10" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1121" />
+</REFERENCES_BEGIN>
+<INDEXES>
+<INDEX ID="1023" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1012=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1001" Name="asistencia_profesor_curso" XPos="800" YPos="180" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1024" Name="id_asistencia_profesor" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1025" Name="id_curso" DomainID="-1" Pos="2" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1026" Name="id_profesor" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1027" Name="fecha" DomainID="-1" Pos="4" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1028" Name="hora_ingreso" DomainID="-1" Pos="5" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1029" Name="hora_egreso" DomainID="-1" Pos="6" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1123" Name="dni_FK" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_END>
+<REFERENCE_END ID="1112" />
+<REFERENCE_END ID="1113" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1030" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1024=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1031" Name="FK_asistencia_profesor_curso" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1026=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1032" Name="FK_asistencia_curso" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1025=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1002" Name="asistencia_profesor_curso_especial" XPos="760" YPos="820" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1033" Name="id_asistencia_curso_especial" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1034" Name="id_curso_especial" DomainID="-1" Pos="2" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1035" Name="id_profesor" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1036" Name="fecha" DomainID="-1" Pos="4" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1037" Name="hora_ingreso" DomainID="-1" Pos="5" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1038" Name="hora_egreso" DomainID="-1" Pos="6" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1124" Name="dni_FK" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_END>
+<REFERENCE_END ID="1114" />
+<REFERENCE_END ID="1115" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1039" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1033=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1040" Name="FK_asistencia_curso_esp" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1034=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1041" Name="FK_asist_prof_cur_esp" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1035=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1003" Name="asistencia_profesor_materia" XPos="70" YPos="480" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1042" Name="id_asistencia_profesor_materia" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1043" Name="id_materia" DomainID="-1" Pos="2" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1044" Name="id_profesor" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1045" Name="fecha" DomainID="-1" Pos="4" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1046" Name="hora_ingreso" DomainID="-1" Pos="5" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1047" Name="hora_egreso" DomainID="-1" Pos="6" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1125" Name="id_profesorado_FK" DomainID="-1" Pos="6" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="0" Comments="">
+</COLUMN>
+<COLUMN ID="1126" Name="dni_FK" DomainID="-1" Pos="7" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_END>
+<REFERENCE_END ID="1116" />
+<REFERENCE_END ID="1117" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1048" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1042=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1049" Name="FK_asistencia_materia" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1043=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1050" Name="FK_asistencia_profesor_materia" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1044=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1004" Name="curso" XPos="1380" YPos="80" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1051" Name="id_curso" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1052" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="45" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1053" Name="nivel" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1054" Name="duracion" DomainID="-1" Pos="4" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1055" Name="id_profesor" DomainID="-1" Pos="5" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1056" Name="cupo" DomainID="-1" Pos="6" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1127" Name="dni_FK" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1112" />
+</REFERENCES_BEGIN>
+<REFERENCES_END>
+<REFERENCE_END ID="1118" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1057" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1051=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1058" Name="FK_curso_profesor" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1055=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1005" Name="curso_especial" XPos="930" YPos="480" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1059" Name="id_curso_especial" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1060" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1061" Name="horas_curso" DomainID="-1" Pos="3" Datatype="11" Type="time" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1062" Name="id_profesor" DomainID="-1" Pos="4" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1063" Name="cupo" DomainID="-1" Pos="5" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1128" Name="dni_FK" DomainID="-1" Pos="5" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1114" />
+<REFERENCE_BEGIN ID="1122" />
+</REFERENCES_BEGIN>
+<REFERENCES_END>
+<REFERENCE_END ID="1119" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1064" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1059=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1065" Name="FK_curso_especial_profesor" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1062=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1006" Name="materia" XPos="140" YPos="810" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1066" Name="id_materia" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1067" Name="id_profesorado" DomainID="-1" Pos="2" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="1" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1068" Name="nivel" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1069" Name="nombre" DomainID="-1" Pos="4" Datatype="14" Type="varchar" Width="45" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1070" Name="id_profesor" DomainID="-1" Pos="5" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1071" Name="cupo" DomainID="-1" Pos="6" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1072" Name="turno" DomainID="-1" Pos="7" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1116" />
+</REFERENCES_BEGIN>
+<REFERENCES_END>
+<REFERENCE_END ID="1120" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1073" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1066=" />
+<INDEXCOLUMN ID="1067=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1074" Name="FK_materia_carrera" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1067=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1007" Name="matricula" XPos="1440" YPos="470" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1075" Name="id_matricula" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1076" Name="id_carrera" DomainID="-1" Pos="2" Datatype="3" Type="int" Width="10" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1077" Name="id_alumno" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1078" Name="id_curso" DomainID="-1" Pos="4" Datatype="3" Type="int" Width="10" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1079" Name="id_curso_especial" DomainID="-1" Pos="5" Datatype="3" Type="int" Width="10" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="1" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1080" Name="condicion" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="15" Prec="0" NotNull="0" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="condicional" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_END>
+<REFERENCE_END ID="1121" />
+<REFERENCE_END ID="1122" />
+</REFERENCES_END>
+<INDEXES>
+<INDEX ID="1081" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1075=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1082" Name="FK_matricula_alumno" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1077=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1083" Name="FK_matricula_carrera" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1076=" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1084" Name="FK_matricula_cur_esp" Primary="0" Unique="0" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1079=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1008" Name="nivel" XPos="1680" YPos="690" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1085" Name="nivel" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1086" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="45" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<INDEXES>
+<INDEX ID="1087" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1085=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1009" Name="profesor" XPos="130" YPos="100" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1088" Name="id_profesor" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1091" Name="dni" DomainID="-1" Pos="4" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1089" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1090" Name="apellido" DomainID="-1" Pos="3" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1092" Name="telefono_carac" DomainID="-1" Pos="5" Datatype="14" Type="varchar" Width="5" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1093" Name="telefono_numero" DomainID="-1" Pos="6" Datatype="14" Type="varchar" Width="9" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1094" Name="fecha_nac" DomainID="-1" Pos="7" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="2000-01-01" Comments="">
+</COLUMN>
+<COLUMN ID="1095" Name="direccion" DomainID="-1" Pos="8" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1096" Name="email" DomainID="-1" Pos="9" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="0" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1097" Name="activo" DomainID="-1" Pos="10" Datatype="0" Type="tinyint" Width="1" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="1" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1113" />
+<REFERENCE_BEGIN ID="1115" />
+<REFERENCE_BEGIN ID="1117" />
+<REFERENCE_BEGIN ID="1118" />
+<REFERENCE_BEGIN ID="1119" />
+</REFERENCES_BEGIN>
+<INDEXES>
+<INDEX ID="1098" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1088=" />
+<INDEXCOLUMN ID="1091=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1010" Name="profesorado" XPos="490" YPos="900" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1099" Name="id_profesorado" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1100" Name="nombre" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="45" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1101" Name="niveles" DomainID="-1" Pos="3" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<REFERENCES_BEGIN>
+<REFERENCE_BEGIN ID="1120" />
+</REFERENCES_BEGIN>
+<INDEXES>
+<INDEX ID="1102" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1099=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+<ENTITY ID="1011" Name="responsable" XPos="1680" YPos="790" Type="4" RowFormat="0" Temporary="0" RowChecksum="0" PackKeys="0" DelayKeyTblUpdates="0" MinRowNumber="0" MaxRowNumber="0" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" >
+<COLUMNS>
+<COLUMN ID="1103" Name="id_responsable" DomainID="-1" Pos="1" Datatype="3" Type="int" Width="10" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="1" PrimaryKey="1" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1104" Name="nombre_respon" DomainID="-1" Pos="2" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1105" Name="apellido_respon" DomainID="-1" Pos="3" Datatype="14" Type="varchar" Width="50" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1106" Name="fecha_nac" DomainID="-1" Pos="4" Datatype="8" Type="date" Width="0" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1107" Name="direccion" DomainID="-1" Pos="5" Datatype="14" Type="varchar" Width="100" Prec="0" NotNull="1" Unsigned="0" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1108" Name="telefono_carac" DomainID="-1" Pos="6" Datatype="3" Type="int" Width="5" Prec="0" NotNull="0" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1109" Name="telefono_numero" DomainID="-1" Pos="7" Datatype="3" Type="int" Width="9" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+<COLUMN ID="1110" Name="dni" DomainID="-1" Pos="8" Datatype="3" Type="int" Width="8" Prec="0" NotNull="1" Unsigned="1" ZeroFill="0" Binary="0" AutoInc="0" PrimaryKey="0" IsFKey="0" Values="" DefaultValue="" Comments="">
+</COLUMN>
+</COLUMNS>
+<INDEXES>
+<INDEX ID="1111" Name="PRIMARY" Primary="1" Unique="1" FullText="0" Reference_ID="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN ID="1103=" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDEXES>
+</ENTITY>
+</ENTITIES>
+<REFERENCES>
+<REFERENCE ID="1112" Name="FK_asistencia_curso" SOURCE="1004" DESTINATION="1001" FKIDS="1051=1025\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1057" AutoColumnIDs="" />
+<REFERENCE ID="1113" Name="FK_asistencia_profesor_curso" SOURCE="1009" DESTINATION="1001" FKIDS="1088=1026\n1091=1123\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1098" AutoColumnIDs="1123\n" />
+<REFERENCE ID="1114" Name="FK_asistencia_curso_esp" SOURCE="1005" DESTINATION="1002" FKIDS="1059=1034\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1064" AutoColumnIDs="" />
+<REFERENCE ID="1115" Name="FK_asist_prof_cur_esp" SOURCE="1009" DESTINATION="1002" FKIDS="1088=1035\n1091=1124\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1098" AutoColumnIDs="1124\n" />
+<REFERENCE ID="1116" Name="FK_asistencia_materia" SOURCE="1006" DESTINATION="1003" FKIDS="1066=1043\n1067=1125\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1073" AutoColumnIDs="1125\n" />
+<REFERENCE ID="1117" Name="FK_asistencia_profesor_materia" SOURCE="1009" DESTINATION="1003" FKIDS="1088=1044\n1091=1126\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1098" AutoColumnIDs="1126\n" />
+<REFERENCE ID="1118" Name="FK_curso_profesor" SOURCE="1009" DESTINATION="1004" FKIDS="1088=1055\n1091=1127\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1098" AutoColumnIDs="1127\n" />
+<REFERENCE ID="1119" Name="FK_curso_especial_profesor" SOURCE="1009" DESTINATION="1005" FKIDS="1088=1062\n1091=1128\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1098" AutoColumnIDs="1128\n" />
+<REFERENCE ID="1120" Name="FK_materia_profesorado" SOURCE="1010" DESTINATION="1006" FKIDS="1099=1067\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1102" AutoColumnIDs="" />
+<REFERENCE ID="1121" Name="FK_matricula_alumno" SOURCE="1000" DESTINATION="1007" FKIDS="1012=1077\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1023" AutoColumnIDs="" />
+<REFERENCE ID="1122" Name="FK_matricula_cur_esp" SOURCE="1005" DESTINATION="1007" FKIDS="1059=1079\n" RefColor="8388608" RefLabelColor="16777215" RefLabelFontColor="0" OnDelete="0" OnUpdate="0" Comments="" Description="" Annotation="" Generate="1" FKIndex_ID="-1" ParentKeyIndexID="1064" AutoColumnIDs="" />
+</REFERENCES>
+<NOTES>
+</NOTES>
+<STOREDPROCES>
+</STOREDPROCES>
+<VIEWS>
+</VIEWS>
+<EVENTS>
+</EVENTS>
+</METADATA>
+</DBMODEL>
