@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<OrderedTest name="orderedtest1" storage="c:\iaai\iaai_test\orderedtest1.orderedtest" id="1457e250-af36-4da4-a960-ca18204ffd94" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
-  <Css projectStructure="" iteration="" />
-  <Execution timeOut="2147483647" />
-  <Owners>
-    <Owner name="" />
-  </Owners>
-</OrderedTest>
