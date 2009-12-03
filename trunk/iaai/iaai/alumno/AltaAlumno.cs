@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using iaai.responsable;
 using iaai.metodos_comunes;
+using iaai.alumno;
 
 namespace iaai.alumno
 {
@@ -19,6 +20,9 @@ namespace iaai.alumno
         private string error = "";
         private int responsable = -1;
         Utiles metodo = new Utiles();
+        bool exito = false;
+        Alumno alumno_cargado = null;
+       
 
         //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
         IDictionary<string, object> datos = new Dictionary<string, object>();
@@ -29,11 +33,18 @@ namespace iaai.alumno
         {
             InitializeComponent();
         }
-
-        private void AltaAlumno_Load(object sender, EventArgs e)
+        
+    /*    public Alumno alta_incribe() 
         {
 
+            if (exito)
+            {
+                return alumno_cargado;
+            }
+            else return null;
         }
+        */
+        
 
         private void aceptar_MouseClick(object sender, MouseEventArgs e)
         {
@@ -41,17 +52,21 @@ namespace iaai.alumno
             {
                 guardarDatos();
 
-                Alumno alumno = new Alumno(datos);
+                alumno_cargado = new Alumno(datos);
 
 
 
-                if (db.altaAlumno(alumno))
+                if (db.altaAlumno(alumno_cargado))
                 {
                     MessageBox.Show("El alumno fué dado de alta con éxito.");
-
+                    exito = true;
+                    this.Hide();
                 }
                 else
+                {
                     MessageBox.Show("Ocurrió un error en base de datos.");
+                    exito = false;
+                }
             }
             
         }
@@ -61,24 +76,7 @@ namespace iaai.alumno
             this.Close();
         }
 
-        private void agregarResponsable_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (fecha_nacimiento.Text.Contains(' '))
-            {
-                MessageBox.Show("Ingrese la fecha de nacimiento");
-            }
-            else if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
-            {
-                MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
-            }
-            else
-            {
-                AsignarResponsable asignarResponsable = new AsignarResponsable();
-                asignarResponsable.Owner = this;
-                this.SetVisibleCore(false);
-                asignarResponsable.Show();
-            }
-        }
+        
 
         private Boolean validar()
         {
@@ -225,6 +223,21 @@ namespace iaai.alumno
 
         private void aceptar_Click(object sender, EventArgs e)
         {
+            if (fecha_nacimiento.Text.Contains(' '))
+            {
+                MessageBox.Show("Ingrese la fecha de nacimiento");
+            }
+            else if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
+            {
+                MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
+            }
+            else
+            {
+                AsignarResponsable asignarResponsable = new AsignarResponsable();
+                asignarResponsable.Owner = this;
+                this.SetVisibleCore(false);
+                asignarResponsable.Show();
+            }
 
         }
 
