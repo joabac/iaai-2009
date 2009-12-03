@@ -363,8 +363,8 @@ namespace iaai.Data_base
                     alumno.setNombre(reader[0].ToString());
                     alumno.setApellido(reader[1].ToString());
                     alumno.setDni(reader[2].ToString());
-                    alumno.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
-                    alumno.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
+                    alumno.setTelefono_carac(reader[3].ToString());
+                    alumno.setTelefono_numero(reader[4].ToString());
                     alumno.setFecha_nac(Convert.ToDateTime(reader[5]));
                     alumno.setDireccion(reader[6].ToString());
                     alumno.setEscuela_nombre(reader[7].ToString());
@@ -992,7 +992,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Valida que el responsable no tenga asociado un alumno
         /// </summary>
-        /// <param name="dni_profesor">
+        /// <param name="id">
         /// Se debe ingresar un dni valido en formato String
         /// </param>
         /// <returns>
@@ -1029,35 +1029,46 @@ namespace iaai.Data_base
             return true;
         }
 
-//metodo duplicado
-/*   
-        public Profesor consultarProfesor(string dni)
+
+        internal List<Alumno> Buscar_Alumno_Por_apellido(string apellido)
         {
-
-
-            Profesor profe = new Profesor();
+            List<Alumno> alum = new List<Alumno>();
 
             try
             {
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
-                                                          "from profesor " +
-                                                          "where dni like '" + dni + "' and activo = 1", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                                                          "from alumno " +
+                                                          "where apellido like '" + apellido +"%'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
+                Alumno alum_tem = new Alumno();
+
+                         
 
                 if (reader.Read())
                 {
-                    profe.setNombre(reader[0].ToString());
-                    profe.setApellido(reader[1].ToString());
-                    profe.setDni(reader[2].ToString());
-                    profe.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
-                    profe.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
-                    profe.setFecha_nac(Convert.ToDateTime(reader[5]));
-                    profe.setDireccion(reader[6].ToString());
-                    profe.setMail(reader[7].ToString());
+                    do
+                    {
+
+                        alum_tem.setNombre(reader[0].ToString());
+                        alum_tem.setApellido(reader[1].ToString());
+                        alum_tem.setDni(reader[2].ToString());
+                        alum_tem.setTelefono_carac(reader[3].ToString());
+                        alum_tem.setTelefono_numero(reader[4].ToString());
+                        alum_tem.setFecha_nac(Convert.ToDateTime(reader[5]));
+                        alum_tem.setDireccion(reader[6].ToString());
+                        alum_tem.setEscuela_nombre(reader[7].ToString());
+                        alum_tem.setEscuela_año(Convert.ToInt32(reader[8].ToString()));
+                        alum_tem.setId_responsable(Convert.ToInt32(reader[9].ToString()));
+
+                        alum.Add(alum_tem); //agrega a la lista de retorno
+
+                        alum_tem = new Alumno();
+
+                    } while (reader.Read());
                 }
                 else
                 {
@@ -1065,23 +1076,23 @@ namespace iaai.Data_base
                     return null;
                 }
 
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
             }
             catch (MySqlException e)
             {
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
-                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error de lectura en base de Datos Alumnos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
             }
 
 
-            return profe;
+            return alum;
         }
-        */
     }
 
 }
