@@ -183,12 +183,25 @@ namespace iaai.profesor
                 {
                     MessageBox.Show("El profesor fué dado de alta con éxito.");
 
-                    this.Close();
+                    limpiar();
                 }
                 else
                     MessageBox.Show("Ocurrió un error en base de datos.");
             }
 
+            
+        }
+
+        private void limpiar()
+        {
+            nombre.Text = "";
+            apellido.Text= "";
+            dni.Text = "";
+            fecha_nacimiento.Text = "";
+            telefono_carac.Text = "";
+            telefono_numero.Text = "";
+            direccion.Text = "";
+            email.Text = "";
             
         }
         
