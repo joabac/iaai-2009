@@ -205,7 +205,7 @@
             this.agregarResponsable.TabIndex = 9;
             this.agregarResponsable.Text = "Cargar Responsable";
             this.agregarResponsable.UseVisualStyleBackColor = true;
-            this.agregarResponsable.MouseClick += new System.Windows.Forms.MouseEventHandler(this.agregarResponsable_MouseClick);
+            
             // 
             // aceptar
             // 
@@ -258,7 +258,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta Alumno";
-            this.Load += new System.EventHandler(this.AltaAlumno_Load);
+       
             this.ResumeLayout(false);
             this.PerformLayout();
 
