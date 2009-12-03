@@ -9,6 +9,7 @@ using iaai.alumno;
 using System.Data.SqlClient;
 using iaai.responsable;
 using iaai.profesor;
+using iaai.cursos_materias;
 
 
 namespace iaai.Data_base
@@ -1092,6 +1093,120 @@ namespace iaai.Data_base
 
 
             return alum;
+        }
+
+
+
+        internal List<Profesorado> getCarreras()
+        {
+            List<Profesorado> profesorado = new List<Profesorado>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select id_profesorado, nombre, niveles " +
+                                                          "from profesorado " , conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Profesorado profesorado_tem = new Profesorado();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+
+                        profesorado_tem.id_profesorado = Convert.ToInt32(reader[0]);
+                        profesorado_tem.nombre = reader[1].ToString();
+                        profesorado_tem.niveles = Convert.ToInt32(reader[2].ToString());
+                        
+                        profesorado.Add(profesorado_tem); //agrega a la lista de retorno
+
+                        profesorado_tem = new Profesorado();
+
+                    } while (reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return profesorado;
+        }
+
+        internal List<Materia> getMaterias(int id_prof,int nivel, string turno)
+        {
+            List<Materia> materias = new List<Materia>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select id_materia, id_profesorado, nivel, nombre " +
+                                                          "from materia m join turno t on m.id_turno=t.id_turno "+
+                                                          "where id_profesorado = "+id_prof+" and nivel = "+ nivel +" and turno like '"+turno+"'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Materia materia_tem = new Materia();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+
+                        materia_tem.id_materia = Convert.ToInt32(reader[0].ToString());
+                        materia_tem.id_profesorado = Convert.ToInt32(reader[1].ToString());
+                        materia_tem.nombre = reader[2].ToString();
+                        materia_tem.nivel = Convert.ToInt32(reader[3].ToString());
+
+                        materias.Add(materia_tem); //agrega a la lista de retorno
+
+                        materia_tem = new Materia();
+
+                    } while (reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return materias;
         }
     }
 
