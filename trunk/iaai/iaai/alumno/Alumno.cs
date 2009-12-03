@@ -13,8 +13,8 @@ namespace iaai.alumno
         private string apellido;
         private string dni;
         private DateTime fecha_nac;
-        private int telefono_carac;
-        private int telefono_numero;
+        private string telefono_carac;
+        private string telefono_numero;
         private string escuela_nombre;
         private int escuela_año;
         private string direccion;
@@ -29,8 +29,8 @@ namespace iaai.alumno
             dni = (string) datos["dni"];
             fecha_nac = DateTime.Parse(datos["fecha_nac"].ToString());
             if (datos["telefono_carac"] != null)
-                telefono_carac =int.Parse(datos["telefono_carac"].ToString());
-            telefono_numero = int.Parse(datos["telefono_numero"].ToString());
+                telefono_carac =datos["telefono_carac"].ToString();
+            telefono_numero = datos["telefono_numero"].ToString();
             if (datos["escuela_nombre"] != null)
             {
                 escuela_nombre = (string)datos["escuela_nombre"];
@@ -67,11 +67,11 @@ namespace iaai.alumno
         {
             return fecha_nac;
         }
-        public int getTelefono_carac()
+        public string getTelefono_carac()
         {
             return telefono_carac;
         }
-        public int getTelefono_numero()
+        public string getTelefono_numero()
         {
             return telefono_numero;
         }
@@ -110,11 +110,11 @@ namespace iaai.alumno
         {
             fecha_nac = fec;
         }
-        public void setTelefono_carac(int carac)
+        public void setTelefono_carac(string carac)
         {
             telefono_carac = carac;
         }
-        public void setTelefono_numero(int num)
+        public void setTelefono_numero(string num)
         {
             telefono_numero = num;
         }

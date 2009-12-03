@@ -249,7 +249,7 @@ namespace iaai.alumno
                     dni.Text = alumno_encontrado.getDni();
                     dni_viejo = alumno_encontrado.getDni();
                     fecha_nacimiento.Text = alumno_encontrado.getFecha_nac().ToString();
-                    if (alumno_encontrado.getTelefono_carac() != 0)
+                    if (alumno_encontrado.getTelefono_carac() != "")
                     {
                         telefono_carac.Text = alumno_encontrado.getTelefono_carac().ToString();
                     }

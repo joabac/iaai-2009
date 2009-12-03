@@ -10,6 +10,7 @@ using iaai.Data_base;
 using iaai.alumno;
 using iaai.responsable;
 using iaai.profesor;
+using iaai.cursos_materias;
 
 namespace iaai
 {
@@ -141,6 +142,15 @@ namespace iaai
             elimina_responsable.MdiParent = this;
 
             elimina_responsable.Show();
+        }
+
+        private void asignarCursosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.Parent = this.Parent;
+            inscripcion.MdiParent = this;
+
+            inscripcion.Show();
         }
 
 
