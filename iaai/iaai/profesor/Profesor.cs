@@ -8,7 +8,7 @@ namespace iaai.profesor
     class Profesor
     {
 
-        private int id_profesor;
+        public int id_profesor {get; set;}
         private string nombre;
         private string apellido;
         private string dni;
