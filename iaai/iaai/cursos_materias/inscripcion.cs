@@ -17,6 +17,7 @@ namespace iaai.cursos_materias
         List<Alumno> alumnos_encontrados = new List<Alumno>();
         Utiles metodo = new Utiles();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
+        List<Profesorado> listado_profesorados = new List<Profesorado>();
 
         public Inscripcion()
         {
@@ -27,6 +28,23 @@ namespace iaai.cursos_materias
         {
             radioButtonPorDni.Checked = true;
 
+            try
+            {
+                listado_profesorados = db.getCarreras();
+
+                if (listado_profesorados != null)
+                {
+                    foreach (Profesorado prof in listado_profesorados)
+                    {
+                        combo_profesorados.Items.Add(prof.nombre);
+                        combo_profesorados.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch(Exception excep){
+            
+                MessageBox.Show(excep.Message,"Excepción",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -111,5 +129,26 @@ namespace iaai.cursos_materias
             }
 
         }
+
+        private void lista_profesorados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            combo_niveles.Items.Clear();
+
+            for (int i = 1; i <= listado_profesorados[combo_profesorados.SelectedIndex].niveles;i++ )
+            {
+                combo_niveles.Items.Add(i);
+            }
+
+            combo_niveles.SelectedIndex = 0;
+        }
+
+        private void cargar(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        
     }
 }
