@@ -18,6 +18,7 @@ namespace iaai.cursos_materias
         Utiles metodo = new Utiles();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<Profesorado> listado_profesorados = new List<Profesorado>();
+        List<Materia> listadoMaterias = null;
 
         public Inscripcion()
         {
@@ -145,6 +146,128 @@ namespace iaai.cursos_materias
         private void cargar(object sender, EventArgs e)
         {
 
+            if (dataGrid_Listado.Rows.Count > 0)
+                dataGrid_Listado.Rows.Clear();
+
+            if (combo_profesorados.Items.Count > 0 && combo_niveles.Items.Count > 0)
+            {
+                //recupero las materias asociadas al profesorado nivel y turno seleccionados
+                listadoMaterias = db.getMaterias(listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado
+                                ,Convert.ToInt32(combo_niveles.SelectedItem.ToString()), comboTurno.SelectedItem.ToString());
+
+                if (listadoMaterias != null)
+                {
+                    foreach (Materia materia_actual in listadoMaterias) 
+                    {
+                        string[] row = {"false",
+                                        materia_actual.nombre,
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
+
+                        dataGrid_Listado.Rows.Add(row);
+                        
+                    }
+                    
+                }
+            }
+
+
+        }
+
+        private void bt_inscribe_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void busca_apellido_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cargar(object sender, KeyEventArgs e)
+        {
+          /*  try
+            {   
+                //si presiona del | -> | <- | Esc
+                if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+                {
+                    //limpio todos los contenedores
+                    if (busca_apellido.Items.Count > 0)
+                    {
+                        busca_apellido.Items.Clear();
+                    }
+
+                    busca_apellido.Text = "";
+
+                    if (profes_encontrados != null)
+                        profes_encontrados.Clear();
+
+                    if (busca_apellido.DroppedDown == true)
+                        busca_apellido.DroppedDown = false;
+                }
+
+                if (profes_encontrados != null) //si hay proefesores en Lista<Profesor>
+                {
+                    if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                    {
+                        //Busco el profesor por los datos especificos
+                        Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
+
+                        if (profe != null)
+                        {
+                            //cargo los textboxes
+                            nombre.Text = profe.getNombre();
+                            apellido.Text = profe.getApellido();
+                            dni.Text = profe.getDni();
+                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
+                            telefono_carac.Text = profe.getTelefono_carac().ToString();
+                            telefono_numero.Text = profe.getTelefono_numero().ToString();
+                            direccion.Text = profe.getDireccion();
+                            email.Text = profe.getEmail();
+                        }
+                    }
+
+                }
+            }
+            catch(Exception ex){
+                    //capturo excepciones para evitar salidas abruptas
+            }*/
+        }
+
+        
+
+        private void cargar_alumno(Alumno alumno)
+        {
+            nombre.Text = alumno.getNombre();
+            apellido.Text = alumno.getApellido();
+            dni.Text = alumno.getDni();
+            fecha_nacimiento.Text = alumno.getFecha_nac().ToString();
+            telefono_carac.Text = alumno.getTelefono_carac().ToString();
+            telefono_numero.Text = alumno.getTelefono_numero().ToString();
+            direccion.Text = alumno.getDireccion();
+            //email.Text = alumno.getEmail();
+        }
+
+        private void alta_Click(object sender, EventArgs e)
+        {
+            AltaAlumno alumno_nuevo = new AltaAlumno();
+
+            alumno_nuevo.Parent= this.Parent;
+            alumno_nuevo.MdiParent = this;
+            alumno_nuevo.Show();
+            /*Alumno alumnoCargado = alumno_nuevo.alta_inscribe();
+
+            if (alumnoCargado != null)
+                cargar_alumno(alumnoCargado);*/
+            
         }
 
         
