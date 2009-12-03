@@ -380,12 +380,19 @@ namespace iaai.metodos_comunes
             
             if (valido) //si el formato es valido
             {
-                DateTime fecha_Naciemiento = Convert.ToDateTime(cadena); //convierto a date time
+                try
+                {
+                    DateTime fecha_Naciemiento = Convert.ToDateTime(cadena); //convierto a date time
 
-                if (fecha_Naciemiento.AddYears(21) > DateTime.Now) //controlo por mayoria de edad
-                    return 0; // si menor  de edad pero fecha correcta retorno 0
-                else
-                    return 1; //si fecha correcta y mayor de edad retorno 1
+                    if (fecha_Naciemiento.AddYears(21) > DateTime.Now) //controlo por mayoria de edad
+                        return 0; // si menor  de edad pero fecha correcta retorno 0
+                    else
+                        return 1; //si fecha correcta y mayor de edad retorno 1
+                }
+                catch (FormatException exc_form) {
+
+                    return -1;
+                }
             }
             else
                 return -1;

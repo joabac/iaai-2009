@@ -6,7 +6,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94345662-3076-4767-9E4F-073DAAE97B2A}"
 	ProjectSection(SolutionItems) = preProject
 		iaai10.vsmdi = iaai10.vsmdi
-		iaai11.vsmdi = iaai11.vsmdi
 		iaai6.vsmdi = iaai6.vsmdi
 		iaai7.vsmdi = iaai7.vsmdi
 		iaai8.vsmdi = iaai8.vsmdi
@@ -20,9 +19,6 @@ Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = iaai11.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

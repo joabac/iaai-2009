@@ -392,6 +392,12 @@ namespace iaai_test
             Assert.AreEqual(expected, actual);
 
             //formato no valido
+            cadena = "25/25/1980";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
             cadena = "aa/0I/20s2";
             expected = -1;
             actual = target.validar_Fecha_Nacimiento(cadena);
