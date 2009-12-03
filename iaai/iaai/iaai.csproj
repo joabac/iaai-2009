@@ -102,6 +102,8 @@
     <Compile Include="alumno\Modificar_Alumno.designer.cs">
       <DependentUpon>Modificar_Alumno.cs</DependentUpon>
     </Compile>
+    <Compile Include="cursos_materias\Materia.cs" />
+    <Compile Include="cursos_materias\Profesorado.cs" />
     <Compile Include="cursos_materias\Inscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
