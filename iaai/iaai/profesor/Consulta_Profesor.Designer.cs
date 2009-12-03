@@ -296,6 +296,7 @@
             this.Controls.Add(this.radioButtonPorApellido);
             this.Controls.Add(this.radioButtonPorDni);
             this.Name = "Consulta_Profesor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta_Profesor";
             this.Load += new System.EventHandler(this.Consulta_Profesor_Load);
             this.panel1.ResumeLayout(false);

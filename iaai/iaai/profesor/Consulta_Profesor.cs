@@ -95,41 +95,64 @@ namespace iaai.profesor
         }
 
         
-
+        /// <summary>
+        /// Procede con la busqueda para los carctaeres parciales ingresados
+        /// </summary>
+        /// <param name="sender">objeto origen</param>
+        /// <param name="caracter">ingresa con cada caracter que se presiona en el combobox</param>
         private void buscar(object sender, KeyPressEventArgs caracter)
         {
-            if (caracter.KeyChar == '\b')//si presionan back space
+            try
             {
-                busca_apellido.Items.Clear();
-                busca_apellido.Text = "";
-                profes_encontrados.Clear();
-            }
-
-
-            
-            if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
-            {
-                profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text+caracter.KeyChar);
-
-
-                if (profes_encontrados != null)
+                if (caracter.KeyChar == '\b')//si presionan back space
                 {
                     if (busca_apellido.Items.Count > 0)
-                    {
                         busca_apellido.Items.Clear();
 
-                    }
+                    busca_apellido.Text = "";
 
-                    foreach (Profesor profe in profes_encontrados)
-                    {
-                        busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
-                    }
-                    busca_apellido.SelectedItem = 0;
-                    SendKeys.Send("{F4}");
+                    if (profes_encontrados != null)
+                        profes_encontrados.Clear();
+
+                    if (busca_apellido.DroppedDown == true)
+                        busca_apellido.DroppedDown = false;
                 }
-                
-                
-                
+
+
+
+                if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
+                {
+                    //busco los profesores activos que cumplan con la condicion ingresada
+                    profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text + caracter.KeyChar);
+
+
+                    if (profes_encontrados != null) //si existe algun profesor con la condicion ingresada
+                    {
+                        if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
+                        {
+                            busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
+                        }
+
+                        foreach (Profesor profe in profes_encontrados) //para cada valor ingresado 
+                        {
+                            //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
+                            busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
+                        }
+
+
+                        //si la lista no esta desplegada
+                        if (busca_apellido.DroppedDown == false)
+                        {
+                            busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
+                            busca_apellido.DroppedDown = true; //despliego el listado
+                            caracter.KeyChar = '\0';
+                        }
+                    }
+                }
+            }
+            catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion
+            {
+                //no realizo tarea alguna es solo para protejer la ejecucion
             }
 
         }
@@ -139,6 +162,7 @@ namespace iaai.profesor
             if (radioButtonPorApellido.Enabled == true)
             {
                 panel1.Visible = true;
+                busca_apellido.Focus();
             }
 
         }
@@ -152,42 +176,62 @@ namespace iaai.profesor
 
         }
 
+        /// <summary>
+        /// carga los datos recuperados para el profesor seleccionado por apellido y nombre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void cargar(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right) 
-            {
-                busca_apellido.Items.Clear();
-                busca_apellido.Text = "";
-                profes_encontrados.Clear();
-            }
-
-            if (profes_encontrados != null)
-            {
-                if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+            try
+            {   
+                //si presiona del | -> | <- | Esc
+                if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
                 {
-
-                    Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
-
-                    if (profe != null)
+                    //limpio todos los contenedores
+                    if (busca_apellido.Items.Count > 0)
                     {
-                        nombre.Text = profe.getNombre();
-                        apellido.Text = profe.getApellido();
-                        dni.Text = profe.getDni();
-                        fecha_nacimiento.Text = profe.getFecha_nac().ToString();
-                        telefono_carac.Text = profe.getTelefono_carac().ToString();
-                        telefono_numero.Text = profe.getTelefono_numero().ToString();
-                        direccion.Text = profe.getDireccion();
-                        email.Text = profe.getEmail();
+                        busca_apellido.Items.Clear();
                     }
+
+                    busca_apellido.Text = "";
+
+                    if (profes_encontrados != null)
+                        profes_encontrados.Clear();
+
+                    if (busca_apellido.DroppedDown == true)
+                        busca_apellido.DroppedDown = false;
                 }
 
+                if (profes_encontrados != null) //si hay proefesores en Lista<Profesor>
+                {
+                    if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                    {
+                        //Busco el profesor por los datos especificos
+                        Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
+
+                        if (profe != null)
+                        {
+                            //cargo los textboxes
+                            nombre.Text = profe.getNombre();
+                            apellido.Text = profe.getApellido();
+                            dni.Text = profe.getDni();
+                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
+                            telefono_carac.Text = profe.getTelefono_carac().ToString();
+                            telefono_numero.Text = profe.getTelefono_numero().ToString();
+                            direccion.Text = profe.getDireccion();
+                            email.Text = profe.getEmail();
+                        }
+                    }
+
+                }
+            }
+            catch(Exception ex){
+                    //capturo excepciones para evitar salidas abruptas
             }
         }
 
-        
-
-        
       
        
     }
