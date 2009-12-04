@@ -126,6 +126,7 @@
             this.bt_inscribe.TabIndex = 7;
             this.bt_inscribe.Text = "Inscribir";
             this.bt_inscribe.UseVisualStyleBackColor = true;
+            this.bt_inscribe.Click += new System.EventHandler(this.bt_inscribe_Click);
             // 
             // label4
             // 
