@@ -1162,9 +1162,10 @@ namespace iaai.Data_base
                     this.open_db();
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                MySqlCommand MyCommand = new MySqlCommand("select id_materia, id_profesorado, nivel, nombre " +
-                                                          "from materia m join turno t on m.id_turno=t.id_turno "+
-                                                          "where id_profesorado = "+id_prof+" and nivel = "+ nivel +" and turno like '"+turno+"'", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select m.id_materia, m.id_profesorado, nivel, nombre " +
+                                                          "from materia m join turno t on m.id_materia=t.id_materia " +
+                                                          "where id_profesorado = " + id_prof + " and nivel = " + nivel + 
+                                                          " and t.turno like '" + turno + "'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Materia materia_tem = new Materia();
@@ -1176,8 +1177,9 @@ namespace iaai.Data_base
 
                         materia_tem.id_materia = Convert.ToInt32(reader[0].ToString());
                         materia_tem.id_profesorado = Convert.ToInt32(reader[1].ToString());
-                        materia_tem.nombre = reader[2].ToString();
-                        materia_tem.nivel = Convert.ToInt32(reader[3].ToString());
+                        materia_tem.nivel = Convert.ToInt32(reader[2].ToString());
+                        materia_tem.nombre = reader[3].ToString();
+                        materia_tem.cargar();
 
                         materias.Add(materia_tem); //agrega a la lista de retorno
 
@@ -1207,6 +1209,115 @@ namespace iaai.Data_base
 
 
             return materias;
+        }
+
+        internal Profesor Buscar_Profesor(int id_profesor)
+        {
+            Profesor profe = new Profesor();
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select id_profesor,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
+                                                          "from profesor " +
+                                                          "where id_profesor = " + id_profesor + " and activo = 1", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    profe.id_profesor = Convert.ToInt32(reader[0].ToString());
+                    profe.setNombre(reader[1].ToString());
+                    profe.setApellido(reader[2].ToString());
+                    profe.setDni(reader[3].ToString());
+                    profe.setTelefono_carac(Convert.ToInt32(reader[4].ToString()));
+                    profe.setTelefono_numero(Convert.ToInt32(reader[5].ToString()));
+                    profe.setFecha_nac(Convert.ToDateTime(reader[6]));
+                    profe.setDireccion(reader[7].ToString());
+                    profe.setMail(reader[8].ToString());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return profe;
+        }
+
+        internal List<Turno> getTurno(int id_materia)
+        {
+            List<Turno> turno = new List<Turno>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select id_turno, id_profesor, turno, cupo, id_materia " +
+                                                          "from turno " +
+                                                          "where id_materia = " + id_materia , conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Turno turno_tem = new Turno();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        turno_tem.id_turno = Convert.ToInt32(reader[0].ToString());
+                        turno_tem.id_profesor = Convert.ToInt32(reader[1].ToString());
+                        turno_tem.turno = reader[2].ToString();
+                        turno_tem.cupo = Convert.ToInt32(reader[3].ToString());
+                        turno_tem.materia = Convert.ToInt32(reader[4].ToString());
+                        turno_tem.cargar();
+
+                        turno.Add(turno_tem);
+
+                        turno_tem = new Turno();
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Turnos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return turno;
         }
     }
 
