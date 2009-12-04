@@ -88,7 +88,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(579, 378);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
             // 
@@ -114,7 +114,7 @@
             this.bt_cancel.Location = new System.Drawing.Point(490, 316);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(75, 23);
-            this.bt_cancel.TabIndex = 8;
+            this.bt_cancel.TabIndex = 5;
             this.bt_cancel.Text = "Cancelar";
             this.bt_cancel.UseVisualStyleBackColor = true;
             // 
@@ -123,7 +123,7 @@
             this.bt_inscribe.Location = new System.Drawing.Point(409, 316);
             this.bt_inscribe.Name = "bt_inscribe";
             this.bt_inscribe.Size = new System.Drawing.Size(75, 23);
-            this.bt_inscribe.TabIndex = 7;
+            this.bt_inscribe.TabIndex = 4;
             this.bt_inscribe.Text = "Inscribir";
             this.bt_inscribe.UseVisualStyleBackColor = true;
             this.bt_inscribe.Click += new System.EventHandler(this.bt_inscribe_Click);
@@ -134,7 +134,7 @@
             this.label4.Location = new System.Drawing.Point(297, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Turno";
             // 
             // comboTurno
@@ -147,7 +147,7 @@
             this.comboTurno.Location = new System.Drawing.Point(300, 26);
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(119, 21);
-            this.comboTurno.TabIndex = 5;
+            this.comboTurno.TabIndex = 2;
             this.comboTurno.SelectedIndexChanged += new System.EventHandler(this.cargar_materias);
             // 
             // label3
@@ -156,7 +156,7 @@
             this.label3.Location = new System.Drawing.Point(170, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 7;
             this.label3.Text = "Nivel";
             // 
             // label1
@@ -165,7 +165,7 @@
             this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Profesorado";
             // 
             // combo_niveles
@@ -174,7 +174,7 @@
             this.combo_niveles.Location = new System.Drawing.Point(173, 26);
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
-            this.combo_niveles.TabIndex = 2;
+            this.combo_niveles.TabIndex = 1;
             // 
             // dataGrid_Listado
             // 
@@ -196,7 +196,7 @@
             this.dataGrid_Listado.Name = "dataGrid_Listado";
             this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrid_Listado.Size = new System.Drawing.Size(559, 257);
-            this.dataGrid_Listado.TabIndex = 1;
+            this.dataGrid_Listado.TabIndex = 3;
             // 
             // inscribe
             // 
@@ -263,16 +263,17 @@
             this.label2.Location = new System.Drawing.Point(8, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
-            this.label2.TabIndex = 59;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Seleccione Alumno";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.busca_apellido);
-            this.panel1.Location = new System.Drawing.Point(11, 54);
+            this.panel1.Location = new System.Drawing.Point(12, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(210, 40);
-            this.panel1.TabIndex = 58;
+            this.panel1.Size = new System.Drawing.Size(210, 33);
+            this.panel1.TabIndex = 5;
             // 
             // busca_apellido
             // 
@@ -289,7 +290,7 @@
             this.button1.Location = new System.Drawing.Point(140, 63);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 57;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -299,7 +300,7 @@
             this.textBoxBuscar.Location = new System.Drawing.Point(16, 64);
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(100, 20);
-            this.textBoxBuscar.TabIndex = 56;
+            this.textBoxBuscar.TabIndex = 3;
             // 
             // radioButtonPorApellido
             // 
@@ -307,7 +308,7 @@
             this.radioButtonPorApellido.Location = new System.Drawing.Point(119, 29);
             this.radioButtonPorApellido.Name = "radioButtonPorApellido";
             this.radioButtonPorApellido.Size = new System.Drawing.Size(81, 17);
-            this.radioButtonPorApellido.TabIndex = 55;
+            this.radioButtonPorApellido.TabIndex = 2;
             this.radioButtonPorApellido.TabStop = true;
             this.radioButtonPorApellido.Text = "Por Apellido";
             this.radioButtonPorApellido.UseVisualStyleBackColor = true;
@@ -319,7 +320,7 @@
             this.radioButtonPorDni.Location = new System.Drawing.Point(12, 29);
             this.radioButtonPorDni.Name = "radioButtonPorDni";
             this.radioButtonPorDni.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonPorDni.TabIndex = 54;
+            this.radioButtonPorDni.TabIndex = 1;
             this.radioButtonPorDni.TabStop = true;
             this.radioButtonPorDni.Text = "por DNI";
             this.radioButtonPorDni.UseVisualStyleBackColor = true;
@@ -341,7 +342,7 @@
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
             this.direccion.Size = new System.Drawing.Size(181, 20);
-            this.direccion.TabIndex = 67;
+            this.direccion.TabIndex = 6;
             // 
             // label7
             // 
@@ -355,12 +356,12 @@
             // fecha_nacimiento
             // 
             this.fecha_nacimiento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fecha_nacimiento.Location = new System.Drawing.Point(117, 90);
+            this.fecha_nacimiento.Location = new System.Drawing.Point(113, 90);
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.ReadOnly = true;
-            this.fecha_nacimiento.Size = new System.Drawing.Size(57, 20);
-            this.fecha_nacimiento.TabIndex = 64;
+            this.fecha_nacimiento.Size = new System.Drawing.Size(122, 20);
+            this.fecha_nacimiento.TabIndex = 3;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -379,7 +380,7 @@
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(181, 20);
-            this.apellido.TabIndex = 61;
+            this.apellido.TabIndex = 1;
             // 
             // label5
             // 
@@ -397,7 +398,7 @@
             this.dni.Name = "dni";
             this.dni.ReadOnly = true;
             this.dni.Size = new System.Drawing.Size(181, 20);
-            this.dni.TabIndex = 62;
+            this.dni.TabIndex = 2;
             // 
             // label8
             // 
@@ -415,7 +416,7 @@
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.ReadOnly = true;
             this.telefono_carac.Size = new System.Drawing.Size(59, 20);
-            this.telefono_carac.TabIndex = 65;
+            this.telefono_carac.TabIndex = 4;
             // 
             // label10
             // 
@@ -433,7 +434,7 @@
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.ReadOnly = true;
             this.telefono_numero.Size = new System.Drawing.Size(100, 20);
-            this.telefono_numero.TabIndex = 66;
+            this.telefono_numero.TabIndex = 5;
             // 
             // label11
             // 
@@ -451,7 +452,7 @@
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(181, 20);
-            this.nombre.TabIndex = 60;
+            this.nombre.TabIndex = 0;
             // 
             // label12
             // 
@@ -469,7 +470,7 @@
             this.email.Name = "email";
             this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(181, 20);
-            this.email.TabIndex = 68;
+            this.email.TabIndex = 7;
             // 
             // panel_datos
             // 
@@ -489,18 +490,18 @@
             this.panel_datos.Controls.Add(this.nombre);
             this.panel_datos.Controls.Add(this.label12);
             this.panel_datos.Controls.Add(this.email);
-            this.panel_datos.Location = new System.Drawing.Point(6, 134);
+            this.panel_datos.Location = new System.Drawing.Point(6, 149);
             this.panel_datos.Name = "panel_datos";
             this.panel_datos.Size = new System.Drawing.Size(251, 205);
-            this.panel_datos.TabIndex = 76;
+            this.panel_datos.TabIndex = 8;
             // 
             // alta
             // 
-            this.alta.Location = new System.Drawing.Point(147, 101);
+            this.alta.Location = new System.Drawing.Point(141, 97);
             this.alta.Name = "alta";
-            this.alta.Size = new System.Drawing.Size(75, 23);
-            this.alta.TabIndex = 77;
-            this.alta.Text = "Dar de Alta";
+            this.alta.Size = new System.Drawing.Size(81, 23);
+            this.alta.TabIndex = 6;
+            this.alta.Text = "Alta Alumno";
             this.alta.UseVisualStyleBackColor = true;
             this.alta.Click += new System.EventHandler(this.alta_Click);
             // 
@@ -519,6 +520,7 @@
             this.Controls.Add(this.radioButtonPorDni);
             this.Controls.Add(this.tabControl1);
             this.Name = "Inscripcion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripcion";
             this.Load += new System.EventHandler(this.Inscripcion_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);

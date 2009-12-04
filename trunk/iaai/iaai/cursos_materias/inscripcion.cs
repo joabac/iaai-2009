@@ -227,6 +227,7 @@ namespace iaai.cursos_materias
                             direccion.Text = alumno.getDireccion();
                             //email.Text = alumno.getEmail();
                             panel_datos.Enabled = true; //habilito el panel de datos
+                            nuevo = alumno;
                         }
                         else
                             panel_datos.Enabled = false;
@@ -312,7 +313,7 @@ namespace iaai.cursos_materias
                                 direccion.Text = buscado.getDireccion();
                                 //email.Text = buscado.getEmail();
                                 panel_datos.Enabled = true;
-
+                                nuevo = buscado;
                             }
                             else
                                 panel_datos.Enabled = false;
@@ -331,10 +332,52 @@ namespace iaai.cursos_materias
 
         private void bt_inscribe_Click(object sender, EventArgs e)
         {
-            
+            get_Materias_Seleccionadas();
+
+            db.tieneMatriculaProfesorado(nuevo.getId_alumno(),listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+
+            db.generarMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
         }
 
-       
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Retorna un List de objetos Materia que fueron seleccionados para la inscripcion
+        /// </summary>
+        /// <returns></returns>
+        private List<Materia> get_Materias_Seleccionadas() 
+        {
+
+            List<Materia> listado = new List<Materia>();
+
+            if (dataGrid_Listado.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in dataGrid_Listado.Rows)
+                {
+                    if (Convert.ToBoolean(fila.Cells[0].Value) == true)
+                    {
+                        //MessageBox.Show("asi se usa-> materia: "+fila.Cells[1].Value.ToString());
+
+                        foreach (Materia mat_temp in listadoMaterias)
+                        {
+                            if (mat_temp.id_materia == Convert.ToInt32(fila.Cells[3].Value))
+                                listado.Add(mat_temp);
+
+                        }
+                    }
+
+                }
+                return listado;
+            }
+            else return null;
+
+ 
+        }
+
+
         
 
         

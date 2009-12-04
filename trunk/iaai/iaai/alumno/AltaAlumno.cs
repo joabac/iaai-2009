@@ -242,6 +242,7 @@ namespace iaai.alumno
                 }
                 else
                 {
+                    alumno_cargado = null;
                     MessageBox.Show("Ocurrió un error en base de datos.");
                     exito = false;
                 }
@@ -249,12 +250,12 @@ namespace iaai.alumno
 
                 //---------------------Codigo para pasar parametros
 
-                if (exito && Owner.Name.Contains(Inscripcion.ActiveForm.Name))
+               /* if (exito && Owner.Name.Contains(Inscripcion.ActiveForm.Name))
                 {
                     formulario.cargar_alumno(alumno_cargado);
                     Owner.Enabled = true;
                     this.Close();
-                }
+                }*/
                 //--------------------------------------------------
             }
             
