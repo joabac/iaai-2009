@@ -329,6 +329,11 @@ namespace iaai.cursos_materias
             }
         }
 
+        private void bt_inscribe_Click(object sender, EventArgs e)
+        {
+            
+        }
+
        
         
 
