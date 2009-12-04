@@ -1319,6 +1319,115 @@ namespace iaai.Data_base
 
             return turno;
         }
+
+
+        /// <summary>
+        /// Verifica si un alumno tiene matricula en un profesorado especificado
+        /// </summary>
+        /// <param name="id_alumno">id del alumno a buscar</param>
+        /// <param name="id_profesorado">id del profesorado a verificar</param>
+        /// <returns>-1 : si no tiene matricula que cumpla las condiciones
+        /// matricula: si existe registro para lo solicitado</returns>
+        public int tieneMatriculaProfesorado(int id_alumno, int id_profesorado) 
+        {
+
+            int matricula = -1;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select id_matricula " +
+                                                          "from matricula " +
+                                                          "where id_alumno = " + id_alumno + " and id_profesorado = "+ id_profesorado, conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    matricula = Convert.ToInt32(reader[0]);
+                }
+                else
+                {
+                    conexion.Close();
+                    
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Matricula: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return matricula;
+                }
+
+            }
+
+
+            return matricula;
+        }
+
+        internal int generarMatriculaProfesorado(int id_alumno, int id_profesorado)
+        {
+            int matricula = -1;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlTransaction transaccion;
+
+                MySqlCommand MyCommand = new MySqlCommand("insert into matricula (id_profesorado, id_alumno, condicion) values ("+id_profesorado+","+id_alumno+",'condicional')" , conexion);
+
+                transaccion = conexion.BeginTransaction();
+                MyCommand.Connection = conexion;
+
+                
+                
+                MyCommand.ExecuteNonQuery();
+
+                transaccion.Commit();
+
+
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MyCommand = new MySqlCommand("select id_matricula " +
+                                                          "from matricula " +
+                                                          "where id_alumno = " + id_alumno + " and id_profesorado = " + id_profesorado, conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    matricula = Convert.ToInt32(reader[0]);
+                }
+                else
+                {
+                    conexion.Close();
+
+                }
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return matricula;
+                }
+
+            }
+
+
+            return matricula;
+        }
     }
 
+    
 }
