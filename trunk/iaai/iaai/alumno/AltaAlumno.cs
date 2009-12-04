@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using iaai.responsable;
 using iaai.metodos_comunes;
 using iaai.alumno;
+using iaai.cursos_materias;
 
 namespace iaai.alumno
 {
@@ -22,6 +23,7 @@ namespace iaai.alumno
         Utiles metodo = new Utiles();
         bool exito = false;
         Alumno alumno_cargado = null;
+        Inscripcion formulario {get; set ;}
        
 
         //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
@@ -34,46 +36,25 @@ namespace iaai.alumno
             InitializeComponent();
         }
         
-    /*    public Alumno alta_incribe() 
+        /// <summary>
+        /// Nuevo metodo Show para retornar elementos desde alta
+        /// </summary>
+        /// <param name="formu"></param>
+        /// <returns></returns>
+        public void Show(int i) 
         {
-
-            if (exito)
-            {
-                return alumno_cargado;
-            }
-            else return null;
+            Owner.Enabled = false;
+            
+            this.ShowDialog();
         }
-        */
         
 
-        private void aceptar_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (validar())
-            {
-                guardarDatos();
-
-                alumno_cargado = new Alumno(datos);
-
-
-
-                if (db.altaAlumno(alumno_cargado))
-                {
-                    MessageBox.Show("El alumno fué dado de alta con éxito.");
-                    exito = true;
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrió un error en base de datos.");
-                    exito = false;
-                }
-            }
-            
-        }
 
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
+            Owner.Enabled = true;
+                
         }
 
         
@@ -221,7 +202,9 @@ namespace iaai.alumno
 
         }
 
-        private void aceptar_Click(object sender, EventArgs e)
+        
+
+        private void agregarResponsable_Click(object sender, EventArgs e)
         {
             if (fecha_nacimiento.Text.Contains(' '))
             {
@@ -238,9 +221,49 @@ namespace iaai.alumno
                 this.SetVisibleCore(false);
                 asignarResponsable.Show();
             }
-
         }
 
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            if (validar())
+            {
+                guardarDatos();
+
+                alumno_cargado = new Alumno(datos);
+
+
+
+                if (db.altaAlumno(alumno_cargado))
+                {
+                    MessageBox.Show("El alumno fué dado de alta con éxito.");
+                    exito = true;
+
+                    this.Close(); ;
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrió un error en base de datos.");
+                    exito = false;
+                }
+
+
+                //---------------------Codigo para pasar parametros
+
+                if (exito && Owner.Name.Contains(Inscripcion.ActiveForm.Name))
+                {
+                    formulario.cargar_alumno(alumno_cargado);
+                    Owner.Enabled = true;
+                    this.Close();
+                }
+                //--------------------------------------------------
+            }
+            
+        }
+
+        public Alumno get_cargado() {
+
+            return alumno_cargado;
+        }
 
 
         

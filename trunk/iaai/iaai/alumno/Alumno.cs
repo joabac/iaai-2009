@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace iaai.alumno
 {
-    class Alumno
+    public class Alumno
     {
         private int id_alumno;
         private string nombre;

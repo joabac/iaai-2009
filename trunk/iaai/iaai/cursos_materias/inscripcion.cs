@@ -19,6 +19,8 @@ namespace iaai.cursos_materias
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<Profesorado> listado_profesorados = new List<Profesorado>();
         List<Materia> listadoMaterias = null;
+        bool abierto_alta = false;
+        public Alumno nuevo = null;
 
         public Inscripcion()
         {
@@ -28,6 +30,7 @@ namespace iaai.cursos_materias
         private void Inscripcion_Load(object sender, EventArgs e)
         {
             radioButtonPorDni.Checked = true;
+            panel_datos.Enabled = false;
 
             try
             {
@@ -143,7 +146,7 @@ namespace iaai.cursos_materias
             combo_niveles.SelectedIndex = 0;
         }
 
-        private void cargar(object sender, EventArgs e)
+        private void cargar_materias(object sender, EventArgs e)
         {
 
             if (dataGrid_Listado.Rows.Count > 0)
@@ -175,26 +178,17 @@ namespace iaai.cursos_materias
 
         }
 
-        private void bt_inscribe_Click(object sender, EventArgs e)
-        {
 
-
-        }
-
-        private void busca_apellido_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Carga en los campos del vista de datos 
+        /// si encontro algun alumno que cumpla con el criterio de apellido
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cargar(object sender, KeyEventArgs e)
         {
-          /*  try
+           try
             {   
                 //si presiona del | -> | <- | Esc
                 if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -207,44 +201,50 @@ namespace iaai.cursos_materias
 
                     busca_apellido.Text = "";
 
-                    if (profes_encontrados != null)
-                        profes_encontrados.Clear();
+                    if (alumnos_encontrados != null)
+                       alumnos_encontrados.Clear();
 
                     if (busca_apellido.DroppedDown == true)
                         busca_apellido.DroppedDown = false;
                 }
 
-                if (profes_encontrados != null) //si hay proefesores en Lista<Profesor>
+                if (alumnos_encontrados != null) //si hay proefesores en Lista<Profesor>
                 {
-                    if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                    if (e.KeyCode == Keys.Enter && alumnos_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
                     {
-                        //Busco el profesor por los datos especificos
-                        Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
+                        //Busco el alumno por los datos especificos
+                        Alumno alumno = db.Buscar_Alumno((alumnos_encontrados[busca_apellido.SelectedIndex]).getDni());
 
-                        if (profe != null)
+                        if (alumno != null)
                         {
                             //cargo los textboxes
-                            nombre.Text = profe.getNombre();
-                            apellido.Text = profe.getApellido();
-                            dni.Text = profe.getDni();
-                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
-                            telefono_carac.Text = profe.getTelefono_carac().ToString();
-                            telefono_numero.Text = profe.getTelefono_numero().ToString();
-                            direccion.Text = profe.getDireccion();
-                            email.Text = profe.getEmail();
+                            nombre.Text = alumno.getNombre();
+                            apellido.Text = alumno.getApellido();
+                            dni.Text = alumno.getDni();
+                            fecha_nacimiento.Text = alumno.getFecha_nac().ToString();
+                            telefono_carac.Text = alumno.getTelefono_carac().ToString();
+                            telefono_numero.Text = alumno.getTelefono_numero().ToString();
+                            direccion.Text = alumno.getDireccion();
+                            //email.Text = alumno.getEmail();
+                            panel_datos.Enabled = true; //habilito el panel de datos
                         }
+                        else
+                            panel_datos.Enabled = false;
                     }
 
                 }
             }
             catch(Exception ex){
                     //capturo excepciones para evitar salidas abruptas
-            }*/
+            }
         }
 
         
-
-        private void cargar_alumno(Alumno alumno)
+        /// <summary>
+        /// Carga los datos de un objeto alumno encontrado en los campos de vista de datos
+        /// </summary>
+        /// <param name="alumno"></param>
+        public void cargar_alumno(Alumno alumno)
         {
             nombre.Text = alumno.getNombre();
             apellido.Text = alumno.getApellido();
@@ -258,18 +258,78 @@ namespace iaai.cursos_materias
 
         private void alta_Click(object sender, EventArgs e)
         {
-            AltaAlumno alumno_nuevo = new AltaAlumno();
-
-            alumno_nuevo.Parent= this.Parent;
-            alumno_nuevo.MdiParent = this;
-            alumno_nuevo.Show();
-            /*Alumno alumnoCargado = alumno_nuevo.alta_inscribe();
-
-            if (alumnoCargado != null)
-                cargar_alumno(alumnoCargado);*/
             
+                AltaAlumno alumno_nuevo = new AltaAlumno();
+                alumno_nuevo.Owner = this;    
+
+                alumno_nuevo.Show(1);
+
+                nuevo = alumno_nuevo.get_cargado();
+                if (nuevo != null)
+                {
+                    cargar_alumno(nuevo);
+                    panel_datos.Enabled = true;
+                }
+
+                else
+                {
+                    panel_datos.Enabled = false;
+                }
+                this.enabled();
+                
         }
 
+        public void enabled() { this.Enabled = true; }
+        public void disabled() { this.Enabled = false; }
+
+
+        /// <summary>
+        /// Realiza la busqueda por DNI especificado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (radioButtonPorDni.Checked == true)
+            {
+                if (textBoxBuscar.Text.Length == 0)
+                    MessageBox.Show("Ingrese el DNI. \r\n");
+                else
+                {       //si el formato del dni es correcto
+                    if (metodo.ValidarDni(textBoxBuscar.Text) == true)
+                    {
+                        //si el profesor ya fue dado de alta en el sistema
+                        
+                            Alumno buscado = db.Buscar_Alumno(textBoxBuscar.Text);
+                            if (buscado != null)
+                            {
+                                nombre.Text = buscado.getNombre();
+                                apellido.Text = buscado.getApellido();
+                                dni.Text = buscado.getDni();
+                                fecha_nacimiento.Text = buscado.getFecha_nac().ToString();
+                                telefono_carac.Text = buscado.getTelefono_carac().ToString();
+                                telefono_numero.Text = buscado.getTelefono_numero().ToString();
+                                direccion.Text = buscado.getDireccion();
+                                //email.Text = buscado.getEmail();
+                                panel_datos.Enabled = true;
+
+                            }
+                            else
+                                panel_datos.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El DNI ingresado es incorrecto");
+                    }
+                }
+            
+            
+
+
+            }
+        }
+
+       
         
 
         

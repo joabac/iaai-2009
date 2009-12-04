@@ -126,7 +126,6 @@
             this.bt_inscribe.TabIndex = 7;
             this.bt_inscribe.Text = "Inscribir";
             this.bt_inscribe.UseVisualStyleBackColor = true;
-            this.bt_inscribe.Click += new System.EventHandler(this.bt_inscribe_Click);
             // 
             // label4
             // 
@@ -148,7 +147,7 @@
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(119, 21);
             this.comboTurno.TabIndex = 5;
-            this.comboTurno.SelectedIndexChanged += new System.EventHandler(this.cargar);
+            this.comboTurno.SelectedIndexChanged += new System.EventHandler(this.cargar_materias);
             // 
             // label3
             // 
@@ -269,7 +268,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.busca_apellido);
-            this.panel1.Location = new System.Drawing.Point(12, 55);
+            this.panel1.Location = new System.Drawing.Point(11, 54);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(210, 40);
             this.panel1.TabIndex = 58;
@@ -281,7 +280,6 @@
             this.busca_apellido.Name = "busca_apellido";
             this.busca_apellido.Size = new System.Drawing.Size(203, 21);
             this.busca_apellido.TabIndex = 0;
-            this.busca_apellido.SelectedIndexChanged += new System.EventHandler(this.busca_apellido_SelectedIndexChanged);
             this.busca_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);
             this.busca_apellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cargar);
             // 

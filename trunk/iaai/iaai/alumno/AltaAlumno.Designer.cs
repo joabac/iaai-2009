@@ -205,7 +205,7 @@
             this.agregarResponsable.TabIndex = 9;
             this.agregarResponsable.Text = "Cargar Responsable";
             this.agregarResponsable.UseVisualStyleBackColor = true;
-            
+            this.agregarResponsable.Click += new System.EventHandler(this.agregarResponsable_Click);
             // 
             // aceptar
             // 
@@ -216,7 +216,6 @@
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
-            this.aceptar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.aceptar_MouseClick);
             // 
             // cancelar
             // 
@@ -226,6 +225,7 @@
             this.cancelar.TabIndex = 11;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
+          
             this.cancelar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cancelar_MouseClick);
             // 
             // AltaAlumno
@@ -258,7 +258,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta Alumno";
-       
             this.ResumeLayout(false);
             this.PerformLayout();
 
