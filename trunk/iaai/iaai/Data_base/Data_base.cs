@@ -1431,7 +1431,7 @@ namespace iaai.Data_base
             return matricula;
         }
 
-        internal List<Materia> getMaterias(int id_profesorado, int id_alumno )
+        internal List<Materia> getMateriasAlumno(int id_profesorado, int id_alumno )
         {
             List<Materia> materias = new List<Materia>();
 
@@ -1490,6 +1490,13 @@ namespace iaai.Data_base
 
 
             return materias;
+        }
+
+
+        bool verificarCupo() 
+        { 
+            
+        
         }
     }
 
