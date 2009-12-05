@@ -16,8 +16,9 @@ namespace iaai.cursos_materias
         public int nivel {get; set;}
         public string nombre{get; set;}
         public int id_profesor{get; set;}
-        
-        
+        public int cupo { get; set; }
+        public string condicion { get; set; }
+        public string turno { get; set; }
 
         Data_base.Data_base db = new iaai.Data_base.Data_base();
        
@@ -27,10 +28,10 @@ namespace iaai.cursos_materias
  
         }
 
-        public Materia(int id_mat, int id_profe){
+        public Materia(int id_mat, int id_profe,string turno){
 
-            turno_materia = db.getTurno(id_mat);
-           
+            turno_materia = db.getTurno(id_mat);//recupera todos los turnos asociados a una materia
+            cupo = db.verificarCupoMateria(id_materia,turno);
         }
 
         public void cargar()

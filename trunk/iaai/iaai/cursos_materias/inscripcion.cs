@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using iaai.alumno;
 using iaai.metodos_comunes;
 using iaai.Data_base;
+using System.Collections;
 
 namespace iaai.cursos_materias
 {
@@ -149,30 +150,87 @@ namespace iaai.cursos_materias
         private void cargar_materias(object sender, EventArgs e)
         {
 
-            if (dataGrid_Listado.Rows.Count > 0)
-                dataGrid_Listado.Rows.Clear();
+            int id_prof =  listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado;
+            int nivel = Convert.ToInt32(combo_niveles.SelectedItem.ToString());
+            string turno = comboTurno.SelectedItem.ToString();
+            DataGridViewRow fila;
 
-            if (combo_profesorados.Items.Count > 0 && combo_niveles.Items.Count > 0)
+            //obtengo las materias que ya tiene el alumno
+            if (nuevo != null)
             {
-                //recupero las materias asociadas al profesorado nivel y turno seleccionados
-                listadoMaterias = db.getMaterias(listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado
-                                ,Convert.ToInt32(combo_niveles.SelectedItem.ToString()), comboTurno.SelectedItem.ToString());
+                //Las materias que ya tiene el alumno inscriptas pero que no tienen todavia ninguna condición
+                //solo si estan en categoria inscripto
+                List<Materia> materias_Alumno = db.getMateriasAlumno(id_prof, nuevo.id_alumno);
 
-                if (listadoMaterias != null)
+
+                if (dataGrid_Listado.Rows.Count > 0)
+                    dataGrid_Listado.Rows.Clear();
+
+
+                if (combo_profesorados.Items.Count > 0 && combo_niveles.Items.Count > 0)
                 {
-                    foreach (Materia materia_actual in listadoMaterias) 
+                    //recupero las materias asociadas al profesorado nivel y turno seleccionados
+                    listadoMaterias = db.getMaterias(id_prof, nivel, turno);
+
+                    if (listadoMaterias != null)
                     {
-                        string[] row = {"false",
-                                        materia_actual.nombre,
+                        foreach (Materia materia_actual in listadoMaterias)
+                        {
+
+                            string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
                                         materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
                                         materia_actual.id_materia.ToString(),
                                         materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
+                     
 
-                        dataGrid_Listado.Rows.Add(row);
-                        
+
+                            if (materias_Alumno != null)
+                            {
+                                foreach (Materia mat_Del_Alumno in materias_Alumno)
+                                {
+                                    if (mat_Del_Alumno.id_materia == materia_actual.id_materia) 
+                                    {
+                                       
+                                        dataGrid_Listado.Rows.Add(row);
+                                        //si ya esta inscripto pinto de azul
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount-1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount-1].ReadOnly = true;
+                                        
+                                    }
+                                    else
+                                    {
+                                        //si no esta inscripto pinto de verde
+                                        
+                                        dataGrid_Listado.Rows.Add(row);
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
+                                        
+                                    }
+
+                                }
+                            }
+                            else { // si no tiene materias el alumno cargo todo en verde
+
+                                //si ya esta inscripto pinto de azul
+                                
+                                dataGrid_Listado.Rows.Add(row);
+
+                                dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
+
+                            }
+
+                       }
+
                     }
-                    
                 }
+            }
+            else {
+
+                MessageBox.Show(this,"Debe seleccionar un alumno");
+                radioButtonPorDni.Focus();
+                radioButtonPorDni.Checked = true;
             }
 
 
@@ -332,24 +390,67 @@ namespace iaai.cursos_materias
 
         private void bt_inscribe_Click(object sender, EventArgs e)
         {
-            get_Materias_Seleccionadas();
+            //genero un listado de las materias seleccionadas
+            List<Materia> mat_select = get_Materias_Seleccionadas();
+            List<Inscripto> materias_inscriptas = null;
+
+            //recupero el string turno indicado
+            string turno = comboTurno.SelectedItem.ToString();
+
+            //recupero el id del profesorado seleccionado
+            int id_profesorado = listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado;
 
             int matricula;
             int nueva_matricula;
 
+
             if (nuevo != null)
             {
-               matricula = db.tieneMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+                //busco si no tiene ya matriculacion
+                matricula = db.tieneMatriculaProfesorado(nuevo.getId_alumno(), id_profesorado);
 
-                if(matricula == -1 )
-                    nueva_matricula = db.generarMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
-            }
-            else 
-            { 
-                MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion","Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-            }
+                if (matricula == -1) // si no tiene matricula en el prof
+                {
 
+                    nueva_matricula = db.generarMatriculaProfesorado(nuevo.getId_alumno(), id_profesorado);
+
+                    if (nueva_matricula != -1)
+                    { //si tengo nueva matricula
+                        nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                        materias_inscriptas = db.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
+
+                        if (materias_inscriptas != null)
+                        {
+                            DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //generar reporte de inscripcion
+                        }
+                        else
+                            MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    }
+                    else  //si ya tiene matricula matricula != -1
+                    {
+                        nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                        materias_inscriptas = db.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
+
+                        if (materias_inscriptas != null)
+                        {
+                            DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                            //generar reporte de inscripcion
+                        }
+                        else
+                            MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+            }
         }
+
+
 
         private void label2_Click(object sender, EventArgs e)
         {
