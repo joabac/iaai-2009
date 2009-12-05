@@ -58,7 +58,7 @@ namespace iaai.alumno
 
             db = new iaai.Data_base.Data_base();
 
-            mis_materias =  db.getMaterias(id_profesorado, id_alumno);
+            mis_materias =  db.getMateriasAlumno(id_profesorado, id_alumno);
             
         }
         //ESTOS SON LOS GET
