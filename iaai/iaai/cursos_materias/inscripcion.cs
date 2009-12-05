@@ -334,9 +334,21 @@ namespace iaai.cursos_materias
         {
             get_Materias_Seleccionadas();
 
-            db.tieneMatriculaProfesorado(nuevo.getId_alumno(),listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+            int matricula;
+            int nueva_matricula;
 
-            db.generarMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+            if (nuevo != null)
+            {
+               matricula = db.tieneMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+
+                if(matricula == -1 )
+                    nueva_matricula = db.generarMatriculaProfesorado(nuevo.getId_alumno(), listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado);
+            }
+            else 
+            { 
+                MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion","Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
+
         }
 
         private void label2_Click(object sender, EventArgs e)

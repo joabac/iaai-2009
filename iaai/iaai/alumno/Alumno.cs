@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iaai.cursos_materias;
 
 namespace iaai.alumno
 {
     public class Alumno
     {
-        private int id_alumno;
+        public int id_alumno { get; set; }
         private string nombre;
         private string apellido;
         private string dni;
@@ -19,6 +20,10 @@ namespace iaai.alumno
         private int escuela_año;
         private string direccion;
         private int id_responsable;
+        
+        List<Materia> mis_materias {get; set;}
+        
+        Data_base.Data_base db = null;
 
         //CONSTRUCTOR DE LA CLASE
         public Alumno(IDictionary<string,object> datos)
@@ -44,7 +49,18 @@ namespace iaai.alumno
         public Alumno()
         { }
 
+        /// <summary>
+        /// Constructor que instancia el alumno con 
+        /// sus materias si este tiene materias en algun profesorado
+        /// </summary>
+        /// <param name="id_profesorado"></param>
+        public Alumno(int id_profesorado) {
 
+            db = new iaai.Data_base.Data_base();
+
+            mis_materias =  db.getMaterias(id_profesorado, id_alumno);
+            
+        }
         //ESTOS SON LOS GET
 
         public int getId_alumno()

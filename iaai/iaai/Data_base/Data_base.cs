@@ -353,7 +353,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
                                                           "from alumno " +
                                                           "where dni like '" + dni + "'", conexion);
 
@@ -361,16 +361,17 @@ namespace iaai.Data_base
 
                 if (reader.Read())
                 {
-                    alumno.setNombre(reader[0].ToString());
-                    alumno.setApellido(reader[1].ToString());
-                    alumno.setDni(reader[2].ToString());
-                    alumno.setTelefono_carac(reader[3].ToString());
-                    alumno.setTelefono_numero(reader[4].ToString());
-                    alumno.setFecha_nac(Convert.ToDateTime(reader[5]));
-                    alumno.setDireccion(reader[6].ToString());
-                    alumno.setEscuela_nombre(reader[7].ToString());
-                    alumno.setEscuela_año(Convert.ToInt32(reader[8].ToString()));
-                    alumno.setId_responsable(Convert.ToInt32(reader[9].ToString()));
+                    alumno.id_alumno = (Convert.ToInt32(reader[0]));
+                    alumno.setNombre(reader[1].ToString());
+                    alumno.setApellido(reader[2].ToString());
+                    alumno.setDni(reader[3].ToString());
+                    alumno.setTelefono_carac(reader[4].ToString());
+                    alumno.setTelefono_numero(reader[5].ToString());
+                    alumno.setFecha_nac(Convert.ToDateTime(reader[6]));
+                    alumno.setDireccion(reader[7].ToString());
+                    alumno.setEscuela_nombre(reader[8].ToString());
+                    alumno.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
+                    alumno.setId_responsable(Convert.ToInt32(reader[10].ToString()));
                 }
                 else
                 {
@@ -1040,7 +1041,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
                                                           "from alumno " +
                                                           "where apellido like '" + apellido +"%'", conexion);
 
@@ -1053,17 +1054,17 @@ namespace iaai.Data_base
                 {
                     do
                     {
-
-                        alum_tem.setNombre(reader[0].ToString());
-                        alum_tem.setApellido(reader[1].ToString());
-                        alum_tem.setDni(reader[2].ToString());
-                        alum_tem.setTelefono_carac(reader[3].ToString());
-                        alum_tem.setTelefono_numero(reader[4].ToString());
-                        alum_tem.setFecha_nac(Convert.ToDateTime(reader[5]));
-                        alum_tem.setDireccion(reader[6].ToString());
-                        alum_tem.setEscuela_nombre(reader[7].ToString());
-                        alum_tem.setEscuela_año(Convert.ToInt32(reader[8].ToString()));
-                        alum_tem.setId_responsable(Convert.ToInt32(reader[9].ToString()));
+                        alum_tem.id_alumno = (Convert.ToInt32(reader[0]));
+                        alum_tem.setNombre(reader[1].ToString());
+                        alum_tem.setApellido(reader[2].ToString());
+                        alum_tem.setDni(reader[3].ToString());
+                        alum_tem.setTelefono_carac(reader[4].ToString());
+                        alum_tem.setTelefono_numero(reader[5].ToString());
+                        alum_tem.setFecha_nac(Convert.ToDateTime(reader[6]));
+                        alum_tem.setDireccion(reader[7].ToString());
+                        alum_tem.setEscuela_nombre(reader[8].ToString());
+                        alum_tem.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
+                        alum_tem.setId_responsable(Convert.ToInt32(reader[10].ToString()));
 
                         alum.Add(alum_tem); //agrega a la lista de retorno
 
@@ -1263,7 +1264,7 @@ namespace iaai.Data_base
 
         internal List<Turno> getTurno(int id_materia)
         {
-            List<Turno> turno = new List<Turno>();
+            List<Turno> listado_turno = new List<Turno>();
 
             try
             {
@@ -1289,7 +1290,7 @@ namespace iaai.Data_base
                         turno_tem.materia = Convert.ToInt32(reader[4].ToString());
                         turno_tem.cargar();
 
-                        turno.Add(turno_tem);
+                        listado_turno.Add(turno_tem);
 
                         turno_tem = new Turno();
 
@@ -1317,7 +1318,7 @@ namespace iaai.Data_base
             }
 
 
-            return turno;
+            return listado_turno;
         }
 
 
@@ -1381,11 +1382,12 @@ namespace iaai.Data_base
 
                 MySqlTransaction transaccion;
 
-                MySqlCommand MyCommand = new MySqlCommand("insert into matricula (id_profesorado, id_alumno, condicion) values ("+id_profesorado+","+id_alumno+",'condicional')" , conexion);
+                MySqlCommand MyCommand = new MySqlCommand("insert into matricula (id_profesorado, id_alumno, condicion) values (" + id_profesorado + "," + id_alumno + ",'condicional')", conexion);
 
                 transaccion = conexion.BeginTransaction();
-                MyCommand.Connection = conexion;
 
+                MyCommand.Connection = conexion;
+                MyCommand.Transaction = transaccion;
                 
                 
                 MyCommand.ExecuteNonQuery();
@@ -1396,8 +1398,9 @@ namespace iaai.Data_base
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MyCommand = new MySqlCommand("select id_matricula " +
-                                                          "from matricula " +
-                                                          "where id_alumno = " + id_alumno + " and id_profesorado = " + id_profesorado, conexion);
+                                             "from matricula " +
+                                             "where id_alumno = " + id_alumno + 
+                                             " and id_profesorado = " + id_profesorado, conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
 
@@ -1426,6 +1429,67 @@ namespace iaai.Data_base
 
 
             return matricula;
+        }
+
+        internal List<Materia> getMaterias(int id_profesorado, int id_alumno )
+        {
+            List<Materia> materias = new List<Materia>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select mat.id_materia, m.id_profesorado, nivel, nombre " +
+                                                          "from registro_materia rm, matricula m,materia mat "+
+                                                          "where rm.id_matricula=m.id_matricula "+
+                                                          "and mat.id_materia = rm.id_materia " +
+                                                          "and m.id_profesorado = " + id_profesorado + " and m.id_alumno = " + id_alumno +
+                                                          "and m.condicion = 1 and rm.regular = 0 and rm.libre = 0 and rm.aprobada = 0", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Materia materia_tem = new Materia();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+
+                        materia_tem.id_materia = Convert.ToInt32(reader[0].ToString());
+                        materia_tem.id_profesorado = Convert.ToInt32(reader[1].ToString());
+                        materia_tem.nivel = Convert.ToInt32(reader[2].ToString());
+                        materia_tem.nombre = reader[3].ToString();
+                        materia_tem.cargar();
+
+                        materias.Add(materia_tem); //agrega a la lista de retorno
+
+                        materia_tem = new Materia();
+
+                    } while (reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return materias;
         }
     }
 
