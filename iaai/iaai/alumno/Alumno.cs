@@ -20,6 +20,7 @@ namespace iaai.alumno
         private int escuela_año;
         private string direccion;
         private int id_responsable;
+        public int id_matricula { get; set; }
         
         List<Materia> mis_materias {get; set;}
         
