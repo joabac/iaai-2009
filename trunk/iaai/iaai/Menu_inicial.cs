@@ -153,6 +153,16 @@ namespace iaai
             inscripcion.Show();
         }
 
+        private void listadoAsistenciaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListadoAsistencia listado_asistencia = new ListadoAsistencia();
+
+            listado_asistencia.Parent = this.Parent;
+            listado_asistencia.MdiParent = this;
+
+            listado_asistencia.Show();
+        }
+
 
         
     }
