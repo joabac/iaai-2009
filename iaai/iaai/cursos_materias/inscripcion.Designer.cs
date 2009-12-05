@@ -71,6 +71,7 @@
             this.email = new System.Windows.Forms.TextBox();
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
+            this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -192,6 +193,7 @@
             this.profesor,
             this.id_mat,
             this.id_turno});
+            this.dataGrid_Listado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGrid_Listado.Location = new System.Drawing.Point(6, 53);
             this.dataGrid_Listado.Name = "dataGrid_Listado";
             this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -505,6 +507,10 @@
             this.alta.UseVisualStyleBackColor = true;
             this.alta.Click += new System.EventHandler(this.alta_Click);
             // 
+            // reporte_inscripcion
+            // 
+            this.reporte_inscripcion.DocumentName = "reporte";
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -581,5 +587,6 @@
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Panel panel_datos;
         private System.Windows.Forms.Button alta;
+        private System.Drawing.Printing.PrintDocument reporte_inscripcion;
     }
 }
