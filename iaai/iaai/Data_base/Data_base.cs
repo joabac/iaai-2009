@@ -19,9 +19,9 @@ namespace iaai.Data_base
     class Data_base 
     {
 
-        MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
+        //MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
 
-        //MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
+        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
 
 
