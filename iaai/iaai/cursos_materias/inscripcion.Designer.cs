@@ -140,6 +140,7 @@
             // 
             // comboTurno
             // 
+            this.comboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTurno.FormattingEnabled = true;
             this.comboTurno.Items.AddRange(new object[] {
             "mañana",
@@ -171,11 +172,14 @@
             // 
             // combo_niveles
             // 
+            this.combo_niveles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_niveles.FormattingEnabled = true;
             this.combo_niveles.Location = new System.Drawing.Point(173, 26);
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
             this.combo_niveles.TabIndex = 1;
+            this.combo_niveles.SelectionChangeCommitted += new System.EventHandler(this.saltar_a_turno);
+            this.combo_niveles.SelectedIndexChanged += new System.EventHandler(this.combo_niveles_SelectedIndexChanged);
             // 
             // dataGrid_Listado
             // 
@@ -186,6 +190,7 @@
             this.dataGrid_Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGrid_Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid_Listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_Listado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.inscribe,
@@ -193,10 +198,11 @@
             this.profesor,
             this.id_mat,
             this.id_turno});
-            this.dataGrid_Listado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGrid_Listado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dataGrid_Listado.Location = new System.Drawing.Point(6, 53);
+            this.dataGrid_Listado.MultiSelect = false;
             this.dataGrid_Listado.Name = "dataGrid_Listado";
-            this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_Listado.Size = new System.Drawing.Size(559, 257);
             this.dataGrid_Listado.TabIndex = 3;
             // 
@@ -213,31 +219,37 @@
             this.nombreMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombreMat.HeaderText = "Nombre Materia";
             this.nombreMat.Name = "nombreMat";
+            this.nombreMat.ReadOnly = true;
             // 
             // profesor
             // 
             this.profesor.HeaderText = "Nombre Docente";
             this.profesor.Name = "profesor";
+            this.profesor.ReadOnly = true;
             // 
             // id_mat
             // 
             this.id_mat.HeaderText = "ID materia";
             this.id_mat.Name = "id_mat";
+            this.id_mat.ReadOnly = true;
             this.id_mat.Visible = false;
             // 
             // id_turno
             // 
             this.id_turno.HeaderText = "ID turno";
             this.id_turno.Name = "id_turno";
+            this.id_turno.ReadOnly = true;
             this.id_turno.Visible = false;
             // 
             // combo_profesorados
             // 
+            this.combo_profesorados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_profesorados.FormattingEnabled = true;
             this.combo_profesorados.Location = new System.Drawing.Point(6, 26);
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
             this.combo_profesorados.TabIndex = 0;
+            this.combo_profesorados.SelectionChangeCommitted += new System.EventHandler(this.saltar_a_niveles);
             this.combo_profesorados.SelectedIndexChanged += new System.EventHandler(this.lista_profesorados_SelectedIndexChanged);
             // 
             // tabPage2
@@ -510,6 +522,7 @@
             // reporte_inscripcion
             // 
             this.reporte_inscripcion.DocumentName = "reporte";
+            this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
             // Inscripcion
             // 
@@ -562,11 +575,6 @@
         private System.Windows.Forms.ComboBox combo_niveles;
         private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
         private System.Windows.Forms.Button bt_cancel;
         private System.Windows.Forms.Button bt_inscribe;
         private System.Windows.Forms.Label label9;
@@ -588,5 +596,10 @@
         private System.Windows.Forms.Panel panel_datos;
         private System.Windows.Forms.Button alta;
         private System.Drawing.Printing.PrintDocument reporte_inscripcion;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
     }
 }
