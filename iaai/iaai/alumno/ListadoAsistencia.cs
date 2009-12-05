@@ -17,11 +17,13 @@ namespace iaai.alumno
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<List<string>> listado;
         DataGridViewPrinter MyDataGridViewPrinter;
+        List<List<string>> cursos;
 
 
         public ListadoAsistencia()
         {
             InitializeComponent();
+            cargarCursos();
         }
 
         private void cargarTabla()
@@ -100,8 +102,126 @@ namespace iaai.alumno
 
         private void curso_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            cargarNiveles();
+            
+        }
+
+        private void cargarCursos()
+        {
+            cursos = db.getCursos();
+
+            foreach (List<string> c in cursos)
+            {
+                if (!curso.Items.Contains(c[1]))
+                {
+                    curso.Items.Add(c[1]);
+                }
+            }
+
+        }
+
+        private void cargarNiveles()
+        {
+            curso_nivel.Items.Clear();
+            foreach (List<string> c in cursos)
+            {
+                if (curso.SelectedItem != null)
+                {
+                    if (curso.SelectedItem.ToString().Equals(c[1]))
+                    {
+                        curso_nivel.Items.Add(c[2]);
+                    }
+                }
+            }
+            curso_nivel.Text = null;
+        }
+
+        private void curso_nivel_SelectionChangeCommitted(object sender, EventArgs e)
+        {
             listado = db.listaAsistencia(curso.SelectedIndex);
             cargarTabla();
         }
+
+        private void seleccionCurso_CheckedChanged(object sender, EventArgs e)
+        {
+            if (seleccionCurso.Checked)
+            {
+                curso.Enabled = true;
+                curso_nivel.Enabled = true;
+                cursoE.Enabled = false;
+                cursoE.SelectedItem = null;
+                combo_profesorados.Enabled = false;
+                combo_niveles.Enabled = false;
+                comboTurno.Enabled = false;
+                combo_profesorados.SelectedItem = null;
+                combo_niveles.SelectedItem = null;
+                comboTurno.SelectedItem = null;
+            }
+        }
+
+        private void seleccionCursoE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (seleccionCursoE.Checked)
+            {
+                curso.Enabled = false;
+                curso_nivel.Enabled = false;
+                curso.SelectedItem = null;
+                curso_nivel.SelectedItem = null;
+                cursoE.Enabled = true;
+                combo_profesorados.Enabled = false;
+                combo_niveles.Enabled = false;
+                comboTurno.Enabled = false;
+                combo_profesorados.SelectedItem = null;
+                combo_niveles.SelectedItem = null;
+                comboTurno.SelectedItem = null;
+            }
+        }
+
+        private void seleccionMateria_CheckedChanged(object sender, EventArgs e)
+        {
+            if (seleccionMateria.Checked)
+            {
+                curso.Enabled = false;
+                curso_nivel.Enabled = false;
+                curso.SelectedItem = null;
+                curso_nivel.SelectedItem = null;
+                cursoE.Enabled = false;
+                cursoE.SelectedItem = null;
+                combo_profesorados.Enabled = true;
+                combo_niveles.Enabled = true;
+                comboTurno.Enabled = true;
+            }
+        }
+
+        private void generar_Click(object sender, EventArgs e)
+        {
+            if (seleccionCurso.Checked)
+            {
+                if (curso.SelectedItem != null && curso_nivel.SelectedItem != null)
+                {
+                    listado = db.getListadoCursos(obtenerIdCurso());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                        MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un curso y un nivel para el curso.");
+                }
+            }
+        }
+
+        private string obtenerIdCurso()
+        {
+            foreach (List<string> c in cursos)
+            {
+                if (c[1].Equals(curso.SelectedItem.ToString()) && c[2].Equals(curso_nivel.SelectedItem.ToString()))
+                    return c[0];
+            }
+            return "-1";
+        }
+
+        
     }
 }
