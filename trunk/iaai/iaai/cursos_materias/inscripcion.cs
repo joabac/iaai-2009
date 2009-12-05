@@ -10,6 +10,7 @@ using iaai.alumno;
 using iaai.metodos_comunes;
 using iaai.Data_base;
 using System.Collections;
+using System.Drawing.Printing;
 
 namespace iaai.cursos_materias
 {
@@ -22,6 +23,8 @@ namespace iaai.cursos_materias
         List<Materia> listadoMaterias = null;
         bool abierto_alta = false;
         public Alumno nuevo = null;
+
+        List<Inscripto> materias_inscriptas = null;
 
         public Inscripcion()
         {
@@ -145,6 +148,7 @@ namespace iaai.cursos_materias
             }
 
             combo_niveles.SelectedIndex = 0;
+            
         }
 
         private void cargar_materias(object sender, EventArgs e)
@@ -177,22 +181,22 @@ namespace iaai.cursos_materias
                         foreach (Materia materia_actual in listadoMaterias)
                         {
 
-                            string[] row = {"false",
-                                        materia_actual.nombre.ToString(),
-                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
-                                        materia_actual.id_materia.ToString(),
-                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
-                     
-
-
                             if (materias_Alumno != null)
                             {
                                 foreach (Materia mat_Del_Alumno in materias_Alumno)
                                 {
+
+
                                     if (mat_Del_Alumno.id_materia == materia_actual.id_materia) 
                                     {
-                                       
+
+                                        string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
                                         dataGrid_Listado.Rows.Add(row);
+
                                         //si ya esta inscripto pinto de azul
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount-1].DefaultCellStyle.BackColor = Color.LightBlue;
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount-1].ReadOnly = true;
@@ -201,7 +205,13 @@ namespace iaai.cursos_materias
                                     else
                                     {
                                         //si no esta inscripto pinto de verde
-                                        
+
+                                        string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
+                     
                                         dataGrid_Listado.Rows.Add(row);
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
@@ -213,9 +223,13 @@ namespace iaai.cursos_materias
                             else { // si no tiene materias el alumno cargo todo en verde
 
                                 //si ya esta inscripto pinto de azul
-                                
+                                string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
+                     
                                 dataGrid_Listado.Rows.Add(row);
-
                                 dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
                                 dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
 
@@ -392,7 +406,7 @@ namespace iaai.cursos_materias
         {
             //genero un listado de las materias seleccionadas
             List<Materia> mat_select = get_Materias_Seleccionadas();
-            List<Inscripto> materias_inscriptas = null;
+            
 
             //recupero el string turno indicado
             string turno = comboTurno.SelectedItem.ToString();
@@ -427,27 +441,60 @@ namespace iaai.cursos_materias
                         else
                             MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                     }
-                    else  //si ya tiene matricula matricula != -1
-                    {
-                        nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
-                        materias_inscriptas = db.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
-
-                        if (materias_inscriptas != null)
-                        {
-                            DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                            //generar reporte de inscripcion
-                        }
-                        else
-                            MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    }
+                    
                 }
-                else
+                else  //si ya tiene matricula matricula != -1
                 {
-                    MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                    materias_inscriptas = db.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
+
+                    if (materias_inscriptas != null)
+                    {
+                        DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (respuesta == DialogResult.Yes) 
+                        {
+                            imprimir_reporteMaterias(materias_inscriptas);
+                        }
+                    }
+                    else
+                        MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
+                
 
             }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private bool imprimir_reporteMaterias(List<Inscripto> materias)
+        {
+            DataGridViewPrinter MyDataGridViewPrinter;
+            PrintDialog MyPrintDialog = new PrintDialog();
+            MyPrintDialog.AllowCurrentPage = false;
+            MyPrintDialog.AllowPrintToFile = false;
+            MyPrintDialog.AllowSelection = false;
+            MyPrintDialog.AllowSomePages = false;
+            MyPrintDialog.PrintToFile = false;
+            MyPrintDialog.ShowHelp = false;
+            MyPrintDialog.ShowNetwork = false;
+
+            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+                return false;
+
+            reporte_inscripcion.DocumentName = "Reporte de Inscripción";
+            reporte_inscripcion.PrinterSettings = MyPrintDialog.PrinterSettings;
+            reporte_inscripcion.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            reporte_inscripcion.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+            
+            
+            
+            reporte_inscripcion.Print();
+           
+            return true;
+        
         }
 
 
@@ -488,6 +535,49 @@ namespace iaai.cursos_materias
             else return null;
 
  
+        }
+
+        private void combo_niveles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGrid_Listado.Rows.Clear();   
+        }
+
+        private void saltar_a_turno(object sender, EventArgs e)
+        {
+            comboTurno.Focus();
+        }
+
+        private void saltar_a_niveles(object sender, EventArgs e)
+        {
+            combo_niveles.Focus();
+        }
+
+        private void reporte_inscripcion_PrintPage(object sender, PrintPageEventArgs e)
+        {
+
+            string cadena;
+            Font printFont = new Font("Arial", 10);
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top;
+            int count = 0;
+            float yPos =  10;
+
+
+            e.Graphics.DrawString("REPORTE DE INSCRIPCION", new Font("Arial Black",15), Brushes.Black,( e.MarginBounds.Left), yPos, new StringFormat());
+            count+= 5;
+
+            foreach(Inscripto elemento in materias_inscriptas)
+            {
+                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+    
+                 cadena = "Nombre Materia: "+elemento.materia_inscripta.nombre +"\r\nTurno: " + elemento.turno +"\r\nCondición: "+elemento.condicion+"\r\n\r\n";
+
+                 e.Graphics.DrawString(cadena, printFont, Brushes.Black,leftMargin,yPos,new StringFormat());
+                 count+= 4;
+
+                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+                e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin,yPos, e.MarginBounds.Right,yPos);
+            }
         }
 
 

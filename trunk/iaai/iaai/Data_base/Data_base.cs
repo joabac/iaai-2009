@@ -18,6 +18,7 @@ namespace iaai.Data_base
     
     class Data_base 
     {
+        string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
 
         MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
@@ -30,6 +31,7 @@ namespace iaai.Data_base
 
             try
             {
+                
                 conexion.Open();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     return true;
@@ -1529,26 +1531,40 @@ namespace iaai.Data_base
                     this.open_db();
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                MySqlCommand MyCommand = new MySqlCommand("select select t.cupo Cupo , count(rm.id_matricula) Ocupacion" +
-                                                          "from turno t join registro_materia rm on t.id_materia = rm.id_materia and t.id_turno = rm.id_turno "+
-                                                          "where t.id_materia = "+id_materia+" and rm.id_turno = "+ turno + " " +
+                MySqlCommand cupo_comand = new MySqlCommand("select t.cupo Cupo " +
+                                                          "from turno t "+
+                                                          "where t.id_materia = "+id_materia+" and t.turno like '"+ turno + "' ", conexion);
+
+                MySqlDataReader cupo_reader = cupo_comand.ExecuteReader();
+
+                if (cupo_reader.Read())
+                {
+                    cupo = Convert.ToInt32(cupo_reader[0].ToString());
+                    
+                    cupo_reader.Close(); //cierro el datareader
+
+                MySqlCommand ocupacion_comand = new MySqlCommand("select count(rm.id_matricula) Ocupacion " +
+                                                          "from turno t join registro_materia rm on t.id_materia = rm.id_materia and t.id_turno = rm.id_turno " +
+                                                          "where t.id_materia = " + id_materia + " and t.turno like '" + turno + "' " +
                                                           "and condicion like 'inscripto' " +
                                                           "group by rm.id_materia", conexion);
 
-                MySqlDataReader reader = MyCommand.ExecuteReader();
-               
+                MySqlDataReader ocupacion_reader = ocupacion_comand.ExecuteReader();
+                
+                    if (ocupacion_reader.Read())
+                    {
 
-                if (reader.Read())
-                {
-          
-                        cupo = Convert.ToInt32(reader[0].ToString());
-                        ocupacion = Convert.ToInt32(reader[1].ToString());
+                        ocupacion = Convert.ToInt32(ocupacion_reader[0].ToString());
+                        disponible = cupo - ocupacion;
+                        ocupacion_reader.Close();
+                    }
+                     else
+                    { //significa que no hay inscriptos al la materia
 
-                        if (ocupacion == cupo) //si esta lleno el curso
-                            disponible = cupo - ocupacion;
-                        else
-                            if (ocupacion < cupo) // si queda al meno 1 lugar
-                                disponible = cupo - ocupacion;
+                            disponible = cupo;
+
+                    }
+                
                 }
                 else
                 {
@@ -1580,54 +1596,76 @@ namespace iaai.Data_base
         {
 
             int matricula = nuevo.id_matricula; 
-            List<Inscripto> listado_inscripciones = null; //listado donde se registraran las inscripciones y condicion en que quedo
+            List<Inscripto> listado_inscripciones = new List<Inscripto>(); //listado donde se registraran las inscripciones y condicion en que quedo
             Inscripto inscripto_tmp = null;
-            
+            MySqlTransaction transaccion;
+            MySqlCommand MyCommand;
 
-            MySqlTransaction transaccion = conexion.BeginTransaction(); ;
-            MySqlCommand MyCommand = new MySqlCommand();
 
+            //creo coneccion dedicada
+            MySqlConnection db_inscribe = new MySqlConnection(cadena_coneccion);
             try
             {
-                if (conexion.State == System.Data.ConnectionState.Closed)
-                    this.open_db();
+                db_inscribe.Open();
+                //genero transaccion y comando para ejecucion
+                transaccion = db_inscribe.BeginTransaction(); 
+                MyCommand = new MySqlCommand();
+                MyCommand.Connection = db_inscribe;
+                MyCommand.Transaction = transaccion;
                 
-                    MyCommand.Connection = conexion;
-                    MyCommand.Transaction = transaccion;
+            }
+            catch(MySqlException excep) {
+                MessageBox.Show("Error de lectura en base de Datos: \r\n" + excep, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            
+            try
+            {
 
                     foreach (Materia materia_actual in mat_select)
                     {
+                        int disponible = verificarCupoMateria(materia_actual.id_materia, turno);
 
-                        if (verificarCupoMateria(materia_actual.id_materia, turno) > 0)
-                        { //si el cupo es mayor a cero
+                        if (disponible == 0)
+                        { //si el disponible es 0 
 
-                            MyCommand.CommandText= ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno,"+
+                            MyCommand.CommandText= ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, "+
                                                          " condicion) values " +
                                                          "(" + matricula + "," + materia_actual.id_materia+","+ DateTime.Now.Date.ToString("yyyy-MM-dd") +
                                                          "," + DateTime.Now.TimeOfDay + "," + materia_actual.get_id_turno(turno) + ", " +
                                                          "'condicional' )");
-                            MyCommand.ExecuteNonQuery();
-                            transaccion.Commit();
-                        }
-                        else{  //si quedara condicional
+            
 
-                            MyCommand = new MySqlCommand("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
-                                                         " condicion) values " +
-                                                         "(" + matricula + "," + materia_actual.id_materia + "," + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                         "," + DateTime.Now.TimeOfDay + "," + materia_actual.get_id_turno(turno) +
-                                                         ", 'inscripto' )", conexion);
-             
                             MyCommand.ExecuteNonQuery();
-                            transaccion.Commit();
+                            //transaccion.Commit();
+                        }
+                        else{  //si quedara inscripto
+
+                            if (disponible > 0)
+                            {
+                                MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
+                                                         " condicion) values " +
+                                                         "(" + matricula + "," + materia_actual.id_materia + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                         "','" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno) +
+                                                         ", 'inscripto' )");
+
+                                MyCommand.ExecuteNonQuery();
+                                //transaccion.Commit();
+
+                            }
+                            else {
+                                transaccion.Rollback();
+                                MessageBox.Show("Error al intentar inscribir Alumno en la materia\r\n Problemas de cupo","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            }
                         }
 
 
 
                         //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                        MyCommand = new MySqlCommand("select id_inscripcion_materia,condicion" +
+                        MyCommand.CommandText = "select id_inscripcion_materia,condicion " +
                                                      "from registro_materia " +
                                                      "where id_matricula = " + matricula +
-                                                     " and  id_materia= " + materia_actual.id_materia , conexion);
+                                                     " and  id_materia= " + materia_actual.id_materia ;
 
                         MySqlDataReader reader = MyCommand.ExecuteReader();
 
@@ -1635,6 +1673,7 @@ namespace iaai.Data_base
 
                         if (reader.Read())
                         {
+
                             inscripto_tmp = new Inscripto();
                             //cargo el id de la transaccion
                             inscripto_tmp.id_inscripcion_materia = Convert.ToInt32(reader[0].ToString());
@@ -1647,24 +1686,27 @@ namespace iaai.Data_base
                             inscripto_tmp.turno = turno;
 
                             listado_inscripciones.Add(inscripto_tmp);
-
+                            reader.Close();
                         }
                         else
                         {
                             transaccion.Rollback();
                             matricula = -1;
-                            conexion.Close();
+                            db_inscribe.Close();
                         }
                     }
-                conexion.Close();
+
+                    transaccion.Commit();
+                    if (db_inscribe.State == System.Data.ConnectionState.Open)
+                        db_inscribe.Close();
             }
             catch (MySqlException e)
             {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
+                if ( db_inscribe.State == System.Data.ConnectionState.Open)
                 {
                     transaccion.Rollback();
-                    conexion.Close();
-                    MessageBox.Show("Error de lectura en base de Datos Profesores: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    db_inscribe.Close();
+                    MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
