@@ -152,7 +152,7 @@ namespace iaai.cursos_materias
 
             combo_niveles.SelectedIndex = 0;
 
-            if(comboTurno.Items.Count > 0)
+            if(comboTurno.SelectedItem != null )
                carga_Materias();
         }
 
