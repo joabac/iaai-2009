@@ -75,9 +75,15 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
+            this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
+            this.comboBoxArea = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBoxNivel = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_datos.SuspendLayout();
             this.SuspendLayout();
@@ -131,7 +137,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label14.BackColor = System.Drawing.Color.Khaki;
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(75, 316);
@@ -298,6 +304,11 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.comboBoxNivel);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.comboBoxArea);
+            this.tabPage2.Controls.Add(this.checkedList_cursos);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -567,6 +578,48 @@
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
+            // checkedList_cursos
+            // 
+            this.checkedList_cursos.FormattingEnabled = true;
+            this.checkedList_cursos.Location = new System.Drawing.Point(251, 6);
+            this.checkedList_cursos.Name = "checkedList_cursos";
+            this.checkedList_cursos.Size = new System.Drawing.Size(314, 334);
+            this.checkedList_cursos.TabIndex = 0;
+            // 
+            // comboBoxArea
+            // 
+            this.comboBoxArea.FormattingEnabled = true;
+            this.comboBoxArea.Location = new System.Drawing.Point(24, 43);
+            this.comboBoxArea.Name = "comboBoxArea";
+            this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
+            this.comboBoxArea.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(21, 28);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Area";
+            // 
+            // comboBoxNivel
+            // 
+            this.comboBoxNivel.FormattingEnabled = true;
+            this.comboBoxNivel.Location = new System.Drawing.Point(24, 91);
+            this.comboBoxNivel.Name = "comboBoxNivel";
+            this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
+            this.comboBoxNivel.TabIndex = 3;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(21, 78);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(31, 13);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Nivel";
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,6 +643,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel_datos.ResumeLayout(false);
             this.panel_datos.PerformLayout();
@@ -647,5 +702,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckedListBox checkedList_cursos;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBoxNivel;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboBoxArea;
     }
 }
