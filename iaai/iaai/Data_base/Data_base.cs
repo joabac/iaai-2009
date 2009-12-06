@@ -1967,6 +1967,201 @@ namespace iaai.Data_base
         }
 
 
+        /// <summary>
+        /// Retorna el listado de cursos para un area en especial 
+        /// </summary>
+        /// <returns>
+        /// Retorna una lista de strings con los nombres de los cursos
+        /// </returns>
+        public List<List<string>> getCursos(int area)
+        {
+            List<List<string>> cursos = new List<List<string>>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select c.id_curso, c.nombre, n.nombre " +
+                                                          "from curso c, nivel n " +
+                                                          "where c.nivel = n.nivel and c.id_area = area", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                List<string> curso;
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        curso = new List<string>();
+                        curso.Add(reader[0].ToString());
+                        curso.Add(reader[1].ToString());
+                        curso.Add(reader[2].ToString());
+
+                        cursos.Add(curso);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return cursos;
+        }
+
+        /// <summary>Inscribir un alumno a una lista de cursos</summary>
+        /// <param name="nuevo">alumno que se va a inscribir a cursos</param>
+        /// <param name="id_area">area correspondiente a los cursos</param>
+        /// <param name="cursos_select">lista de cursos seleccionados</param>
+        /// <returns>Lista de las inscripciones del alunno a los cursos</returns>
+
+        internal List<Inscripto_curso> inscribirCursos(Alumno nuevo, int id_area, List<Curso> cursos_select)
+        {
+
+            int matricula = nuevo.id_matricula;
+            List<Inscripto_curso> listado_inscripciones = new List<Inscripto_curso>(); //listado donde se registraran las inscripciones y condicion en que quedo
+            Inscripto_curso inscripto_tmp = null;
+            MySqlTransaction transaccion;
+            MySqlCommand MyCommand;
+
+
+            //creo coneccion dedicada
+            MySqlConnection db_inscribe = new MySqlConnection(cadena_coneccion);
+            try
+            {
+                db_inscribe.Open();
+                //genero transaccion y comando para ejecucion
+                transaccion = db_inscribe.BeginTransaction();
+                MyCommand = new MySqlCommand();
+                MyCommand.Connection = db_inscribe;
+                MyCommand.Transaction = transaccion;
+
+            }
+            catch (MySqlException excep)
+            {
+                MessageBox.Show("Error de lectura en base de Datos: \r\n" + excep, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            try
+            {
+
+                foreach (Curso curso_actual in cursos_select)
+                {
+                    //int disponible = verificarCupoMateria(materia_actual.id_materia, turno);
+
+                    //if (disponible == 0)
+                    { //si el disponible es 0 
+
+                        MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, " +
+                                                     " condicion) values " +
+                                                     "(" + matricula + "," + curso_actual.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                     ",'" + DateTime.Now.ToShortTimeString() + "'," +
+                                                     "'condicional' )");
+
+
+                        MyCommand.ExecuteNonQuery();
+                        //transaccion.Commit();
+                    }
+                    // else
+                    {  //si quedara inscripto
+
+                        // if (disponible > 0)
+                        {
+                            MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
+                                                     " condicion) values " +
+                                                     "(" + matricula + "," + curso_actual.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                     "','" + DateTime.Now.ToShortTimeString() + "'," +
+                                                     ", 'inscripto' )");
+
+                            MyCommand.ExecuteNonQuery();
+                            //transaccion.Commit();
+
+                        }
+                        //   else
+                        {
+                            transaccion.Rollback();
+                            MessageBox.Show("Error al intentar inscribir Alumno en la materia\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+
+
+                    //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                    MyCommand.CommandText = "select id_inscripcion_materia,condicion " +
+                                                 "from registro_materia " +
+                                                 "where id_matricula = " + matricula +
+                                                 " and  id_materia= " + curso_actual.id_curso;
+
+                    MySqlDataReader reader = MyCommand.ExecuteReader();
+
+
+
+                    if (reader.Read())
+                    {
+
+                        inscripto_tmp = new Inscripto_curso();
+                        //cargo el id de la transaccion
+                        inscripto_tmp.id_inscripcion_curso = Convert.ToInt32(reader[0].ToString());
+
+                        //cargo la condicion en que se asigno al curos
+                        inscripto_tmp.condicion = reader[1].ToString();
+
+                        //cargo la materia para registro futuro
+                        inscripto_tmp.curso_inscripto = curso_actual;
+
+
+                        listado_inscripciones.Add(inscripto_tmp);
+                        reader.Close();
+                    }
+                    else
+                    {
+                        transaccion.Rollback();
+                        matricula = -1;
+                        db_inscribe.Close();
+                    }
+                }
+
+                transaccion.Commit();
+                if (db_inscribe.State == System.Data.ConnectionState.Open)
+                    db_inscribe.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (db_inscribe.State == System.Data.ConnectionState.Open)
+                {
+                    transaccion.Rollback();
+                    db_inscribe.Close();
+                    MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado_inscripciones;
+
+
+        }
 
     }
 
