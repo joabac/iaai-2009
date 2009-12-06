@@ -1385,6 +1385,10 @@ namespace iaai.Data_base
         internal int generarMatriculaProfesorado(int id_alumno, int id_profesorado)
         {
             int matricula = -1;
+
+            if (conexion.State == System.Data.ConnectionState.Closed)
+                open_db();
+
             MySqlTransaction transaccion = conexion.BeginTransaction(); ;
             MySqlCommand MyCommand ;
             
@@ -1403,7 +1407,7 @@ namespace iaai.Data_base
                 
                 MyCommand.ExecuteNonQuery();
 
-                transaccion.Commit();
+                
 
 
 
@@ -1418,6 +1422,8 @@ namespace iaai.Data_base
                 if (reader.Read())
                 {
                     matricula = Convert.ToInt32(reader[0]);
+                    reader.Close();
+                    transaccion.Commit();
                 }
                 else
                 {
@@ -1686,8 +1692,8 @@ namespace iaai.Data_base
 
                             MyCommand.CommandText= ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, "+
                                                          " condicion) values " +
-                                                         "(" + matricula + "," + materia_actual.id_materia+","+ DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                         "," + DateTime.Now.TimeOfDay + "," + materia_actual.get_id_turno(turno) + ", " +
+                                                         "(" + matricula + "," + materia_actual.id_materia+",'"+ DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                         ",'" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno) + ", " +
                                                          "'condicional' )");
             
 

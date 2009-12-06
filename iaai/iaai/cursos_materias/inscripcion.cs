@@ -438,7 +438,7 @@ namespace iaai.cursos_materias
 
                             if (materias_inscriptas != null)
                             {
-                                DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                                 if (respuesta == DialogResult.Yes)
                                 {
                                     imprimir_reporteMaterias(materias_inscriptas);
@@ -467,7 +467,7 @@ namespace iaai.cursos_materias
                             }
                         }
                         else
-                            MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No se pudo Inscribir a las Materias seleccionadas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
 
@@ -588,21 +588,34 @@ namespace iaai.cursos_materias
             int count = 0;
             float yPos =  10;
 
-
+//-----------------------Encabezado-----------------------
             e.Graphics.DrawString("REPORTE DE INSCRIPCION", new Font("Arial Black",15), Brushes.Black,( e.MarginBounds.Left), (yPos+10), new StringFormat());
             count+= 5;
 
+//----------------------Datos del Alumno------------------
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+
+            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre()+"\r\nMatricula: "+nuevo.id_matricula;
+
+            e.Graphics.DrawString(alumno, new Font("Arial Black",12), Brushes.Black, leftMargin, yPos, new StringFormat());
+            count += 4;
+
+            e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+            count++;
+//---------------------Registro de inscripciones-----------
             foreach(Inscripto elemento in materias_inscriptas)
             {
                  yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
     
-                 cadena = "Numero de control: "+elemento.id_inscripcion_materia +"\r\nNombre Materia: "+elemento.materia_inscripta.nombre +"\r\nTurno: " + elemento.turno +"\r\nCondición: "+elemento.condicion+"\r\n\r\n";
+                 cadena = "Numero de Inscripción: "+elemento.id_inscripcion_materia +"\r\nNombre Materia: "+elemento.materia_inscripta.nombre +"\r\nTurno: " + elemento.turno +"\r\nCondición: "+elemento.condicion+"\r\n\r\n";
 
                  e.Graphics.DrawString(cadena, printFont, Brushes.Black,leftMargin,yPos,new StringFormat());
                  count+= 5;
 
                  yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
                 e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin,yPos, e.MarginBounds.Right,yPos);
+                count++;
             }
         }
 

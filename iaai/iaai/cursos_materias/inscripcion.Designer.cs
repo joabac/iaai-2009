@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.bt_cancel = new System.Windows.Forms.Button();
             this.bt_inscribe = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -72,9 +75,6 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -115,6 +115,42 @@
             this.tabPage1.Size = new System.Drawing.Size(571, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profesorados";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(145, 316);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(66, 15);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "No Inscripto";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(75, 316);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 15);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Condicional";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(20, 316);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 15);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Inscripto";
             // 
             // bt_cancel
             // 
@@ -257,7 +293,6 @@
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
             this.combo_profesorados.TabIndex = 0;
-
             this.combo_profesorados.SelectedIndexChanged += new System.EventHandler(this.lista_profesorados_SelectedIndexChanged);
             // 
             // tabPage2
@@ -531,42 +566,6 @@
             // 
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(20, 316);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(49, 15);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "Inscripto";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(86, 316);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(64, 15);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Condicional";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(170, 316);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 15);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "No Inscripto";
             // 
             // Inscripcion
             // 
