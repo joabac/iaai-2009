@@ -1522,7 +1522,7 @@ namespace iaai.Data_base
             return materias;
         }
 
-        public bool esta_Inscripto_Materia(int id_profesorado,int id_materia,int id_alumno, string turno) {
+        public bool esta_Inscripto_Materia(int id_profesorado,int id_materia,int id_alumno, string turno, string condicion) {
 
             bool esta_Inscripto = false;
             try
@@ -1537,7 +1537,7 @@ namespace iaai.Data_base
                                                           "where rm.id_matricula=m.id_matricula and t.id_turno = rm.id_turno and t.id_materia = rm.id_materia " +
                                                           "and mat.id_materia = rm.id_materia and rm.id_materia = "+id_materia+ " and turno like '"+ turno +"' " +
                                                           "and m.id_profesorado = " + id_profesorado + " and m.id_alumno = " + id_alumno +
-                                                          " and rm.condicion like 'inscripto' and rm.regular = 0 and rm.libre = 0 and rm.aprobada = 0", conexion);
+                                                          " and rm.condicion like '"+condicion+"' and rm.regular = 0 and rm.libre = 0 and rm.aprobada = 0", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Materia materia_tem = new Materia();
@@ -1693,8 +1693,8 @@ namespace iaai.Data_base
                             MyCommand.CommandText= ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, "+
                                                          " condicion) values " +
                                                          "(" + matricula + "," + materia_actual.id_materia+",'"+ DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                         ",'" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno) + ", " +
-                                                         "'condicional' )");
+                                                         "','" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno)  +
+                                                         ",'condicional' )");
             
 
                             MyCommand.ExecuteNonQuery();
@@ -1899,35 +1899,41 @@ namespace iaai.Data_base
         /// </summary>
         /// <param name="id_mat">id de la materia a verificar</param>
         /// <param name="id_matricula">id matricula del alumno</param>
-        /// <returns></returns>
-        internal bool condicional(int id_mat, int id_matricula)
+        /// <returns>-1: si no hay registro
+        /// 0: si condicional
+        /// 1: si inscripto</returns>
+        internal int condicion(int id_mat, int id_matricula)
         {
 
-            bool condicional = false;
+            int condicion = -1;
             try
             {
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                MySqlCommand condicion = new MySqlCommand("select condicion " +
+                MySqlCommand condicion_command = new MySqlCommand("select condicion " +
                                                           "from registro_materia " +
                                                           "where  id_materia = " + id_mat + " and id_matricula = " + id_matricula, conexion);
 
-                MySqlDataReader condicion_reader = condicion.ExecuteReader();
+                MySqlDataReader condicion_reader = condicion_command.ExecuteReader();
 
                 if (condicion_reader.Read())
                 {
                     string cond = condicion_reader[0].ToString();
 
                     if (cond.Contains("condicional"))
-                        condicional = true;
-                    
+                        condicion = 0;
+                    else
+                    {
+                        if (cond.Contains("inscripto"))
+                            condicion = 1;
+                    }
                 }
                 else
                 {
                     conexion.Close();
-                    return false;
+                    condicion = -1;
                 }
 
                 if (conexion.State == System.Data.ConnectionState.Open)
@@ -1939,13 +1945,13 @@ namespace iaai.Data_base
                 {
                     conexion.Close();
                     MessageBox.Show("Error de lectura en base de Datos registro materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    condicion = -1;
                 }
 
             }
 
 
-            return true;
+            return condicion;
         }
     }
 
