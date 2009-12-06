@@ -1653,6 +1653,15 @@ namespace iaai.Data_base
         
         }
 
+        /// <summary>
+        /// Registra la inscripcion de un alumno a una lista de materias
+        /// </summary>
+        /// <param name="nuevo">alumno que se inscribe</param>
+        /// <param name="id_profesorado">profesorado al que se inscribe</param>
+        /// <param name="mat_select">listado de materias a la que se inscribe el alumno</param>
+        /// <param name="turno">turno en el cual se inscribe</param>
+        /// <returns></returns>
+
         internal List<Inscripto> inscribirMaterias(Alumno nuevo, int id_profesorado, List<Materia> mat_select, string turno)
         {
 
@@ -1838,6 +1847,9 @@ namespace iaai.Data_base
             return cursos;
         }
 
+        
+
+
         public List<List<string>> getListadoCursos(string curso)
         {
             List<List<string>> listado = new List<List<string>>();
@@ -1953,6 +1965,9 @@ namespace iaai.Data_base
 
             return condicion;
         }
+
+
+
     }
 
     
