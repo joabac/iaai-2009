@@ -180,6 +180,7 @@ namespace iaai.cursos_materias
                 //Las materias que ya tiene el alumno inscriptas pero que no tienen todavia ninguna condición
                 //solo si estan en categoria inscripto
                 List<Materia> materias_Alumno = db.getMateriasAlumno(id_prof, nuevo.id_alumno);
+                nuevo.id_matricula = db.tieneMatriculaProfesorado(nuevo.id_alumno, id_prof);
 
                 if (dataGrid_Listado.Rows.Count > 0)
                     dataGrid_Listado.Rows.Clear();
@@ -194,10 +195,11 @@ namespace iaai.cursos_materias
                     {
                         foreach (Materia materia_actual in listadoMaterias)
                         {
+                            int condicion = db.condicion(materia_actual.id_materia, nuevo.id_matricula);
 
-                            if (db.esta_Inscripto_Materia(id_prof, materia_actual.id_materia, nuevo.id_alumno, "%"))
+                            if (db.esta_Inscripto_Materia(id_prof, materia_actual.id_materia, nuevo.id_alumno, "%","%") && condicion >= 0)
                             {
-                                //si entro por esta linea significa que el alumno ya esta inscripto a la materia
+                                //si entro por esta linea significa que el alumno ya esta inscripto a la materia ya sea condicional o inscripto definitivo
 
                                 string[] row = {"false",
                                         materia_actual.nombre.ToString(),
@@ -207,17 +209,18 @@ namespace iaai.cursos_materias
                                 dataGrid_Listado.Rows.Add(row);
 
                                 //si ya esta inscripto pero condicional pinto de amarillo
-                                if (db.condicional(materia_actual.id_materia, nuevo.id_matricula))
-                                {
-                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightYellow;
-                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
-                                }
-                                else //sino significa que esta inscripto pero en estado inscripto
-                                {
-                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
-                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
+                                    if (condicion == 0) //inscripto en forma condicional
+                                    {
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
+                                    }
+                                    else //inscripto en estado inscripto
+                                    {
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
                                 
-                                }
+                                    }
+                                
 
                             }
                             else
@@ -444,6 +447,7 @@ namespace iaai.cursos_materias
                                     imprimir_reporteMaterias(materias_inscriptas);
 
                                     carga_Materias();
+                                    mat_select.Clear();
                                 }
                             }
 
@@ -464,6 +468,7 @@ namespace iaai.cursos_materias
                                 imprimir_reporteMaterias(materias_inscriptas);
                                 
                                 carga_Materias();
+                                mat_select.Clear();
                             }
                         }
                         else
