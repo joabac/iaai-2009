@@ -72,6 +72,9 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -94,6 +97,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.bt_cancel);
             this.tabPage1.Controls.Add(this.bt_inscribe);
             this.tabPage1.Controls.Add(this.label4);
@@ -178,7 +184,6 @@
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
             this.combo_niveles.TabIndex = 1;
-            this.combo_niveles.SelectionChangeCommitted += new System.EventHandler(this.saltar_a_turno);
             this.combo_niveles.SelectedIndexChanged += new System.EventHandler(this.combo_niveles_SelectedIndexChanged);
             // 
             // dataGrid_Listado
@@ -191,6 +196,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGrid_Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGrid_Listado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGrid_Listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_Listado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.inscribe,
@@ -202,6 +208,8 @@
             this.dataGrid_Listado.Location = new System.Drawing.Point(6, 53);
             this.dataGrid_Listado.MultiSelect = false;
             this.dataGrid_Listado.Name = "dataGrid_Listado";
+            this.dataGrid_Listado.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_Listado.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_Listado.Size = new System.Drawing.Size(559, 257);
             this.dataGrid_Listado.TabIndex = 3;
@@ -249,7 +257,7 @@
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
             this.combo_profesorados.TabIndex = 0;
-            this.combo_profesorados.SelectionChangeCommitted += new System.EventHandler(this.saltar_a_niveles);
+
             this.combo_profesorados.SelectedIndexChanged += new System.EventHandler(this.lista_profesorados_SelectedIndexChanged);
             // 
             // tabPage2
@@ -524,6 +532,42 @@
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(20, 316);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 15);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Inscripto";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(86, 316);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 15);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Condicional";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(170, 316);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(66, 15);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "No Inscripto";
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,5 +645,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
     }
 }

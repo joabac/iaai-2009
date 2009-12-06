@@ -1444,6 +1444,13 @@ namespace iaai.Data_base
             return matricula;
         }
 
+
+        /// <summary>
+        /// Recupera las materias del alumno para un profesorado especificado
+        /// </summary>
+        /// <param name="id_profesorado"></param>
+        /// <param name="id_alumno"></param>
+        /// <returns>Listado de Materias que tiene asociadas el alumno</returns>
         internal List<Materia> getMateriasAlumno(int id_profesorado, int id_alumno )
         {
             List<Materia> materias = new List<Materia>();
@@ -1507,6 +1514,54 @@ namespace iaai.Data_base
 
 
             return materias;
+        }
+
+        public bool esta_Inscripto_Materia(int id_profesorado,int id_materia,int id_alumno, string turno) {
+
+            bool esta_Inscripto = false;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                //selecciono solo las materias del nivel y profesorado especificados
+                MySqlCommand MyCommand = new MySqlCommand("select rm.id_materia " +
+                                                          "from registro_materia rm, matricula m,materia mat,turno t " +
+                                                          "where rm.id_matricula=m.id_matricula and t.id_turno = rm.id_turno and t.id_materia = rm.id_materia " +
+                                                          "and mat.id_materia = rm.id_materia and rm.id_materia = "+id_materia+ " and turno like '"+ turno +"' " +
+                                                          "and m.id_profesorado = " + id_profesorado + " and m.id_alumno = " + id_alumno +
+                                                          " and rm.condicion like 'inscripto' and rm.regular = 0 and rm.libre = 0 and rm.aprobada = 0", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Materia materia_tem = new Materia();
+
+                if (reader.Read())
+                {
+                    esta_Inscripto = true;
+                }
+                else
+                {
+                    conexion.Close();
+                    esta_Inscripto = false;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    esta_Inscripto = false;
+                }
+
+            }
+
+
+            return esta_Inscripto;
         }
 
         /// <summary>
@@ -1830,6 +1885,61 @@ namespace iaai.Data_base
 
 
             return listado;
+        }
+
+        /// <summary>
+        /// Verifica si un alumno esta condicional en una materia
+        /// Condicional respecto a su estado de inscripcion
+        /// </summary>
+        /// <param name="id_mat">id de la materia a verificar</param>
+        /// <param name="id_matricula">id matricula del alumno</param>
+        /// <returns></returns>
+        internal bool condicional(int id_mat, int id_matricula)
+        {
+
+            bool condicional = false;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand condicion = new MySqlCommand("select condicion " +
+                                                          "from registro_materia " +
+                                                          "where  id_materia = " + id_mat + " and id_matricula = " + id_matricula, conexion);
+
+                MySqlDataReader condicion_reader = condicion.ExecuteReader();
+
+                if (condicion_reader.Read())
+                {
+                    string cond = condicion_reader[0].ToString();
+
+                    if (cond.Contains("condicional"))
+                        condicional = true;
+                    
+                }
+                else
+                {
+                    conexion.Close();
+                    return false;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos registro materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
         }
     }
 
