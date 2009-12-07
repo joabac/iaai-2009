@@ -817,9 +817,10 @@ namespace iaai.cursos_materias
                        
 
                         MessageBox.Show("Item title: " + itemChecked.ToString() +" Checked: " +
-                       checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked)).ToString() + ".");
+                       checkedList_cursos.Items.IndexOf(itemChecked));
 
-                           
+
+                        
                      }
                     }
                 return listado;
