@@ -336,6 +336,7 @@
             this.comboBoxNivel.Name = "comboBoxNivel";
             this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
             this.comboBoxNivel.TabIndex = 3;
+            this.comboBoxNivel.SelectionChangeCommitted += new System.EventHandler(this.cambia_nivel);
             // 
             // label16
             // 
@@ -353,6 +354,8 @@
             this.comboBoxArea.Name = "comboBoxArea";
             this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea.TabIndex = 1;
+            this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.cambio_area);
+            this.comboBoxArea.SelectedIndexChanged += new System.EventHandler(this.comboBoxArea_SelectedIndexChanged);
             // 
             // checkedList_cursos
             // 
