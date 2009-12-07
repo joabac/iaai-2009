@@ -2372,6 +2372,7 @@ namespace iaai.Data_base
                         curso.area = Convert.ToInt32(reader[5].ToString());
 
                         cursos.Add(curso);
+                        curso = new CursosEsp();
 
                     } while (reader.Read());
 
@@ -2420,7 +2421,7 @@ namespace iaai.Data_base
                 MySqlCommand MyCommand = new MySqlCommand("select id_curso, c.nombre, c.nivel, duracion, id_profesor, cupo, c.id_area " +
                                                           "from curso c, area a , nivel n  " +
                                                           "where c.id_area=a.id_area and c.nivel = n.nivel "+ 
-                                                          "and a.nombre like '" + area + "'" + "and n.nombre like '"+ nivel+"'", conexion);
+                                                          "and a.nombre like '" + area + "'" + " and n.nombre like '"+ nivel+"'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Curso curso = new Curso();
@@ -2437,7 +2438,9 @@ namespace iaai.Data_base
                         curso.cupo = Convert.ToInt32(reader[4].ToString());
                         curso.id_area = Convert.ToInt32(reader[5].ToString());
 
+
                         cursos.Add(curso);
+                        curso = new Curso();
 
                     } while (reader.Read());
 

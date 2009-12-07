@@ -48,6 +48,8 @@
             this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonInscribir = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxNivel = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -83,8 +85,6 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
-            this.buttonCancelar = new System.Windows.Forms.Button();
-            this.buttonInscribir = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -324,6 +324,25 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cursos";
             // 
+            // buttonInscribir
+            // 
+            this.buttonInscribir.Location = new System.Drawing.Point(389, 322);
+            this.buttonInscribir.Name = "buttonInscribir";
+            this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
+            this.buttonInscribir.TabIndex = 6;
+            this.buttonInscribir.Text = "Inscribir";
+            this.buttonInscribir.UseVisualStyleBackColor = true;
+            this.buttonInscribir.Click += new System.EventHandler(this.buttonInscribir_Click);
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Location = new System.Drawing.Point(479, 322);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -341,6 +360,7 @@
             this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
             this.comboBoxNivel.TabIndex = 3;
             this.comboBoxNivel.SelectionChangeCommitted += new System.EventHandler(this.cambia_nivel);
+
             // 
             // label16
             // 
@@ -660,25 +680,6 @@
             // 
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
-            // 
-            // buttonCancelar
-            // 
-            this.buttonCancelar.Location = new System.Drawing.Point(479, 322);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 5;
-            this.buttonCancelar.Text = "Cancelar";
-            this.buttonCancelar.UseVisualStyleBackColor = true;
-            // 
-            // buttonInscribir
-            // 
-            this.buttonInscribir.Location = new System.Drawing.Point(389, 322);
-            this.buttonInscribir.Name = "buttonInscribir";
-            this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
-            this.buttonInscribir.TabIndex = 6;
-            this.buttonInscribir.Text = "Inscribir";
-            this.buttonInscribir.UseVisualStyleBackColor = true;
-            this.buttonInscribir.Click += new System.EventHandler(this.buttonInscribir_Click);
             // 
             // Inscripcion
             // 
