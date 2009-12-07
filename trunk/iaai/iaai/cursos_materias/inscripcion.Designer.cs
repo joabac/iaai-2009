@@ -56,7 +56,7 @@
             this.comboBoxArea = new System.Windows.Forms.ComboBox();
             this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_Inscribe_Curso_Especial = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -393,7 +393,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
             this.tabPage3.Controls.Add(this.label18);
@@ -404,14 +404,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cursos Especiales";
             // 
-            // button2
+            // button_Inscribe_Curso_Especial
             // 
-            this.button2.Location = new System.Drawing.Point(400, 310);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Inscribir";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_Inscribe_Curso_Especial.Location = new System.Drawing.Point(400, 310);
+            this.button_Inscribe_Curso_Especial.Name = "button_Inscribe_Curso_Especial";
+            this.button_Inscribe_Curso_Especial.Size = new System.Drawing.Size(75, 23);
+            this.button_Inscribe_Curso_Especial.TabIndex = 8;
+            this.button_Inscribe_Curso_Especial.Text = "Inscribir";
+            this.button_Inscribe_Curso_Especial.UseVisualStyleBackColor = true;
+            this.button_Inscribe_Curso_Especial.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -796,7 +797,7 @@
         private System.Windows.Forms.ComboBox comboBoxArea_esp;
         private System.Windows.Forms.Button buttonInscribir;
         private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_Inscribe_Curso_Especial;
         private System.Windows.Forms.Button button3;
     }
 }
