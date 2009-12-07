@@ -814,16 +814,12 @@ namespace iaai.cursos_materias
                     estado = checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked));
                     if (estado == CheckState.Checked)                   
                     {                      
-                       // foreach (Curso cur_temp in listadoCursos)
-                        //{
+                       
 
-                            MessageBox.Show("Item with title: \"" + itemChecked.ToString() +
-                       "\", is checked. Checked state is: " +
+                        MessageBox.Show("Item title: " + itemChecked.ToString() +" Checked: " +
                        checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked)).ToString() + ".");
 
-                           // if (cur_temp.nombre == item.SelectedValue.ToString)
-                           //     listado.Add(cur_temp);
-                       // }
+                           
                      }
                     }
                 return listado;
