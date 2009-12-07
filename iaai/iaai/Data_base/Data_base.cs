@@ -1973,9 +1973,9 @@ namespace iaai.Data_base
         /// <returns>
         /// Retorna una lista de strings con los nombres de los cursos
         /// </returns>
-        public List<List<string>> getCursos(int area)
+        public List<Curso> getCursos(int area)
         {
-            List<List<string>> cursos = new List<List<string>>();
+            List<Curso> cursos = new List<Curso>();
 
             try
             {
@@ -1985,21 +1985,25 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select c.id_curso, c.nombre, n.nombre " +
                                                           "from curso c, nivel n " +
-                                                          "where c.nivel = n.nivel and c.id_area = area", conexion);
+                                                          "where c.nivel = n.nivel and c.id_area = "+ area, conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
-                List<string> curso;
+                Curso curso = new Curso();
 
                 if (reader.Read())
                 {
                     do
-                    {
-                        curso = new List<string>();
-                        curso.Add(reader[0].ToString());
-                        curso.Add(reader[1].ToString());
-                        curso.Add(reader[2].ToString());
+                    {    //TODO: agregar los campos faltantes
+                        curso.id_curso = Convert.ToInt32(reader[0].ToString());
+                        curso.nombre = reader[1].ToString();
+                        //curso.horas = Convert.ToInt32(reader[2].ToString());
+                        curso.id_profesor = Convert.ToInt32(reader[3].ToString());
+                        curso.cupo = Convert.ToInt32(reader[4].ToString());
+                        //curso.area = Convert.ToInt32(reader[5].ToString());
 
                         cursos.Add(curso);
+
+                        curso = new Curso();
 
                     } while (reader.Read());
 
@@ -2163,6 +2167,127 @@ namespace iaai.Data_base
 
         }
 
+
+        /// <summary>
+        /// Retorna el listado de cursosEspeciales para un area en especial 
+        /// </summary>
+        /// <returns>
+        /// Retorna una lista de Cursos existentes asociados al area
+        /// </returns>
+        public List<CursosEsp> getCursoEspecial(int area)
+        {
+            List<CursosEsp> cursos = new List<CursosEsp>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select id_curso_especial, nombre, horas_curso, id_profesor, cupo, id_area " +
+                                                          "from curso_especial c, area a " +
+                                                          "where c.id_area = a.id_area and c.id_area = " + area, conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                CursosEsp curso = new CursosEsp();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        curso.id_curso = Convert.ToInt32(reader[0].ToString());
+                        curso.nombre = reader[1].ToString();
+                        curso.horas = Convert.ToInt32(reader[2].ToString());
+                        curso.id_profesor = Convert.ToInt32(reader[3].ToString());
+                        curso.cupo = Convert.ToInt32(reader[4].ToString());
+                        curso.area = Convert.ToInt32(reader[5].ToString());
+
+                        cursos.Add(curso);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return cursos;
+        }
+
+
+        internal List<List<string>> getAreas()
+        {
+
+            List<List<string>> listado_retorno = new List<List<string>>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select id_area, nombre " +
+                                                          "from area", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                List<string> area = new List<string>();
+
+                
+                if (reader.Read())
+                {
+                    do
+                    {
+                        area.Add(reader[0].ToString());
+                        area.Add(reader[1].ToString());
+
+
+                        listado_retorno.Add(area);
+
+                        area = new List<string>();
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado_retorno;
+        }
     }
 
     
