@@ -769,6 +769,8 @@ namespace iaai.cursos_materias
 
         private void cambia_nivel(object sender, EventArgs e)
         {
+            checkedList_cursos.Items.Clear();
+
             if (comboBoxNivel != null && comboBoxArea != null)
                 carga_Combo_Cursos();
         }
@@ -802,20 +804,26 @@ namespace iaai.cursos_materias
         {
 
             List<Curso> listado = new List<Curso>();
+            CheckState estado;
 
             if(checkedList_cursos.CheckedItems.Count > 0)           
             {
-                foreach (CheckedListBox item in checkedList_cursos.CheckedItems)
+                foreach (Object itemChecked in checkedList_cursos.CheckedItems)
                 
-                {                 
-                  //  if(item.SelectedValue == true)                   
+                {
+                    estado = checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked));
+                    if (estado == CheckState.Checked)                   
                     {                      
-                        foreach (Curso cur_temp in listadoCursos)
-                        {
+                       // foreach (Curso cur_temp in listadoCursos)
+                        //{
+
+                            MessageBox.Show("Item with title: \"" + itemChecked.ToString() +
+                       "\", is checked. Checked state is: " +
+                       checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked)).ToString() + ".");
 
                            // if (cur_temp.nombre == item.SelectedValue.ToString)
-                                listado.Add(cur_temp);
-                        }
+                           //     listado.Add(cur_temp);
+                       // }
                      }
                     }
                 return listado;
@@ -823,6 +831,8 @@ namespace iaai.cursos_materias
             
             else return null;
         }
+
+       
 
         
     }
