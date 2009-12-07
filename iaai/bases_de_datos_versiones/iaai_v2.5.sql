@@ -170,6 +170,7 @@ CREATE TABLE `curso_especial` (
   `horas_curso` time NOT NULL,
   `id_profesor` int(10) unsigned NOT NULL,
   `cupo` int(10) unsigned NOT NULL,
+  `id_area` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id_curso_especial`),
   KEY `FK_curso_especial_profesor` (`id_profesor`),
   CONSTRAINT `FK_curso_especial_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id_profesor`)
@@ -229,7 +230,7 @@ CREATE TABLE `matricula` (
   KEY `FK_matricula_carrera` (`id_profesorado`) USING BTREE,
   KEY `FK_matricula_curso` (`id_curso`),
   CONSTRAINT `FK_matricula_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id_alumno`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `matricula`
@@ -237,6 +238,7 @@ CREATE TABLE `matricula` (
 
 /*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
 INSERT INTO `matricula` (`id_matricula`,`id_profesorado`,`id_alumno`,`id_curso`,`id_curso_especial`) VALUES 
+ (8,1,3,0,0),
  (3,1,5,0,0);
 /*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 
@@ -397,13 +399,22 @@ CREATE TABLE `registro_materia` (
   CONSTRAINT `FK_insc_mat_materia` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`),
   CONSTRAINT `FK_insc_mat_matricula` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`id_matricula`),
   CONSTRAINT `FK_insc_mat_turno` FOREIGN KEY (`id_turno`, `id_materia`) REFERENCES `turno` (`id_turno`, `id_materia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `registro_materia`
 --
 
 /*!40000 ALTER TABLE `registro_materia` DISABLE KEYS */;
+INSERT INTO `registro_materia` (`id_inscripcion_materia`,`id_matricula`,`id_materia`,`fecha`,`hora`,`id_turno`,`regular`,`aprobada`,`libre`,`condicion`) VALUES 
+ (31,3,3,'2009-12-06','17:58:00',3,0,0,0,'inscripto'),
+ (32,3,5,'2009-12-06','17:58:00',5,0,0,0,'inscripto'),
+ (33,3,4,'2009-12-06','17:59:00',4,0,0,0,'inscripto'),
+ (34,8,3,'2009-12-06','17:59:00',3,0,0,0,'condicional'),
+ (35,8,5,'2009-12-06','17:59:00',5,0,0,0,'inscripto'),
+ (36,3,2,'2009-12-06','18:44:00',2,0,0,0,'inscripto'),
+ (37,8,2,'2009-12-06','22:04:00',2,0,0,0,'inscripto'),
+ (38,3,1,'2009-12-06','22:10:00',1,0,0,0,'inscripto');
 /*!40000 ALTER TABLE `registro_materia` ENABLE KEYS */;
 
 
@@ -458,7 +469,7 @@ CREATE TABLE `turno` (
 INSERT INTO `turno` (`id_turno`,`id_profesor`,`turno`,`cupo`,`id_materia`) VALUES 
  (1,1,'mañana',25,1),
  (2,1,'tarde',30,2),
- (3,41,'mañana',25,3),
+ (3,41,'mañana',1,3),
  (4,41,'tarde',30,4),
  (5,43,'mañana',25,5),
  (6,42,'noche',25,3);
