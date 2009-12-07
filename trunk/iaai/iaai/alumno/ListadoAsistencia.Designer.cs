@@ -39,7 +39,6 @@ namespace iaai.alumno
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.curso = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboTurno = new System.Windows.Forms.ComboBox();
             this.combo_niveles = new System.Windows.Forms.ComboBox();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,6 +52,13 @@ namespace iaai.alumno
             this.curso_nivel = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.generar = new System.Windows.Forms.Button();
+            this.comboBoxArea = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBoxArea_esp = new System.Windows.Forms.ComboBox();
+            this.comboTurno = new System.Windows.Forms.ComboBox();
+            this.comboMaterias = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,56 +142,44 @@ namespace iaai.alumno
             // 
             this.curso.Enabled = false;
             this.curso.FormattingEnabled = true;
-            this.curso.Location = new System.Drawing.Point(177, 40);
+            this.curso.Location = new System.Drawing.Point(389, 40);
             this.curso.Name = "curso";
-            this.curso.Size = new System.Drawing.Size(161, 21);
+            this.curso.Size = new System.Drawing.Size(119, 21);
             this.curso.TabIndex = 4;
-            this.curso.SelectionChangeCommitted += new System.EventHandler(this.curso_SelectionChangeCommitted);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(176, 22);
+            this.label1.Location = new System.Drawing.Point(388, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Curso";
             // 
-            // comboTurno
-            // 
-            this.comboTurno.Enabled = false;
-            this.comboTurno.FormattingEnabled = true;
-            this.comboTurno.Items.AddRange(new object[] {
-            "mañana",
-            "tarde",
-            "noche"});
-            this.comboTurno.Location = new System.Drawing.Point(471, 136);
-            this.comboTurno.Name = "comboTurno";
-            this.comboTurno.Size = new System.Drawing.Size(119, 21);
-            this.comboTurno.TabIndex = 8;
-            // 
             // combo_niveles
             // 
             this.combo_niveles.Enabled = false;
             this.combo_niveles.FormattingEnabled = true;
-            this.combo_niveles.Location = new System.Drawing.Point(344, 136);
+            this.combo_niveles.Location = new System.Drawing.Point(262, 136);
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
             this.combo_niveles.TabIndex = 7;
+            this.combo_niveles.SelectionChangeCommitted += new System.EventHandler(this.combo_niveles_SelectionChangeCommitted);
             // 
             // combo_profesorados
             // 
             this.combo_profesorados.Enabled = false;
             this.combo_profesorados.FormattingEnabled = true;
-            this.combo_profesorados.Location = new System.Drawing.Point(177, 136);
+            this.combo_profesorados.Location = new System.Drawing.Point(95, 136);
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
             this.combo_profesorados.TabIndex = 6;
+            this.combo_profesorados.SelectionChangeCommitted += new System.EventHandler(this.combo_profesorados_SelectionChangeCommitted);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(468, 120);
+            this.label4.Location = new System.Drawing.Point(386, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 11;
@@ -194,7 +188,7 @@ namespace iaai.alumno
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(341, 120);
+            this.label3.Location = new System.Drawing.Point(259, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 10;
@@ -203,7 +197,7 @@ namespace iaai.alumno
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(174, 120);
+            this.label2.Location = new System.Drawing.Point(92, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 9;
@@ -213,15 +207,15 @@ namespace iaai.alumno
             // 
             this.cursoE.Enabled = false;
             this.cursoE.FormattingEnabled = true;
-            this.cursoE.Location = new System.Drawing.Point(177, 89);
+            this.cursoE.Location = new System.Drawing.Point(262, 89);
             this.cursoE.Name = "cursoE";
-            this.cursoE.Size = new System.Drawing.Size(161, 21);
+            this.cursoE.Size = new System.Drawing.Size(121, 21);
             this.cursoE.TabIndex = 12;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(174, 73);
+            this.label5.Location = new System.Drawing.Point(259, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 13;
@@ -230,7 +224,7 @@ namespace iaai.alumno
             // seleccionCurso
             // 
             this.seleccionCurso.AutoSize = true;
-            this.seleccionCurso.Location = new System.Drawing.Point(157, 43);
+            this.seleccionCurso.Location = new System.Drawing.Point(75, 43);
             this.seleccionCurso.Name = "seleccionCurso";
             this.seleccionCurso.Size = new System.Drawing.Size(14, 13);
             this.seleccionCurso.TabIndex = 14;
@@ -241,7 +235,7 @@ namespace iaai.alumno
             // seleccionCursoE
             // 
             this.seleccionCursoE.AutoSize = true;
-            this.seleccionCursoE.Location = new System.Drawing.Point(157, 92);
+            this.seleccionCursoE.Location = new System.Drawing.Point(75, 92);
             this.seleccionCursoE.Name = "seleccionCursoE";
             this.seleccionCursoE.Size = new System.Drawing.Size(14, 13);
             this.seleccionCursoE.TabIndex = 15;
@@ -252,7 +246,7 @@ namespace iaai.alumno
             // seleccionMateria
             // 
             this.seleccionMateria.AutoSize = true;
-            this.seleccionMateria.Location = new System.Drawing.Point(157, 139);
+            this.seleccionMateria.Location = new System.Drawing.Point(75, 139);
             this.seleccionMateria.Name = "seleccionMateria";
             this.seleccionMateria.Size = new System.Drawing.Size(14, 13);
             this.seleccionMateria.TabIndex = 16;
@@ -264,7 +258,7 @@ namespace iaai.alumno
             // 
             this.curso_nivel.Enabled = false;
             this.curso_nivel.FormattingEnabled = true;
-            this.curso_nivel.Location = new System.Drawing.Point(344, 40);
+            this.curso_nivel.Location = new System.Drawing.Point(262, 40);
             this.curso_nivel.Name = "curso_nivel";
             this.curso_nivel.Size = new System.Drawing.Size(121, 21);
             this.curso_nivel.TabIndex = 17;
@@ -273,7 +267,7 @@ namespace iaai.alumno
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(341, 22);
+            this.label6.Location = new System.Drawing.Point(259, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 18;
@@ -289,11 +283,89 @@ namespace iaai.alumno
             this.generar.UseVisualStyleBackColor = true;
             this.generar.Click += new System.EventHandler(this.generar_Click);
             // 
+            // comboBoxArea
+            // 
+            this.comboBoxArea.Enabled = false;
+            this.comboBoxArea.FormattingEnabled = true;
+            this.comboBoxArea.Location = new System.Drawing.Point(95, 40);
+            this.comboBoxArea.Name = "comboBoxArea";
+            this.comboBoxArea.Size = new System.Drawing.Size(161, 21);
+            this.comboBoxArea.TabIndex = 20;
+            this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.comboBoxArea_SelectionChangeCommitted);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(92, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Area";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(92, 73);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 13);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Area";
+            // 
+            // comboBoxArea_esp
+            // 
+            this.comboBoxArea_esp.Enabled = false;
+            this.comboBoxArea_esp.FormattingEnabled = true;
+            this.comboBoxArea_esp.Location = new System.Drawing.Point(95, 89);
+            this.comboBoxArea_esp.Name = "comboBoxArea_esp";
+            this.comboBoxArea_esp.Size = new System.Drawing.Size(161, 21);
+            this.comboBoxArea_esp.TabIndex = 22;
+            this.comboBoxArea_esp.SelectionChangeCommitted += new System.EventHandler(this.comboBoxArea_esp_SelectionChangeCommitted);
+            // 
+            // comboTurno
+            // 
+            this.comboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTurno.Enabled = false;
+            this.comboTurno.FormattingEnabled = true;
+            this.comboTurno.Items.AddRange(new object[] {
+            "mañana",
+            "tarde",
+            "noche"});
+            this.comboTurno.Location = new System.Drawing.Point(389, 136);
+            this.comboTurno.Name = "comboTurno";
+            this.comboTurno.Size = new System.Drawing.Size(119, 21);
+            this.comboTurno.TabIndex = 24;
+            this.comboTurno.SelectionChangeCommitted += new System.EventHandler(this.comboTurno_SelectionChangeCommitted);
+            // 
+            // comboMaterias
+            // 
+            this.comboMaterias.Enabled = false;
+            this.comboMaterias.FormattingEnabled = true;
+            this.comboMaterias.Location = new System.Drawing.Point(514, 136);
+            this.comboMaterias.Name = "comboMaterias";
+            this.comboMaterias.Size = new System.Drawing.Size(121, 21);
+            this.comboMaterias.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(511, 120);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Materia";
+            // 
             // ListadoAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 784);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.comboMaterias);
+            this.Controls.Add(this.comboTurno);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.comboBoxArea_esp);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxArea);
             this.Controls.Add(this.generar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.curso_nivel);
@@ -305,7 +377,6 @@ namespace iaai.alumno
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboTurno);
             this.Controls.Add(this.combo_niveles);
             this.Controls.Add(this.combo_profesorados);
             this.Controls.Add(this.label1);
@@ -336,7 +407,6 @@ namespace iaai.alumno
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;
         private System.Windows.Forms.ComboBox curso;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.ComboBox combo_niveles;
         private System.Windows.Forms.ComboBox combo_profesorados;
         private System.Windows.Forms.Label label4;
@@ -350,6 +420,13 @@ namespace iaai.alumno
         private System.Windows.Forms.ComboBox curso_nivel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button generar;
+        private System.Windows.Forms.ComboBox comboBoxArea;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBoxArea_esp;
+        private System.Windows.Forms.ComboBox comboTurno;
+        private System.Windows.Forms.ComboBox comboMaterias;
+        private System.Windows.Forms.Label label8;
 
     }
 }

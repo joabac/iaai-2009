@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using iaai.metodos_comunes;
 using System.Drawing.Printing;
+using iaai.cursos_materias;
 
 namespace iaai.alumno
 {
@@ -17,13 +18,15 @@ namespace iaai.alumno
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<List<string>> listado;
         DataGridViewPrinter MyDataGridViewPrinter;
-        List<List<string>> cursos;
+        List<List<string>> cursos = null;
+        List<List<string>> cursosEsp = null;
+        List<List<string>> materias = null;
 
 
         public ListadoAsistencia()
         {
             InitializeComponent();
-            cargarCursos();
+
         }
 
         private void cargarTabla()
@@ -100,23 +103,40 @@ namespace iaai.alumno
             return true;
         }
 
-        private void curso_SelectionChangeCommitted(object sender, EventArgs e)
+
+        private void cargarAreas()
         {
-            cargarNiveles();
-            
+            curso.Items.Clear();
+            curso_nivel.Items.Clear();
+            if (cursos == null)
+            {
+                cursos = db.getCursos();
+            }
+            foreach (List<string> c in cursos)
+            {
+                if (!comboBoxArea.Items.Contains(c[3]))
+                {
+                    comboBoxArea.Items.Add(c[3]);
+                }
+            }
+            curso_nivel.Text = null;
+            curso.Text = null;
         }
 
         private void cargarCursos()
         {
-            cursos = db.getCursos();
-
+            curso.Items.Clear();
             foreach (List<string> c in cursos)
             {
-                if (!curso.Items.Contains(c[1]))
+                if (comboBoxArea.SelectedItem != null && curso_nivel.SelectedItem != null)
                 {
-                    curso.Items.Add(c[1]);
+                    if (comboBoxArea.SelectedItem.ToString().Equals(c[3]) && curso_nivel.SelectedItem.ToString().Equals(c[2]))
+                    {
+                        curso.Items.Add(c[1]);
+                    }
                 }
             }
+            curso.Text = null;
 
         }
 
@@ -125,9 +145,9 @@ namespace iaai.alumno
             curso_nivel.Items.Clear();
             foreach (List<string> c in cursos)
             {
-                if (curso.SelectedItem != null)
+                if (comboBoxArea.SelectedItem != null)
                 {
-                    if (curso.SelectedItem.ToString().Equals(c[1]))
+                    if (comboBoxArea.SelectedItem.ToString().Equals(c[3]))
                     {
                         curso_nivel.Items.Add(c[2]);
                     }
@@ -136,26 +156,101 @@ namespace iaai.alumno
             curso_nivel.Text = null;
         }
 
+        private void cargarAreasEsp()
+        {
+            
+            comboBoxArea_esp.Items.Clear();
+            if (cursosEsp == null)
+            {
+                cursosEsp = db.getCursosEsp();
+            }
+            foreach (List<string> c in cursosEsp)
+            {
+                if (!comboBoxArea_esp.Items.Contains(c[2]))
+                {
+                    comboBoxArea_esp.Items.Add(c[2]);
+                }
+            }
+            comboBoxArea_esp.Text = null;
+        }
+
+        private void cargarCursosEsp()
+        {
+            cursoE.Items.Clear();
+            foreach (List<string> c in cursosEsp)
+            {
+                if (comboBoxArea_esp.SelectedItem != null)
+                {
+                    if (comboBoxArea_esp.SelectedItem.ToString().Equals(c[2]))
+                    {
+                        cursoE.Items.Add(c[1]);
+                    }
+                }
+            }
+            cursoE.Text = null;
+        }
+
+        private void cargarProfesorados()
+        {
+            combo_niveles.Items.Clear();
+            if (materias == null)
+            {
+                materias = db.getMaterias();
+            }
+            foreach (List<string> m in materias)
+            {
+                if (!combo_profesorados.Items.Contains(m[0]))
+                {
+                    combo_profesorados.Items.Add(m[0]);
+                }
+            }
+            combo_niveles.Text = null;
+            comboTurno.Text = null;
+        }
+
+        private void cargarMaterias()
+        {
+            comboMaterias.Items.Clear();
+
+            foreach (List<string> m in materias)
+            {
+                if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null)
+                {
+                    if (combo_profesorados.SelectedItem.ToString().Equals(m[0]) && combo_niveles.SelectedItem.ToString().Equals(m[4]))
+                    {
+                        comboMaterias.Items.Add(m[3]);
+                    }
+                }
+            }
+            comboMaterias.Text = null;
+
+        }
+
         private void curso_nivel_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            listado = db.listaAsistencia(curso.SelectedIndex);
-            cargarTabla();
+            cargarCursos();
         }
 
         private void seleccionCurso_CheckedChanged(object sender, EventArgs e)
         {
             if (seleccionCurso.Checked)
             {
+                cargarAreas();
                 curso.Enabled = true;
                 curso_nivel.Enabled = true;
+                comboBoxArea.Enabled = true;
                 cursoE.Enabled = false;
+                comboBoxArea_esp.Enabled = false;
                 cursoE.SelectedItem = null;
+                comboBoxArea_esp.SelectedItem = null;
                 combo_profesorados.Enabled = false;
                 combo_niveles.Enabled = false;
                 comboTurno.Enabled = false;
+                comboMaterias.Enabled = false;
                 combo_profesorados.SelectedItem = null;
                 combo_niveles.SelectedItem = null;
                 comboTurno.SelectedItem = null;
+                comboMaterias.SelectedItem = null;
             }
         }
 
@@ -163,17 +258,23 @@ namespace iaai.alumno
         {
             if (seleccionCursoE.Checked)
             {
+                cargarAreasEsp();
                 curso.Enabled = false;
                 curso_nivel.Enabled = false;
+                comboBoxArea.Enabled = false;
                 curso.SelectedItem = null;
                 curso_nivel.SelectedItem = null;
+                comboBoxArea.SelectedItem = null;
                 cursoE.Enabled = true;
+                comboBoxArea_esp.Enabled = true;
                 combo_profesorados.Enabled = false;
                 combo_niveles.Enabled = false;
                 comboTurno.Enabled = false;
+                comboMaterias.Enabled = false;
                 combo_profesorados.SelectedItem = null;
                 combo_niveles.SelectedItem = null;
                 comboTurno.SelectedItem = null;
+                comboMaterias.SelectedItem = null;
             }
         }
 
@@ -181,23 +282,30 @@ namespace iaai.alumno
         {
             if (seleccionMateria.Checked)
             {
+                cargarProfesorados();
                 curso.Enabled = false;
                 curso_nivel.Enabled = false;
+                comboBoxArea.Enabled = false;
                 curso.SelectedItem = null;
                 curso_nivel.SelectedItem = null;
+                comboBoxArea.SelectedItem = null;
                 cursoE.Enabled = false;
+                comboBoxArea_esp.Enabled = false;
                 cursoE.SelectedItem = null;
+                comboBoxArea_esp.SelectedItem = null;
                 combo_profesorados.Enabled = true;
                 combo_niveles.Enabled = true;
                 comboTurno.Enabled = true;
+                comboMaterias.Enabled = true;
             }
         }
 
         private void generar_Click(object sender, EventArgs e)
         {
+            listado = null;
             if (seleccionCurso.Checked)
             {
-                if (curso.SelectedItem != null && curso_nivel.SelectedItem != null)
+                if (comboBoxArea.SelectedItem != null && curso.SelectedItem != null && curso_nivel.SelectedItem != null)
                 {
                     listado = db.getListadoCursos(obtenerIdCurso());
                     if (listado != null)
@@ -207,7 +315,37 @@ namespace iaai.alumno
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un curso y un nivel para el curso.");
+                    MessageBox.Show("Debe seleccionar un área, un nivel y un curso para obtener el listado.");
+                }
+            }
+            else if (seleccionCursoE.Checked)
+            {
+                if (comboBoxArea_esp.SelectedItem != null && cursoE.SelectedItem != null)
+                {
+                    listado = db.getListadoCursosEspeciales(obtenerIdCursoEsp());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                        MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un área y un curso especial para obtener el listado.");
+                }
+            }
+            else if (seleccionMateria.Checked)
+            {
+                if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null && comboMaterias.SelectedItem != null)
+                {
+                    listado = db.getListadoMateria(obtenerIdMateria(), comboTurno.SelectedItem.ToString());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                        MessageBox.Show("No existen alumnos regulares para la materia seleccionada.");
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un profesorado, un nivel, un turno \ny una materia para obtener el listado.");
                 }
             }
         }
@@ -220,6 +358,73 @@ namespace iaai.alumno
                     return c[0];
             }
             return "-1";
+        }
+
+        private string obtenerIdCursoEsp()
+        {
+            foreach (List<string> c in cursosEsp)
+            {
+                if (c[1].Equals(cursoE.SelectedItem.ToString()) && c[2].Equals(comboBoxArea_esp.SelectedItem.ToString()))
+                    return c[0];
+            }
+            return "-1";
+        }
+
+        private string obtenerIdMateria()
+        {
+            foreach (List<string> m in materias)
+            {
+                if (m[0].Equals(combo_profesorados.SelectedItem.ToString()) && m[4].Equals(combo_niveles.SelectedItem.ToString()) && m[3].Equals(comboMaterias.SelectedItem.ToString()))
+                    return m[2];
+            }
+            return "-1";
+        }
+
+        private void comboBoxArea_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cargarNiveles();
+        }
+
+        private void comboBoxArea_esp_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cargarCursosEsp();
+        }
+
+        private void combo_profesorados_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            combo_niveles.Items.Clear();
+            comboMaterias.Items.Clear();
+            if (combo_profesorados.SelectedItem != null)
+            {
+                foreach (List<string> m in materias)
+                {
+                    if (m[0].Equals(combo_profesorados.SelectedItem.ToString()))
+                    {
+                        for (int i = 1; i <= Convert.ToInt32(m[1]); i++)
+                        {
+                            combo_niveles.Items.Add(i);
+                        }
+                        break;
+                    }
+                }
+                
+
+                combo_niveles.SelectedItem = null;
+                comboTurno.SelectedItem = null;
+                comboMaterias.SelectedItem = null;
+            }
+        }
+
+        private void comboTurno_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cargarMaterias();
+        }
+
+        private void combo_niveles_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            comboTurno.SelectedItem = null;
+            comboMaterias.Items.Clear();
+            comboMaterias.Text = null;
         }
 
         
