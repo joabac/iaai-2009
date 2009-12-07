@@ -56,6 +56,8 @@
             this.comboBoxArea = new System.Windows.Forms.ComboBox();
             this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBoxArea_esp = new System.Windows.Forms.ComboBox();
@@ -326,7 +328,7 @@
             // 
             // buttonInscribir
             // 
-            this.buttonInscribir.Location = new System.Drawing.Point(389, 322);
+            this.buttonInscribir.Location = new System.Drawing.Point(400, 310);
             this.buttonInscribir.Name = "buttonInscribir";
             this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
             this.buttonInscribir.TabIndex = 6;
@@ -336,7 +338,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(479, 322);
+            this.buttonCancelar.Location = new System.Drawing.Point(490, 310);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 5;
@@ -360,7 +362,6 @@
             this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
             this.comboBoxNivel.TabIndex = 3;
             this.comboBoxNivel.SelectionChangeCommitted += new System.EventHandler(this.cambia_nivel);
-
             // 
             // label16
             // 
@@ -384,7 +385,7 @@
             // checkedList_cursos
             // 
             this.checkedList_cursos.FormattingEnabled = true;
-            this.checkedList_cursos.Location = new System.Drawing.Point(195, 0);
+            this.checkedList_cursos.Location = new System.Drawing.Point(202, 0);
             this.checkedList_cursos.Name = "checkedList_cursos";
             this.checkedList_cursos.Size = new System.Drawing.Size(373, 304);
             this.checkedList_cursos.TabIndex = 0;
@@ -392,6 +393,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
             this.tabPage3.Controls.Add(this.label18);
             this.tabPage3.Controls.Add(this.comboBoxArea_esp);
@@ -401,12 +404,30 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cursos Especiales";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(400, 310);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Inscribir";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(490, 310);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Cancelar";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // checkedList_cursosEsp
             // 
             this.checkedList_cursosEsp.FormattingEnabled = true;
-            this.checkedList_cursosEsp.Location = new System.Drawing.Point(195, 3);
+            this.checkedList_cursosEsp.Location = new System.Drawing.Point(202, 0);
             this.checkedList_cursosEsp.Name = "checkedList_cursosEsp";
-            this.checkedList_cursosEsp.Size = new System.Drawing.Size(373, 349);
+            this.checkedList_cursosEsp.Size = new System.Drawing.Size(373, 304);
             this.checkedList_cursosEsp.TabIndex = 4;
             // 
             // label18
@@ -775,5 +796,7 @@
         private System.Windows.Forms.ComboBox comboBoxArea_esp;
         private System.Windows.Forms.Button buttonInscribir;
         private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
