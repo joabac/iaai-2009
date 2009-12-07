@@ -931,7 +931,7 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, direccion from alumno where id_alumno IN(select id_alumno from matricula);", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, direccion from alumno where id_alumno IN(select id_alumno from matricula) order by apellido asc;", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
                 while (MyDataReader.Read())
                 {
@@ -2152,10 +2152,9 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-
                 MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
-                                                          "from alumno a, inscripcion_materia i, turno t, matricula m " +
-                                                          "where i.id_materia = '" + id_materia + "' AND t.turno = '" + turno + "' AND t.id_turno = i.id_turno  AND i.id_matricula = m.id_matricula AND m.condicion = 'regular'", conexion);
+                                                          "from alumno a, registro_materia r, turno t, matricula m " +
+                                                          "where r.id_materia = '" + id_materia + "' AND t.turno = '" + turno + "' AND t.id_materia = '" + id_materia + "' AND t.id_turno = r.id_turno  AND r.condicion = 'inscripto' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 List<string> alumno;

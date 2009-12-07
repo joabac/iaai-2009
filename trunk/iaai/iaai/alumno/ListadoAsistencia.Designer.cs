@@ -323,7 +323,6 @@ namespace iaai.alumno
             // 
             // comboTurno
             // 
-            this.comboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTurno.Enabled = false;
             this.comboTurno.FormattingEnabled = true;
             this.comboTurno.Items.AddRange(new object[] {
@@ -358,7 +357,7 @@ namespace iaai.alumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 784);
+            this.ClientSize = new System.Drawing.Size(717, 778);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboMaterias);
             this.Controls.Add(this.comboTurno);
