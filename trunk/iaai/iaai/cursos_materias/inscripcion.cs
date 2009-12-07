@@ -278,9 +278,11 @@ namespace iaai.cursos_materias
 
                     if (busca_apellido.DroppedDown == true)
                         busca_apellido.DroppedDown = false;
+
+                    nuevo = null;
                 }
 
-                if (alumnos_encontrados != null) //si hay proefesores en Lista<Profesor>
+                if (alumnos_encontrados != null) //si hay alumnos en Lista<Alumno>
                 {
                     if (e.KeyCode == Keys.Enter && alumnos_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
                     {
@@ -303,7 +305,10 @@ namespace iaai.cursos_materias
                             carga_Materias();
                         }
                         else
+                        {
+                            nuevo = null;
                             panel_datos.Enabled = false;
+                        }
                     }
 
                 }
@@ -392,10 +397,14 @@ namespace iaai.cursos_materias
                                 nuevo = buscado;
                             }
                             else
+                            {
+                                nuevo = null;
                                 panel_datos.Enabled = false;
+                            }
                     }
                     else
                     {
+                        nuevo = null;
                         MessageBox.Show("El DNI ingresado es incorrecto");
                     }
                 }
@@ -636,6 +645,48 @@ namespace iaai.cursos_materias
                 return true;
             else
                 return false;
+        }
+
+        private void cargar_al_salir(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (alumnos_encontrados != null) //si hay alumnos en Lista<Alumno>
+                {
+                    if (alumnos_encontrados.Count > 0 && busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) //si presionan enter
+                    {
+                        //Busco el alumno por los datos especificos
+                        Alumno alumno = db.Buscar_Alumno((alumnos_encontrados[busca_apellido.SelectedIndex]).getDni());
+
+                        if (alumno != null)
+                        {
+                            //cargo los textboxes
+                            nombre.Text = alumno.getNombre();
+                            apellido.Text = alumno.getApellido();
+                            dni.Text = alumno.getDni();
+                            fecha_nacimiento.Text = alumno.getFecha_nac().ToString();
+                            telefono_carac.Text = alumno.getTelefono_carac().ToString();
+                            telefono_numero.Text = alumno.getTelefono_numero().ToString();
+                            direccion.Text = alumno.getDireccion();
+                            //email.Text = alumno.getEmail();
+                            panel_datos.Enabled = true; //habilito el panel de datos
+                            nuevo = alumno;
+                            carga_Materias();
+                        }
+                        else
+                        {
+                            nuevo = null;
+                            panel_datos.Enabled = false;
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //capturo excepciones para evitar salidas abruptas
+            }
         }
         
 

@@ -48,7 +48,15 @@
             this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBoxNivel = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBoxArea = new System.Windows.Forms.ComboBox();
+            this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.busca_apellido = new System.Windows.Forms.ComboBox();
@@ -75,15 +83,11 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
-            this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
-            this.comboBoxArea = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.comboBoxNivel = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_datos.SuspendLayout();
             this.SuspendLayout();
@@ -316,14 +320,84 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cursos";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(21, 78);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(31, 13);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Nivel";
+            // 
+            // comboBoxNivel
+            // 
+            this.comboBoxNivel.FormattingEnabled = true;
+            this.comboBoxNivel.Location = new System.Drawing.Point(24, 91);
+            this.comboBoxNivel.Name = "comboBoxNivel";
+            this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
+            this.comboBoxNivel.TabIndex = 3;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(21, 24);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Area";
+            // 
+            // comboBoxArea
+            // 
+            this.comboBoxArea.FormattingEnabled = true;
+            this.comboBoxArea.Location = new System.Drawing.Point(24, 40);
+            this.comboBoxArea.Name = "comboBoxArea";
+            this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
+            this.comboBoxArea.TabIndex = 1;
+            // 
+            // checkedList_cursos
+            // 
+            this.checkedList_cursos.FormattingEnabled = true;
+            this.checkedList_cursos.Location = new System.Drawing.Point(195, 0);
+            this.checkedList_cursos.Name = "checkedList_cursos";
+            this.checkedList_cursos.Size = new System.Drawing.Size(373, 349);
+            this.checkedList_cursos.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
+            this.tabPage3.Controls.Add(this.label18);
+            this.tabPage3.Controls.Add(this.comboBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(571, 352);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cursos Especiales";
+            // 
+            // checkedList_cursosEsp
+            // 
+            this.checkedList_cursosEsp.FormattingEnabled = true;
+            this.checkedList_cursosEsp.Location = new System.Drawing.Point(195, 3);
+            this.checkedList_cursosEsp.Name = "checkedList_cursosEsp";
+            this.checkedList_cursosEsp.Size = new System.Drawing.Size(373, 349);
+            this.checkedList_cursosEsp.TabIndex = 4;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(21, 24);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 13);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Area";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(24, 40);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(165, 21);
+            this.comboBox1.TabIndex = 0;
             // 
             // label2
             // 
@@ -350,6 +424,7 @@
             this.busca_apellido.Name = "busca_apellido";
             this.busca_apellido.Size = new System.Drawing.Size(203, 21);
             this.busca_apellido.TabIndex = 0;
+            this.busca_apellido.Leave += new System.EventHandler(this.cargar_al_salir);
             this.busca_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);
             this.busca_apellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cargar);
             // 
@@ -578,48 +653,6 @@
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
-            // checkedList_cursos
-            // 
-            this.checkedList_cursos.FormattingEnabled = true;
-            this.checkedList_cursos.Location = new System.Drawing.Point(251, 6);
-            this.checkedList_cursos.Name = "checkedList_cursos";
-            this.checkedList_cursos.Size = new System.Drawing.Size(314, 334);
-            this.checkedList_cursos.TabIndex = 0;
-            // 
-            // comboBoxArea
-            // 
-            this.comboBoxArea.FormattingEnabled = true;
-            this.comboBoxArea.Location = new System.Drawing.Point(24, 43);
-            this.comboBoxArea.Name = "comboBoxArea";
-            this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
-            this.comboBoxArea.TabIndex = 1;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(21, 28);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 13);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "Area";
-            // 
-            // comboBoxNivel
-            // 
-            this.comboBoxNivel.FormattingEnabled = true;
-            this.comboBoxNivel.Location = new System.Drawing.Point(24, 91);
-            this.comboBoxNivel.Name = "comboBoxNivel";
-            this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
-            this.comboBoxNivel.TabIndex = 3;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(21, 78);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(31, 13);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Nivel";
-            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -645,6 +678,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel_datos.ResumeLayout(false);
             this.panel_datos.PerformLayout();
@@ -707,5 +742,8 @@
         private System.Windows.Forms.ComboBox comboBoxNivel;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox comboBoxArea;
+        private System.Windows.Forms.CheckedListBox checkedList_cursosEsp;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
