@@ -163,6 +163,26 @@ namespace iaai
             listado_asistencia.Show();
         }
 
+        private void consultarAlumnoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consulta_Alumno consulta_alumno = new Consulta_Alumno();
+
+            consulta_alumno.Parent = this.Parent;
+            consulta_alumno.MdiParent = this;
+
+            consulta_alumno.Show();
+        }
+
+        private void consultarResponsableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consulta_Responsable consulta_responsable = new Consulta_Responsable();
+
+            consulta_responsable.Parent = this.Parent;
+            consulta_responsable.MdiParent = this;
+
+            consulta_responsable.Show();
+        }
+
 
         
     }

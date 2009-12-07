@@ -78,6 +78,12 @@
       <DependentUpon>AltaAlumno.cs</DependentUpon>
     </Compile>
     <Compile Include="alumno\Alumno.cs" />
+    <Compile Include="alumno\Consulta_Alumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="alumno\Consulta_Alumno.Designer.cs">
+      <DependentUpon>Consulta_Alumno.cs</DependentUpon>
+    </Compile>
     <Compile Include="alumno\Eliminar_Alumno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,10 @@
       <DependentUpon>AltaAlumno.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="alumno\Consulta_Alumno.resx">
+      <DependentUpon>Consulta_Alumno.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="alumno\Eliminar_Alumno.resx">
       <DependentUpon>Eliminar_Alumno.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -208,6 +218,10 @@
       <DependentUpon>AsignarResponsable.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="responsable\Consulta_Responsable.resx">
+      <DependentUpon>Consulta_Responsable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="responsable\Eliminar_Responsable.resx">
       <DependentUpon>Eliminar_Responsable.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -240,6 +254,12 @@
     </Compile>
     <Compile Include="responsable\AsignarResponsable.Designer.cs">
       <DependentUpon>AsignarResponsable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="responsable\Consulta_Responsable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="responsable\Consulta_Responsable.Designer.cs">
+      <DependentUpon>Consulta_Responsable.cs</DependentUpon>
     </Compile>
     <Compile Include="responsable\Eliminar_Responsable.cs">
       <SubType>Form</SubType>

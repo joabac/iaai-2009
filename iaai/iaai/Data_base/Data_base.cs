@@ -1098,6 +1098,68 @@ namespace iaai.Data_base
             return alum;
         }
 
+        internal List<Responsable> Buscar_Responsable_Por_apellido(string apellido)
+        {
+            List<Responsable> responsables = new List<Responsable>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion " +
+                                                          "from responsable " +
+                                                          "where apellido_respon like '" + apellido + "%'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Responsable respon_tem = new Responsable();
+
+
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        respon_tem.setIdResponsable(Convert.ToInt32(reader[0]));
+                        respon_tem.setNombre(reader[1].ToString());
+                        respon_tem.setApellido(reader[2].ToString());
+                        respon_tem.setDni(Convert.ToInt32(reader[3]));
+                        respon_tem.setTelefono_carac(Convert.ToInt32(reader[4]));
+                        respon_tem.setTelefono_numero(Convert.ToInt32(reader[5]));
+                        respon_tem.setFecha_nac(Convert.ToDateTime(reader[6]));
+                        respon_tem.setDireccion(reader[7].ToString());
+
+                        responsables.Add(respon_tem); //agrega a la lista de retorno
+
+                        respon_tem = new Responsable();
+
+                    } while (reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Responsables: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return responsables;
+        }
+
+
 
 
         internal List<Profesorado> getCarreras()
