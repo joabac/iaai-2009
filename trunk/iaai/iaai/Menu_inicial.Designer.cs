@@ -44,6 +44,7 @@ namespace iaai
             this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarCursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoSeguroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoAsistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profesoresMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaProfesorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@ namespace iaai
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoAsistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,7 @@ namespace iaai
             // 
             // menu
             // 
+            this.menu.AutoSize = false;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alumnosMenu,
             this.profesoresMenu,
@@ -174,6 +175,13 @@ namespace iaai
             this.listadoSeguroToolStripMenuItem.Text = "Listado Seguro";
             this.listadoSeguroToolStripMenuItem.Click += new System.EventHandler(this.listadoSeguroToolStripMenuItem_Click);
             // 
+            // listadoAsistenciaToolStripMenuItem
+            // 
+            this.listadoAsistenciaToolStripMenuItem.Name = "listadoAsistenciaToolStripMenuItem";
+            this.listadoAsistenciaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.listadoAsistenciaToolStripMenuItem.Text = "Listado Asistencia";
+            this.listadoAsistenciaToolStripMenuItem.Click += new System.EventHandler(this.listadoAsistenciaToolStripMenuItem_Click);
+            // 
             // profesoresMenu
             // 
             this.profesoresMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -242,13 +250,6 @@ namespace iaai
             this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
-            // 
-            // listadoAsistenciaToolStripMenuItem
-            // 
-            this.listadoAsistenciaToolStripMenuItem.Name = "listadoAsistenciaToolStripMenuItem";
-            this.listadoAsistenciaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.listadoAsistenciaToolStripMenuItem.Text = "Listado Asistencia";
-            this.listadoAsistenciaToolStripMenuItem.Click += new System.EventHandler(this.listadoAsistenciaToolStripMenuItem_Click);
             // 
             // Menu_inicial
             // 

@@ -24,6 +24,7 @@ namespace iaai.cursos_materias
         bool abierto_alta = false;
         public Alumno nuevo = null;
         List<List<string>> lista_areas = null;
+        List<string> niveles = null;
 
         List<Inscripto> materias_inscriptas = null;
 
@@ -41,6 +42,8 @@ namespace iaai.cursos_materias
             {
                 listado_profesorados = db.getCarreras();
                 lista_areas = db.getAreas();
+                niveles = db.getNiveles();
+                
 
                 if (listado_profesorados != null)
                 {
@@ -51,14 +54,27 @@ namespace iaai.cursos_materias
                     }
                 }
 
+                if (niveles != null) 
+                {
+                    foreach(string nivel in niveles)
+                    {
+                        comboBoxNivel.Items.Add(nivel.ToString());
+                    }
+
+                    comboBoxNivel.SelectedIndex = 0;
+                    
+                }
                 if(lista_areas != null){
                     foreach (List<string> area in lista_areas) 
                     {
                         comboBoxArea.Items.Add(area[1]);
                         comboBoxArea_esp.Items.Add(area[1]);
                     }
-                    
+                    comboBoxArea.SelectedIndex = 0;
+                    comboBoxArea_esp.SelectedIndex = 0;
                 }
+
+                
             }
             catch(Exception excep){
             
@@ -702,9 +718,71 @@ namespace iaai.cursos_materias
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkedList_cursosEsp.Items.Clear();
+            string area = comboBoxArea_esp.SelectedItem.ToString();
 
-            List<CursosEsp> lista_cursos = db.getCursoEspecial(1);
+            List<CursosEsp> lista_cursos = db.getCursoEspecial(area);
+
+            if (lista_cursos != null)
+            {
+                foreach (CursosEsp elemento in lista_cursos)
+                {
+
+                    checkedList_cursosEsp.Items.Add(elemento.nombre);
+                }
+            }
         }
+
+        
+
+     
+
+        void carga_Combo_Cursos()
+        {
+            checkedList_cursos.Items.Clear();
+            string area = comboBoxArea.SelectedItem.ToString();
+            string nivel = comboBoxNivel.SelectedItem.ToString();
+
+            List<Curso> lista_cursos = db.getCurso(area, nivel);
+
+            if (lista_cursos != null)
+            {
+                foreach (Curso elemento in lista_cursos)
+                {
+
+                    checkedList_cursos.Items.Add(elemento.nombre);
+                }
+            }
+        }
+
+        private void cambio_area(object sender, EventArgs e)
+        {
+            checkedList_cursos.Items.Clear();
+
+            if (comboBoxNivel != null && comboBoxArea != null)
+            {
+                comboBoxNivel.Focus();
+                carga_Combo_Cursos();
+            }
+        }
+
+        private void cambia_nivel(object sender, EventArgs e)
+        {
+            if (comboBoxNivel != null && comboBoxArea != null)
+                carga_Combo_Cursos();
+        }
+
+        private void comboBoxArea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkedList_cursos.Items.Clear();
+
+            if (comboBoxNivel != null && comboBoxArea != null)
+            {
+                comboBoxNivel.Focus();
+                carga_Combo_Cursos();
+            }
+        }
+
         
 
         

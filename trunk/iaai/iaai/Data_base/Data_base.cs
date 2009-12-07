@@ -1967,70 +1967,7 @@ namespace iaai.Data_base
         }
 
 
-        /// <summary>
-        /// Retorna el listado de cursos para un area en especial 
-        /// </summary>
-        /// <returns>
-        /// Retorna una lista de strings con los nombres de los cursos
-        /// </returns>
-        public List<Curso> getCursos(int area)
-        {
-            List<Curso> cursos = new List<Curso>();
-
-            try
-            {
-                if (conexion.State == System.Data.ConnectionState.Closed)
-                    this.open_db();
-
-
-                MySqlCommand MyCommand = new MySqlCommand("select c.id_curso, c.nombre, n.nombre " +
-                                                          "from curso c, nivel n " +
-                                                          "where c.nivel = n.nivel and c.id_area = "+ area, conexion);
-
-                MySqlDataReader reader = MyCommand.ExecuteReader();
-                Curso curso = new Curso();
-
-                if (reader.Read())
-                {
-                    do
-                    {    //TODO: agregar los campos faltantes
-                        curso.id_curso = Convert.ToInt32(reader[0].ToString());
-                        curso.nombre = reader[1].ToString();
-                        //curso.horas = Convert.ToInt32(reader[2].ToString());
-                        curso.id_profesor = Convert.ToInt32(reader[3].ToString());
-                        curso.cupo = Convert.ToInt32(reader[4].ToString());
-                        //curso.area = Convert.ToInt32(reader[5].ToString());
-
-                        cursos.Add(curso);
-
-                        curso = new Curso();
-
-                    } while (reader.Read());
-
-                }
-                else
-                {
-                    conexion.Close();
-                    return null;
-                }
-
-                if (conexion.State == System.Data.ConnectionState.Open)
-                    conexion.Close();
-            }
-            catch (MySqlException e)
-            {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
-
-            }
-
-
-            return cursos;
-        }
+        
 
         /// <summary>Inscribir un alumno a una lista de cursos</summary>
         /// <param name="nuevo">alumno que se va a inscribir a cursos</param>
@@ -2174,7 +2111,7 @@ namespace iaai.Data_base
         /// <returns>
         /// Retorna una lista de Cursos existentes asociados al area
         /// </returns>
-        public List<CursosEsp> getCursoEspecial(int area)
+        public List<CursosEsp> getCursoEspecial(string area)
         {
             List<CursosEsp> cursos = new List<CursosEsp>();
 
@@ -2184,9 +2121,9 @@ namespace iaai.Data_base
                     this.open_db();
 
 
-                MySqlCommand MyCommand = new MySqlCommand("select id_curso_especial, nombre, horas_curso, id_profesor, cupo, id_area " +
-                                                          "from curso_especial c, area a " +
-                                                          "where c.id_area = a.id_area and c.id_area = " + area, conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select id_curso_especial, c.nombre, horas_curso, id_profesor, cupo, c.id_area " +
+                                                          "from curso_especial c join area a on c.id_area=a.id_area " +
+                                                          "where a.nombre like '" + area+"'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 CursosEsp curso = new CursosEsp();
@@ -2221,7 +2158,7 @@ namespace iaai.Data_base
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
-                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error de lectura en base de Datos Cursos Especiales: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
@@ -2231,6 +2168,71 @@ namespace iaai.Data_base
             return cursos;
         }
 
+
+        /// <summary>
+        /// Retorna el listado de cursos para un area en especial 
+        /// </summary>
+        /// <returns>
+        /// Retorna una lista de Cursos existentes asociados al area
+        /// </returns>
+        public List<Curso> getCurso(string area,string nivel)
+        {
+            List<Curso> cursos = new List<Curso>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select id_curso, c.nombre, c.nivel, duracion, id_profesor, cupo, c.id_area " +
+                                                          "from curso c, area a , nivel n  " +
+                                                          "where c.id_area=a.id_area and c.nivel = n.nivel "+ 
+                                                          "and a.nombre like '" + area + "'" + "and n.nombre like '"+ nivel+"'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Curso curso = new Curso();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        curso.id_curso = Convert.ToInt32(reader[0].ToString());
+                        curso.nombre = reader[1].ToString();
+                        curso.nivel = Convert.ToInt32(reader[2].ToString());
+                        curso.duracion = Convert.ToInt32(reader[2].ToString());
+                        curso.id_profesor = Convert.ToInt32(reader[3].ToString());
+                        curso.cupo = Convert.ToInt32(reader[4].ToString());
+                        curso.id_area = Convert.ToInt32(reader[5].ToString());
+
+                        cursos.Add(curso);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return cursos;
+        }
 
         internal List<List<string>> getAreas()
         {
@@ -2287,6 +2289,58 @@ namespace iaai.Data_base
 
 
             return listado_retorno;
+        }
+
+        internal List<string> getNiveles()
+        {
+            List<string> listado = new List<string>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select nombre " +
+                                                          "from nivel ", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        
+                        listado.Add(reader[0].ToString());
+
+                       
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado;
         }
     }
 
