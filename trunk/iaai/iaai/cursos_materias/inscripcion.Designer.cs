@@ -83,6 +83,8 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonInscribir = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -308,6 +310,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.buttonInscribir);
+            this.tabPage2.Controls.Add(this.buttonCancelar);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.comboBoxNivel);
             this.tabPage2.Controls.Add(this.label16);
@@ -362,7 +366,7 @@
             this.checkedList_cursos.FormattingEnabled = true;
             this.checkedList_cursos.Location = new System.Drawing.Point(195, 0);
             this.checkedList_cursos.Name = "checkedList_cursos";
-            this.checkedList_cursos.Size = new System.Drawing.Size(373, 349);
+            this.checkedList_cursos.Size = new System.Drawing.Size(373, 304);
             this.checkedList_cursos.TabIndex = 0;
             // 
             // tabPage3
@@ -657,6 +661,25 @@
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Location = new System.Drawing.Point(479, 322);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            // 
+            // buttonInscribir
+            // 
+            this.buttonInscribir.Location = new System.Drawing.Point(389, 322);
+            this.buttonInscribir.Name = "buttonInscribir";
+            this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
+            this.buttonInscribir.TabIndex = 6;
+            this.buttonInscribir.Text = "Inscribir";
+            this.buttonInscribir.UseVisualStyleBackColor = true;
+            this.buttonInscribir.Click += new System.EventHandler(this.buttonInscribir_Click);
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -749,5 +772,7 @@
         private System.Windows.Forms.CheckedListBox checkedList_cursosEsp;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox comboBoxArea_esp;
+        private System.Windows.Forms.Button buttonInscribir;
+        private System.Windows.Forms.Button buttonCancelar;
     }
 }

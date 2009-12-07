@@ -21,6 +21,7 @@ namespace iaai.cursos_materias
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<Profesorado> listado_profesorados = new List<Profesorado>();
         List<Materia> listadoMaterias = null;
+        List<Curso> listadoCursos = null;
         bool abierto_alta = false;
         public Alumno nuevo = null;
         List<List<string>> lista_areas = null;
@@ -783,7 +784,45 @@ namespace iaai.cursos_materias
             }
         }
 
-        
+        /// <summary>
+        /// Inscribe al alumno a los cursos que selecciono
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonInscribir_Click(object sender, EventArgs e)
+        {
+            List<Curso> cursos_select = get_Cursos_Seleccionados();
+        }
+
+        /// <summary>
+        /// Retorna un List de objetos Curso que fueron seleccionados para la inscripcion
+        /// </summary>
+        /// <returns>Lista de Cursos que selecciono</returns>
+        private List<Curso> get_Cursos_Seleccionados()
+        {
+
+            List<Curso> listado = new List<Curso>();
+
+            if(checkedList_cursos.CheckedItems.Count > 0)           
+            {
+                foreach (CheckedListBox item in checkedList_cursos.CheckedItems)
+                
+                {                 
+                  //  if(item.SelectedValue == true)                   
+                    {                      
+                        foreach (Curso cur_temp in listadoCursos)
+                        {
+
+                           // if (cur_temp.nombre == item.SelectedValue.ToString)
+                                listado.Add(cur_temp);
+                        }
+                     }
+                    }
+                return listado;
+                }   
+            
+            else return null;
+        }
 
         
     }
