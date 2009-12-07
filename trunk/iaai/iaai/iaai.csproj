@@ -103,6 +103,7 @@
       <DependentUpon>Modificar_Alumno.cs</DependentUpon>
     </Compile>
     <Compile Include="cursos_materias\Curso.cs" />
+    <Compile Include="cursos_materias\CursosEsp.cs" />
     <Compile Include="cursos_materias\Inscripto.cs" />
     <Compile Include="cursos_materias\Inscripto_curso.cs" />
     <Compile Include="cursos_materias\Turno.cs" />

@@ -56,7 +56,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxArea_esp = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.busca_apellido = new System.Windows.Forms.ComboBox();
@@ -367,7 +367,7 @@
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
             this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.comboBox1);
+            this.tabPage3.Controls.Add(this.comboBoxArea_esp);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(571, 352);
@@ -391,13 +391,14 @@
             this.label18.TabIndex = 3;
             this.label18.Text = "Area";
             // 
-            // comboBox1
+            // comboBoxArea_esp
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(24, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(165, 21);
-            this.comboBox1.TabIndex = 0;
+            this.comboBoxArea_esp.FormattingEnabled = true;
+            this.comboBoxArea_esp.Location = new System.Drawing.Point(24, 40);
+            this.comboBoxArea_esp.Name = "comboBoxArea_esp";
+            this.comboBoxArea_esp.Size = new System.Drawing.Size(165, 21);
+            this.comboBoxArea_esp.TabIndex = 0;
+            this.comboBoxArea_esp.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -744,6 +745,6 @@
         private System.Windows.Forms.ComboBox comboBoxArea;
         private System.Windows.Forms.CheckedListBox checkedList_cursosEsp;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxArea_esp;
     }
 }

@@ -23,6 +23,7 @@ namespace iaai.cursos_materias
         List<Materia> listadoMaterias = null;
         bool abierto_alta = false;
         public Alumno nuevo = null;
+        List<List<string>> lista_areas = null;
 
         List<Inscripto> materias_inscriptas = null;
 
@@ -39,6 +40,7 @@ namespace iaai.cursos_materias
             try
             {
                 listado_profesorados = db.getCarreras();
+                lista_areas = db.getAreas();
 
                 if (listado_profesorados != null)
                 {
@@ -47,6 +49,15 @@ namespace iaai.cursos_materias
                         combo_profesorados.Items.Add(prof.nombre);
 
                     }
+                }
+
+                if(lista_areas != null){
+                    foreach (List<string> area in lista_areas) 
+                    {
+                        comboBoxArea.Items.Add(area[1]);
+                        comboBoxArea_esp.Items.Add(area[1]);
+                    }
+                    
                 }
             }
             catch(Exception excep){
@@ -687,6 +698,12 @@ namespace iaai.cursos_materias
             {
                 //capturo excepciones para evitar salidas abruptas
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            List<CursosEsp> lista_cursos = db.getCursoEspecial(1);
         }
         
 
