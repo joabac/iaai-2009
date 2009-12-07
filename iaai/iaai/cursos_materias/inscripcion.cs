@@ -829,6 +829,138 @@ namespace iaai.cursos_materias
             else return null;
         }
 
+
+        /// <summary>
+        /// rutina sobre el boton inscribe para Cursos Especiales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //genero un listado de las materias seleccionadas
+            List<CursosEsp> cur_select = get_Cursos_Esp_Seleccionados();
+            InscriptoCursoEsp materia_inscripta;
+
+            if (comboBoxArea_esp.SelectedIndex >= 0)
+            {
+
+                
+                int matricula;
+                int nueva_matricula;
+
+                foreach (CursosEsp curso_actual in cur_select) //itero para cada curso seleccionado 
+                {
+                    if (nuevo != null && cur_select != null && cur_select.Count > 0) //si se selecciono alumno y se seleccionaron materias
+                    {
+                        //busco si no tiene ya matriculacion
+                        matricula = db.tieneMatriculaCursoEspecial(nuevo.getId_alumno(),curso_actual.id_curso);
+
+                        if (matricula == -1) // si no tiene matricula en el cursoEsp
+                        {
+
+                            nueva_matricula = db.generarMatriculaCursoEspecial(nuevo.getId_alumno(), curso_actual.id_curso);
+
+                            if (nueva_matricula != -1)
+                            { //si tengo nueva matricula
+                                nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                                materia_inscripta = db.inscribirCursosEspeciales(nuevo,curso_actual);
+
+                                if (materias_inscriptas != null)
+                                {
+                                    DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        imprimir_reporteMaterias(materias_inscriptas);
+
+                                        carga_Materias();
+                                        cur_select.Clear();
+                                    }
+                                }
+
+                            }
+                            else
+                                MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        }
+                        else  //si ya tiene matricula matricula != -1
+                        {
+                            nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                           
+                            MessageBox.Show("El alumno ya esta matriculado en el Curso: " + curso_actual.nombre +"\r\n Matricula Nº: " + matricula, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (nuevo == null)
+                            MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        else
+                            if (cur_select == null || cur_select.Count == 0)
+                                MessageBox.Show("Debe seleccionar al menos una materia", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                }//termina el foreach
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Area", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private List<CursosEsp> get_Cursos_Esp_Seleccionados() {
+
+
+            List<CursosEsp> listado = new List<CursosEsp>();
+            CursosEsp curso = new CursosEsp();
+            CheckState estado;
+            int indice;
+
+
+            //protejo de seleccion sin area
+            if (comboBoxArea_esp.Items != null && comboBoxArea_esp.SelectedIndex >= 0 && comboBoxArea_esp.SelectedItem != null)
+            {
+                List<CursosEsp> cursosActuales = db.getCursoEspecial(comboBoxArea_esp.SelectedItem.ToString());
+
+                if (checkedList_cursosEsp.CheckedItems.Count > 0 && cursosActuales != null)
+                {
+                    foreach (Object itemChecked in checkedList_cursosEsp.CheckedItems)
+                    {
+                        estado = checkedList_cursosEsp.GetItemCheckState(checkedList_cursosEsp.Items.IndexOf(itemChecked));
+                        if (estado == CheckState.Checked)
+                        {
+
+                            //recupero que numero de curso es el seleccionado por el orden en que se cargaron
+                            indice = checkedList_cursos.Items.IndexOf(itemChecked);
+
+                            //recupero el curso especifico 
+                            curso = cursosActuales[indice];
+
+                            //cargo el listado a pasar para rutina de inscripcion
+                            listado.Add(curso);
+
+                            //limpio el curso de trabajo
+                            curso = new CursosEsp();
+
+
+
+                            MessageBox.Show("Item title: " + itemChecked.ToString() + " Checked: " +
+                           checkedList_cursos.Items.IndexOf(itemChecked));
+
+                        }
+                    }
+
+                    return listado; // si se selcceionaron cursos
+                }
+                else
+                {
+                    return null; // si la seleccion es vacia
+                }
+            }
+            return null;
+        }
        
 
         
