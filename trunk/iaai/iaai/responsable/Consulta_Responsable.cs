@@ -8,22 +8,22 @@ using System.Text;
 using System.Windows.Forms;
 using iaai.metodos_comunes;
 
-namespace iaai.profesor
+namespace iaai.responsable
 {
-    public partial class Consulta_Profesor : Form
+    public partial class Consulta_Responsable : Form
     {
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
-        Profesor profe = new Profesor();
-        List<Profesor> profes_encontrados = new List<Profesor>();
+        Responsable responsable = new Responsable();
+        List<Responsable> responsables_encontrados = new List<Responsable>();
 
-        public Consulta_Profesor()
+        public Consulta_Responsable()
         {
             InitializeComponent();
         }
 
 
-        private void Consulta_Profesor_Load(object sender, EventArgs e)
+        private void Consulta_Responsable_Load(object sender, EventArgs e)
         {
             radioButtonPorDni.Checked = true;
         }
@@ -38,25 +38,25 @@ namespace iaai.profesor
                 {       //si el formato del dni es correcto
                     if (metodo.ValidarDni(textBoxBuscar.Text) == true)
                     {
-                        //si el profesor ya fue dado de alta en el sistema
-                        if (!db.buscarDniProfesor(textBoxBuscar.Text))
+                        //si el responsable ya fue dado de alta en el sistema
+                        if (!db.buscarDniResponsable(textBoxBuscar.Text))
                         {
-                            profe = db.Buscar_Profesor(textBoxBuscar.Text);
+                            responsable = db.Buscar_Responsable(textBoxBuscar.Text);
 
-                            nombre.Text = profe.getNombre();
-                            apellido.Text = profe.getApellido();
-                            dni.Text = profe.getDni();
-                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
-                            telefono_carac.Text = profe.getTelefono_carac().ToString();
-                            telefono_numero.Text = profe.getTelefono_numero().ToString();
-                            direccion.Text = profe.getDireccion();
-                            email.Text = profe.getEmail();
-
+                            nombre.Text = responsable.getNombre();
+                            apellido.Text = responsable.getApellido();
+                            dni.Text = responsable.getDni().ToString();
+                            fecha_nacimiento.Text = responsable.getFecha_nac().ToString();
+                            if (!responsable.getTelefono_carac().ToString().Equals("0"))
+                                telefono_carac.Text = responsable.getTelefono_carac().ToString();
+                            telefono_numero.Text = responsable.getTelefono_numero().ToString();
+                            direccion.Text = responsable.getDireccion();
                         }
                         else
                         {
-                            MessageBox.Show("El DNI ingresado no corresponde a un Profesor activo");
+                            MessageBox.Show("El DNI ingresado no corresponde a un Responsable activo");
                         }
+
 
                     }
                     else
@@ -73,25 +73,26 @@ namespace iaai.profesor
                 {       //si el formato del apellido es correcto
                     if (metodo.validar_Nombre_App(textBoxBuscar.Text) == true)
                     {
-                        //si el profesor ya fue dado de alta en el sistema
-                        if (!db.buscarDniProfesor(textBoxBuscar.Text))
+                        //si el responsable ya fue dado de alta en el sistema
+                        if (!db.buscarDniResponsable(textBoxBuscar.Text))
                         {
-                            profe = db.Buscar_Profesor(textBoxBuscar.Text);
+                            responsable = db.Buscar_Responsable(textBoxBuscar.Text);
 
-                            nombre.Text = profe.getNombre();
-                            apellido.Text = profe.getApellido();
-                            dni.Text = profe.getDni();
-                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
-                            telefono_carac.Text = profe.getTelefono_carac().ToString();
-                            telefono_numero.Text = profe.getTelefono_numero().ToString();
-                            direccion.Text = profe.getDireccion();
-                            email.Text = profe.getEmail();
+                            nombre.Text = responsable.getNombre();
+                            apellido.Text = responsable.getApellido();
+                            dni.Text = responsable.getDni().ToString();
+                            fecha_nacimiento.Text = responsable.getFecha_nac().ToString();
+                            if (!responsable.getTelefono_carac().ToString().Equals("0"))
+                                telefono_carac.Text = responsable.getTelefono_carac().ToString();
+                            telefono_numero.Text = responsable.getTelefono_numero().ToString();
+                            direccion.Text = responsable.getDireccion();
 
                         }
                         else
                         {
-                            MessageBox.Show("El DNI ingresado no corresponde a un Profesor activo");
+                            MessageBox.Show("El DNI ingresado no corresponde a un Responsable activo");
                         }
+
                     }
                     else
                     {
@@ -120,8 +121,8 @@ namespace iaai.profesor
 
                     busca_apellido.Text = "";
 
-                    if (profes_encontrados != null)
-                        profes_encontrados.Clear();
+                    if (responsables_encontrados != null)
+                        responsables_encontrados.Clear();
 
                     if (busca_apellido.DroppedDown == true)
                         busca_apellido.DroppedDown = false;
@@ -131,21 +132,21 @@ namespace iaai.profesor
 
                 if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
                 {
-                    //busco los profesores activos que cumplan con la condicion ingresada
-                    profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text + caracter.KeyChar);
+                    //busco los responsables activos que cumplan con la condicion ingresada
+                    responsables_encontrados = db.Buscar_Responsable_Por_apellido(busca_apellido.Text + caracter.KeyChar);
 
 
-                    if (profes_encontrados != null) //si existe algun profesor con la condicion ingresada
+                    if (responsables_encontrados != null) //si existe algun responsable con la condicion ingresada
                     {
                         if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
                         {
                             busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
                         }
 
-                        foreach (Profesor profe in profes_encontrados) //para cada valor ingresado 
+                        foreach (Responsable responsable in responsables_encontrados) //para cada valor ingresado 
                         {
                             //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
-                            busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
+                            busca_apellido.Items.Add(responsable.getApellido() + ", " + responsable.getNombre());
                         }
 
 
@@ -186,7 +187,7 @@ namespace iaai.profesor
         }
 
         /// <summary>
-        /// carga los datos recuperados para el profesor seleccionado por apellido y nombre
+        /// carga los datos recuperados para el responsable seleccionado por apellido y nombre
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -206,38 +207,39 @@ namespace iaai.profesor
 
                     busca_apellido.Text = "";
 
-                    if (profes_encontrados != null)
-                        profes_encontrados.Clear();
+                    if (responsables_encontrados != null)
+                        responsables_encontrados.Clear();
 
                     if (busca_apellido.DroppedDown == true)
                         busca_apellido.DroppedDown = false;
                 }
 
-                if (profes_encontrados != null) //si hay proefesores en Lista<Profesor>
+                if (responsables_encontrados != null) //si hay responsable en Lista<Responsable>
                 {
                     //si presionan Enter
-                    if (e.KeyCode == Keys.Enter && profes_encontrados.Count > 0 &&
+                    if (e.KeyCode == Keys.Enter && responsables_encontrados.Count > 0 &&
                         busca_apellido.SelectedIndex >= 0 && busca_apellido.SelectedIndex >= 0) 
                     {
-                        //Busco el profesor por los datos especificos
-                        Profesor profe = db.Buscar_Profesor((profes_encontrados[busca_apellido.SelectedIndex]).getDni());
+                        //Busco el responsable por los datos especificos
+                        Responsable responsable = db.Buscar_Responsable((responsables_encontrados[busca_apellido.SelectedIndex]).getDni().ToString());
 
-                        if (profe != null)
+                        if (responsable != null)
                         {
                             //cargo los textboxes
-                            nombre.Text = profe.getNombre();
-                            apellido.Text = profe.getApellido();
-                            dni.Text = profe.getDni();
-                            fecha_nacimiento.Text = profe.getFecha_nac().ToString();
-                            telefono_carac.Text = profe.getTelefono_carac().ToString();
-                            telefono_numero.Text = profe.getTelefono_numero().ToString();
-                            direccion.Text = profe.getDireccion();
-                            email.Text = profe.getEmail();
+                            nombre.Text = responsable.getNombre();
+                            apellido.Text = responsable.getApellido();
+                            dni.Text = responsable.getDni().ToString();
+                            fecha_nacimiento.Text = responsable.getFecha_nac().ToString();
+                            if (!responsable.getTelefono_carac().ToString().Equals("0"))
+                              telefono_carac.Text = responsable.getTelefono_carac().ToString();
+                            telefono_numero.Text = responsable.getTelefono_numero().ToString();
+                            direccion.Text = responsable.getDireccion();
                         }
                         else
                         {
-                            MessageBox.Show("El DNI ingresado no corresponde a un Profesor activo");
+                            MessageBox.Show("El DNI ingresado no corresponde a un Responsable activo");
                         }
+
                     }
 
                 }
