@@ -31,6 +31,7 @@ namespace iaai.alumno
             radioButtonPorDni.Checked = true;
         }
 
+        //Botón "Buscar" para la busqueda por dni
         private void button1_Click(object sender, EventArgs e)
         {
             if (radioButtonPorDni.Checked == true)
@@ -45,7 +46,7 @@ namespace iaai.alumno
                         if (!db.buscarDniAlumno(textBoxBuscar.Text))
                         {
                             alumno = db.Buscar_Alumno(textBoxBuscar.Text);
-
+                            //asigno los datos al objeto Alumno
                             nombre.Text = alumno.getNombre();
                             apellido.Text = alumno.getApellido();
                             dni.Text = alumno.getDni();
@@ -205,7 +206,7 @@ namespace iaai.alumno
                 //si presiona del | -> | <- | Esc
                 if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
                 {
-                    //limpio todos los contenedores
+                    //limpio todos los contenedores del combo
                     if (busca_apellido.Items.Count > 0)
                     {
                         busca_apellido.Items.Clear();
