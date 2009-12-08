@@ -110,6 +110,12 @@
     </Compile>
     <Compile Include="cursos_materias\Curso.cs" />
     <Compile Include="cursos_materias\CursosEsp.cs" />
+    <Compile Include="cursos_materias\Cambiar_Turno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cursos_materias\Cambiar_Turno.Designer.cs">
+      <DependentUpon>Cambiar_Turno.cs</DependentUpon>
+    </Compile>
     <Compile Include="cursos_materias\Inscripto.cs" />
     <Compile Include="cursos_materias\InscriptoCursoEsp.cs" />
     <Compile Include="cursos_materias\Inscripto_curso.cs" />
@@ -180,6 +186,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="alumno\Modificar_Alumno.resx">
       <DependentUpon>Modificar_Alumno.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cursos_materias\Cambiar_Turno.resx">
+      <DependentUpon>Cambiar_Turno.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="cursos_materias\inscripcion.resx">

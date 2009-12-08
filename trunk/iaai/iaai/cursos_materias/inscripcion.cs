@@ -792,10 +792,12 @@ namespace iaai.cursos_materias
                 {
                     foreach (CursosEsp elemento in lista_cursos)
                     {
-                        if (!db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "%"))
+                        if (!db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "condicional"))
                         {
                             checkedList_cursosEsp.Items.Add(elemento.nombre);
+                            chkedListBox_curEsp_condicion.Items.Add("condicional");
                         }
+                        else { }
                     }
                 }
             }
