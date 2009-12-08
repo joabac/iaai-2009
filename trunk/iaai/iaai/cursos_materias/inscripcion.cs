@@ -815,12 +815,18 @@ namespace iaai.cursos_materias
                     if (estado == CheckState.Checked)                   
                     {                      
                        
+                        foreach(Curso curso_temp in listadoCursos)
+                        {
+                            if(curso_temp.nombre == itemChecked.ToString())
+                            {
 
-                        MessageBox.Show("Item title: " + itemChecked.ToString() +" Checked: " +
-                       checkedList_cursos.Items.IndexOf(itemChecked));
+                                listado.Add(curso_temp);
 
-
+                              MessageBox.Show("Item title: " + itemChecked.ToString() +" Checked: " +
+                               checkedList_cursos.Items.IndexOf(itemChecked));
+                            }
                         
+                        }
                      }
                     }
                 return listado;
@@ -964,6 +970,9 @@ namespace iaai.cursos_materias
             }
             return null;
         }
+
+        
+
        
 
         
