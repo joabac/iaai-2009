@@ -170,7 +170,10 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + a.getNombre() + "', '" + a.getApellido() + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + a.getEscuela_nombre() + "', '" + a.getEscuela_año() + "', '" + a.getDireccion() + "', '" + a.getId_responsable() + "')", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + 
+                                                            apostrofos(a.getNombre()) + "', '" + apostrofos(a.getApellido()) + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") +
+                                                            "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + apostrofos(a.getEscuela_nombre()) +
+                                                            "', '" + a.getEscuela_año()+ "', '" + apostrofos(a.getDireccion()) + "', '" + a.getId_responsable() + "')", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -200,7 +203,9 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + r.getNombre() + "', '" + r.getApellido() + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + r.getDireccion() + "')", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + 
+                                                        apostrofos(r.getNombre()) + "', '" + apostrofos(r.getApellido()) + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + 
+                                                        r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + apostrofos(r.getDireccion()) + "')", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -274,12 +279,12 @@ namespace iaai.Data_base
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set nombre = '" +
-                                                            alumno.getNombre() + "',apellido = '" + alumno.getApellido() + "',dni = '" +
+                                                            apostrofos(alumno.getNombre()) + "',apellido = '" + apostrofos(alumno.getApellido()) + "',dni = '" +
                                                             alumno.getDni() + "', telefono_carac = " + alumno.getTelefono_carac() + ",telefono_numero = " +
                                                             alumno.getTelefono_numero() + ",fecha_nac = '" +
                                                             alumno.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                            "',direccion = '" + alumno.getDireccion() +
-                                                            "',escuela_nombre = '" + alumno.getEscuela_nombre() +
+                                                            "',direccion = '" + apostrofos(alumno.getDireccion()) +
+                                                            "',escuela_nombre = '" + apostrofos(alumno.getEscuela_nombre()) +
                                                             "', escuela_año = '" + alumno.getEscuela_año() + 
                                                             "', id_responsable = '" + alumno.getId_responsable() + "' where dni like '" + alumno.getDni() + "'", conexion);
                 MyCommand.ExecuteNonQuery();
@@ -303,7 +308,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Modifica un responsable en la base de datos
         /// </summary>
-        /// <param name="alumno">
+        /// <param name="responsable">
         /// Se debe ingresar un instancia de Responsable
         /// </param>
         /// <returns>
@@ -317,11 +322,11 @@ namespace iaai.Data_base
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("update responsable set nombre_respon = '" +
-                                                            responsable.getNombre() + "',apellido_respon = '" + responsable.getApellido() + "',dni = '" +
+                                                            apostrofos(responsable.getNombre()) + "',apellido_respon = '" + apostrofos(responsable.getApellido()) + "',dni = '" +
                                                             responsable.getDni() + "', telefono_carac = " + responsable.getTelefono_carac() + ",telefono_numero = " +
                                                             responsable.getTelefono_numero() + ",fecha_nac = '" +
                                                             responsable.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                            "',direccion = '" + responsable.getDireccion() + "' where dni like '" + responsable.getDni() + "'", conexion);
+                                                            "',direccion = '" + apostrofos(responsable.getDireccion()) + "' where dni like '" + responsable.getDni() + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -521,11 +526,11 @@ namespace iaai.Data_base
             //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
             MySqlCommand MyCommand = new MySqlCommand("insert into profesor(nombre, apellido, dni, telefono_carac,"+
                                                       "  telefono_numero, fecha_nac, direccion,email) values('" + 
-                                                        profe.getNombre() + "', '" + profe.getApellido() + "', '" +
+                                                        apostrofos(profe.getNombre()) + "', '" + apostrofos(profe.getApellido()) + "', '" +
                                                         profe.getDni() + "', '" + profe.getTelefono_carac() + "', '" +
                                                         profe.getTelefono_numero() + "', '" +
                                                         profe.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                        "', '" + profe.getDireccion() +
+                                                        "', '" + apostrofos(profe.getDireccion()) +
                                                         "', '" + profe.getEmail() + "')", conexion);
             MyCommand.ExecuteNonQuery();
             conexion.Close();
@@ -728,7 +733,7 @@ namespace iaai.Data_base
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
                                                           "from profesor " +
-                                                          "where apellido like '"+apellido+"%' and activo = 1", conexion);
+                                                          "where apellido like '"+apostrofos(apellido)+"%' and activo = 1", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Profesor profesor_tem = new Profesor();
@@ -795,11 +800,11 @@ namespace iaai.Data_base
                 this.open_db();
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("update profesor set nombre = '" +
-                                                            profe.getNombre() + "',apellido = '" + profe.getApellido() + "',dni = '" +
+                                                            apostrofos(profe.getNombre()) + "',apellido = '" + apostrofos(profe.getApellido()) + "',dni = '" +
                                                             profe.getDni() + "', telefono_carac = " + profe.getTelefono_carac() + ",telefono_numero = " +
                                                             profe.getTelefono_numero() + ",fecha_nac = '" +
                                                             profe.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                            "',direccion = '" + profe.getDireccion() +
+                                                            "',direccion = '" + apostrofos(profe.getDireccion()) +
                                                             "',email = '" + profe.getEmail() + "'" + " where dni like '" + profe.getDni()+"'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
@@ -1045,7 +1050,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
                                                           "from alumno " +
-                                                          "where apellido like '" + apellido +"%'", conexion);
+                                                          "where apellido like '" + apostrofos(apellido) +"%'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Alumno alum_tem = new Alumno();
@@ -1109,7 +1114,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion " +
                                                           "from responsable " +
-                                                          "where apellido_respon like '" + apellido + "%'", conexion);
+                                                          "where apellido_respon like '" + apostrofos(apellido) + "%'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Responsable respon_tem = new Responsable();
@@ -2427,7 +2432,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_curso_especial, c.nombre, horas_curso, id_profesor, cupo, c.id_area " +
                                                           "from curso_especial c join area a on c.id_area=a.id_area " +
-                                                          "where a.nombre like '" + area+"'", conexion);
+                                                          "where a.nombre like '" + apostrofos(area)+"'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 CursosEsp curso = new CursosEsp();
@@ -3243,6 +3248,22 @@ namespace iaai.Data_base
 
 
 
+        /// <summary>
+        /// Convierte una cadena con apostrofos a su equivalene soportada por Mysql
+        /// </summary>
+        /// <param name="cadena">Cadena a ser transformada</param>
+        /// <returns>Cadena con correccion de apostrofos</returns>
+        private string apostrofos(string cadena) 
+        {
+            string retorno = "";
+            string cadena_tmp = "";
+
+            cadena_tmp = cadena.Replace("\'", "#");
+
+            retorno = cadena_tmp.Replace("#", "\\'");
+
+            return retorno;
+        }
     }
 
     
