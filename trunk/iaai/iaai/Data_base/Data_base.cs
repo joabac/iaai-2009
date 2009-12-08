@@ -1761,12 +1761,20 @@ namespace iaai.Data_base
 
                     foreach (Materia materia_actual in mat_select)
                     {
-                        int disponible = verificarCupoMateria(materia_actual.id_materia, turno);
+                        int disponible;
+                        if (materia_actual.condicion.Contains("inscripto"))
+                        {
+                            disponible = verificarCupoMateria(materia_actual.id_materia, turno);
+                        }
+                        else {
+                            disponible = 0;
+
+                        }
 
                         if (disponible == 0)
                         { //si el disponible es 0 
 
-                            DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional a la Materia: "+materia_actual.nombre +" por falta de cupo\r\n\r\n ¿Desea continuar?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                            DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional a la Materia: "+materia_actual.nombre +"\r\n\r\n¿Desea continuar?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
                             if (resultado == DialogResult.Yes)
                             {
@@ -1780,12 +1788,12 @@ namespace iaai.Data_base
                                 MyCommand.ExecuteNonQuery();
                             }
                             
-                            else
-                            {
-                                MyCommand.CommandText = ("delete from registro_materia where id_matricula = " + matricula + " and id_materia = " + materia_actual.id_materia);
-                                MyCommand.ExecuteNonQuery();
+                            //else
+                            //{
+                              //  MyCommand.CommandText = ("delete from registro_materia where id_matricula = " + matricula + " and id_materia = " + materia_actual.id_materia);
+                               // MyCommand.ExecuteNonQuery();
                             
-                            }
+                           // }
                             //transaccion.Commit();
                         }
                         else{  //si quedara inscripto
@@ -3263,6 +3271,63 @@ namespace iaai.Data_base
             retorno = cadena_tmp.Replace("#", "\\'");
 
             return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Rutina para el cambio de estado manual de estado condicional a inscripto
+        /// </summary>
+        /// <param name="nuevo">Alumno que se asocia a la materia a cambiar de estado</param>
+        /// <param name="id_mat">id de la materia a ser cambiada</param>
+        /// <param name="id_turno">id de turno de la materia a ser cambiada</param>
+        /// <returns></returns>
+        internal bool cambiarEstado(Alumno nuevo, int id_mat, int id_turno)
+        {
+            
+
+            if (conexion.State == System.Data.ConnectionState.Closed)
+                open_db();
+
+            MySqlTransaction transaccion = conexion.BeginTransaction(); ;
+            MySqlCommand MyCommand;
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+
+                MyCommand = new MySqlCommand("update registro_materia "+
+                                              "set condicion = 'inscripto' "+
+                                              "where id_materia = "+id_mat+" and id_turno = "+id_turno+" and id_matricula = "+nuevo.id_matricula, conexion);
+
+                MyCommand.Connection = conexion;
+                MyCommand.Transaction = transaccion;
+
+
+                MyCommand.ExecuteNonQuery();
+
+                transaccion.Commit();
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    transaccion.Rollback();
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Matricula para Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+ 
         }
     }
 
