@@ -22,12 +22,15 @@ namespace iaai.cursos_materias
         List<Profesorado> listado_profesorados = new List<Profesorado>();
         List<Materia> listadoMaterias = null;
         List<Curso> listadoCursos = null;
+       
         bool abierto_alta = false;
         public Alumno nuevo = null;
         List<List<string>> lista_areas = null;
         List<string> niveles = null;
+        
 
         List<Inscripto> materias_inscriptas = null;
+        List<InscriptoCursoEsp> CursosEsp_inscriptos = null;
 
         public Inscripcion()
         {
@@ -108,6 +111,8 @@ namespace iaai.cursos_materias
 
                     if (busca_apellido.DroppedDown == true)
                         busca_apellido.DroppedDown = false;
+
+                    nuevo = null;
                 }
 
 
@@ -369,15 +374,22 @@ namespace iaai.cursos_materias
         {
             
                 AltaAlumno alumno_nuevo = new AltaAlumno();
+                Alumno cargado = null;
                 alumno_nuevo.Owner = this;    
 
                 alumno_nuevo.Show(1);
 
                 nuevo = alumno_nuevo.get_cargado();
                 if (nuevo != null)
+                cargado  = alumno_nuevo.get_cargado();
+                
+                if (cargado != null)
                 {
+                    nuevo = db.Buscar_Alumno(cargado.getDni());
                     cargar_alumno(nuevo);
                     panel_datos.Enabled = true;
+                    busca_apellido.Items.Clear();
+                    busca_apellido.Text = nuevo.getApellido()+", "+nuevo.getNombre();
                 }
 
                 else
@@ -481,7 +493,7 @@ namespace iaai.cursos_materias
                                 DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                                 if (respuesta == DialogResult.Yes)
                                 {
-                                    imprimir_reporteMaterias(materias_inscriptas);
+                                    imprimir_reporteMaterias();
 
                                     carga_Materias();
                                     mat_select.Clear();
@@ -497,12 +509,12 @@ namespace iaai.cursos_materias
                         nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
                         materias_inscriptas = db.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
 
-                        if (materias_inscriptas != null)
+                        if (materias_inscriptas != null && materias_inscriptas.Count > 0)
                         {
                             DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                             if (respuesta == DialogResult.Yes)
                             {
-                                imprimir_reporteMaterias(materias_inscriptas);
+                                imprimir_reporteMaterias();
                                 
                                 carga_Materias();
                                 mat_select.Clear();
@@ -536,7 +548,7 @@ namespace iaai.cursos_materias
         /// </summary>
         /// <param name="materias"></param>
         /// <returns></returns>
-        private bool imprimir_reporteMaterias(List<Inscripto> materias)
+        private bool imprimir_reporteMaterias()
         {
            // DataGridViewPrinter MyDataGridViewPrinter;
             PrintDialog MyPrintDialog = new PrintDialog();
@@ -737,7 +749,9 @@ namespace iaai.cursos_materias
         
 
      
-
+        /// <summary>
+        /// RUTINA PARA CARGAR LOS COMBO BOXES DE CURSOS
+        /// </summary>
         void carga_Combo_Cursos()
         {
             checkedList_cursos.Items.Clear();
@@ -841,85 +855,129 @@ namespace iaai.cursos_materias
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void button2_Click(object sender, EventArgs e)
         {
             //genero un listado de las materias seleccionadas
             List<CursosEsp> cur_select = get_Cursos_Esp_Seleccionados();
             InscriptoCursoEsp Curso_inscripto;
 
-            if (comboBoxArea_esp.SelectedIndex >= 0)
+            CursosEsp_inscriptos = new List<InscriptoCursoEsp>();
+            if (cur_select != null && cur_select.Count > 0)
             {
-
-                
-                int matricula;
-                int nueva_matricula;
-
-                foreach (CursosEsp curso_actual in cur_select) //itero para cada curso seleccionado 
+                if (comboBoxArea_esp.SelectedIndex >= 0)
                 {
-                    if (nuevo != null && cur_select != null && cur_select.Count > 0) //si se selecciono alumno y se seleccionaron materias
+
+
+                    int matricula;
+                    int nueva_matricula;
+
+                    foreach (CursosEsp curso_actual in cur_select) //itero para cada curso seleccionado 
                     {
-                        //busco si no tiene ya matriculacion
-                        matricula = db.tieneMatriculaCursoEspecial(nuevo.getId_alumno(),curso_actual.id_curso);
-
-                        if (matricula == -1) // si no tiene matricula en el cursoEsp
+                        if (nuevo != null && cur_select != null && cur_select.Count > 0) //si se selecciono alumno y se seleccionaron materias
                         {
+                            //busco si no tiene ya matriculacion
+                            matricula = db.tieneMatriculaCursoEspecial(nuevo.getId_alumno(), curso_actual.id_curso);
 
-                            nueva_matricula = db.generarMatriculaCursoEspecial(nuevo.getId_alumno(), curso_actual.id_curso);
+                            if (matricula == -1) // si no tiene matricula en el cursoEsp
+                            {
 
-                            if (nueva_matricula != -1)
-                            { //si tengo nueva matricula
-                                nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
-                                Curso_inscripto = db.inscribirCursosEspeciales(nuevo, curso_actual);
+                                nueva_matricula = db.generarMatriculaCursoEspecial(nuevo.getId_alumno(), curso_actual.id_curso);
 
-                                if (Curso_inscripto != null)
-                                {
-                                    DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                                    if (respuesta == DialogResult.Yes)
+                                if (nueva_matricula != -1)
+                                { //si tengo nueva matricula
+                                    nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                                    Curso_inscripto = db.inscribirCursosEspeciales(nuevo, curso_actual);
+
+                                    if (Curso_inscripto != null)
                                     {
-                                        imprimir_reporteCursoEspecial(Curso_inscripto);
-
+                                        CursosEsp_inscriptos.Add(Curso_inscripto);
                                     }
+
                                 }
+                                else
+                                    MessageBox.Show("No se pudo obtener una matricula para el Curso", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                            }
+                            else  //si ya tiene matricula matricula != -1
+                            {
+                                nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+
+                                MessageBox.Show("El alumno ya esta matriculado en el Curso: " + curso_actual.nombre + "\r\n Matricula Nº: " + matricula, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                             }
-                            else
-                                MessageBox.Show("No se pudo obtener una matricula para el Curso", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                        }
-                        else  //si ya tiene matricula matricula != -1
-                        {
-                            nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
-                           
-                            MessageBox.Show("El alumno ya esta matriculado en el Curso: " + curso_actual.nombre +"\r\n Matricula Nº: " + matricula, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
 
                         }
-
-
-                    }
-                    else
-                    {
-                        if (nuevo == null)
-                            MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         else
-                            if (cur_select == null || cur_select.Count == 0)
-                                MessageBox.Show("Debe seleccionar al menos una materia", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                        {
+                            if (nuevo == null)
+                                MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            else
+                                if (cur_select == null || cur_select.Count == 0)
+                                    MessageBox.Show("Debe seleccionar al menos un Curso", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
 
-                }//termina el foreach
+                    }//termina el foreach
+                    if (CursosEsp_inscriptos != null && CursosEsp_inscriptos.Count > 0)
+                    {
+                        DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            imprimir_reporteCursoEspecial();
+
+                            cur_select.Clear();
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un Area", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un Area", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (nuevo == null)
+                    MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                else
+                    if (cur_select == null || cur_select.Count == 0)
+                        MessageBox.Show("Debe seleccionar al menos un Curso", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             }
-
         }
 
-        private void imprimir_reporteCursoEspecial(InscriptoCursoEsp Curso_inscripto)
+        private bool imprimir_reporteCursoEspecial()
         {
-            throw new NotImplementedException();
+            // DataGridViewPrinter MyDataGridViewPrinter;
+            PrintDialog MyPrintDialog = new PrintDialog();
+            MyPrintDialog.AllowCurrentPage = false;
+            MyPrintDialog.AllowPrintToFile = false;
+            MyPrintDialog.AllowSelection = false;
+            MyPrintDialog.AllowSomePages = false;
+            MyPrintDialog.PrintToFile = false;
+            MyPrintDialog.ShowHelp = false;
+            MyPrintDialog.ShowNetwork = false;
+
+            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+                return false;
+
+            reporte_curso_especial.DocumentName = "Inscripción Curso Especialización";
+            reporte_curso_especial.PrinterSettings = MyPrintDialog.PrinterSettings;
+            reporte_curso_especial.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            reporte_curso_especial.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+
+            //genramos el evento imprimir que desencadena la genracion del informe
+            reporte_curso_especial.Print();
+
+            return true;
         }
 
-        private List<CursosEsp> get_Cursos_Esp_Seleccionados() {
+
+        /// <summary>
+        /// Rutina para la recuperacion de los items seleccionados en el checked list box de cursos de especializacion
+        /// </summary>
+        /// <returns></returns>
+        private List<CursosEsp> get_Cursos_Esp_Seleccionados()
+        {
 
 
             List<CursosEsp> listado = new List<CursosEsp>();
@@ -953,11 +1011,6 @@ namespace iaai.cursos_materias
                             //limpio el curso de trabajo
                             curso = new CursosEsp();
 
-
-
-                            MessageBox.Show("Item title: " + itemChecked.ToString() + " Checked: " +
-                           checkedList_cursosEsp.Items.IndexOf(itemChecked));
-
                         }
                     }
 
@@ -971,8 +1024,54 @@ namespace iaai.cursos_materias
             return null;
         }
 
-        
+        private void print_reporte_curso_especial(object sender, PrintPageEventArgs e)
+        {
+            string cadena;
+            Font printFont = new Font("Arial", 10);
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top;
+            int count = 0;
+            float yPos = 10;
 
+            //-----------------------Encabezado-----------------------
+            e.Graphics.DrawString("REPORTE DE INSCRIPCION \r\nCURSO DE ESPECIALIZACIÓN", new Font("Arial Black", 15), Brushes.Black, (e.MarginBounds.Left), (yPos + 10), new StringFormat());
+            count += 5;
+
+            //----------------------Datos del Alumno------------------
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+
+            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre() + "\r\nMatricula: " + nuevo.id_matricula;
+
+            e.Graphics.DrawString(alumno, new Font("Arial Black", 12), Brushes.Black, leftMargin, yPos, new StringFormat());
+            count += 4;
+
+            e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+            count++;
+            //---------------------Registro de inscripciones-----------
+            foreach (InscriptoCursoEsp elemento in CursosEsp_inscriptos)
+            {
+                yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+
+                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nNombre Curso Especializacion: " + elemento.curso_inscripto.nombre + "\r\nHoras Totales: " + elemento.curso_inscripto.horas + "\r\nCondición: " + elemento.condicion + "\r\n\r\n";
+
+                e.Graphics.DrawString(cadena, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
+                count += 5;
+
+                yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+                e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
+                count++;
+            }
+        }
+
+        private void limpiar_Matricula(object sender, EventArgs e)
+        {
+            if (nuevo != null)
+                nuevo.id_matricula = -1;
+        }
+
+
+        
        
 
         
