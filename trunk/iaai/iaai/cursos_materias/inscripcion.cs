@@ -359,6 +359,9 @@ namespace iaai.cursos_materias
                             panel_datos.Enabled = true; //habilito el panel de datos
                             nuevo = alumno;
                             carga_Materias();
+                            checkedList_CurEsp();
+                            carga_Combo_Cursos();
+                            
                         }
                         else
                         {
@@ -773,15 +776,12 @@ namespace iaai.cursos_materias
             }
         }
 
-
         /// <summary>
-        /// rutina para el refresco del checked list de Cursos especiales
+        /// Rutina para refresco de checked list Cursos especiales
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkedList_CurEsp() 
         {
+
             checkedList_cursosEsp.Items.Clear();
             string area = comboBoxArea_esp.SelectedItem.ToString();
             if (nuevo != null)
@@ -799,13 +799,25 @@ namespace iaai.cursos_materias
                     }
                 }
             }
+        
+        }
+
+        /// <summary>
+        /// rutina para el refresco del checked list de Cursos especiales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkedList_CurEsp();
         }
 
         
 
      
         /// <summary>
-        /// RUTINA PARA CARGAR LOS COMBO BOXES DE CURSOS
+        /// RUTINA PARA CARGAR el checked list cursos
         /// </summary>
         void carga_Combo_Cursos()
         {
@@ -1040,7 +1052,7 @@ namespace iaai.cursos_materias
                                     {
 
                                         CursosEsp_inscriptos.Add(Curso_inscripto);
-
+                                        checkedList_CurEsp();//refresco los checked list                           
                                     }
 
                                 }
@@ -1330,6 +1342,11 @@ namespace iaai.cursos_materias
                     }
                 }
             }
+        }
+
+        private void refrescar_checked_CurEsp(object sender, EventArgs e)
+        {
+
         }
 
 
