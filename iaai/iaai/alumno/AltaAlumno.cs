@@ -48,12 +48,15 @@ namespace iaai.alumno
         public void Show(int i) 
         {
             Owner.Enabled = false;
-            
             this.ShowDialog();
         }
         
 
-
+        /// <summary>
+        /// Método para cancelar y salir del formulario de AltaAlumno
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
@@ -65,6 +68,7 @@ namespace iaai.alumno
 
         private Boolean validar()
         {
+            //Validación nombre
             error = "";
             if (nombre.Text.Length == 0)
                 error = error + "Ingrese el Nombre. \r\n";
@@ -73,6 +77,7 @@ namespace iaai.alumno
                 if (!metodo.validar_Nombre_App(nombre.Text))
                     error = error + "Formato de nombre no válido \r\n";
             }
+            //Validación apellido
             if (apellido.Text.Length == 0)
                 error = error + "Ingrese el Apellido. \r\n";
             else
@@ -80,6 +85,7 @@ namespace iaai.alumno
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
+            //Validación DNI
             if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
@@ -97,14 +103,19 @@ namespace iaai.alumno
                     error = error + "El DNI ingresado no es válido. \r\n";
                 }
             }
+            //Validación fecha de nacimiento
             if (fecha_nacimiento.Text.Contains(' '))
                 error = error + "Ingrese la fecha de nacimiento. \r\n";
             else
             {
+                //Validación fecha de nacimiento
+                //retorna si el alumno es mayor o menor de 21 años en caso de ser correcto el formato
                 int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
                 if (resultado == -1)
                     error = error + "Formato de fecha de nacimiento no válido. \r\n";
             }
+
+            //Validación número de teléfono
             if (telefono_numero.Text.Length == 0)
                 error = error + "Ingrese el teléfono. \r\n";
             else
@@ -112,6 +123,16 @@ namespace iaai.alumno
                 if (!metodo.validar_Telefono(telefono_numero.Text))
                     error = error + "Formato de número de teléfono no válido \r\n";
             }
+
+            //Validación característica telefónica
+            if (telefono_carac.Text.Length != 0)
+            {
+                if (!metodo.validar_Caracteristica(telefono_numero.Text))
+                    error = error + "Formato de la Característica telefónica no válido \r\n";
+            }
+        
+
+            //Validación de la dirección
             if (direccion.Text.Length == 0)
                 error = error + "Ingrese la dirección. \r\n";
             else
@@ -121,7 +142,7 @@ namespace iaai.alumno
             }
             
  
- 
+            //Validación nombre escuela
             if (escuela_nombre.Text.Length > 0)
             {
                 //si ingreso la escuela, controlo que ingrese el año de cursado
@@ -145,13 +166,14 @@ namespace iaai.alumno
                     }
                 }
             }
-
+            //Si existe algún error se arma el mensaje para mostrar al usuario
             if (error.Length > 0)
             {
                 error = "Se han producido errores: \r\n" + error;
                 MessageBox.Show(error);
                 return false;
             }
+            //Validación en Base de datos de alumno existente
             if (db.buscarDniAlumno(dni.Text))
                 return true;
             else
@@ -163,7 +185,7 @@ namespace iaai.alumno
        }
 
         /// <summary>
-        /// asigna el id de responsable a un alumno
+        /// Asigna el id de responsable a un alumno
         /// </summary>
         /// <param name="resp"></param>
         public void asignarResponsable(int resp)
@@ -171,6 +193,10 @@ namespace iaai.alumno
             this.responsable = resp;
         }
 
+
+        /// <summary>
+        /// Agrega los datos del alumno al IDictionary
+        /// </summary>
         private void guardarDatos()
         {
             
@@ -211,9 +237,15 @@ namespace iaai.alumno
         }
 
         
-
+        /// <summary>
+        /// Método que deriva al formulario de AlteResponsable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void agregarResponsable_Click(object sender, EventArgs e)
         {
+            //Validación de la fecha de nacimiento
+            //Se valida si fue ingresada, y si el alumno es menor de 21 años.
             if (fecha_nacimiento.Text.Contains(' '))
             {
                 MessageBox.Show("Ingrese la fecha de nacimiento");
