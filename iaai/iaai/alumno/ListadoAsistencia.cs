@@ -12,6 +12,9 @@ using iaai.cursos_materias;
 
 namespace iaai.alumno
 {
+    /// <summary>
+    /// Clase ListadoAsistencia
+    /// </summary>
     public partial class ListadoAsistencia : Form
     {
 
@@ -30,7 +33,9 @@ namespace iaai.alumno
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Método que carga la tabla según los alumnos dentro de listado
+        /// </summary>
         private void cargarTabla()
         {
             string[] row;
@@ -49,7 +54,11 @@ namespace iaai.alumno
                 indice = 0;
             }
         }
-
+        /// <summary>
+        /// Botón imprimir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void imprimir_Click(object sender, EventArgs e)
         {
             if (SetupThePrinting())
@@ -61,6 +70,11 @@ namespace iaai.alumno
             this.Close();
         }
 
+        /// <summary>
+        /// Método que envía el listado para impresión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MyPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             bool more = MyDataGridViewPrinter.DrawDataGridView(e.Graphics);
@@ -77,7 +91,10 @@ namespace iaai.alumno
                 MyPrintPreviewDialog.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Método que genera el listado y lo configura para la impresión
+        /// </summary>
+        /// <returns></returns>
         private bool SetupThePrinting()
         {
             PrintDialog MyPrintDialog = new PrintDialog();
@@ -105,7 +122,9 @@ namespace iaai.alumno
             return true;
         }
 
-
+        /// <summary>
+        /// Método que obtiene las Áreas de la base de datos y las carga a los comboBox correspondientes
+        /// </summary>
         private void cargarAreas()
         {
             curso.Items.Clear();
@@ -124,7 +143,9 @@ namespace iaai.alumno
             curso_nivel.Text = null;
             curso.Text = null;
         }
-
+        /// <summary>
+        /// Método que obtiene los Cursos de la base de datos y los carga a los comboBox correspondientes
+        /// </summary>
         private void cargarCursos()
         {
             curso.Items.Clear();
@@ -141,7 +162,9 @@ namespace iaai.alumno
             curso.Text = null;
 
         }
-
+        /// <summary>
+        /// Método que obtiene los Niveles de la base de datos y los carga a los comboBox correspondientes
+        /// </summary>
         private void cargarNiveles()
         {
             curso_nivel.Items.Clear();
@@ -157,7 +180,9 @@ namespace iaai.alumno
             }
             curso_nivel.Text = null;
         }
-
+        /// <summary>
+        /// Método que obtiene las Áreas Especiales de la base de datos y las carga a los comboBox correspondientes
+        /// </summary>
         private void cargarAreasEsp()
         {
             
@@ -175,7 +200,9 @@ namespace iaai.alumno
             }
             comboBoxArea_esp.Text = null;
         }
-
+        /// <summary>
+        /// Método que obtiene los Cursos especiales de la base de datos y los carga a los comboBox correspondientes
+        /// </summary>
         private void cargarCursosEsp()
         {
             cursoE.Items.Clear();
@@ -191,7 +218,9 @@ namespace iaai.alumno
             }
             cursoE.Text = null;
         }
-
+        /// <summary>
+        /// Método que obtiene los Profesorados de la base de datos y los carga a los comboBox correspondientes
+        /// </summary>
         private void cargarProfesorados()
         {
             combo_niveles.Items.Clear();
@@ -209,7 +238,9 @@ namespace iaai.alumno
             combo_niveles.Text = null;
             comboTurno.Text = null;
         }
-
+        /// <summary>
+        /// Método que obtiene las Materias de la base de datos y las carga a los comboBox correspondientes
+        /// </summary>
         private void cargarMaterias()
         {
             comboMaterias.Items.Clear();
@@ -232,7 +263,12 @@ namespace iaai.alumno
         {
             cargarCursos();
         }
-
+        /// <summary>
+        /// Método que controla el evento que se activa al seleccionar el checkBox Curso,
+        /// se encarga de habilitar y deshabilitar los comboBoxs correspondientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void seleccionCurso_CheckedChanged(object sender, EventArgs e)
         {
             if (seleccionCurso.Checked)
@@ -255,7 +291,12 @@ namespace iaai.alumno
                 comboMaterias.SelectedItem = null;
             }
         }
-
+        /// <summary>
+        /// Método que controla el evento que se activa al seleccionar el checkBox Curso especiales,
+        /// se encarga de habilitar y deshabilitar los comboBoxs correspondientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void seleccionCursoE_CheckedChanged(object sender, EventArgs e)
         {
             if (seleccionCursoE.Checked)
@@ -279,7 +320,12 @@ namespace iaai.alumno
                 comboMaterias.SelectedItem = null;
             }
         }
-
+        /// <summary>
+        /// Método que controla el evento que se activa al seleccionar el checkBox Materia,
+        /// se encarga de habilitar y deshabilitar los comboBoxs correspondientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void seleccionMateria_CheckedChanged(object sender, EventArgs e)
         {
             if (seleccionMateria.Checked)
@@ -301,7 +347,11 @@ namespace iaai.alumno
                 comboMaterias.Enabled = true;
             }
         }
-
+        /// <summary>
+        /// Método que genera el listado de alumnos según el curso, curso especial o profesorado seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generar_Click(object sender, EventArgs e)
         {
             listado = null;
@@ -351,7 +401,10 @@ namespace iaai.alumno
                 }
             }
         }
-
+        /// <summary>
+        /// Obtiene el id del Curso seleccionado en los comboBoxs
+        /// </summary>
+        /// <returns></returns>
         private string obtenerIdCurso()
         {
             foreach (List<string> c in cursos)
@@ -361,7 +414,10 @@ namespace iaai.alumno
             }
             return "-1";
         }
-
+        /// <summary>
+        /// Obtiene el id del Curso Especial seleccionado en los comboBoxs
+        /// </summary>
+        /// <returns></returns>
         private string obtenerIdCursoEsp()
         {
             foreach (List<string> c in cursosEsp)
@@ -371,7 +427,10 @@ namespace iaai.alumno
             }
             return "-1";
         }
-
+        /// <summary>
+        /// Obtiene el id de la Materia seleccionado en los comboBoxs de  Profesorado
+        /// </summary>
+        /// <returns></returns>
         private string obtenerIdMateria()
         {
             foreach (List<string> m in materias)
@@ -381,17 +440,29 @@ namespace iaai.alumno
             }
             return "-1";
         }
-
+        /// <summary>
+        /// Método que carga el comboBox Niveles según la opción seleccionada el en comboBox Area
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxArea_SelectionChangeCommitted(object sender, EventArgs e)
         {
             cargarNiveles();
         }
-
+        /// <summary>
+        /// Método que carga el comboBox CursosEsp según la opción seleccionada el en comboBox AreaEsp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxArea_esp_SelectionChangeCommitted(object sender, EventArgs e)
         {
             cargarCursosEsp();
         }
-
+        /// <summary>
+        /// Método que carga el comboBox Niveles y Materias según la opción seleccionada el en comboBox Profesorado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void combo_profesorados_SelectionChangeCommitted(object sender, EventArgs e)
         {
             combo_niveles.Items.Clear();
@@ -416,12 +487,20 @@ namespace iaai.alumno
                 comboMaterias.SelectedItem = null;
             }
         }
-
+        /// <summary>
+        /// Método que carga el comboBox Materia según la opción seleccionada el en comboBox Turno
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboTurno_SelectionChangeCommitted(object sender, EventArgs e)
         {
             cargarMaterias();
         }
-
+        /// <summary>
+        /// Método que carga el comboBox Niveles según la opción seleccionada el en comboBox en Profesorado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void combo_niveles_SelectionChangeCommitted(object sender, EventArgs e)
         {
             comboTurno.SelectedItem = null;
