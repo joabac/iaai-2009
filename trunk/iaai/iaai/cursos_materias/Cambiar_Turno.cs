@@ -15,5 +15,12 @@ namespace iaai.cursos_materias
         {
             InitializeComponent();
         }
+
+        private void Cambiar_Turno_Load(object sender, EventArgs e)
+        {
+
+
+
+        }
     }
 }
