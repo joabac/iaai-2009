@@ -60,7 +60,8 @@ namespace iaai.alumno
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
-            Owner.Enabled = true;
+            if(Owner!= null)
+                Owner.Enabled = true;
                 
         }
 
