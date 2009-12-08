@@ -2498,7 +2498,7 @@ namespace iaai.Data_base
                 MySqlCommand MyCommand = new MySqlCommand("select id_curso, c.nombre, c.nivel, duracion, id_profesor, cupo, c.id_area " +
                                                           "from curso c, area a , nivel n  " +
                                                           "where c.id_area=a.id_area and c.nivel = n.nivel "+ 
-                                                          "and a.nombre like '" + area + "'" + " and n.nombre like '"+ nivel+"'", conexion);
+                                                          "and a.nombre like '" + apostrofos(area) + "'" + " and n.nombre like '"+ nivel+"'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Curso curso = new Curso();

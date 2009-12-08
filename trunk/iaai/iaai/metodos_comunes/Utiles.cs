@@ -198,7 +198,7 @@ namespace iaai.metodos_comunes
 
             foreach (char c in cadena)
             {
-                if (Char.IsLetter(c)  || char.IsWhiteSpace(c) || c == '.' || c==96)
+                if (Char.IsLetter(c)  || char.IsWhiteSpace(c) || c == '.' || c==96 || c=='\'' )
                 {
                     valido = true;
                 }
