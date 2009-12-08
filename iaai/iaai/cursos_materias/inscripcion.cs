@@ -840,7 +840,7 @@ namespace iaai.cursos_materias
         {
             //genero un listado de las materias seleccionadas
             List<CursosEsp> cur_select = get_Cursos_Esp_Seleccionados();
-            InscriptoCursoEsp materia_inscripta;
+            InscriptoCursoEsp Curso_inscripto;
 
             if (comboBoxArea_esp.SelectedIndex >= 0)
             {
@@ -864,23 +864,21 @@ namespace iaai.cursos_materias
                             if (nueva_matricula != -1)
                             { //si tengo nueva matricula
                                 nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
-                                materia_inscripta = db.inscribirCursosEspeciales(nuevo,curso_actual);
+                                Curso_inscripto = db.inscribirCursosEspeciales(nuevo, curso_actual);
 
-                                if (materias_inscriptas != null)
+                                if (Curso_inscripto != null)
                                 {
                                     DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                                     if (respuesta == DialogResult.Yes)
                                     {
-                                        imprimir_reporteMaterias(materias_inscriptas);
+                                        imprimir_reporteCursoEspecial(Curso_inscripto);
 
-                                        carga_Materias();
-                                        cur_select.Clear();
                                     }
                                 }
 
                             }
                             else
-                                MessageBox.Show("No se pudo obtener una matricula para el Profesorado", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                                MessageBox.Show("No se pudo obtener una matricula para el Curso", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                         }
                         else  //si ya tiene matricula matricula != -1
                         {
@@ -910,6 +908,11 @@ namespace iaai.cursos_materias
 
         }
 
+        private void imprimir_reporteCursoEspecial(InscriptoCursoEsp Curso_inscripto)
+        {
+            throw new NotImplementedException();
+        }
+
         private List<CursosEsp> get_Cursos_Esp_Seleccionados() {
 
 
@@ -933,7 +936,7 @@ namespace iaai.cursos_materias
                         {
 
                             //recupero que numero de curso es el seleccionado por el orden en que se cargaron
-                            indice = checkedList_cursos.Items.IndexOf(itemChecked);
+                            indice = checkedList_cursosEsp.Items.IndexOf(itemChecked);
 
                             //recupero el curso especifico 
                             curso = cursosActuales[indice];
@@ -947,7 +950,7 @@ namespace iaai.cursos_materias
 
 
                             MessageBox.Show("Item title: " + itemChecked.ToString() + " Checked: " +
-                           checkedList_cursos.Items.IndexOf(itemChecked));
+                           checkedList_cursosEsp.Items.IndexOf(itemChecked));
 
                         }
                     }
