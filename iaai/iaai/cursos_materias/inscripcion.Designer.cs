@@ -41,12 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.combo_niveles = new System.Windows.Forms.ComboBox();
             this.dataGrid_Listado = new System.Windows.Forms.DataGridView();
-            this.inscribe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nombreMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_mat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.buttonInscribir = new System.Windows.Forms.Button();
@@ -57,6 +51,7 @@
             this.comboBoxArea = new System.Windows.Forms.ComboBox();
             this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkedListBox_curEsp_condicion = new System.Windows.Forms.CheckedListBox();
             this.button_Inscribe_Curso_Especial = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
@@ -90,7 +85,12 @@
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso_especial = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso = new System.Drawing.Printing.PrintDocument();
-            this.chkedListBox_curEsp_condicion = new System.Windows.Forms.CheckedListBox();
+            this.inscribe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nombreMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_mat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -272,48 +272,6 @@
             this.dataGrid_Listado.TabIndex = 3;
             this.dataGrid_Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambiar_condicion);
             // 
-            // inscribe
-            // 
-            this.inscribe.FalseValue = "false";
-            this.inscribe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.inscribe.HeaderText = "Seleccion";
-            this.inscribe.Name = "inscribe";
-            this.inscribe.TrueValue = "true";
-            // 
-            // nombreMat
-            // 
-            this.nombreMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreMat.HeaderText = "Nombre Materia";
-            this.nombreMat.Name = "nombreMat";
-            this.nombreMat.ReadOnly = true;
-            // 
-            // profesor
-            // 
-            this.profesor.HeaderText = "Nombre Docente";
-            this.profesor.Name = "profesor";
-            this.profesor.ReadOnly = true;
-            // 
-            // id_mat
-            // 
-            this.id_mat.HeaderText = "ID materia";
-            this.id_mat.Name = "id_mat";
-            this.id_mat.ReadOnly = true;
-            this.id_mat.Visible = false;
-            // 
-            // id_turno
-            // 
-            this.id_turno.HeaderText = "ID turno";
-            this.id_turno.Name = "id_turno";
-            this.id_turno.ReadOnly = true;
-            this.id_turno.Visible = false;
-            // 
-            // condicional
-            // 
-            this.condicional.HeaderText = "Insc. Condicional";
-            this.condicional.Name = "condicional";
-            this.condicional.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.condicional.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // combo_profesorados
             // 
             this.combo_profesorados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -421,6 +379,14 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cursos de Especialización";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // chkedListBox_curEsp_condicion
+            // 
+            this.chkedListBox_curEsp_condicion.FormattingEnabled = true;
+            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(341, 0);
+            this.chkedListBox_curEsp_condicion.Name = "chkedListBox_curEsp_condicion";
+            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(224, 304);
+            this.chkedListBox_curEsp_condicion.TabIndex = 9;
             // 
             // button_Inscribe_Curso_Especial
             // 
@@ -730,13 +696,50 @@
             // 
             this.reporte_curso.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso);
             // 
-            // chkedListBox_curEsp_condicion
+            // inscribe
             // 
-            this.chkedListBox_curEsp_condicion.FormattingEnabled = true;
-            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(341, 0);
-            this.chkedListBox_curEsp_condicion.Name = "chkedListBox_curEsp_condicion";
-            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(224, 304);
-            this.chkedListBox_curEsp_condicion.TabIndex = 9;
+            this.inscribe.FalseValue = "false";
+            this.inscribe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.inscribe.HeaderText = "Seleccion";
+            this.inscribe.Name = "inscribe";
+            this.inscribe.TrueValue = "true";
+            // 
+            // nombreMat
+            // 
+            this.nombreMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreMat.HeaderText = "Nombre Materia";
+            this.nombreMat.Name = "nombreMat";
+            this.nombreMat.ReadOnly = true;
+            this.nombreMat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // profesor
+            // 
+            this.profesor.HeaderText = "Nombre Docente";
+            this.profesor.Name = "profesor";
+            this.profesor.ReadOnly = true;
+            this.profesor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // id_mat
+            // 
+            this.id_mat.HeaderText = "ID materia";
+            this.id_mat.Name = "id_mat";
+            this.id_mat.ReadOnly = true;
+            this.id_mat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id_mat.Visible = false;
+            // 
+            // id_turno
+            // 
+            this.id_turno.HeaderText = "ID turno";
+            this.id_turno.Name = "id_turno";
+            this.id_turno.ReadOnly = true;
+            this.id_turno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id_turno.Visible = false;
+            // 
+            // condicional
+            // 
+            this.condicional.HeaderText = "Insc. Condicional";
+            this.condicional.Name = "condicional";
+            this.condicional.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Inscripcion
             // 
@@ -831,12 +834,12 @@
         private System.Windows.Forms.Button button3;
         private System.Drawing.Printing.PrintDocument reporte_curso_especial;
         private System.Drawing.Printing.PrintDocument reporte_curso;
+        private System.Windows.Forms.CheckedListBox chkedListBox_curEsp_condicion;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
         private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
         private System.Windows.Forms.DataGridViewCheckBoxColumn condicional;
-        private System.Windows.Forms.CheckedListBox chkedListBox_curEsp_condicion;
     }
 }

@@ -13,7 +13,14 @@ namespace iaai.cursos_materias
     {
         public Cambiar_Turno()
         {
+
             InitializeComponent();
+        }
+
+        public void inicializar()
+        {
+
+
         }
 
         private void Cambiar_Turno_Load(object sender, EventArgs e)
@@ -22,6 +29,27 @@ namespace iaai.cursos_materias
 
 
 
+        }
+
+        private void listBoxTurno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
+        internal void inicializar(List<string> disponibles)
+        {
+            listBoxTurno.Items.Clear();
+
+
+
+            for (int i = 0; i < disponibles.Count; i++)
+            {
+               listBoxTurno.Items.Add(disponibles[i]);
+            }
+
+            
         }
     }
 }
