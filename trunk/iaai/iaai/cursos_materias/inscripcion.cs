@@ -1340,8 +1340,24 @@ namespace iaai.cursos_materias
 
         private void cambiar_condicion(object sender, KeyEventArgs e)
         {
+            Cambiar_Turno ventanaturno = new Cambiar_Turno();
+            List<string> disponibles = new List<string>();
 
-            if (e.Alt == true)
+
+            if(e.KeyCode == Keys.F10)
+            {
+                if (dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow &&
+                    dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightBlue)
+                {
+                    disponibles = cargarTurnosDisponibles(nuevo, Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[3].Value),comboTurno.Text.ToString());
+
+                    ventanaturno.inicializar(disponibles);
+                }
+            }
+
+
+
+            if (e.KeyCode == Keys.F9)
             {
                 if (dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow)
                 {
@@ -1361,6 +1377,58 @@ namespace iaai.cursos_materias
                     }
                 }
             }
+            
+        
+        }
+
+        private List<string> cargarTurnosDisponibles(Alumno nuevo, int id_mat, string tur)
+        {
+            List<string> disponibles = new List<string>();
+
+            int disp = 0;
+
+
+            switch(tur)
+            {
+                case "mañana":
+                    
+                        disp = db.verificarCupoMateria(id_mat, "tarde");
+                        if(disp > 0)
+                            disponibles.Add("tarde");
+                        disp = db.verificarCupoMateria(id_mat, "noche");
+                        if(disp > 0)
+                            disponibles.Add("noche");
+                        break;
+                case "tarde":
+                    
+                        disp = db.verificarCupoMateria(id_mat, "mañana");
+                        if(disp > 0)
+                            disponibles.Add("mañana");
+                        disp = db.verificarCupoMateria(id_mat, "noche");
+                        if(disp > 0)
+                            disponibles.Add("noche");
+                    break;
+                case "noche":
+                    
+                        disp = db.verificarCupoMateria(id_mat, "mañana");
+                        if(disp > 0)
+                            disponibles.Add("mañana");
+                        disp = db.verificarCupoMateria(id_mat, "tarde");
+                        if(disp > 0)
+                            disponibles.Add("tarde");
+                    break;
+                default:
+                    MessageBox.Show("Error en el nombre del turno");
+                    break;
+            }
+
+
+            return disponibles;
+            
+
+          
+
+            
         }
 
         private void refrescar_checked_CurEsp(object sender, EventArgs e)
