@@ -1761,14 +1761,26 @@ namespace iaai.Data_base
                         if (disponible == 0)
                         { //si el disponible es 0 
 
-                            MyCommand.CommandText= ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, "+
-                                                         " condicion) values " +
-                                                         "(" + matricula + "," + materia_actual.id_materia+",'"+ DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                         "','" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno)  +
-                                                         ",'condicional' )");
-            
+                            DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional a la Materia: "+materia_actual.nombre +" por falta de cupo\r\n\r\n ¿Desea continuar?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
-                            MyCommand.ExecuteNonQuery();
+                            if (resultado == DialogResult.Yes)
+                            {
+                                MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, " +
+                                                             " condicion) values " +
+                                                             "(" + matricula + "," + materia_actual.id_materia + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                             "','" + DateTime.Now.ToString("HH:mm:ss") + "'," + materia_actual.get_id_turno(turno) +
+                                                             ",'condicional' )");
+
+
+                                MyCommand.ExecuteNonQuery();
+                            }
+                            
+                            else
+                            {
+                                MyCommand.CommandText = ("delete from registro_materia where id_matricula = " + matricula + " and id_materia = " + materia_actual.id_materia);
+                                MyCommand.ExecuteNonQuery();
+                            
+                            }
                             //transaccion.Commit();
                         }
                         else{  //si quedara inscripto
@@ -1778,7 +1790,7 @@ namespace iaai.Data_base
                                 MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
                                                          " condicion) values " +
                                                          "(" + matricula + "," + materia_actual.id_materia + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                         "','" + DateTime.Now.ToShortTimeString() + "'," + materia_actual.get_id_turno(turno) +
+                                                         "','" + DateTime.Now.ToString("HH:mm:ss") + "'," + materia_actual.get_id_turno(turno) +
                                                          ", 'inscripto' )");
 
                                 MyCommand.ExecuteNonQuery();
@@ -1819,12 +1831,12 @@ namespace iaai.Data_base
 
                             listado_inscripciones.Add(inscripto_tmp);
                             reader.Close();
+                            
                         }
                         else
                         {
-                            transaccion.Rollback();
-                            matricula = -1;
-                            db_inscribe.Close();
+                            reader.Close();
+                                                        
                         }
                     }
 
@@ -1836,7 +1848,8 @@ namespace iaai.Data_base
             {
                 if ( db_inscribe.State == System.Data.ConnectionState.Open)
                 {
-                    transaccion.Rollback();
+                    if (transaccion != null)
+                        transaccion.Rollback();
                     db_inscribe.Close();
                     MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
@@ -2309,7 +2322,7 @@ namespace iaai.Data_base
                         MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno, " +
                                                      " condicion) values " +
                                                      "(" + matricula + "," + curso_actual.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     ",'" + DateTime.Now.ToShortTimeString() + "'," +
+                                                     ",'" + DateTime.Now.ToString("HH:mm:ss") + "'," +
                                                      "'condicional' )");
 
 
@@ -2324,7 +2337,7 @@ namespace iaai.Data_base
                             MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
                                                      " condicion) values " +
                                                      "(" + matricula + "," + curso_actual.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     "','" + DateTime.Now.ToShortTimeString() + "'," +
+                                                     "','" + DateTime.Now.ToString("HH:mm:ss") + "'," +
                                                      ", 'inscripto' )");
 
                             MyCommand.ExecuteNonQuery();
@@ -2645,7 +2658,7 @@ namespace iaai.Data_base
         /// para esto se debe contar ya con matricula y se deben haber seleccionado almenos 1 curso
         /// </summary>
         /// <param name="nuevo">El objeto Alumno de interes</param>
-        /// <param name="cursos_select">Curso en que se inscribe</param>
+        /// <param name="curso_select">Curso en que se inscribe</param>
         internal InscriptoCursoEsp inscribirCursosEspeciales(Alumno nuevo, CursosEsp curso_select)
         {
 
@@ -2676,78 +2689,96 @@ namespace iaai.Data_base
             try
             {
 
-                
-                    int disponible = verificarCupoCursoEspecial(curso_select.id_curso);
 
-                    if (disponible == 0)
-                    { //si el disponible es 0 
+                int disponible = verificarCupoCursoEspecial(curso_select.id_curso);
 
-                        MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_curso_especial, fecha, hora, condicion) values " +
+                if (disponible == 0)
+                { //si el disponible es 0 
+
+                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + " por falta de cupo\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        MyCommand.CommandText = ("insert into registro_curso_especial (id_matricula, id_curso_especial, fecha, hora, condicion) values " +
                                                      "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     "','" + DateTime.Now.ToShortTimeString() + "','condicional' )");
+                                                     "','" + DateTime.Now.ToString("HH:mm:ss") + "','condicional' )");
 
 
                         MyCommand.ExecuteNonQuery();
-                        //transaccion.Commit();
                     }
                     else
-                    {  //si quedara inscripto
-
-                        if (disponible > 0)
-                        {
-                            MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_curso_especial, fecha, hora, condicion) values " +
-                                                     "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     "','" + DateTime.Now.ToShortTimeString() + "','inscripto' )");
-
-                            MyCommand.ExecuteNonQuery();
-                            //transaccion.Commit();
-
-                        }
-                        else
-                        {
-                            transaccion.Rollback();
-                            MessageBox.Show("Error al intentar inscribir Alumno en la materia\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-
-
-
-                    //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
-                    MyCommand.CommandText = "select id_registro_curso_especial,condicion " +
-                                                 "from registro_curso_especial " +
-                                                 "where id_matricula = " + matricula +
-                                                 " and  id_curso = " + curso_select.id_curso;
-
-                    MySqlDataReader reader = MyCommand.ExecuteReader();
-
-
-
-                    if (reader.Read())
                     {
+                        MyCommand.CommandText = ("delete from matricula where id_matricula = " + matricula + " and id_curso_especial = " + curso_select.id_curso);
+                        MyCommand.ExecuteNonQuery();
+                        transaccion.Commit();
+                        transaccion = null;
 
-                        inscripto_tmp = new InscriptoCursoEsp();
-                        //cargo el id de la transaccion
-                        inscripto_tmp.id_inscripcion_curso = Convert.ToInt32(reader[0].ToString());
+                    }
+                    //transaccion.Commit();
+                }
+                else
+                {  //si quedara inscripto
 
-                        //cargo la condicion en que se asigno al curos
-                        inscripto_tmp.condicion = reader[1].ToString();
+                    if (disponible > 0)
+                    {
+                        MyCommand.CommandText = ("insert into registro_curso_especial (id_matricula, id_curso_especial, fecha, hora, condicion) values " +
+                                                 "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                 "','" + DateTime.Now.ToString("HH:mm:ss") + "','inscripto' )");
 
-                        //cargo la materia para registro futuro
-                        inscripto_tmp.curso_inscripto = curso_select;
-                        
+                        MyCommand.ExecuteNonQuery();
+                        //transaccion.Commit();
 
-                        
-                        reader.Close();
                     }
                     else
                     {
                         transaccion.Rollback();
-                        matricula = -1;
-                        db_inscribe.Close();
+                        MessageBox.Show("Error al intentar inscribir Alumno al Curso\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                
+                }
 
-                transaccion.Commit();
+
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MyCommand.CommandText = "select id_registro_curso_especial,condicion " +
+                                             "from registro_curso_especial " +
+                                             "where id_matricula = " + matricula +
+                                             " and  id_curso_especial = " + curso_select.id_curso;
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+
+
+
+                if (reader.Read())
+                {
+
+                    inscripto_tmp = new InscriptoCursoEsp();
+                    //cargo el id de la transaccion
+                    inscripto_tmp.id_inscripcion_curso = Convert.ToInt32(reader[0].ToString());
+
+                    //cargo la condicion en que se asigno al curos
+                    inscripto_tmp.condicion = reader[1].ToString();
+
+                    //cargo la materia para registro futuro
+                    inscripto_tmp.curso_inscripto = curso_select;
+
+
+
+                    reader.Close();
+                    transaccion.Commit();
+                }
+                else
+                {
+                    reader.Close();
+                    if (transaccion != null)
+                        transaccion.Rollback();
+
+                    matricula = -1;
+                    db_inscribe.Close();
+                }
+
+
+
+
                 if (db_inscribe.State == System.Data.ConnectionState.Open)
                     db_inscribe.Close();
             }
@@ -2755,7 +2786,8 @@ namespace iaai.Data_base
             {
                 if (db_inscribe.State == System.Data.ConnectionState.Open)
                 {
-                    transaccion.Rollback();
+                    if (transaccion != null)
+                        transaccion.Rollback();
                     db_inscribe.Close();
                     MessageBox.Show("Error de lectura en base de Datos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
@@ -2766,6 +2798,7 @@ namespace iaai.Data_base
 
             return inscripto_tmp;
         }
+
 
         private int verificarCupoCursoEspecial(int id_curso)
         {
@@ -2780,7 +2813,7 @@ namespace iaai.Data_base
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand cupo_comand = new MySqlCommand("select ce.cupo cupo " +
-                                                          "from curso_especial ce" +
+                                                          "from curso_especial ce " +
                                                           "where ce.id_curso_especial = " + id_curso, conexion);
 
                 MySqlDataReader cupo_reader = cupo_comand.ExecuteReader();
@@ -2881,8 +2914,16 @@ namespace iaai.Data_base
 
 
             return matricula;
+
         }
 
+
+        /// <summary>
+        /// Genera un nuevo numero de matricula para el cusrso especial que se solicito
+        /// </summary>
+        /// <param name="id_alumno">el id del alumno a matricular</param>
+        /// <param name="id_cursoEsp">el id del curso a matricular</param>
+        /// <returns>retorna el nuevo numero de matricula o -1 en caso de error</returns>
         internal int generarMatriculaCursoEspecial(int id_alumno, int id_cursoEsp)
         {
             int matricula = -1;
@@ -2950,6 +2991,54 @@ namespace iaai.Data_base
 
             return matricula;
         }
+
+        public bool esta_Inscripto_CursoEsp(int id_curso, int id_alumno, string condicion)
+        {
+
+            bool esta_Inscripto = false;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                //selecciono solo las materias del nivel y profesorado especificados
+                MySqlCommand MyCommand = new MySqlCommand("SELECT id_registro_curso_especial, m.id_matricula, r.id_curso_especial, fecha, hora, condicion "+ 
+                                                          "FROM registro_curso_especial r, matricula m " +
+                                                          "where r.id_matricula = m.id_matricula "+
+                                                          "and m.id_alumno = "+id_alumno+" and r.id_curso_especial = "+id_curso+" and condicion like '"+condicion+"'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Materia materia_tem = new Materia();
+
+                if (reader.Read())
+                {
+                    esta_Inscripto = true;
+                }
+                else
+                {
+                    conexion.Close();
+                    esta_Inscripto = false;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    esta_Inscripto = false;
+                }
+
+            }
+
+
+            return esta_Inscripto;
+        }
+
     }
 
     
