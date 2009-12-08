@@ -216,7 +216,7 @@ namespace iaai.cursos_materias
             int id_prof = listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado;
             int nivel = Convert.ToInt32(combo_niveles.SelectedItem.ToString());
             string turno = comboTurno.SelectedItem.ToString();
-            DataGridViewRow fila;
+            
 
             //obtengo las materias que ya tiene el alumno
             if (nuevo != null)
@@ -563,7 +563,6 @@ namespace iaai.cursos_materias
         /// Rutina para configuracion del reporte de Inscripcion 
         /// Prepara la pagina y asgna las configuraciones
         /// </summary>
-        /// <param name="materias"></param>
         /// <returns></returns>
         private bool imprimir_reporteMaterias()
         {
@@ -824,8 +823,97 @@ namespace iaai.cursos_materias
         /// <param name="e"></param>
         private void buttonInscribir_Click(object sender, EventArgs e)
         {
-            List<Curso> cursos_select = get_Cursos_Seleccionados();
+            //genero un listado de los cursos seleccionados
+            List<Curso> cur_select = get_Cursos_Seleccionados();
+
+                   
+            Inscripto_curso Curso_inscripto;
+
+            Cursos_inscriptos = new List<Inscripto_curso>();
+
+            if (cur_select != null && cur_select.Count > 0)
+            {
+                if (checkedList_cursos.SelectedIndex >= 0)
+                {
+
+                    int matricula;
+                    int nueva_matricula;
+
+                    foreach (Curso curso_actual in cur_select) //itero para cada curso seleccionado 
+                    {
+                        if (nuevo != null && cur_select != null && cur_select.Count > 0) //si se selecciono alumno y se seleccionaron materias
+                        {
+                            //busco si no tiene ya matriculacion
+                            matricula = db.tieneMatriculaCurso(nuevo.getId_alumno(), curso_actual.id_curso);
+
+                            if (matricula == -1) // si no tiene matricula en el curso
+                            {
+
+                                nueva_matricula = db.generarMatriculaCurso(nuevo.getId_alumno(), curso_actual.id_curso);
+
+                                if (nueva_matricula != -1)
+                                { //si tengo nueva matricula
+                                    nuevo.id_matricula = nueva_matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+                                    Curso_inscripto = db.inscribirCursos(nuevo, curso_actual);
+
+                                    if (Curso_inscripto != null)
+                                    {
+
+                                        Cursos_inscriptos.Add(Curso_inscripto);
+                                    }
+
+                                }
+                                else
+                                    MessageBox.Show("No se pudo obtener una matricula para el Curso", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                            }
+                            else  //si ya tiene matricula matricula != -1
+                            {
+                                nuevo.id_matricula = matricula; //encapsulo la nueva amtricula asignada al alumno para esta carrera
+
+                                MessageBox.Show("El alumno ya esta matriculado en el Curso: " + curso_actual.nombre + "\r\n Matricula Nº: " + matricula, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            if (nuevo == null)
+                                MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            else
+                                if (cur_select == null || cur_select.Count == 0)
+                                    MessageBox.Show("Debe seleccionar al menos un Curso", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+
+                    }//termina el foreach
+                    if (CursosEsp_inscriptos != null && CursosEsp_inscriptos.Count > 0)
+                    {
+                        DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            imprimir_reporteCursoEspecial();
+
+                            cur_select.Clear();
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un Area", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                if (nuevo == null)
+                    MessageBox.Show("Debe seleccionar un alumno \r\n o cargar uno nuevo \r\npara poder realizar una iscripcion", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                else
+                    if (cur_select == null || cur_select.Count == 0)
+                        MessageBox.Show("Debe seleccionar al menos un Curso", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
         }
+        
 
         /// <summary>
         /// Retorna un List de objetos Curso que fueron seleccionados para la inscripcion
@@ -844,8 +932,9 @@ namespace iaai.cursos_materias
                 {
                     estado = checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked));
                     if (estado == CheckState.Checked)                   
-                    {                      
-                       
+                    {
+                        List<Curso> listadoCursos = db.getCurso(comboBoxArea.SelectedItem.ToString(), comboBoxNivel.SelectedItem.ToString());
+
                         foreach(Curso curso_temp in listadoCursos)
                         {
                             if(curso_temp.nombre == itemChecked.ToString())
@@ -853,8 +942,7 @@ namespace iaai.cursos_materias
 
                                 listado.Add(curso_temp);
 
-                              MessageBox.Show("Item title: " + itemChecked.ToString() +" Checked: " +
-                               checkedList_cursos.Items.IndexOf(itemChecked));
+                              
                             }
                         
                         }
@@ -879,6 +967,7 @@ namespace iaai.cursos_materias
             InscriptoCursoEsp Curso_inscripto;
 
             CursosEsp_inscriptos = new List<InscriptoCursoEsp>();
+
             if (cur_select != null && cur_select.Count > 0)
             {
                 if (comboBoxArea_esp.SelectedIndex >= 0)
@@ -907,6 +996,7 @@ namespace iaai.cursos_materias
 
                                     if (Curso_inscripto != null)
                                     {
+
                                         CursosEsp_inscriptos.Add(Curso_inscripto);
                                     }
 
@@ -936,7 +1026,7 @@ namespace iaai.cursos_materias
                     }//termina el foreach
                     if (CursosEsp_inscriptos != null && CursosEsp_inscriptos.Count > 0)
                     {
-                        DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n ¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (respuesta == DialogResult.Yes)
                         {
                             imprimir_reporteCursoEspecial();
