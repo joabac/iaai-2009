@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // Cambiar_Condicion
+            // Cambiar_Turno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 264);
-            this.Name = "Cambiar_Condicion";
+            this.Name = "Cambiar_Turno";
             this.Text = "Cambiar Condición";
+            this.Load += new System.EventHandler(this.Cambiar_Turno_Load);
             this.ResumeLayout(false);
 
         }

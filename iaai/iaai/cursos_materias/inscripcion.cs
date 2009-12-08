@@ -797,7 +797,10 @@ namespace iaai.cursos_materias
                             checkedList_cursosEsp.Items.Add(elemento.nombre);
                             chkedListBox_curEsp_condicion.Items.Add("condicional");
                         }
-                        else { }
+                        else 
+                        {
+                            
+                        }
                     }
                 }
             }
