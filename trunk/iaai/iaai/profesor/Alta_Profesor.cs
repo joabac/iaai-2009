@@ -22,7 +22,7 @@ namespace iaai.profesor
         Utiles metodo = new Utiles();
 
         /// <summary>
-        /// Constructor de claseAltaprofesor
+        /// Constructor de clase Altaprofesor
         /// </summary>
         public Altaprofesor()
         {
