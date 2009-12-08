@@ -3014,7 +3014,7 @@ namespace iaai.Data_base
 
 
                 //selecciono solo las materias del nivel y profesorado especificados
-                MySqlCommand MyCommand = new MySqlCommand("SELECT id_registro_curso_especial, m.id_matricula, r.id_curso_especial, fecha, hora, condicion "+ 
+                MySqlCommand MyCommand = new MySqlCommand("SELECT id_registro_curso_especial "+ 
                                                           "FROM registro_curso_especial r, matricula m " +
                                                           "where r.id_matricula = m.id_matricula "+
                                                           "and m.id_alumno = "+id_alumno+" and r.id_curso_especial = "+id_curso+" and condicion like '"+condicion+"'", conexion);
