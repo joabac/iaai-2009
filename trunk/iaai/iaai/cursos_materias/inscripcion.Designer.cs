@@ -46,6 +46,7 @@
             this.profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_mat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.buttonInscribir = new System.Windows.Forms.Button();
@@ -113,7 +114,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label13);
@@ -257,7 +258,8 @@
             this.nombreMat,
             this.profesor,
             this.id_mat,
-            this.id_turno});
+            this.id_turno,
+            this.condicional});
             this.dataGrid_Listado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dataGrid_Listado.Location = new System.Drawing.Point(6, 53);
             this.dataGrid_Listado.MultiSelect = false;
@@ -267,6 +269,7 @@
             this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_Listado.Size = new System.Drawing.Size(559, 257);
             this.dataGrid_Listado.TabIndex = 3;
+            this.dataGrid_Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambiar_condicion);
             // 
             // inscribe
             // 
@@ -303,6 +306,13 @@
             this.id_turno.ReadOnly = true;
             this.id_turno.Visible = false;
             // 
+            // condicional
+            // 
+            this.condicional.HeaderText = "Insc. Condicional";
+            this.condicional.Name = "condicional";
+            this.condicional.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.condicional.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // combo_profesorados
             // 
             this.combo_profesorados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -315,7 +325,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.Controls.Add(this.buttonInscribir);
             this.tabPage2.Controls.Add(this.buttonCancelar);
             this.tabPage2.Controls.Add(this.label17);
@@ -397,7 +407,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.BackColor = System.Drawing.Color.Transparent;
             this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
@@ -793,11 +803,6 @@
         private System.Windows.Forms.Panel panel_datos;
         private System.Windows.Forms.Button alta;
         private System.Drawing.Printing.PrintDocument reporte_inscripcion;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -815,5 +820,11 @@
         private System.Windows.Forms.Button button3;
         private System.Drawing.Printing.PrintDocument reporte_curso_especial;
         private System.Drawing.Printing.PrintDocument reporte_curso;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn condicional;
     }
 }
