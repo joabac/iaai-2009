@@ -364,5 +364,36 @@ namespace iaai_test
             metodo.consulta("delete from profesor where dni like '12345667F' ");
             
         }
+
+        /// <summary>
+        ///Una prueba de apostrofos
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("iaai.exe")]
+        public void apostrofosTest()
+        {
+            Data_base_Accessor target = new Data_base_Accessor(); 
+
+
+            //chequeo de cambio de apostrofos por \\'
+            string cadena = "cadena con apo'stro'fos"; 
+            string expected = "cadena con apo\\'stro\\'fos"; 
+            string actual;
+
+            actual = target.apostrofos(cadena);
+
+            Assert.AreEqual(expected, actual);
+
+
+            
+            //prueba para chequear que no desarma las cadenas originales sin apostrofos
+            cadena = "cadena sin apostrofos"; 
+            expected = "cadena sin apostrofos"; 
+
+            actual = target.apostrofos(cadena);
+
+            Assert.AreEqual(expected, actual);
+            
+        }
     }
 }
