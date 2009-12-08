@@ -773,19 +773,30 @@ namespace iaai.cursos_materias
             }
         }
 
+
+        /// <summary>
+        /// rutina para el refresco del checked list de Cursos especiales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             checkedList_cursosEsp.Items.Clear();
             string area = comboBoxArea_esp.SelectedItem.ToString();
-
-            List<CursosEsp> lista_cursos = db.getCursoEspecial(area);
-
-            if (lista_cursos != null)
+            if (nuevo != null)
             {
-                foreach (CursosEsp elemento in lista_cursos)
-                {
+                List<CursosEsp> lista_cursos = db.getCursoEspecial(area);
 
-                    checkedList_cursosEsp.Items.Add(elemento.nombre);
+                if (lista_cursos != null)
+                {
+                    foreach (CursosEsp elemento in lista_cursos)
+                    {
+                        if (!db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "%"))
+                        {
+                            checkedList_cursosEsp.Items.Add(elemento.nombre);
+                        }
+                    }
                 }
             }
         }
@@ -808,10 +819,10 @@ namespace iaai.cursos_materias
             {
                 foreach (Curso elemento in lista_cursos)
                 {
-                    if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
-                    {
+                    //if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
+                    //{
                         checkedList_cursos.Items.Add(elemento.nombre);
-                    }
+                    //}
                 }
             }
         }
@@ -1029,6 +1040,7 @@ namespace iaai.cursos_materias
                                     {
 
                                         CursosEsp_inscriptos.Add(Curso_inscripto);
+
                                     }
 
                                 }
@@ -1132,13 +1144,13 @@ namespace iaai.cursos_materias
             if (MyPrintDialog.ShowDialog() != DialogResult.OK)
                 return false;
 
-            reporte_curso_especial.DocumentName = "Inscripción a Curso";
-            reporte_curso_especial.PrinterSettings = MyPrintDialog.PrinterSettings;
-            reporte_curso_especial.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
-            reporte_curso_especial.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+            reporte_curso.DocumentName = "Inscripción a Curso";
+            reporte_curso.PrinterSettings = MyPrintDialog.PrinterSettings;
+            reporte_curso.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            reporte_curso.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
 
             //genramos el evento imprimir que desencadena la genracion del informe
-            reporte_curso_especial.Print();
+            reporte_curso.Print();
 
             return true;
         }
