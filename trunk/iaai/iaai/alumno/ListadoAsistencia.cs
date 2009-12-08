@@ -22,7 +22,9 @@ namespace iaai.alumno
         List<List<string>> cursosEsp = null;
         List<List<string>> materias = null;
 
-
+        /// <summary>
+        /// Constructor de ListadoAsistencia Form
+        /// </summary>
         public ListadoAsistencia()
         {
             InitializeComponent();

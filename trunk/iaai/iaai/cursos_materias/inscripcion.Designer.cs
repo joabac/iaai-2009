@@ -713,6 +713,10 @@
             // 
             this.reporte_curso_especial.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso_especial);
             // 
+            // reporte_curso
+            // 
+            this.reporte_curso.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso);
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

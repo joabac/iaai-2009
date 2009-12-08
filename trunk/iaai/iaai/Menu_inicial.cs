@@ -14,10 +14,16 @@ using iaai.cursos_materias;
 
 namespace iaai
 {
+
+    /// <summary>
+    /// Clase principal del Sistema
+    /// </summary>
     public partial class Menu_inicial : Form
     {
         
-
+        /// <summary>
+        /// Constructor de clase Menu_inicial
+        /// </summary>
         public Menu_inicial()
         {
             InitializeComponent();

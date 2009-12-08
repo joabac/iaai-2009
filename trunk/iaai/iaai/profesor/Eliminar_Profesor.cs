@@ -16,6 +16,9 @@ namespace iaai.profesor
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+        /// <summary>
+        /// Constructor de clase para eliminacion de profesores
+        /// </summary>
         public Eliminar_Profesor()
         {
             InitializeComponent();

@@ -1,5 +1,9 @@
 ﻿namespace iaai.profesor
 {
+
+    /// <summary>
+    /// Clase para la modificacion de profesores
+    /// </summary>
     partial class ModificarProfesor
     {
         /// <summary>

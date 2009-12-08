@@ -17,13 +17,21 @@ namespace iaai.responsable
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<List<string>> resultado;
 
-        // CONSTRUCTORES DE LA CLASE
+        /// <summary>
+        /// CONSTRUCTORES DE LA CLASE AsignarResponsable
+        /// </summary>
+ 
         public AsignarResponsable()
         {
             InitializeComponent();
         }
 
-        //Este constructor es utilizado cuando para modificar el responsable de un alumno menor de 21(para cambiar el resp. asignado)
+        
+        /// <summary>
+        /// Este constructor es utilizado cuando para modificar el responsable 
+        /// de un alumno menor de 21(para cambiar el resp. asignado)
+        /// </summary>
+        /// <param name="responsable"></param>
         public AsignarResponsable(int responsable)
         {
             string dni_responsable;

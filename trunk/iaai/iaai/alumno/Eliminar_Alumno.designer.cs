@@ -1,5 +1,8 @@
 ﻿namespace iaai.alumno
 {
+    /// <summary>
+    /// Clase de diseño de form para EliminarAlumno
+    /// </summary>
     partial class EliminarAlumno
     {
         /// <summary>

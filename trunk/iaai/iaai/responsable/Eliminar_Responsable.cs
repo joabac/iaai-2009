@@ -17,6 +17,9 @@ namespace iaai.responsable
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+        /// <summary>
+        /// Constructor de EliminarResponsable
+        /// </summary>
         public EliminarResponsable()
         {
             InitializeComponent();
