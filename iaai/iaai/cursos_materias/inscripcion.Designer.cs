@@ -733,9 +733,9 @@
             // chkedListBox_curEsp_condicion
             // 
             this.chkedListBox_curEsp_condicion.FormattingEnabled = true;
-            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(427, 0);
+            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(341, 0);
             this.chkedListBox_curEsp_condicion.Name = "chkedListBox_curEsp_condicion";
-            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(144, 304);
+            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(224, 304);
             this.chkedListBox_curEsp_condicion.TabIndex = 9;
             // 
             // Inscripcion
