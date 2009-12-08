@@ -3329,6 +3329,59 @@ namespace iaai.Data_base
             return true;
  
         }
+
+
+        /// <summary>
+        /// Determina si un alumno está inscripto a un curso
+        /// </summary>
+        /// <param name="nuevo">alumno al que se hace referencia</param>
+        /// <param name="elemento">curso al que se hace referencia</param>
+        /// <returns></returns>
+        internal bool inscriptoACurso(Alumno nuevo, Curso elemento)
+        {
+
+            bool esta_Inscripto = false;
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                //selecciono solo las materias del nivel y profesorado especificados
+                MySqlCommand MyCommand = new MySqlCommand("SELECT r.id_matricula, r.id_curso " +
+                                                          "FROM registro_curso r, matricula m " +
+                                                          " WHERE m.id_matricula = r.id_matricula and m.id_alumno = " + nuevo.id_alumno + " and r.id_curso = " + elemento.id_curso , conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                
+
+                if (reader.Read())
+                {
+                    esta_Inscripto = true;
+                }
+                else
+                {
+                    conexion.Close();
+                    esta_Inscripto = false;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos con los cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    esta_Inscripto = false;
+                }
+
+            }
+
+
+            return esta_Inscripto;
+        }
     }
 
     

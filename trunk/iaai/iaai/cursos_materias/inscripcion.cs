@@ -828,13 +828,23 @@ namespace iaai.cursos_materias
             List<Curso> lista_cursos = db.getCurso(area, nivel);
 
             if (lista_cursos != null)
+            if (nuevo != null)
             {
                 foreach (Curso elemento in lista_cursos)
+
+                if (lista_cursos != null)
                 {
-                    //if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
-                    //{
+                    if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
+                    {
+                    foreach (Curso elemento in lista_cursos)
+                    {
                         checkedList_cursos.Items.Add(elemento.nombre);
-                    //}
+                        if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
+                        {
+                            checkedList_cursos.Items.Add(elemento.nombre);
+                        }
+                    }
+
                 }
             }
         }
@@ -913,6 +923,10 @@ namespace iaai.cursos_materias
                                     {
 
                                         Cursos_inscriptos.Add(Curso_inscripto);
+
+                                        carga_Combo_Cursos();
+
+
                                         
                                     }
 
@@ -940,12 +954,12 @@ namespace iaai.cursos_materias
                         }
 
                     }//termina el foreach
-                    if (CursosEsp_inscriptos != null && CursosEsp_inscriptos.Count > 0)
+                    if (Cursos_inscriptos != null && Cursos_inscriptos.Count > 0)
                     {
                         DialogResult respuesta = MessageBox.Show("Inscripcion finalizada\r\n¿Desea generara un reporte?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (respuesta == DialogResult.Yes)
                         {
-                            imprimir_reporteCursoEspecial();
+                            imprimir_reporteCurso();
 
                             cur_select.Clear();
 
