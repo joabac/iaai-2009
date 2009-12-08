@@ -245,21 +245,33 @@ namespace iaai.cursos_materias
                             {
                                 //si entro por esta linea significa que el alumno ya esta inscripto a la materia ya sea condicional o inscripto definitivo
 
-                                string[] row = {"false",
-                                        materia_actual.nombre.ToString(),
-                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
-                                        materia_actual.id_materia.ToString(),
-                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
-                                dataGrid_Listado.Rows.Add(row);
-
+                                
                                 //si ya esta inscripto pero condicional pinto de amarillo
                                     if (condicion == 0) //inscripto en forma condicional
                                     {
+                                        string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString(),"true"};
+
+                                        dataGrid_Listado.Rows.Add(row);
+
+
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightYellow;
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
                                     }
                                     else //inscripto en estado inscripto
                                     {
+
+                                        string[] row = {"false",
+                                        materia_actual.nombre.ToString(),
+                                        materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
+                                        materia_actual.id_materia.ToString(),
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString(),"false"};
+
+                                        dataGrid_Listado.Rows.Add(row);
+
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
                                 
@@ -275,7 +287,7 @@ namespace iaai.cursos_materias
                                         materia_actual.nombre.ToString(),
                                         materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
                                         materia_actual.id_materia.ToString(),
-                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString()};
+                                        materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString(),"false"};
 
                                 dataGrid_Listado.Rows.Add(row);
                                 dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
@@ -472,6 +484,11 @@ namespace iaai.cursos_materias
             }
         }
 
+        /// <summary>
+        /// Metodo de control y gestion de las rutins de inscripcion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bt_inscribe_Click(object sender, EventArgs e)
         {
             //genero un listado de las materias seleccionadas
@@ -512,9 +529,11 @@ namespace iaai.cursos_materias
                                 {
                                     imprimir_reporteMaterias();
 
-                                    carga_Materias();
-                                    mat_select.Clear();
+                                    
+                                    
                                 }
+                                carga_Materias();
+                                mat_select.Clear();
                             }
 
                         }
@@ -533,12 +552,13 @@ namespace iaai.cursos_materias
                             {
                                 imprimir_reporteMaterias();
                                 
-                                carga_Materias();
-                                mat_select.Clear();
+                                
                             }
+                            carga_Materias();
+                            mat_select.Clear();
                         }
                         else
-                            MessageBox.Show("No se pudo Inscribir a las Materias seleccionadas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No se realizo la inscripción a las Materias seleccionadas", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     }
 
@@ -613,13 +633,21 @@ namespace iaai.cursos_materias
                 {
                     if (Convert.ToBoolean(fila.Cells[0].Value) == true)
                     {
-                        //MessageBox.Show("asi se usa-> materia: "+fila.Cells[1].Value.ToString());
-
+                        
                         foreach (Materia mat_temp in listadoMaterias)
                         {
                             if (mat_temp.id_materia == Convert.ToInt32(fila.Cells[3].Value))
+                            {
+                                if (Convert.ToBoolean(fila.Cells[5].Value))
+                                {
+                                    mat_temp.condicion = "condicional";
+                                }
+                                else {
+                                    mat_temp.condicion = "inscripto";
+                                }
                                 listado.Add(mat_temp);
-
+                            }
+                                
                         }
                     }
 
@@ -780,8 +808,10 @@ namespace iaai.cursos_materias
             {
                 foreach (Curso elemento in lista_cursos)
                 {
-
-                    checkedList_cursos.Items.Add(elemento.nombre);
+                    if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
+                    {
+                        checkedList_cursos.Items.Add(elemento.nombre);
+                    }
                 }
             }
         }
@@ -860,6 +890,7 @@ namespace iaai.cursos_materias
                                     {
 
                                         Cursos_inscriptos.Add(Curso_inscripto);
+                                        
                                     }
 
                                 }
@@ -1261,6 +1292,31 @@ namespace iaai.cursos_materias
                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
                 e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
                 count++;
+            }
+        }
+
+        private void cambiar_condicion(object sender, KeyEventArgs e)
+        {
+
+            if (e.Alt == true)
+            {
+                if (dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow)
+                {
+                    if (Convert.ToBoolean(dataGrid_Listado.CurrentRow.Cells[5].Value) == true)
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Está seguro que desea cambiar la condición del alumno a \"inscripto\" ?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+                           if(respuesta == DialogResult.Yes)
+                           {
+                              
+                              db.cambiarEstado(nuevo,Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[3].Value),
+                                                        Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[4].Value));
+
+                              
+                              carga_Materias();
+                           }
+                    }
+                }
             }
         }
 
