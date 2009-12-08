@@ -90,6 +90,7 @@
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso_especial = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso = new System.Drawing.Printing.PrintDocument();
+            this.chkedListBox_curEsp_condicion = new System.Windows.Forms.CheckedListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -408,6 +409,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.Controls.Add(this.chkedListBox_curEsp_condicion);
             this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
@@ -444,7 +446,7 @@
             this.checkedList_cursosEsp.FormattingEnabled = true;
             this.checkedList_cursosEsp.Location = new System.Drawing.Point(202, 0);
             this.checkedList_cursosEsp.Name = "checkedList_cursosEsp";
-            this.checkedList_cursosEsp.Size = new System.Drawing.Size(373, 304);
+            this.checkedList_cursosEsp.Size = new System.Drawing.Size(219, 304);
             this.checkedList_cursosEsp.TabIndex = 4;
             // 
             // label18
@@ -463,6 +465,7 @@
             this.comboBoxArea_esp.Name = "comboBoxArea_esp";
             this.comboBoxArea_esp.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea_esp.TabIndex = 0;
+            this.comboBoxArea_esp.SelectionChangeCommitted += new System.EventHandler(this.refrescar_checked_CurEsp);
             this.comboBoxArea_esp.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
@@ -727,6 +730,14 @@
             // 
             this.reporte_curso.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso);
             // 
+            // chkedListBox_curEsp_condicion
+            // 
+            this.chkedListBox_curEsp_condicion.FormattingEnabled = true;
+            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(427, 0);
+            this.chkedListBox_curEsp_condicion.Name = "chkedListBox_curEsp_condicion";
+            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(144, 304);
+            this.chkedListBox_curEsp_condicion.TabIndex = 9;
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,5 +837,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
         private System.Windows.Forms.DataGridViewCheckBoxColumn condicional;
+        private System.Windows.Forms.CheckedListBox chkedListBox_curEsp_condicion;
     }
 }
