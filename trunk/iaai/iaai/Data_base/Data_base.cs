@@ -2347,7 +2347,7 @@ namespace iaai.Data_base
                             //transaccion.Commit();
 
                         }
-                        //   else
+                           else
                         {
                             transaccion.Rollback();
                             MessageBox.Show("Error al intentar inscribir Alumno en el curso\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
