@@ -87,6 +87,8 @@
             this.panel_datos = new System.Windows.Forms.Panel();
             this.alta = new System.Windows.Forms.Button();
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
+            this.reporte_curso_especial = new System.Drawing.Printing.PrintDocument();
+            this.reporte_curso = new System.Drawing.Printing.PrintDocument();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -107,6 +109,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(579, 378);
             this.tabControl1.TabIndex = 7;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.limpiar_Matricula);
             // 
             // tabPage1
             // 
@@ -129,6 +132,7 @@
             this.tabPage1.Size = new System.Drawing.Size(571, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profesorados";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label15
             // 
@@ -325,7 +329,7 @@
             this.tabPage2.Size = new System.Drawing.Size(571, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cursos";
-            
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // buttonInscribir
             // 
@@ -403,7 +407,8 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(571, 352);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Cursos Especiales";
+            this.tabPage3.Text = "Cursos de Especialización";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button_Inscribe_Curso_Especial
             // 
@@ -704,6 +709,10 @@
             this.reporte_inscripcion.DocumentName = "reporte";
             this.reporte_inscripcion.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.reporte_inscripcion_PrintPage);
             // 
+            // reporte_curso_especial
+            // 
+            this.reporte_curso_especial.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso_especial);
+            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -800,5 +809,7 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button button_Inscribe_Curso_Especial;
         private System.Windows.Forms.Button button3;
+        private System.Drawing.Printing.PrintDocument reporte_curso_especial;
+        private System.Drawing.Printing.PrintDocument reporte_curso;
     }
 }
