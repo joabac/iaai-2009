@@ -11,12 +11,20 @@ using iaai.metodos_comunes;
 namespace iaai.alumno
 
 {
+
+    /// <summary>
+    /// clase EliminarAlumno
+    /// </summary>
     public partial class EliminarAlumno : Form
     {
         Alumno alumno_encontrado = new Alumno();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+
+        /// <summary>
+        /// Constructor de clase EliminarAlumno
+        /// </summary>
         public EliminarAlumno()
         {
             InitializeComponent();

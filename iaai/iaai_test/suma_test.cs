@@ -67,28 +67,6 @@ namespace iaai_test
         //
         #endregion
 
-        [TestMethod]
-        public void test_suma()
-        {
-            //
-            
-            //
-            int a = 2;
-            int b = 2;
-
-            int esperado = 4;
-
-            Assert.AreEqual(profe.sumar(a,b),esperado);
-
-            a = 2;
-            b = 2;
-
-            esperado = 2;
-
-            Assert.AreNotEqual(profe.sumar(a, b), esperado);
-
-
-
-        }
+        
     }
 }

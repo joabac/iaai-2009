@@ -1,5 +1,8 @@
 ﻿namespace iaai.responsable
 {
+    /// <summary>
+    /// Clase de diseño para el Form de eliminacion de responsables
+    /// </summary>
     partial class EliminarResponsable
     {
         /// <summary>

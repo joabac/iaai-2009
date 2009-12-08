@@ -1,5 +1,9 @@
 ﻿namespace iaai.responsable
 {
+
+    /// <summary>
+    /// Diseñador de Form AsignarResponsable
+    /// </summary>
     partial class AsignarResponsable
     {
         /// <summary>

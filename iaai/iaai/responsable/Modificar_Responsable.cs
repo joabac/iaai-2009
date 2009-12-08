@@ -12,6 +12,9 @@ using iaai.responsable;
 namespace iaai.responsable
 
 {
+    /// <summary>
+    /// Form para la modificacion de datos de responsabes
+    /// </summary>
     public partial class ModificarResponsable : Form
     {
         Responsable responsable_encontrado = new Responsable();
@@ -21,6 +24,9 @@ namespace iaai.responsable
         Utiles metodo = new Utiles();
         string dni_viejo;
 
+        /// <summary>
+        /// Constructor de ModificarResponsable Form
+        /// </summary>
         public ModificarResponsable()
         {
             InitializeComponent();

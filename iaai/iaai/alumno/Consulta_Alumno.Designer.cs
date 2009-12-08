@@ -1,4 +1,9 @@
 ﻿namespace iaai.alumno{
+
+
+    /// <summary>
+    /// Clase para diseño de Form de consulta de alumnos
+    /// </summary>
     partial class Consulta_Alumno
     {
         /// <summary>

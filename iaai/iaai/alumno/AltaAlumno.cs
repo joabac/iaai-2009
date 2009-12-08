@@ -14,7 +14,7 @@ using iaai.cursos_materias;
 namespace iaai.alumno
 {
     /// <summary>
-    /// 
+    /// Clase AltaAlumno
     /// </summary>
     public partial class AltaAlumno : Form
     {
@@ -31,6 +31,10 @@ namespace iaai.alumno
         
         Data_base.Data_base db = new iaai.Data_base.Data_base();
 
+
+        /// <summary>
+        /// Constructor de clase AltaAlumno
+        /// </summary>
         public AltaAlumno()
         {
             InitializeComponent();
@@ -39,7 +43,7 @@ namespace iaai.alumno
         /// <summary>
         /// Nuevo metodo Show para retornar elementos desde alta
         /// </summary>
-        /// <param name="formu"></param>
+        /// <param name="i"></param>
         /// <returns></returns>
         public void Show(int i) 
         {
@@ -158,7 +162,10 @@ namespace iaai.alumno
             }
        }
 
-
+        /// <summary>
+        /// asigna el id de responsable a un alumno
+        /// </summary>
+        /// <param name="resp"></param>
         public void asignarResponsable(int resp)
         {
             this.responsable = resp;
@@ -166,6 +173,7 @@ namespace iaai.alumno
 
         private void guardarDatos()
         {
+            
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
             datos["dni"] = dni.Text;
@@ -261,6 +269,10 @@ namespace iaai.alumno
             
         }
 
+        /// <summary>
+        /// Retorna el ultimo alumno que se cargo desde este formulario
+        /// </summary>
+        /// <returns></returns>
         public Alumno get_cargado() {
 
             return alumno_cargado;

@@ -17,6 +17,9 @@ namespace iaai.alumno
         Alumno alumno = new Alumno();
         List<Alumno> alumnos_encontrados = new List<Alumno>();
 
+        /// <summary>
+        /// Constructor de clase Consulta_Alumno
+        /// </summary>
         public Consulta_Alumno()
         {
             InitializeComponent();

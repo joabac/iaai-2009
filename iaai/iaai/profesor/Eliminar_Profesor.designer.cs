@@ -1,5 +1,9 @@
 ﻿namespace iaai.profesor
 {
+
+    /// <summary>
+    /// Clase para el diseño del Form de eliminacion de profesores
+    /// </summary>
     partial class Eliminar_Profesor
     {
         /// <summary>

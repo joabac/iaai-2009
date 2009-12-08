@@ -18,6 +18,10 @@ namespace iaai.profesor
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+
+        /// <summary>
+        /// Constructor de clase ModificarProfesor
+        /// </summary>
         public ModificarProfesor()
         {
             InitializeComponent();

@@ -14,6 +14,9 @@ using System.Drawing.Printing;
 
 namespace iaai.cursos_materias
 {
+    /// <summary>
+    /// Clase de FOrm para Inscripciones
+    /// </summary>
     public partial class Inscripcion : Form
     {
         List<Alumno> alumnos_encontrados = new List<Alumno>();
@@ -23,7 +26,10 @@ namespace iaai.cursos_materias
         List<Materia> listadoMaterias = null;
         List<Curso> listadoCursos = null;
        
-        bool abierto_alta = false;
+        /// <summary>
+        /// El alumno que se maneja dentro del formulario y sobre el cual se realizan 
+        /// las operaciones de asgnacion de cursos
+        /// </summary>
         public Alumno nuevo = null;
         List<List<string>> lista_areas = null;
         List<string> niveles = null;
@@ -31,7 +37,12 @@ namespace iaai.cursos_materias
 
         List<Inscripto> materias_inscriptas = null;
         List<InscriptoCursoEsp> CursosEsp_inscriptos = null;
+        List<Inscripto_curso> Cursos_inscriptos = null;
 
+
+        /// <summary>
+        /// Constructor de clase Inscripcion
+        /// </summary>
         public Inscripcion()
         {
             InitializeComponent();
@@ -399,8 +410,14 @@ namespace iaai.cursos_materias
                 this.enabled();
                 
         }
-
+        /// <summary>
+        /// bloques esta ventana
+        /// </summary>
         public void enabled() { this.Enabled = true; }
+
+        /// <summary>
+        /// habilita esta ventana
+        /// </summary>
         public void disabled() { this.Enabled = false; }
 
 
@@ -944,7 +961,10 @@ namespace iaai.cursos_materias
 
             }
         }
-
+        /// <summary>
+        /// COnfigurar pagina para reporte de Cursos de especializacion
+        /// </summary>
+        /// <returns></returns>
         private bool imprimir_reporteCursoEspecial()
         {
             // DataGridViewPrinter MyDataGridViewPrinter;
@@ -971,6 +991,36 @@ namespace iaai.cursos_materias
             return true;
         }
 
+
+         /// <summary>
+         /// Rutina para la configuracion de la pagina para los reportes de inscripcion a cursos
+         /// </summary>
+         /// <returns></returns>
+        private bool imprimir_reporteCurso()
+        {
+            // DataGridViewPrinter MyDataGridViewPrinter;
+            PrintDialog MyPrintDialog = new PrintDialog();
+            MyPrintDialog.AllowCurrentPage = false;
+            MyPrintDialog.AllowPrintToFile = false;
+            MyPrintDialog.AllowSelection = false;
+            MyPrintDialog.AllowSomePages = false;
+            MyPrintDialog.PrintToFile = false;
+            MyPrintDialog.ShowHelp = false;
+            MyPrintDialog.ShowNetwork = false;
+
+            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+                return false;
+
+            reporte_curso_especial.DocumentName = "Inscripción a Curso";
+            reporte_curso_especial.PrinterSettings = MyPrintDialog.PrinterSettings;
+            reporte_curso_especial.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            reporte_curso_especial.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+
+            //genramos el evento imprimir que desencadena la genracion del informe
+            reporte_curso_especial.Print();
+
+            return true;
+        }
 
         /// <summary>
         /// Rutina para la recuperacion de los items seleccionados en el checked list box de cursos de especializacion
@@ -1024,6 +1074,12 @@ namespace iaai.cursos_materias
             return null;
         }
 
+
+        /// <summary>
+        /// Rutina para la generacion de la pagina de reporte para cursos especiales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void print_reporte_curso_especial(object sender, PrintPageEventArgs e)
         {
             string cadena;
@@ -1064,10 +1120,58 @@ namespace iaai.cursos_materias
             }
         }
 
+        //metodo interno
         private void limpiar_Matricula(object sender, EventArgs e)
         {
             if (nuevo != null)
                 nuevo.id_matricula = -1;
+        }
+
+
+
+        /// <summary>
+        /// Rutina para la generacion de pagina de reporte para cursos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void print_reporte_curso(object sender, PrintPageEventArgs e)
+        {
+            string cadena;
+            Font printFont = new Font("Arial", 10);
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top;
+            int count = 0;
+            float yPos = 10;
+
+            //-----------------------Encabezado-----------------------
+            e.Graphics.DrawString("REPORTE DE INSCRIPCION A CURSOS", new Font("Arial Black", 15), Brushes.Black, (e.MarginBounds.Left), (yPos + 10), new StringFormat());
+            count += 5;
+
+            //----------------------Datos del Alumno------------------
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+
+            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre() + "\r\nMatricula: " + nuevo.id_matricula;
+
+            e.Graphics.DrawString(alumno, new Font("Arial Black", 12), Brushes.Black, leftMargin, yPos, new StringFormat());
+            count += 4;
+
+            e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
+            yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+            count++;
+            //---------------------Registro de inscripciones-----------
+            foreach (Inscripto_curso elemento in Cursos_inscriptos)
+            {
+                yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+
+                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nNombre Curso: " + elemento.curso_inscripto.nombre + "\r\nDuracion: " + elemento.curso_inscripto.duracion +" [años]\r\nCondición: " + elemento.condicion + "\r\n\r\n";
+
+                e.Graphics.DrawString(cadena, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
+                count += 5;
+
+                yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
+                e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
+                count++;
+            }
         }
 
 

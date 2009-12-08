@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 namespace iaai.alumno
 {
+
+    /// <summary>
+    /// Configuracion de Form de ListadoAsistencia
+    /// </summary>
     partial class ListadoAsistencia
     {
         /// <summary>

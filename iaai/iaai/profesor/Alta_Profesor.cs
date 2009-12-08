@@ -10,6 +10,9 @@ using iaai.metodos_comunes;
 
 namespace iaai.profesor
 {
+    /// <summary>
+    /// form para Alta de Profesores
+    /// </summary>
     public partial class Altaprofesor : Form
     {
 
@@ -18,22 +21,15 @@ namespace iaai.profesor
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+        /// <summary>
+        /// Constructor de claseAltaprofesor
+        /// </summary>
         public Altaprofesor()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Suma: "+ sumar(2, 2));
-        }
-
-        public int sumar(int a, int b) {
-
-            return a + b;
-        }
-
-        
+                    
 
         private void validar_mail(object sender, EventArgs e)
         {

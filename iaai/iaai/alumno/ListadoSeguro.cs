@@ -11,6 +11,10 @@ using System.Drawing.Printing;
 
 namespace iaai.alumno
 {
+
+    /// <summary>
+    /// Clase para generacion de Listado de Seguro
+    /// </summary>
     public partial class ListadoSeguro : Form
     {
 
@@ -18,7 +22,9 @@ namespace iaai.alumno
         List<List<string>> listado;
         DataGridViewPrinter MyDataGridViewPrinter;
 
-        
+        /// <summary>
+        /// Constructor de clase ListadoSeguro
+        /// </summary>
         public ListadoSeguro()
         {
             InitializeComponent();

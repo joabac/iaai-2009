@@ -10,6 +10,10 @@ using iaai.metodos_comunes;
 
 namespace iaai.responsable
 {
+
+    /// <summary>
+    /// Clase para AltaResponsable
+    /// </summary>
     public partial class AltaResponsable : Form
     {
         private string error = "";
@@ -17,6 +21,10 @@ namespace iaai.responsable
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
 
+
+        /// <summary>
+        /// Constructor de clase AltaResponsable
+        /// </summary>
         public AltaResponsable()
         {
             InitializeComponent();
