@@ -927,9 +927,7 @@ namespace iaai.cursos_materias
                                         Cursos_inscriptos.Add(Curso_inscripto);
 
                                         carga_Combo_Cursos();
-
-
-                                        
+                                                                             
                                     }
 
                                 }
