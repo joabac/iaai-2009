@@ -827,27 +827,30 @@ namespace iaai.cursos_materias
 
             List<Curso> lista_cursos = db.getCurso(area, nivel);
 
-            if (lista_cursos != null)
+
             if (nuevo != null)
             {
-                foreach (Curso elemento in lista_cursos)
+
 
                 if (lista_cursos != null)
                 {
-                    if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
-                    {
                     foreach (Curso elemento in lista_cursos)
                     {
-                        checkedList_cursos.Items.Add(elemento.nombre);
+
                         if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
                         {
-                            checkedList_cursos.Items.Add(elemento.nombre);
-                        }
-                    }
 
+                            checkedList_cursos.Items.Add(elemento.nombre);
+
+                            carga_Combo_Cursos();
+
+                        }
+
+                    }
                 }
             }
         }
+        
 
         private void cambio_area(object sender, EventArgs e)
         {
