@@ -842,7 +842,6 @@ namespace iaai.cursos_materias
 
                             checkedList_cursos.Items.Add(elemento.nombre);
 
-                            carga_Combo_Cursos();
 
                         }
 
