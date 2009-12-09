@@ -14,6 +14,7 @@ namespace iaai.cursos_materias
         public int cupo { get; set; }
         public int horas { get; set; }
         public int area { get; set; }
+        public string condicion { get; set; }
 
         public void CursoEsp() 
         { 
