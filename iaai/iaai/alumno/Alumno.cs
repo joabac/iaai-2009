@@ -42,13 +42,14 @@ namespace iaai.alumno
                 escuela_nombre = (string)datos["escuela_nombre"];
                 escuela_año = int.Parse(datos["escuela_año"].ToString());
             }
+            
             direccion = (string)datos["direccion"];
             if (datos["id_responsable"] != null)
                 id_responsable = int.Parse(datos["id_responsable"].ToString());
         }
 
         public Alumno()
-        { }
+        {}
 
         /// <summary>
         /// Constructor que instancia el alumno con 

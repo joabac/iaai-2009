@@ -4,6 +4,7 @@ using iaai.profesor;
 using iaai.responsable;
 using iaai.alumno;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace iaai_test
 {
@@ -85,37 +86,192 @@ namespace iaai_test
 
         }
 
-        
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //               PRUEBAS ALUMNO (MAYOR DE EDAD)               //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
         /// <summary>
-        ///Una prueba de buscarResponsable
+        ///Una prueba de altaAlumno (mayor de edad)
         ///</summary>
         [TestMethod()]
-        public void buscarResponsableTest()
+        public void altaAlumnoTest()
         {
-           
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
 
-        /// <summary>
-        ///Una prueba de buscarDniResponsable
-        ///</summary>
-        [TestMethod()]
-        public void buscarDniResponsableTest()
-        {
-          
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+            //se generan los dato del alumno a dar de alta (sin datos de la escuela ni del año de cursado)
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = null;
+            datos["escuela_año"] = null;
+            datos["id_responsable"] = null;
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
-        /// <summary>
-        ///Una prueba de buscarDniProfesor
-        ///</summary>
-        [TestMethod()]
-        public void buscarDniProfesorTest()
-        {
+            //prueba 1
             
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //Busqueda del alumno
+
+            Alumno recuperado = metodo.Buscar_Alumno("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '22222222' ");
+
+
+            //prueba 2
+            //se agregan los datos de la escuela y el año de curdado.
+
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "1";
+            esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //Busqueda del alumno
+
+            recuperado = metodo.Buscar_Alumno("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '22222222' ");
+            
+
         }
+
+        /// <summary>
+        ///Una prueba buscar alumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void buscarAlumnoTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "14141414";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial";
+            datos["escuela_año"] = 3;
+            datos["id_responsable"] = null;
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+            
+            //Busqueda del alumno
+
+            Alumno recuperado = metodo.Buscar_Alumno("14141414");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '14141414' ");
+
+        }
+
+        /// <summary>
+        ///Una prueba modificar alumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void modificarAlumnoTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            string dni_viejo = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = null;
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //se generan modificaciones
+            datos["nombre"] = "Diego";
+            datos["dni"] = "11111111";
+            datos["fecha_nac"] = "1984-04-01";
+            datos["telefono_numero"] = "123456";
+
+            Alumno modificado = new Alumno(datos);
+            
+            //se modifica al alumno
+            metodo.modificarAlumno(modificado,dni_viejo);
+            
+            //recupero el alumno modificado de la base datos
+            Alumno recuperado = metodo.Buscar_Alumno(modificado.getDni());
+            
+            if (recuperado != null)
+            {
+                //verificación de los datos
+                Assert.AreEqual(modificado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+                Assert.AreEqual(modificado.getNombre().ToString(), recuperado.getNombre().ToString());
+                Assert.AreEqual(modificado.getApellido().ToString(), recuperado.getApellido().ToString());
+                Assert.AreEqual(modificado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+                Assert.AreEqual(modificado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+                Assert.AreEqual(modificado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+                Assert.AreEqual(modificado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+                Assert.AreEqual(modificado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            }
+            else
+            {
+                Assert.Inconclusive("No se recuperó el alumno");
+            }
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '11111111' ");
+
+        }
+
 
         /// <summary>
         ///Una prueba de buscarDniAlumno
@@ -123,29 +279,696 @@ namespace iaai_test
         [TestMethod()]
         public void buscarDniAlumnoTest()
         {
-          
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = null;
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //verificación de los datos (el método retorna false si encuentra el dni en la base de datos
+            //ya que valida en la instancia de alta alumno, para no ingresar un dni duplicado.
+            Assert.AreEqual(false, metodo.buscarDniAlumno("44444444")); //se compara lo recibido de BD con lo ingresado
+            
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '44444444' ");
+
+
         }
 
+
+
         /// <summary>
-        ///Una prueba de altaAlumno
+        ///Una prueba eliminar alumno (mayor de edad)
         ///</summary>
         [TestMethod()]
-        public void altaAlumnoTest()
+        public void eliminarAlumnoTest()
         {
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = null;
+            Alumno alumn = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(alumn); //Alta del Alumno
+
+            //el alumno es marcado como eliminado en la base de datos
             
+            metodo.eliminarAlumno(alumn.getDni());
+
+            //se comprueba que el alumno figure como eliminado en la base de datos
+            Alumno actual = metodo.Buscar_Alumno("44444444");
+            Alumno esperado = null;
+
+            //prueba
+            Assert.AreEqual(esperado, actual);
+            
+            //elimino manualmente el alumno
+            metodo.consulta("delete from alumno where dni like '44444444' ");
+
         }
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //           FIN PRUEBAS ALUMNO (MAYOR DE EDAD)               //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+
+        
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //           INICIO PRUEBAS RESPONSABLE                       //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
 
         /// <summary>
-        ///Una prueba de altaResponsable
+        ///Una prueba de altaResponsable 
         ///</summary>
         [TestMethod()]
         public void altaResponsableTest()
         {
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
+
+            //prueba 1
+
+            metodo.altaResponsable(esperado); //Alta del Responsable
+
+            //Busqueda del Responsable
+
+            Responsable recuperado = metodo.Buscar_Responsable("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            
+            //elimino manualmente el Responsable de prueba generado
+            metodo.consulta("delete from responsable where dni like '22222222' ");
+
+
             
         }
+
+        /// <summary>
+        ///Una prueba buscar responsable
+        ///</summary>
+        [TestMethod()]
+        public void buscarResponsableTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
+
+            //prueba 1
+
+            metodo.altaResponsable(esperado); //Alta del Responsable
+            //Busqueda del Responsable
+
+            Responsable recuperado = metodo.Buscar_Responsable("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+
+            //elimino manualmente el Responsable de prueba generado
+            metodo.consulta("delete from responsable where dni like '44444444' ");
+
+        }
+
+        /// <summary>
+        ///Una prueba modificar Responsable
+        ///</summary>
+        [TestMethod()]
+        public void modificarResponsableTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            string dni_viejo = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
+
+            //prueba 1
+
+            metodo.altaResponsable(esperado); //Alta del Responsable
+            
+            //se generan modificaciones
+            datos["nombre"] = "Diego";
+            datos["dni"] = "11111111";
+            datos["fecha_nac"] = "1984-04-01";
+            datos["telefono_numero"] = "123456";
+
+            Responsable modificado = new Responsable(datos);
+
+            //se modifica al Responsable
+            metodo.modificarResponsable(modificado, dni_viejo);
+
+            //recupero el Responsable modificado de la base datos
+            Responsable recuperado = metodo.Buscar_Responsable(modificado.getDni().ToString());
+
+            if (recuperado != null)
+            {
+                //verificación de los datos
+                Assert.AreEqual(modificado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+                Assert.AreEqual(modificado.getNombre().ToString(), recuperado.getNombre().ToString());
+                Assert.AreEqual(modificado.getApellido().ToString(), recuperado.getApellido().ToString());
+                Assert.AreEqual(modificado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+                Assert.AreEqual(modificado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                Assert.Inconclusive("No se recuperó el Responsable");
+            }
+
+            //elimino manualmente el Responsable de prueba generado
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+
+        }
+
+
+        /// <summary>
+        ///Una prueba de buscarDniResponsable
+        ///</summary>
+        [TestMethod()]
+        public void buscarDniResponsableTest()
+        {
+
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
+
+            //prueba 1
+
+            metodo.altaResponsable(esperado); //Alta del Responsable
+
+            //verificación de los datos (el método retorna false si encuentra el dni en la base de datos
+            //ya que valida en la instancia de alta responsable, para no ingresar un dni duplicado.
+            Assert.AreEqual(false, metodo.buscarDniResponsable("22222222")); //se compara lo recibido de BD con lo ingresado
+
+            //elimino manualmente el responsable de prueba generado
+            metodo.consulta("delete from responsable where dni like '22222222' ");
+
+
+        }
+
+
+
+        /// <summary>
+        ///Una prueba eliminar Responsable
+        ///</summary>
+        [TestMethod()]
+        public void eliminarResponsableTest()
+        {
+
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            Responsable resp = new Responsable(datos);  //se crea el objeto Responsable
+
+            //prueba 1
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+
+            //el Responsable es marcado como eliminado en la base de datos
+
+            metodo.eliminarResponsable(resp.getDni().ToString());
+
+            //se comprueba que el Responsable figure como eliminado en la base de datos
+            Responsable actual = metodo.Buscar_Responsable("22222222");
+            Responsable esperado = null;
+
+            //prueba
+            Assert.AreEqual(esperado, actual);
+
+            //elimino manualmente el Responsable
+            metodo.consulta("delete from responsable where dni like '22222222' ");
+
+        }
+
+
+
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //              FIN PRUEBAS RESPONSABLE                       //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //               PRUEBAS ALUMNO (MENOR DE EDAD)               //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+        /// <summary>
+        ///Una prueba de altaAlumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void altaAlumnoMenorTest()
+        {
+            Data_base metodo = new Data_base();
+            
+            IDictionary<string, object> datos2 = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos2["nombre"] = "Martin";
+            datos2["apellido"] = "Gonzalez";
+            datos2["dni"] = "11111111";
+            datos2["fecha_nac"] = "1981-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "1111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+            resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
+            
+
+
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (sin datos de la escuela ni del año de cursado)
+            datos["nombre"] = "Juan";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "22222222";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = null;
+            datos["escuela_año"] = null;
+            datos["id_responsable"] = resp.getId_responsable().ToString();
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //Busqueda del alumno
+
+            Alumno recuperado = metodo.Buscar_Alumno("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '22222222' ");
+
+
+            //prueba 2
+            //se agregan los datos de la escuela y el año de curdado.
+
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "1";
+            esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //Busqueda del alumno
+
+            recuperado = metodo.Buscar_Alumno("22222222");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '22222222' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+
+
+        }
+
+        /// <summary>
+        ///Una prueba buscar alumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void buscarAlumnoMenorTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos2 = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos2["nombre"] = "Martin";
+            datos2["apellido"] = "Gonzalez";
+            datos2["dni"] = "11111111";
+            datos2["fecha_nac"] = "1981-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "11111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+            resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
+
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = resp.getId_responsable();
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //Busqueda del alumno
+
+            Alumno recuperado = metodo.Buscar_Alumno("44444444");
+
+            //verificación de los datos
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+            Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+            Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '44444444' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+
+        }
+
+        /// <summary>
+        ///Una prueba modificar alumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void modificarAlumnoMenorTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos2 = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos2["nombre"] = "Martin";
+            datos2["apellido"] = "Gonzalez";
+            datos2["dni"] = "11111111";
+            datos2["fecha_nac"] = "1981-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "1111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+            resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
+
+            //se generan los dato del 2° Responsable a dar de alta 
+            datos2["nombre"] = "Jose";
+            datos2["apellido"] = "Tibursio";
+            datos2["dni"] = "33333333";
+            datos2["fecha_nac"] = "1983-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "1111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp2 = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp2); //Alta del Responsable
+            resp2.setIdResponsable(metodo.Buscar_Responsable("33333333").getId_responsable());
+
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            string dni_viejo = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = resp.getId_responsable();
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //se generan modificaciones
+            datos["nombre"] = "Diego";
+            datos["dni"] = "11111111";
+            datos["fecha_nac"] = "1984-04-01";
+            datos["telefono_numero"] = "123456";
+            datos["id_responsable"] = resp2.getId_responsable();
+
+            Alumno modificado = new Alumno(datos);
+
+            //se modifica al alumno
+            metodo.modificarAlumno(modificado,dni_viejo);
+
+            //recupero el alumno modificado de la base datos
+            Alumno recuperado = metodo.Buscar_Alumno(modificado.getDni());
+
+            if (recuperado != null)
+            {
+                //verificación de los datos
+                Assert.AreEqual(modificado.getDni().ToString(), recuperado.getDni().ToString()); //se compara lo recibido de BD con lo ingresado
+                Assert.AreEqual(modificado.getNombre().ToString(), recuperado.getNombre().ToString());
+                Assert.AreEqual(modificado.getApellido().ToString(), recuperado.getApellido().ToString());
+                Assert.AreEqual(modificado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+                Assert.AreEqual(modificado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+                Assert.AreEqual(modificado.getEscuela_nombre(), recuperado.getEscuela_nombre());
+                Assert.AreEqual(modificado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
+                Assert.AreEqual(modificado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            }
+            else
+            {
+                Assert.Inconclusive("No se recuperó el alumno");
+            }
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '11111111' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '33333333' ");
+
+
+        }
+
+
+        /// <summary>
+        ///Una prueba de buscarDniAlumno
+        ///</summary>
+        [TestMethod()]
+        public void buscarDniAlumnoMenorTest()
+        {
+
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos2 = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos2["nombre"] = "Martin";
+            datos2["apellido"] = "Gonzalez";
+            datos2["dni"] = "11111111";
+            datos2["fecha_nac"] = "1981-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "1111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+            resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
+
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = resp.getId_responsable();
+
+            Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(esperado); //Alta del Alumno
+
+            //verificación de los datos
+            Assert.AreEqual(false, metodo.buscarDniAlumno("44444444")); //se compara lo recibido de BD con lo ingresado
+
+            //elimino manualmente el alumno de prueba generado
+            metodo.consulta("delete from alumno where dni like '44444444' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+
+
+        }
+
+
+
+        /// <summary>
+        ///Una prueba eliminar alumno (mayor de edad)
+        ///</summary>
+        [TestMethod()]
+        public void eliminarAlumnoMenorTest()
+        {
+            Data_base metodo = new Data_base();
+            IDictionary<string, object> datos2 = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta 
+            datos2["nombre"] = "Martin";
+            datos2["apellido"] = "Gonzalez";
+            datos2["dni"] = "11111111";
+            datos2["fecha_nac"] = "1981-12-01";
+            datos2["telefono_carac"] = "0342";
+            datos2["telefono_numero"] = "1111111";
+            datos2["direccion"] = "Av. Freyre 3333";
+            Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
+
+            metodo.altaResponsable(resp); //Alta del Responsable
+            resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
+
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del alumno a dar de alta (mayor de edad)
+            datos["nombre"] = "Jose";
+            datos["apellido"] = "Gomez";
+            datos["dni"] = "44444444";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "1111111";
+            datos["direccion"] = "Av. Freyre 1234";
+            datos["escuela_nombre"] = "Comercial Domingo. G Silva";
+            datos["escuela_año"] = "4";
+            datos["id_responsable"] = resp.getId_responsable();
+            Alumno alumn = new Alumno(datos);  //se crea el objeto Alumno
+
+            //prueba 1
+
+            metodo.altaAlumno(alumn); //Alta del Alumno
+
+            //el alumno es marcado como eliminado en la base de datos
+
+            metodo.eliminarAlumno(alumn.getDni());
+
+            //se comprueba que el alumno figure como eliminado en la base de datos
+            Alumno actual = metodo.Buscar_Alumno("44444444");
+            Alumno esperado = null;
+
+            //prueba
+            Assert.AreEqual(esperado, actual);
+
+            //elimino manualmente el alumno
+            metodo.consulta("delete from alumno where dni like '44444444' ");
+            //elimino manualmente el responsable
+            metodo.consulta("delete from responsable where dni like '11111111' ");
+
+        }
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //           FIN PRUEBAS ALUMNO (MENOR DE EDAD)               //
+        //                                                            //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
 
         /// <summary>
         ///Una prueba de altaProfesor

@@ -128,7 +128,7 @@ namespace iaai.alumno
             //Validación característica telefónica
             if (telefono_carac.Text.Length != 0)
             {
-                if (!metodo.validar_Caracteristica(telefono_numero.Text))
+                if (!metodo.validar_Caracteristica(telefono_carac.Text))
                     error = error + "Formato de la Característica telefónica no válido \r\n";
             }
         
@@ -211,7 +211,7 @@ namespace iaai.alumno
             }
             else
             {
-                datos["telefono_carac"] = null;
+                datos["telefono_carac"] = "";
             }
             datos["telefono_numero"] = (object)telefono_numero.Text;
 

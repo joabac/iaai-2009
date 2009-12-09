@@ -272,7 +272,7 @@ namespace iaai.Data_base
         /// {true= si se dio la modificación del alumno}  
         /// {false= si no se pudo modificar}
         /// </returns>
-        public bool modificarAlumno(Alumno alumno)
+        public bool modificarAlumno(Alumno alumno, string dni_viejo)
         {
             try
             {
@@ -286,7 +286,7 @@ namespace iaai.Data_base
                                                             "',direccion = '" + apostrofos(alumno.getDireccion()) +
                                                             "',escuela_nombre = '" + apostrofos(alumno.getEscuela_nombre()) +
                                                             "', escuela_año = '" + alumno.getEscuela_año() + 
-                                                            "', id_responsable = '" + alumno.getId_responsable() + "' where dni like '" + alumno.getDni() + "'", conexion);
+                                                            "', id_responsable = '" + alumno.getId_responsable() + "' where dni like '" + dni_viejo + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -315,7 +315,7 @@ namespace iaai.Data_base
         /// {true= si se dio la modificación del responsable}  
         /// {false= si no se pudo modificar}
         /// </returns>
-        public bool modificarResponsable(Responsable responsable)
+        public bool modificarResponsable(Responsable responsable, string dni_viejo)
         {
             try
             {
@@ -326,7 +326,7 @@ namespace iaai.Data_base
                                                             responsable.getDni() + "', telefono_carac = " + responsable.getTelefono_carac() + ",telefono_numero = " +
                                                             responsable.getTelefono_numero() + ",fecha_nac = '" +
                                                             responsable.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                            "',direccion = '" + apostrofos(responsable.getDireccion()) + "' where dni like '" + responsable.getDni() + "'", conexion);
+                                                            "',direccion = '" + apostrofos(responsable.getDireccion()) + "' where dni like '" + dni_viejo + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -345,6 +345,8 @@ namespace iaai.Data_base
             return true;
         }
 
+        //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
+        IDictionary<string, object> datos = new Dictionary<string, object>();
 
         /// <summary>
         /// Busca un alumno en base de datos
@@ -362,23 +364,64 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
                                                           "from alumno " +
-                                                          "where dni like '" + dni + "'", conexion);
+                                                          "where dni like '" + dni + "' AND activo = '1'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
 
                 if (reader.Read())
                 {
+                    datos["nombre"] = (reader[1].ToString());
+                    datos["apellido"] = (reader[2].ToString()); ;
+                    datos["dni"] = (reader[3].ToString()); ;
+                    datos["fecha_nac"] = (Convert.ToDateTime(reader[6]));
+                    if ((reader[4].ToString()) != "0")
+                    {
+                        datos["telefono_carac"] = (reader[4].ToString());
+                    }
+                    else
+                    {
+                        datos["telefono_carac"] = "";
+                    }
+                    datos["telefono_numero"] = (reader[5].ToString());
+
+                    if ((reader[8].ToString()).Length > 0)
+                    {
+                        datos["escuela_nombre"] = (reader[8].ToString());
+                        datos["escuela_año"] = (Convert.ToInt32(reader[9].ToString()));
+                    }
+                    else
+                    {
+                        datos["escuela_nombre"] = null;
+                        datos["escuela_año"] = null;
+                    }
+                    datos["direccion"] = (reader[7].ToString());
+                    if (reader[10] != null)
+                        datos["id_responsable"] = (Convert.ToInt32(reader[10].ToString()));
+                    else
+                        datos["id_responsable"] = null;
+                    
+                    alumno = new Alumno(datos);
+                    alumno.id_alumno = (Convert.ToInt32(reader[0]));
+                    /*
                     alumno.id_alumno = (Convert.ToInt32(reader[0]));
                     alumno.setNombre(reader[1].ToString());
                     alumno.setApellido(reader[2].ToString());
                     alumno.setDni(reader[3].ToString());
-                    alumno.setTelefono_carac(reader[4].ToString());
+                    if (reader[4] != null)
+                        alumno.setTelefono_carac(reader[4].ToString());
                     alumno.setTelefono_numero(reader[5].ToString());
                     alumno.setFecha_nac(Convert.ToDateTime(reader[6]));
                     alumno.setDireccion(reader[7].ToString());
-                    alumno.setEscuela_nombre(reader[8].ToString());
-                    alumno.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
-                    alumno.setId_responsable(Convert.ToInt32(reader[10].ToString()));
+                    if (reader[8] != null)
+                        alumno.setEscuela_nombre(reader[8].ToString());
+                    else
+                        alumno.setEscuela_nombre(null);
+
+                    if (reader[9] != "0")
+                        alumno.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
+                    
+                    if (reader[10] != null)
+                        alumno.setId_responsable(Convert.ToInt32(reader[10].ToString()));*/
                 }
                 else
                 {
@@ -398,11 +441,10 @@ namespace iaai.Data_base
                 }
 
             }
-
-
             return alumno;
 
         }
+            
 
         /// <summary>
         /// Busca un responsable en base de datos
@@ -420,7 +462,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, id_responsable " +
                                                           "from responsable " +
-                                                          "where dni like '" + dni + "'", conexion);
+                                                          "where dni like '" + dni + "' AND activo = '1'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
 
@@ -3263,14 +3305,21 @@ namespace iaai.Data_base
         /// <returns>Cadena con correccion de apostrofos</returns>
         private string apostrofos(string cadena) 
         {
-            string retorno = "";
-            string cadena_tmp = "";
+            if (cadena != null)
+            {
+                string retorno = "";
+                string cadena_tmp = "";
 
-            cadena_tmp = cadena.Replace("\'", "#");
+                cadena_tmp = cadena.Replace("\'", "#");
 
-            retorno = cadena_tmp.Replace("#", "\\'");
-
-            return retorno;
+                retorno = cadena_tmp.Replace("#", "\\'");
+                return retorno;
+            }
+            else
+            {
+                return cadena;
+            }
+          
         }
 
 
