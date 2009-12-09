@@ -53,8 +53,11 @@ namespace iaai.alumno
 
         private void imprimir_Click(object sender, EventArgs e)
         {
-            if (SetupThePrinting())
-                MyPrintDocument.Print();
+            if (lista.RowCount > 0)
+            {
+                if (SetupThePrinting())
+                    MyPrintDocument.Print();
+            }
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -71,11 +74,14 @@ namespace iaai.alumno
 
         private void previa_Click(object sender, EventArgs e)
         {
-            if (SetupThePrinting())
+            if (lista.RowCount > 0)
             {
-                PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
-                MyPrintPreviewDialog.Document = MyPrintDocument;
-                MyPrintPreviewDialog.ShowDialog();
+                if (SetupThePrinting())
+                {
+                    PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
+                    MyPrintPreviewDialog.Document = MyPrintDocument;
+                    MyPrintPreviewDialog.ShowDialog();
+                }
             }
         }
 

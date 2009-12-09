@@ -20,6 +20,8 @@ namespace iaai.Data_base
     {
         string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
 
+        //string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
+
         MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
 
         //MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
@@ -2112,8 +2114,8 @@ namespace iaai.Data_base
 
 
                 MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
-                                                          "from alumno as a, matricula as m " +
-                                                          "where m.id_curso = '" + curso + "' AND m.id_alumno = a.id_alumno AND m.condicion = 'regular'", conexion);
+                                                          "from alumno as a, matricula as m, registro_curso r " +
+                                                          "where r.id_curso = '" + curso + "' AND r.condicion = 'inscripto' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 List<string> alumno;
@@ -2167,8 +2169,8 @@ namespace iaai.Data_base
 
 
                 MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
-                                                          "from alumno as a, matricula as m " +
-                                                          "where m.id_curso_especial = '" + curso + "' AND m.id_alumno = a.id_alumno AND m.condicion = 'regular'", conexion);
+                                                          "from alumno as a, matricula as m, registro_curso_especial r " +
+                                                          "where r.id_curso_especial = '" + curso + "' AND r.condicion = 'inscripto' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 List<string> alumno;
