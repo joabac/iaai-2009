@@ -61,8 +61,11 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void imprimir_Click(object sender, EventArgs e)
         {
-            if (SetupThePrinting())
-                MyPrintDocument.Print();
+            if (lista.RowCount > 0)
+            {
+                if (SetupThePrinting())
+                    MyPrintDocument.Print();
+            }
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -84,11 +87,14 @@ namespace iaai.alumno
 
         private void previa_Click(object sender, EventArgs e)
         {
-            if (SetupThePrinting())
+            if (lista.RowCount > 0)
             {
-                PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
-                MyPrintPreviewDialog.Document = MyPrintDocument;
-                MyPrintPreviewDialog.ShowDialog();
+                if (SetupThePrinting())
+                {
+                    PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
+                    MyPrintPreviewDialog.Document = MyPrintDocument;
+                    MyPrintPreviewDialog.ShowDialog();
+                }
             }
         }
         /// <summary>
@@ -109,7 +115,19 @@ namespace iaai.alumno
             if (MyPrintDialog.ShowDialog() != DialogResult.OK)
                 return false;
 
-            MyPrintDocument.DocumentName = "Listado de Asistencia para el curso " + curso.SelectedItem.ToString();
+            if (seleccionCurso.Checked)
+            {
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso: " + curso.SelectedItem.ToString() + " Area: " + comboBoxArea.SelectedItem.ToString() + " Nivel: " + curso_nivel.SelectedItem.ToString();
+            }
+            else if (seleccionCursoE.Checked)
+            {
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso especial: " + cursoE.SelectedItem.ToString() + " del Area: " + comboBoxArea_esp.SelectedItem.ToString();
+            }
+            else if (seleccionMateria.Checked)
+            {
+                MyPrintDocument.DocumentName = "Listado de Asistencia para la materia: " + comboMaterias.SelectedItem.ToString() + " Carrera: " + combo_profesorados.SelectedItem.ToString() + " Nivel: " + combo_niveles.SelectedItem.ToString() + " Turno: " + comboTurno.SelectedItem.ToString();
+            }
+
             MyPrintDocument.PrinterSettings = MyPrintDialog.PrinterSettings;
             MyPrintDocument.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
             MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
@@ -174,7 +192,10 @@ namespace iaai.alumno
                 {
                     if (comboBoxArea.SelectedItem.ToString().Equals(c[3]))
                     {
-                        curso_nivel.Items.Add(c[2]);
+                        if (!curso_nivel.Items.Contains(c[2]))
+                        {
+                            curso_nivel.Items.Add(c[2]);
+                        }
                     }
                 }
             }
@@ -363,7 +384,10 @@ namespace iaai.alumno
                     if (listado != null)
                         cargarTabla();
                     else
+                    {
+                        lista.Rows.Clear();
                         MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                    }
                 }
                 else
                 {
@@ -378,7 +402,10 @@ namespace iaai.alumno
                     if (listado != null)
                         cargarTabla();
                     else
+                    {
+                        lista.Rows.Clear();
                         MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                    }
                 }
                 else
                 {
@@ -393,7 +420,10 @@ namespace iaai.alumno
                     if (listado != null)
                         cargarTabla();
                     else
+                    {
+                        lista.Rows.Clear();
                         MessageBox.Show("No existen alumnos regulares para la materia seleccionada.");
+                    }
                 }
                 else
                 {
