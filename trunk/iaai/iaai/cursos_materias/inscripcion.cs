@@ -87,6 +87,8 @@ namespace iaai.cursos_materias
                     }
                     comboBoxArea.SelectedIndex = 0;
                     comboBoxArea_esp.SelectedIndex = 0;
+
+                    
                 }
 
                 
@@ -212,41 +214,42 @@ namespace iaai.cursos_materias
         /// </summary>
         private void carga_Materias()
         {
-
-            int id_prof = listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado;
-            int nivel = Convert.ToInt32(combo_niveles.SelectedItem.ToString());
-            string turno = comboTurno.SelectedItem.ToString();
-            
-
-            //obtengo las materias que ya tiene el alumno
-            if (nuevo != null)
+            if (tabControl1.SelectedIndex == 0)
             {
-                //Las materias que ya tiene el alumno inscriptas pero que no tienen todavia ninguna condición
-                //solo si estan en categoria inscripto
-                List<Materia> materias_Alumno = db.getMateriasAlumno(id_prof, nuevo.id_alumno);
-                nuevo.id_matricula = db.tieneMatriculaProfesorado(nuevo.id_alumno, id_prof);
-
-                if (dataGrid_Listado.Rows.Count > 0)
-                    dataGrid_Listado.Rows.Clear();
+                int id_prof = listado_profesorados[combo_profesorados.SelectedIndex].id_profesorado;
+                int nivel = Convert.ToInt32(combo_niveles.SelectedItem.ToString());
+                string turno = comboTurno.SelectedItem.ToString();
 
 
-                if (combo_profesorados.Items.Count > 0 && combo_niveles.Items.Count > 0)
+                //obtengo las materias que ya tiene el alumno
+                if (nuevo != null)
                 {
-                    //recupero las materias asociadas al profesorado nivel y turno seleccionados
-                    listadoMaterias = db.getMaterias(id_prof, nivel, turno);
+                    //Las materias que ya tiene el alumno inscriptas pero que no tienen todavia ninguna condición
+                    //solo si estan en categoria inscripto
+                    List<Materia> materias_Alumno = db.getMateriasAlumno(id_prof, nuevo.id_alumno);
+                    nuevo.id_matricula = db.tieneMatriculaProfesorado(nuevo.id_alumno, id_prof);
 
-                    if (listadoMaterias != null)
+                    if (dataGrid_Listado.Rows.Count > 0)
+                        dataGrid_Listado.Rows.Clear();
+
+
+                    if (combo_profesorados.Items.Count > 0 && combo_niveles.Items.Count > 0)
                     {
-                        foreach (Materia materia_actual in listadoMaterias)
+                        //recupero las materias asociadas al profesorado nivel y turno seleccionados
+                        listadoMaterias = db.getMaterias(id_prof, nivel, turno);
+
+                        if (listadoMaterias != null)
                         {
-                            int condicion = db.condicion(materia_actual.id_materia, nuevo.id_matricula);
-
-                            if (db.esta_Inscripto_Materia(id_prof, materia_actual.id_materia, nuevo.id_alumno, "%","%") && condicion >= 0)
+                            foreach (Materia materia_actual in listadoMaterias)
                             {
-                                //si entro por esta linea significa que el alumno ya esta inscripto a la materia ya sea condicional o inscripto definitivo
+                                int condicion = db.condicion(materia_actual.id_materia, nuevo.id_matricula);
 
-                                
-                                //si ya esta inscripto pero condicional pinto de amarillo
+                                if (db.esta_Inscripto_Materia(id_prof, materia_actual.id_materia, nuevo.id_alumno, "%", "%") && condicion >= 0)
+                                {
+                                    //si entro por esta linea significa que el alumno ya esta inscripto a la materia ya sea condicional o inscripto definitivo
+
+
+                                    //si ya esta inscripto pero condicional pinto de amarillo
                                     if (condicion == 0) //inscripto en forma condicional
                                     {
                                         string[] row = {"false",
@@ -274,36 +277,37 @@ namespace iaai.cursos_materias
 
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
-                                
+
                                     }
-                                
 
-                            }
-                            else
-                            {
-                                //si no esta inscripto pinto de verde
 
-                                string[] row = {"false",
+                                }
+                                else
+                                {
+                                    //si no esta inscripto pinto de verde
+
+                                    string[] row = {"false",
                                         materia_actual.nombre.ToString(),
                                         materia_actual.get_adjunto(comboTurno.SelectedItem.ToString()),
                                         materia_actual.id_materia.ToString(),
                                         materia_actual.get_id_turno(comboTurno.SelectedItem.ToString()).ToString(),"false"};
 
-                                dataGrid_Listado.Rows.Add(row);
-                                dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
-                                dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
+                                    dataGrid_Listado.Rows.Add(row);
+                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                    dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = false;
+
+                                }
 
                             }
-
                         }
                     }
-                }
-                else
-                {
+                    else
+                    {
 
-                    MessageBox.Show(this, "Debe seleccionar un alumno");
-                    radioButtonPorDni.Focus();
-                    radioButtonPorDni.Checked = true;
+                        MessageBox.Show(this, "Debe seleccionar un alumno");
+                        radioButtonPorDni.Focus();
+                        radioButtonPorDni.Checked = true;
+                    }
                 }
             }
         }
@@ -360,7 +364,7 @@ namespace iaai.cursos_materias
                             nuevo = alumno;
                             carga_Materias();
                             checkedList_CurEsp();
-                            carga_Combo_Cursos();
+                            carga_Cursos();
                             
                         }
                         else
@@ -782,74 +786,126 @@ namespace iaai.cursos_materias
         private void checkedList_CurEsp() 
         {
 
-            checkedList_cursosEsp.Items.Clear();
-            string area = comboBoxArea_esp.SelectedItem.ToString();
-            if (nuevo != null)
+            if (tabControl1.SelectedIndex == 2)
             {
-                List<CursosEsp> lista_cursos = db.getCursoEspecial(area);
+                //checkedList_cursosEsp.Items.Clear();
+                dataGridView_CurEsp.Rows.Clear();
 
-                if (lista_cursos != null)
+                string area = comboBoxArea_esp.SelectedItem.ToString();
+                if (nuevo != null)
                 {
-                    foreach (CursosEsp elemento in lista_cursos)
+                    List<CursosEsp> lista_cursos = db.getCursoEspecial(area);
+                    bool condicional;
+                    bool definitivo;
+
+                    if (lista_cursos != null)
                     {
-                        if (!db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "condicional"))
+
+                        foreach (CursosEsp elemento in lista_cursos)
                         {
-                            checkedList_cursosEsp.Items.Add(elemento.nombre);
-                            chkedListBox_curEsp_condicion.Items.Add("condicional");
-                        }
-                        else 
-                        {
-                            
+                            condicional = db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "condicional");
+                            definitivo = db.esta_Inscripto_CursoEsp(elemento.id_curso, nuevo.id_alumno, "inscripto");
+
+                            if (condicional == true) //inscripto condicional
+                            {
+                                string[] row = { "false", elemento.nombre, "true", elemento.id_curso.ToString() };
+
+                                dataGridView_CurEsp.Rows.Add(row);
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].ReadOnly = true;
+
+                            }
+
+
+                            if (definitivo == true)
+                            { //inscripto
+                                string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
+
+                                dataGridView_CurEsp.Rows.Add(row);
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].ReadOnly = true;
+                            }
+                            else
+                            {//no inscrito ni condicional ni incscripto
+
+                                string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
+
+                                dataGridView_CurEsp.Rows.Add(row);
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].ReadOnly = false;
+                            }
+
+
                         }
                     }
                 }
             }
-        
         }
-
-        /// <summary>
-        /// rutina para el refresco del checked list de Cursos especiales
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            checkedList_CurEsp();
-        }
-
         
 
      
         /// <summary>
         /// RUTINA PARA CARGAR el checked list cursos
         /// </summary>
-        void carga_Combo_Cursos()
+        void carga_Cursos()
         {
-            checkedList_cursos.Items.Clear();
-            string area = comboBoxArea.SelectedItem.ToString();
-            string nivel = comboBoxNivel.SelectedItem.ToString();
-
-            List<Curso> lista_cursos = db.getCurso(area, nivel);
-
-
-            if (nuevo != null)
+            if (tabControl1.SelectedIndex == 1)
             {
+                dataGrid_cursos.Rows.Clear();
+                string area = comboBoxArea.SelectedItem.ToString();
+                string nivel = comboBoxNivel.SelectedItem.ToString();
 
+                List<Curso> lista_cursos = db.getCurso(area, nivel);
 
-                if (lista_cursos != null)
+                bool condicional;
+                bool definitivo;
+
+                if (nuevo != null)
                 {
-                    foreach (Curso elemento in lista_cursos)
-                    {
 
-                        if (!db.inscriptoACurso(nuevo, elemento)) //si retorna false muestra el curso sino lo saltea
+
+                    if (lista_cursos != null)
+                    {
+                        foreach (Curso elemento in lista_cursos)
                         {
 
-                            checkedList_cursos.Items.Add(elemento.nombre);
+
+                            condicional = db.inscriptoACurso(nuevo, elemento, "condicional");
+                            definitivo = db.inscriptoACurso(nuevo, elemento, "inscripto");
+
+                            if (condicional == true) //inscripto condicional
+                            {
+                                string[] row = { "false", elemento.nombre, "true", elemento.id_curso.ToString() };
+
+                                dataGrid_cursos.Rows.Add(row);
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].ReadOnly = true;
+
+                            }
+
+
+                            if (definitivo == true)
+                            { //inscripto
+                                string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
+
+                                dataGrid_cursos.Rows.Add(row);
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].ReadOnly = true;
+                            }
+                            else
+                            {//no inscrito ni condicional ni incscripto
+
+                                string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
+
+                                dataGrid_cursos.Rows.Add(row);
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].ReadOnly = false;
+                            }
+
+
 
 
                         }
-
                     }
                 }
             }
@@ -858,33 +914,24 @@ namespace iaai.cursos_materias
 
         private void cambio_area(object sender, EventArgs e)
         {
-            checkedList_cursos.Items.Clear();
+            dataGrid_cursos.Rows.Clear();
 
             if (comboBoxNivel != null && comboBoxArea != null)
             {
                 comboBoxNivel.Focus();
-                carga_Combo_Cursos();
+                carga_Cursos();
             }
         }
 
         private void cambia_nivel(object sender, EventArgs e)
         {
-            checkedList_cursos.Items.Clear();
+            dataGrid_cursos.Rows.Clear();
 
             if (comboBoxNivel != null && comboBoxArea != null)
-                carga_Combo_Cursos();
+                carga_Cursos();
         }
 
-        private void comboBoxArea_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            checkedList_cursos.Items.Clear();
-
-            if (comboBoxNivel != null && comboBoxArea != null)
-            {
-                comboBoxNivel.Focus();
-                carga_Combo_Cursos();
-            }
-        }
+        
 
         /// <summary>
         /// Inscribe al alumno a los cursos que selecciono
@@ -903,7 +950,7 @@ namespace iaai.cursos_materias
 
             if (cur_select != null && cur_select.Count > 0)
             {
-                if (checkedList_cursos.SelectedIndex >= 0)
+                if (dataGrid_cursos.Rows.Count >= 0)
                 {
 
                     int matricula;
@@ -931,7 +978,7 @@ namespace iaai.cursos_materias
 
                                         Cursos_inscriptos.Add(Curso_inscripto);
 
-                                        carga_Combo_Cursos();
+                                        carga_Cursos();
                                                                              
                                     }
 
@@ -996,31 +1043,33 @@ namespace iaai.cursos_materias
         {
 
             List<Curso> listado = new List<Curso>();
-            CheckState estado;
+            List<Curso> listadoCursos = db.getCurso(comboBoxArea.SelectedItem.ToString(), comboBoxNivel.SelectedItem.ToString());
 
-            if(checkedList_cursos.CheckedItems.Count > 0)           
+            if(listadoCursos != null && listadoCursos.Count>0)           
             {
-                foreach (Object itemChecked in checkedList_cursos.CheckedItems)
-                
+                foreach (DataGridViewRow itemChecked in dataGrid_cursos.Rows)
                 {
-                    estado = checkedList_cursos.GetItemCheckState(checkedList_cursos.Items.IndexOf(itemChecked));
-                    if (estado == CheckState.Checked)                   
+                     
+                    if (Convert.ToBoolean(itemChecked.Cells[0].Value))                   
                     {
-                        List<Curso> listadoCursos = db.getCurso(comboBoxArea.SelectedItem.ToString(), comboBoxNivel.SelectedItem.ToString());
-
+                        
                         foreach(Curso curso_temp in listadoCursos)
                         {
-                            if(curso_temp.nombre == itemChecked.ToString())
+                            //busco el curso hasta encontrarlo
+                            if(curso_temp.id_curso == Convert.ToInt32(itemChecked.Cells[3].Value))
                             {
+                                if (Convert.ToBoolean(itemChecked.Cells[2].Value))
+                                    curso_temp.condicion = "condicional";
+                                else
+                                    curso_temp.condicion = "condicional";
 
                                 listado.Add(curso_temp);
-
                               
                             }
                         
                         }
                      }
-                    }
+                  }
                 return listado;
                 }   
             
@@ -1196,7 +1245,7 @@ namespace iaai.cursos_materias
 
             List<CursosEsp> listado = new List<CursosEsp>();
             CursosEsp curso = new CursosEsp();
-            CheckState estado;
+            bool estado;
             int indice;
 
 
@@ -1205,25 +1254,32 @@ namespace iaai.cursos_materias
             {
                 List<CursosEsp> cursosActuales = db.getCursoEspecial(comboBoxArea_esp.SelectedItem.ToString());
 
-                if (checkedList_cursosEsp.CheckedItems.Count > 0 && cursosActuales != null)
+                if (dataGridView_CurEsp.Rows.Count > 0 && cursosActuales != null)
                 {
-                    foreach (Object itemChecked in checkedList_cursosEsp.CheckedItems)
+                    foreach (DataGridViewRow itemChecked in dataGridView_CurEsp.Rows)
                     {
-                        estado = checkedList_cursosEsp.GetItemCheckState(checkedList_cursosEsp.Items.IndexOf(itemChecked));
-                        if (estado == CheckState.Checked)
+                        estado = Convert.ToBoolean(itemChecked.Cells[0].Value);
+
+                        if (estado == true)
                         {
 
-                            //recupero que numero de curso es el seleccionado por el orden en que se cargaron
-                            indice = checkedList_cursosEsp.Items.IndexOf(itemChecked);
-
                             //recupero el curso especifico 
-                            curso = cursosActuales[indice];
-
-                            //cargo el listado a pasar para rutina de inscripcion
-                            listado.Add(curso);
-
-                            //limpio el curso de trabajo
-                            curso = new CursosEsp();
+                            foreach(CursosEsp elemento in cursosActuales)
+                            {
+                                if (elemento.id_curso == Convert.ToInt32(itemChecked.Cells[3].Value))
+                                {
+                                    if (Convert.ToBoolean(itemChecked.Cells[2].Value))
+                                    {
+                                        elemento.condicion = "condicional";
+                                        listado.Add(elemento);
+                                    }
+                                    else 
+                                    {
+                                        elemento.condicion = "inscripto";
+                                        listado.Add(elemento);
+                                    }
+                                }
+                            }
 
                         }
                     }
@@ -1289,6 +1345,9 @@ namespace iaai.cursos_materias
         {
             if (nuevo != null)
                 nuevo.id_matricula = -1;
+            checkedList_CurEsp();
+            carga_Materias();
+            carga_Cursos();
         }
 
 
@@ -1433,7 +1492,7 @@ namespace iaai.cursos_materias
 
         private void refrescar_checked_CurEsp(object sender, EventArgs e)
         {
-
+            checkedList_CurEsp();
         }
 
 
