@@ -245,7 +245,7 @@ namespace iaai_test
             Alumno modificado = new Alumno(datos);
             
             //se modifica al alumno
-            metodo.modificarAlumno(modificado,dni_viejo);
+           // metodo.modificarAlumno(modificado,dni_viejo);
             
             //recupero el alumno modificado de la base datos
             Alumno recuperado = metodo.Buscar_Alumno(modificado.getDni());
@@ -480,7 +480,7 @@ namespace iaai_test
             Responsable modificado = new Responsable(datos);
 
             //se modifica al Responsable
-            metodo.modificarResponsable(modificado, dni_viejo);
+           // metodo.modificarResponsable(modificado, dni_viejo);
 
             //recupero el Responsable modificado de la base datos
             Responsable recuperado = metodo.Buscar_Responsable(modificado.getDni().ToString());
@@ -816,7 +816,7 @@ namespace iaai_test
             Alumno modificado = new Alumno(datos);
 
             //se modifica al alumno
-            metodo.modificarAlumno(modificado,dni_viejo);
+            //metodo.modificarAlumno(modificado,dni_viejo);
 
             //recupero el alumno modificado de la base datos
             Alumno recuperado = metodo.Buscar_Alumno(modificado.getDni());

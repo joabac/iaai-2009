@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label15 = new System.Windows.Forms.Label();
@@ -41,20 +45,34 @@
             this.label1 = new System.Windows.Forms.Label();
             this.combo_niveles = new System.Windows.Forms.ComboBox();
             this.dataGrid_Listado = new System.Windows.Forms.DataGridView();
+            this.inscribe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nombreMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_mat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGrid_cursos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonInscribir = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxNivel = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.comboBoxArea = new System.Windows.Forms.ComboBox();
-            this.checkedList_cursos = new System.Windows.Forms.CheckedListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.chkedListBox_curEsp_condicion = new System.Windows.Forms.CheckedListBox();
+            this.dataGridView_CurEsp = new System.Windows.Forms.DataGridView();
+            this.inscribir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nombre_curso_esp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Condicion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id_curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_Inscribe_Curso_Especial = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.checkedList_cursosEsp = new System.Windows.Forms.CheckedListBox();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBoxArea_esp = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,17 +103,13 @@
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso_especial = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso = new System.Drawing.Printing.PrintDocument();
-            this.inscribe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nombreMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_mat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_cursos)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CurEsp)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel_datos.SuspendLayout();
             this.SuspendLayout();
@@ -248,6 +262,8 @@
             this.dataGrid_Listado.AllowUserToDeleteRows = false;
             this.dataGrid_Listado.AllowUserToResizeColumns = false;
             this.dataGrid_Listado.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_Listado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrid_Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -272,6 +288,51 @@
             this.dataGrid_Listado.TabIndex = 3;
             this.dataGrid_Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambiar_condicion);
             // 
+            // inscribe
+            // 
+            this.inscribe.FalseValue = "false";
+            this.inscribe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.inscribe.HeaderText = "Seleccion";
+            this.inscribe.Name = "inscribe";
+            this.inscribe.TrueValue = "true";
+            // 
+            // nombreMat
+            // 
+            this.nombreMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreMat.HeaderText = "Nombre Materia";
+            this.nombreMat.Name = "nombreMat";
+            this.nombreMat.ReadOnly = true;
+            this.nombreMat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // profesor
+            // 
+            this.profesor.HeaderText = "Nombre Docente";
+            this.profesor.Name = "profesor";
+            this.profesor.ReadOnly = true;
+            this.profesor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // id_mat
+            // 
+            this.id_mat.HeaderText = "ID materia";
+            this.id_mat.Name = "id_mat";
+            this.id_mat.ReadOnly = true;
+            this.id_mat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id_mat.Visible = false;
+            // 
+            // id_turno
+            // 
+            this.id_turno.HeaderText = "ID turno";
+            this.id_turno.Name = "id_turno";
+            this.id_turno.ReadOnly = true;
+            this.id_turno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id_turno.Visible = false;
+            // 
+            // condicional
+            // 
+            this.condicional.HeaderText = "Insc. Condicional";
+            this.condicional.Name = "condicional";
+            this.condicional.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // combo_profesorados
             // 
             this.combo_profesorados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -285,13 +346,13 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.dataGrid_cursos);
             this.tabPage2.Controls.Add(this.buttonInscribir);
             this.tabPage2.Controls.Add(this.buttonCancelar);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.comboBoxNivel);
             this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Controls.Add(this.comboBoxArea);
-            this.tabPage2.Controls.Add(this.checkedList_cursos);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -299,6 +360,74 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cursos";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGrid_cursos
+            // 
+            this.dataGrid_cursos.AllowUserToAddRows = false;
+            this.dataGrid_cursos.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGrid_cursos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGrid_cursos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGrid_cursos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGrid_cursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid_cursos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewCheckBoxColumn2,
+            this.dataGridViewTextBoxColumn2,
+            this.nivel});
+            this.dataGrid_cursos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dataGrid_cursos.Location = new System.Drawing.Point(198, 3);
+            this.dataGrid_cursos.MultiSelect = false;
+            this.dataGrid_cursos.Name = "dataGrid_cursos";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGrid_cursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGrid_cursos.Size = new System.Drawing.Size(370, 301);
+            this.dataGrid_cursos.TabIndex = 10;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewCheckBoxColumn1.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Selección";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewCheckBoxColumn2
+            // 
+            this.dataGridViewCheckBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewCheckBoxColumn2.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "Condiciónal";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dataGridViewCheckBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxColumn2.TrueValue = "true";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "id_curso";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // nivel
+            // 
+            this.nivel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nivel.HeaderText = "nivel";
+            this.nivel.Name = "nivel";
+            this.nivel.Visible = false;
             // 
             // buttonInscribir
             // 
@@ -354,23 +483,13 @@
             this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea.TabIndex = 1;
             this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.cambio_area);
-            this.comboBoxArea.SelectedIndexChanged += new System.EventHandler(this.comboBoxArea_SelectedIndexChanged);
-            // 
-            // checkedList_cursos
-            // 
-            this.checkedList_cursos.FormattingEnabled = true;
-            this.checkedList_cursos.Location = new System.Drawing.Point(202, 0);
-            this.checkedList_cursos.Name = "checkedList_cursos";
-            this.checkedList_cursos.Size = new System.Drawing.Size(373, 304);
-            this.checkedList_cursos.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage3.Controls.Add(this.chkedListBox_curEsp_condicion);
+            this.tabPage3.Controls.Add(this.dataGridView_CurEsp);
             this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
             this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.checkedList_cursosEsp);
             this.tabPage3.Controls.Add(this.label18);
             this.tabPage3.Controls.Add(this.comboBoxArea_esp);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -380,13 +499,60 @@
             this.tabPage3.Text = "Cursos de Especialización";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // chkedListBox_curEsp_condicion
+            // dataGridView_CurEsp
             // 
-            this.chkedListBox_curEsp_condicion.FormattingEnabled = true;
-            this.chkedListBox_curEsp_condicion.Location = new System.Drawing.Point(341, 0);
-            this.chkedListBox_curEsp_condicion.Name = "chkedListBox_curEsp_condicion";
-            this.chkedListBox_curEsp_condicion.Size = new System.Drawing.Size(224, 304);
-            this.chkedListBox_curEsp_condicion.TabIndex = 9;
+            this.dataGridView_CurEsp.AllowUserToAddRows = false;
+            this.dataGridView_CurEsp.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView_CurEsp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_CurEsp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView_CurEsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CurEsp.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.inscribir,
+            this.nombre_curso_esp,
+            this.Condicion,
+            this.id_curso});
+            this.dataGridView_CurEsp.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dataGridView_CurEsp.Location = new System.Drawing.Point(198, 3);
+            this.dataGridView_CurEsp.MultiSelect = false;
+            this.dataGridView_CurEsp.Name = "dataGridView_CurEsp";
+            this.dataGridView_CurEsp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView_CurEsp.Size = new System.Drawing.Size(370, 301);
+            this.dataGridView_CurEsp.TabIndex = 9;
+            // 
+            // inscribir
+            // 
+            this.inscribir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.inscribir.HeaderText = "Selección";
+            this.inscribir.Name = "inscribir";
+            this.inscribir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inscribir.Width = 60;
+            // 
+            // nombre_curso_esp
+            // 
+            this.nombre_curso_esp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre_curso_esp.HeaderText = "Nombre";
+            this.nombre_curso_esp.Name = "nombre_curso_esp";
+            this.nombre_curso_esp.ReadOnly = true;
+            this.nombre_curso_esp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Condicion
+            // 
+            this.Condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Condicion.FalseValue = "false";
+            this.Condicion.HeaderText = "Condiciónal";
+            this.Condicion.Name = "Condicion";
+            this.Condicion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Condicion.TrueValue = "true";
+            // 
+            // id_curso
+            // 
+            this.id_curso.HeaderText = "id_curso";
+            this.id_curso.Name = "id_curso";
+            this.id_curso.ReadOnly = true;
+            this.id_curso.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id_curso.Visible = false;
             // 
             // button_Inscribe_Curso_Especial
             // 
@@ -407,14 +573,6 @@
             this.button3.Text = "Cancelar";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // checkedList_cursosEsp
-            // 
-            this.checkedList_cursosEsp.FormattingEnabled = true;
-            this.checkedList_cursosEsp.Location = new System.Drawing.Point(202, 0);
-            this.checkedList_cursosEsp.Name = "checkedList_cursosEsp";
-            this.checkedList_cursosEsp.Size = new System.Drawing.Size(219, 304);
-            this.checkedList_cursosEsp.TabIndex = 4;
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -432,7 +590,6 @@
             this.comboBoxArea_esp.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea_esp.TabIndex = 0;
             this.comboBoxArea_esp.SelectionChangeCommitted += new System.EventHandler(this.refrescar_checked_CurEsp);
-            this.comboBoxArea_esp.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -487,7 +644,6 @@
             this.radioButtonPorApellido.Name = "radioButtonPorApellido";
             this.radioButtonPorApellido.Size = new System.Drawing.Size(81, 17);
             this.radioButtonPorApellido.TabIndex = 2;
-            this.radioButtonPorApellido.TabStop = true;
             this.radioButtonPorApellido.Text = "Por Apellido";
             this.radioButtonPorApellido.UseVisualStyleBackColor = true;
             this.radioButtonPorApellido.CheckedChanged += new System.EventHandler(this.radioButtonPorApellido_CheckedChanged);
@@ -495,6 +651,7 @@
             // radioButtonPorDni
             // 
             this.radioButtonPorDni.AutoSize = true;
+            this.radioButtonPorDni.Checked = true;
             this.radioButtonPorDni.Location = new System.Drawing.Point(12, 29);
             this.radioButtonPorDni.Name = "radioButtonPorDni";
             this.radioButtonPorDni.Size = new System.Drawing.Size(62, 17);
@@ -696,51 +853,6 @@
             // 
             this.reporte_curso.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso);
             // 
-            // inscribe
-            // 
-            this.inscribe.FalseValue = "false";
-            this.inscribe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.inscribe.HeaderText = "Seleccion";
-            this.inscribe.Name = "inscribe";
-            this.inscribe.TrueValue = "true";
-            // 
-            // nombreMat
-            // 
-            this.nombreMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreMat.HeaderText = "Nombre Materia";
-            this.nombreMat.Name = "nombreMat";
-            this.nombreMat.ReadOnly = true;
-            this.nombreMat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // profesor
-            // 
-            this.profesor.HeaderText = "Nombre Docente";
-            this.profesor.Name = "profesor";
-            this.profesor.ReadOnly = true;
-            this.profesor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // id_mat
-            // 
-            this.id_mat.HeaderText = "ID materia";
-            this.id_mat.Name = "id_mat";
-            this.id_mat.ReadOnly = true;
-            this.id_mat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id_mat.Visible = false;
-            // 
-            // id_turno
-            // 
-            this.id_turno.HeaderText = "ID turno";
-            this.id_turno.Name = "id_turno";
-            this.id_turno.ReadOnly = true;
-            this.id_turno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id_turno.Visible = false;
-            // 
-            // condicional
-            // 
-            this.condicional.HeaderText = "Insc. Condicional";
-            this.condicional.Name = "condicional";
-            this.condicional.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -766,8 +878,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_cursos)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CurEsp)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel_datos.ResumeLayout(false);
             this.panel_datos.PerformLayout();
@@ -820,12 +934,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckedListBox checkedList_cursos;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comboBoxNivel;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox comboBoxArea;
-        private System.Windows.Forms.CheckedListBox checkedList_cursosEsp;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox comboBoxArea_esp;
         private System.Windows.Forms.Button buttonInscribir;
@@ -841,5 +953,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id_mat;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_turno;
         private System.Windows.Forms.DataGridViewCheckBoxColumn condicional;
+        private System.Windows.Forms.DataGridView dataGridView_CurEsp;
+        private System.Windows.Forms.DataGridView dataGrid_cursos;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nivel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn inscribir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_curso_esp;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Condicion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_curso;
     }
 }
