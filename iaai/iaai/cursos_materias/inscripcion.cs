@@ -849,6 +849,7 @@ namespace iaai.cursos_materias
         /// </summary>
         void carga_Cursos()
         {
+            dataGrid_cursos.Rows.Clear();
             if (tabControl1.SelectedIndex == 1)
             {
                 dataGrid_cursos.Rows.Clear();
@@ -1013,9 +1014,10 @@ namespace iaai.cursos_materias
                         {
                             imprimir_reporteCurso();
 
-                            cur_select.Clear();
+                            
 
                         }
+                        cur_select.Clear();
                     }
                 }
                 else

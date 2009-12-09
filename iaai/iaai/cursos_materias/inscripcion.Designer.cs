@@ -385,7 +385,7 @@
             this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGrid_cursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_cursos.Size = new System.Drawing.Size(370, 301);
-            this.dataGrid_cursos.TabIndex = 10;
+            this.dataGrid_cursos.TabIndex = 2;
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -434,7 +434,7 @@
             this.buttonInscribir.Location = new System.Drawing.Point(400, 310);
             this.buttonInscribir.Name = "buttonInscribir";
             this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
-            this.buttonInscribir.TabIndex = 6;
+            this.buttonInscribir.TabIndex = 3;
             this.buttonInscribir.Text = "Inscribir";
             this.buttonInscribir.UseVisualStyleBackColor = true;
             this.buttonInscribir.Click += new System.EventHandler(this.buttonInscribir_Click);
@@ -444,7 +444,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(490, 310);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.TabIndex = 4;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
@@ -463,7 +463,7 @@
             this.comboBoxNivel.Location = new System.Drawing.Point(24, 91);
             this.comboBoxNivel.Name = "comboBoxNivel";
             this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
-            this.comboBoxNivel.TabIndex = 3;
+            this.comboBoxNivel.TabIndex = 1;
             this.comboBoxNivel.SelectionChangeCommitted += new System.EventHandler(this.cambia_nivel);
             // 
             // label16
@@ -481,7 +481,7 @@
             this.comboBoxArea.Location = new System.Drawing.Point(24, 40);
             this.comboBoxArea.Name = "comboBoxArea";
             this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
-            this.comboBoxArea.TabIndex = 1;
+            this.comboBoxArea.TabIndex = 0;
             this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.cambio_area);
             // 
             // tabPage3
@@ -519,7 +519,7 @@
             this.dataGridView_CurEsp.Name = "dataGridView_CurEsp";
             this.dataGridView_CurEsp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView_CurEsp.Size = new System.Drawing.Size(370, 301);
-            this.dataGridView_CurEsp.TabIndex = 9;
+            this.dataGridView_CurEsp.TabIndex = 1;
             // 
             // inscribir
             // 
@@ -559,7 +559,7 @@
             this.button_Inscribe_Curso_Especial.Location = new System.Drawing.Point(400, 310);
             this.button_Inscribe_Curso_Especial.Name = "button_Inscribe_Curso_Especial";
             this.button_Inscribe_Curso_Especial.Size = new System.Drawing.Size(75, 23);
-            this.button_Inscribe_Curso_Especial.TabIndex = 8;
+            this.button_Inscribe_Curso_Especial.TabIndex = 2;
             this.button_Inscribe_Curso_Especial.Text = "Inscribir";
             this.button_Inscribe_Curso_Especial.UseVisualStyleBackColor = true;
             this.button_Inscribe_Curso_Especial.Click += new System.EventHandler(this.button2_Click);
@@ -569,7 +569,7 @@
             this.button3.Location = new System.Drawing.Point(490, 310);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
+            this.button3.TabIndex = 3;
             this.button3.Text = "Cancelar";
             this.button3.UseVisualStyleBackColor = true;
             // 
