@@ -2370,41 +2370,63 @@ namespace iaai.Data_base
             {
 
                
-                
-                    int disponible = verificarCupoCurso(curso_select.id_curso);
+                int disponible;
 
-                    if (disponible == 0)
-                    { //si el disponible es 0 
+                if (curso_select.condicion.Contains("condicional"))
+                {
+                    disponible = 0;
+                }
+                else
+                {
+                    disponible = verificarCupoCurso(curso_select.id_curso);
+                }
+
+                if (disponible == 0)
+                { //si el disponible es 0 
+
+                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
 
                         MyCommand.CommandText = ("insert into registro_curso (id_matricula, id_curso, fecha, hora, condicion) values " +
-                                                     "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     ",'" + DateTime.Now.ToString("HH:mm:ss") + "'," +
-                                                     "'condicional' )");
+                                                     "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +"', "+
+                                                     "' "+ DateTime.Now.ToString("HH:mm:ss") + "','condicional' )");
 
 
                         MyCommand.ExecuteNonQuery();
                         //transaccion.Commit();
                     }
-                     else
-                    {  //si quedara inscripto
 
-                         if (disponible > 0)
-                        {
-                            MyCommand.CommandText = ("insert into registro_curso (id_matricula, id_curso, fecha, hora, condicion) values " +
-                                                     "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
-                                                     "','" + DateTime.Now.ToString("HH:mm:ss") + "'," +
-                                                     " 'inscripto' )");
+                    else
+                    {
+                        MyCommand.CommandText = ("delete from matricula where id_matricula = " + matricula + " and id_curso_especial = " + curso_select.id_curso);
+                        MyCommand.ExecuteNonQuery();
+                        transaccion.Commit();
+                        transaccion = null;
 
-                            MyCommand.ExecuteNonQuery();
-                            //transaccion.Commit();
-
-                        }
-                           else
-                        {
-                            transaccion.Rollback();
-                            MessageBox.Show("Error al intentar inscribir Alumno en el curso\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
+                }
+                else
+                {  //si quedara inscripto
+
+                    if (disponible > 0)
+                    {
+                        MyCommand.CommandText = ("insert into registro_curso (id_matricula, id_curso, fecha, hora, condicion) values " +
+                                                 "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
+                                                 "','" + DateTime.Now.ToString("HH:mm:ss") + "'," +
+                                                 " 'inscripto' )");
+
+                        MyCommand.ExecuteNonQuery();
+                        //transaccion.Commit();
+
+                    }
+                    else
+                    {
+                        transaccion.Rollback();
+                        MessageBox.Show("Error al intentar inscribir Alumno en el curso\r\n Problemas de cupo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
 
 
 
@@ -2823,7 +2845,6 @@ namespace iaai.Data_base
 
                     //cargo la materia para registro futuro
                     inscripto_tmp.curso_inscripto = curso_select;
-
 
 
                     reader.Close();
