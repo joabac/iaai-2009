@@ -50,7 +50,7 @@ namespace iaai.responsable
                 Responsable responsable = new Responsable(datos);
 
                 //si se pudieron modificar los datos del Responsable
-                if (db.modificarResponsable(responsable))
+                if (db.modificarResponsable(responsable,dni_viejo))
                 {
                     MessageBox.Show("El responsable fué modificado con éxito.");
                     this.Close();
@@ -70,7 +70,7 @@ namespace iaai.responsable
             //cargo datos basicos del profesor
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
-            datos["dni"] = dni_busqueda.Text;
+            datos["dni"] = dni.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
 
          
@@ -120,10 +120,10 @@ namespace iaai.responsable
                 if (!dni.Text.Equals(dni_viejo))
                 {
                     //si el formato del dni es correcto
-                    if (metodo.ValidarDni(dni_busqueda.Text) == true)
+                    if (metodo.ValidarDni(dni.Text) == true)
                     {
                         //si el responsable ya fue dado de alta en el sistema
-                        if (!db.buscarDniResponsable(dni_busqueda.Text))
+                        if (!db.buscarDniResponsable(dni.Text))
                         {
                             error = error + "El responsable ya fue dado de alta en el sistema. \r\n";
                         }

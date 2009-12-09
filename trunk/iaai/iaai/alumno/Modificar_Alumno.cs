@@ -46,7 +46,7 @@ namespace iaai.alumno
                 Alumno alumno = new Alumno(datos);
                 
                 //si se pudieron modificar los datos del alumno
-                if (db.modificarAlumno(alumno))
+                if (db.modificarAlumno(alumno,dni_viejo))
                 {
                     MessageBox.Show("El alumno fué modificado con éxito.");
                     this.Close();
@@ -66,7 +66,7 @@ namespace iaai.alumno
             //cargo datos basicos del profesor
             datos["nombre"] = nombre.Text;
             datos["apellido"] = apellido.Text;
-            datos["dni"] = dni_buqueda.Text;
+            datos["dni"] = dni.Text;
             datos["fecha_nac"] = (object)fecha_nacimiento.Text;
 
          
@@ -129,20 +129,21 @@ namespace iaai.alumno
                 if (!metodo.validar_Nombre_App(apellido.Text))
                     error = error + "Formato de apellido no válido \r\n";
             }
-            if (dni_buqueda.Text.Length == 0)
+            if (dni.Text.Length == 0)
                 error = error + "Ingrese el DNI. \r\n";
             else
             {
                 if (!dni.Text.Equals(dni_viejo))
                 {
                     //si el formato del dni es correcto
-                    if (metodo.ValidarDni(dni_buqueda.Text) == true)
+                    if (metodo.ValidarDni(dni.Text) == true)
                     {
                         //si el alumno ya fue dado de alta en el sistema
-                        if (!db.buscarDniAlumno(dni_buqueda.Text))
+                        if (!db.buscarDniAlumno(dni.Text))
                         {
                             error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
                         }
+                        
                     }
                     else
                     {
