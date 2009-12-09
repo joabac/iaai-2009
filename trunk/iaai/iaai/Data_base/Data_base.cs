@@ -1094,7 +1094,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
                                                           "from alumno " +
-                                                          "where apellido like '" + apostrofos(apellido) +"%'", conexion);
+                                                          "where apellido like '" + apostrofos(apellido) +"%' and activo = true", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Alumno alum_tem = new Alumno();
@@ -2743,17 +2743,25 @@ namespace iaai.Data_base
 
             try
             {
+                int disponible;
 
-
-                int disponible = verificarCupoCursoEspecial(curso_select.id_curso);
+                if (curso_select.condicion.Contains("condicional"))
+                {
+                    disponible = 0;
+                }
+                else
+                {
+                    disponible = verificarCupoCursoEspecial(curso_select.id_curso);
+                }
 
                 if (disponible == 0)
                 { //si el disponible es 0 
 
-                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + " por falta de cupo\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
+
                         MyCommand.CommandText = ("insert into registro_curso_especial (id_matricula, id_curso_especial, fecha, hora, condicion) values " +
                                                      "(" + matricula + "," + curso_select.id_curso + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
                                                      "','" + DateTime.Now.ToString("HH:mm:ss") + "','condicional' )");
@@ -3047,6 +3055,14 @@ namespace iaai.Data_base
             return matricula;
         }
 
+
+        /// <summary>
+        /// Retorna si el alumno esta inscripto en alguna condicion
+        /// </summary>
+        /// <param name="id_curso">el curso a consultar</param>
+        /// <param name="id_alumno">al alumno en cuestion</param>
+        /// <param name="condicion">la condicion inscripto o condicional</param>
+        /// <returns></returns>
         public bool esta_Inscripto_CursoEsp(int id_curso, int id_alumno, string condicion)
         {
 
@@ -3388,7 +3404,7 @@ namespace iaai.Data_base
         /// <param name="nuevo">alumno al que se hace referencia</param>
         /// <param name="elemento">curso al que se hace referencia</param>
         /// <returns></returns>
-        internal bool inscriptoACurso(Alumno nuevo, Curso elemento)
+        internal bool inscriptoACurso(Alumno nuevo, Curso elemento, string condicion)
         {
 
             bool esta_Inscripto = false;
@@ -3401,7 +3417,7 @@ namespace iaai.Data_base
                 //selecciono solo las materias del nivel y profesorado especificados
                 MySqlCommand MyCommand = new MySqlCommand("SELECT r.id_matricula, r.id_curso " +
                                                           "FROM registro_curso r, matricula m " +
-                                                          " WHERE m.id_matricula = r.id_matricula and m.id_alumno = " + nuevo.id_alumno + " and r.id_curso = " + elemento.id_curso , conexion);
+                                                          " WHERE m.id_matricula = r.id_matricula and m.id_alumno = " + nuevo.id_alumno + " and r.id_curso = " + elemento.id_curso +" and r.condicion like '"+condicion+"' " , conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 
