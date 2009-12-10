@@ -1817,8 +1817,14 @@ namespace iaai.Data_base
 
                         if (disponible == 0)
                         { //si el disponible es 0 
+                            DialogResult resultado;
+                            if (materia_actual.condicion.Contains("condicional"))
+                            {
+                                resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\na la Materia: " + materia_actual.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            }
+                            else
+                                resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\na la Materia: " + materia_actual.nombre + "\r\n\r\nPor falta de cupo\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                            DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional a la Materia: "+materia_actual.nombre +"\r\n\r\n¿Desea continuar?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
                             if (resultado == DialogResult.Yes)
                             {
@@ -2383,8 +2389,13 @@ namespace iaai.Data_base
 
                 if (disponible == 0)
                 { //si el disponible es 0 
-
-                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado;
+                    if (curso_select.condicion.Contains("condicional"))
+                    {
+                        resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                        resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\nPor falta de cupo\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
@@ -2783,8 +2794,13 @@ namespace iaai.Data_base
 
                 if (disponible == 0)
                 { //si el disponible es 0 
-
-                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado;
+                    if (curso_select.condicion.Contains("condicional"))
+                    {
+                        resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                        resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\nPor falta de cupo\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
@@ -3294,9 +3310,9 @@ namespace iaai.Data_base
 
                     MySqlCommand ocupacion_comand = new MySqlCommand("select count(rm.id_matricula) Ocupacion " +
                                                               "from registro_curso rm " +
-                                                              "where rm.id_registro_curso = " + id_curso +
+                                                              "where rm.id_curso = " + id_curso +
                                                               " and condicion like 'inscripto' " +
-                                                              "group by rm.id_registro_curso", conexion);
+                                                              "group by rm.id_curso", conexion);
 
                     MySqlDataReader ocupacion_reader = ocupacion_comand.ExecuteReader();
 
