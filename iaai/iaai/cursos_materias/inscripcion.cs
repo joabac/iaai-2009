@@ -838,12 +838,13 @@ namespace iaai.cursos_materias
                             }
                             else
                             {//no inscrito ni condicional ni incscripto
-
+                              if (definitivo == false && condicional == false){
                                 string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
 
                                 dataGridView_CurEsp.Rows.Add(row);
                                 dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
                                 dataGridView_CurEsp.Rows[dataGridView_CurEsp.RowCount - 1].ReadOnly = false;
+                                }
                             }
 
 
@@ -1334,7 +1335,7 @@ namespace iaai.cursos_materias
             //----------------------Datos del Alumno------------------
             yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
 
-            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre() + "\r\nMatricula: " + nuevo.id_matricula;
+            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre() ;
 
             e.Graphics.DrawString(alumno, new Font("Arial Black", 12), Brushes.Black, leftMargin, yPos, new StringFormat());
             count += 4;
@@ -1347,10 +1348,10 @@ namespace iaai.cursos_materias
             {
                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
 
-                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nNombre Curso Especializacion: " + elemento.curso_inscripto.nombre + "\r\nHoras Totales: " + elemento.curso_inscripto.horas + "\r\nCondición: " + elemento.condicion + "\r\n\r\n";
+                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nMatricula: " + db.tieneMatriculaCursoEspecial(nuevo.id_alumno,elemento.curso_inscripto.id_curso) + "\r\nNombre Curso Especializacion: " + elemento.curso_inscripto.nombre + "\r\nHoras Totales: " + elemento.curso_inscripto.horas + "\r\nCondición: " + elemento.condicion + "\r\n\r\n";
 
                 e.Graphics.DrawString(cadena, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
-                count += 5;
+                count += 6;
 
                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
                 e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
@@ -1411,7 +1412,7 @@ namespace iaai.cursos_materias
                 cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nMatricula: " + db.tieneMatriculaCurso(nuevo.id_alumno,elemento.curso_inscripto.id_curso) + "\r\nNombre Curso: " + elemento.curso_inscripto.nombre + "\r\nDuracion: " + elemento.curso_inscripto.duracion + " [años]\r\nCondición: " + elemento.condicion + "\r\n\r\n";
 
                 e.Graphics.DrawString(cadena, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
-                count += 5;
+                count += 6;
 
                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
                 e.Graphics.DrawLine(new Pen(Brushes.Black), leftMargin, yPos, e.MarginBounds.Right, yPos);
