@@ -2384,7 +2384,7 @@ namespace iaai.Data_base
                 if (disponible == 0)
                 { //si el disponible es 0 
 
-                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional al Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show("El alumno se inscribira en forma condicional\r\nal Curso: " + curso_select.nombre + "\r\n\r\n ¿Desea continuar?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
@@ -2400,7 +2400,7 @@ namespace iaai.Data_base
 
                     else
                     {
-                        MyCommand.CommandText = ("delete from matricula where id_matricula = " + matricula + " and id_curso_especial = " + curso_select.id_curso);
+                        MyCommand.CommandText = ("delete from matricula where id_matricula = " + matricula + " and id_curso = " + curso_select.id_curso);
                         MyCommand.ExecuteNonQuery();
                         transaccion.Commit();
                         transaccion = null;
@@ -2456,16 +2456,21 @@ namespace iaai.Data_base
 
                         inscripcion_curso =inscripto_tmp;
                         reader.Close();
+                        transaccion.Commit();
+                        
                     }
                     else
                     {
-                        transaccion.Rollback();
+                        reader.Close();
+                        if (transaccion != null)
+                            transaccion.Rollback();
+
                         matricula = -1;
                         db_inscribe.Close();
                     }
                 
 
-                transaccion.Commit();
+                
                 if (db_inscribe.State == System.Data.ConnectionState.Open)
                     db_inscribe.Close();
             }
@@ -3187,7 +3192,7 @@ namespace iaai.Data_base
         /// Genera un nuevo numero de matricula para el cusrso que se solicito
         /// </summary>
         /// <param name="id_alumno">el id del alumno a matricular</param>
-        /// <param name="id_cursoEsp">el id del curso a matricular</param>
+        /// <param name="id_curso">el id del curso a matricular</param>
         /// <returns>retorna el nuevo numero de matricula o -1 en caso de error</returns>
         internal int generarMatriculaCurso(int id_alumno, int id_curso)
         {
