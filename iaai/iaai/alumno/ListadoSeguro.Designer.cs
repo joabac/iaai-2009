@@ -39,7 +39,6 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.previa = new System.Windows.Forms.Button();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-
             ((System.ComponentModel.ISupportInitialize)(this.lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +60,8 @@
             this.lista.MultiSelect = false;
             this.lista.Name = "lista";
             this.lista.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.lista.Size = new System.Drawing.Size(643, 532);
+            this.lista.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.lista.Size = new System.Drawing.Size(643, 416);
             this.lista.TabIndex = 0;
             // 
             // nombre
@@ -108,7 +108,7 @@
             // 
             // imprimir
             // 
-            this.imprimir.Location = new System.Drawing.Point(321, 596);
+            this.imprimir.Location = new System.Drawing.Point(321, 483);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
             this.imprimir.TabIndex = 1;
@@ -118,7 +118,7 @@
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(475, 596);
+            this.cancelar.Location = new System.Drawing.Point(475, 483);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
             this.cancelar.TabIndex = 2;
@@ -128,7 +128,7 @@
             // 
             // previa
             // 
-            this.previa.Location = new System.Drawing.Point(167, 596);
+            this.previa.Location = new System.Drawing.Point(167, 483);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
             this.previa.TabIndex = 3;
@@ -136,11 +136,15 @@
             this.previa.UseVisualStyleBackColor = true;
             this.previa.Click += new System.EventHandler(this.previa_Click);
             // 
+            // MyPrintDocument
+            // 
+            this.MyPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.MyPrintDocument_PrintPage);
+            // 
             // ListadoSeguro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 631);
+            this.ClientSize = new System.Drawing.Size(717, 525);
             this.Controls.Add(this.previa);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.imprimir);
@@ -149,10 +153,6 @@
             this.Text = "Listado para Seguro";
             ((System.ComponentModel.ISupportInitialize)(this.lista)).EndInit();
             this.ResumeLayout(false);
-            // 
-            // MyPrintDocument
-            // 
-            this.MyPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.MyPrintDocument_PrintPage);
 
         }
 

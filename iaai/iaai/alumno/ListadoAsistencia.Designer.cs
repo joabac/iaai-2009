@@ -77,11 +77,12 @@ namespace iaai.alumno
             this.nombre,
             this.apellido,
             this.dni});
-            this.lista.Location = new System.Drawing.Point(186, 220);
+            this.lista.Location = new System.Drawing.Point(186, 183);
             this.lista.MultiSelect = false;
             this.lista.Name = "lista";
             this.lista.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.lista.Size = new System.Drawing.Size(344, 477);
+            this.lista.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.lista.Size = new System.Drawing.Size(344, 389);
             this.lista.TabIndex = 0;
             // 
             // nombre
@@ -110,7 +111,7 @@ namespace iaai.alumno
             // 
             // imprimir
             // 
-            this.imprimir.Location = new System.Drawing.Point(323, 738);
+            this.imprimir.Location = new System.Drawing.Point(323, 599);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
             this.imprimir.TabIndex = 1;
@@ -120,7 +121,7 @@ namespace iaai.alumno
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(477, 738);
+            this.cancelar.Location = new System.Drawing.Point(477, 599);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
             this.cancelar.TabIndex = 2;
@@ -130,7 +131,7 @@ namespace iaai.alumno
             // 
             // previa
             // 
-            this.previa.Location = new System.Drawing.Point(169, 738);
+            this.previa.Location = new System.Drawing.Point(169, 599);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
             this.previa.TabIndex = 3;
@@ -146,7 +147,7 @@ namespace iaai.alumno
             // 
             this.curso.Enabled = false;
             this.curso.FormattingEnabled = true;
-            this.curso.Location = new System.Drawing.Point(389, 40);
+            this.curso.Location = new System.Drawing.Point(389, 78);
             this.curso.Name = "curso";
             this.curso.Size = new System.Drawing.Size(119, 21);
             this.curso.TabIndex = 4;
@@ -154,7 +155,7 @@ namespace iaai.alumno
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(388, 22);
+            this.label1.Location = new System.Drawing.Point(388, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 5;
@@ -164,7 +165,7 @@ namespace iaai.alumno
             // 
             this.combo_niveles.Enabled = false;
             this.combo_niveles.FormattingEnabled = true;
-            this.combo_niveles.Location = new System.Drawing.Point(262, 136);
+            this.combo_niveles.Location = new System.Drawing.Point(262, 35);
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
             this.combo_niveles.TabIndex = 7;
@@ -174,7 +175,7 @@ namespace iaai.alumno
             // 
             this.combo_profesorados.Enabled = false;
             this.combo_profesorados.FormattingEnabled = true;
-            this.combo_profesorados.Location = new System.Drawing.Point(95, 136);
+            this.combo_profesorados.Location = new System.Drawing.Point(95, 35);
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
             this.combo_profesorados.TabIndex = 6;
@@ -183,7 +184,7 @@ namespace iaai.alumno
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(386, 120);
+            this.label4.Location = new System.Drawing.Point(386, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 11;
@@ -192,7 +193,7 @@ namespace iaai.alumno
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(259, 120);
+            this.label3.Location = new System.Drawing.Point(259, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 10;
@@ -201,7 +202,7 @@ namespace iaai.alumno
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 120);
+            this.label2.Location = new System.Drawing.Point(92, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 9;
@@ -211,7 +212,7 @@ namespace iaai.alumno
             // 
             this.cursoE.Enabled = false;
             this.cursoE.FormattingEnabled = true;
-            this.cursoE.Location = new System.Drawing.Point(262, 89);
+            this.cursoE.Location = new System.Drawing.Point(262, 119);
             this.cursoE.Name = "cursoE";
             this.cursoE.Size = new System.Drawing.Size(121, 21);
             this.cursoE.TabIndex = 12;
@@ -219,7 +220,7 @@ namespace iaai.alumno
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(259, 73);
+            this.label5.Location = new System.Drawing.Point(259, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 13;
@@ -228,7 +229,7 @@ namespace iaai.alumno
             // seleccionCurso
             // 
             this.seleccionCurso.AutoSize = true;
-            this.seleccionCurso.Location = new System.Drawing.Point(75, 43);
+            this.seleccionCurso.Location = new System.Drawing.Point(75, 81);
             this.seleccionCurso.Name = "seleccionCurso";
             this.seleccionCurso.Size = new System.Drawing.Size(14, 13);
             this.seleccionCurso.TabIndex = 14;
@@ -239,7 +240,7 @@ namespace iaai.alumno
             // seleccionCursoE
             // 
             this.seleccionCursoE.AutoSize = true;
-            this.seleccionCursoE.Location = new System.Drawing.Point(75, 92);
+            this.seleccionCursoE.Location = new System.Drawing.Point(75, 122);
             this.seleccionCursoE.Name = "seleccionCursoE";
             this.seleccionCursoE.Size = new System.Drawing.Size(14, 13);
             this.seleccionCursoE.TabIndex = 15;
@@ -250,7 +251,7 @@ namespace iaai.alumno
             // seleccionMateria
             // 
             this.seleccionMateria.AutoSize = true;
-            this.seleccionMateria.Location = new System.Drawing.Point(75, 139);
+            this.seleccionMateria.Location = new System.Drawing.Point(75, 38);
             this.seleccionMateria.Name = "seleccionMateria";
             this.seleccionMateria.Size = new System.Drawing.Size(14, 13);
             this.seleccionMateria.TabIndex = 16;
@@ -262,7 +263,7 @@ namespace iaai.alumno
             // 
             this.curso_nivel.Enabled = false;
             this.curso_nivel.FormattingEnabled = true;
-            this.curso_nivel.Location = new System.Drawing.Point(262, 40);
+            this.curso_nivel.Location = new System.Drawing.Point(262, 78);
             this.curso_nivel.Name = "curso_nivel";
             this.curso_nivel.Size = new System.Drawing.Size(121, 21);
             this.curso_nivel.TabIndex = 17;
@@ -271,7 +272,7 @@ namespace iaai.alumno
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(259, 22);
+            this.label6.Location = new System.Drawing.Point(259, 60);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 18;
@@ -279,7 +280,7 @@ namespace iaai.alumno
             // 
             // generar
             // 
-            this.generar.Location = new System.Drawing.Point(474, 175);
+            this.generar.Location = new System.Drawing.Point(519, 140);
             this.generar.Name = "generar";
             this.generar.Size = new System.Drawing.Size(115, 23);
             this.generar.TabIndex = 19;
@@ -291,7 +292,7 @@ namespace iaai.alumno
             // 
             this.comboBoxArea.Enabled = false;
             this.comboBoxArea.FormattingEnabled = true;
-            this.comboBoxArea.Location = new System.Drawing.Point(95, 40);
+            this.comboBoxArea.Location = new System.Drawing.Point(95, 78);
             this.comboBoxArea.Name = "comboBoxArea";
             this.comboBoxArea.Size = new System.Drawing.Size(161, 21);
             this.comboBoxArea.TabIndex = 20;
@@ -300,7 +301,7 @@ namespace iaai.alumno
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(92, 22);
+            this.label7.Location = new System.Drawing.Point(92, 60);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 21;
@@ -309,7 +310,7 @@ namespace iaai.alumno
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(92, 73);
+            this.label18.Location = new System.Drawing.Point(92, 103);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(29, 13);
             this.label18.TabIndex = 23;
@@ -319,7 +320,7 @@ namespace iaai.alumno
             // 
             this.comboBoxArea_esp.Enabled = false;
             this.comboBoxArea_esp.FormattingEnabled = true;
-            this.comboBoxArea_esp.Location = new System.Drawing.Point(95, 89);
+            this.comboBoxArea_esp.Location = new System.Drawing.Point(95, 119);
             this.comboBoxArea_esp.Name = "comboBoxArea_esp";
             this.comboBoxArea_esp.Size = new System.Drawing.Size(161, 21);
             this.comboBoxArea_esp.TabIndex = 22;
@@ -333,7 +334,7 @@ namespace iaai.alumno
             "mañana",
             "tarde",
             "noche"});
-            this.comboTurno.Location = new System.Drawing.Point(389, 136);
+            this.comboTurno.Location = new System.Drawing.Point(389, 35);
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(119, 21);
             this.comboTurno.TabIndex = 24;
@@ -343,7 +344,7 @@ namespace iaai.alumno
             // 
             this.comboMaterias.Enabled = false;
             this.comboMaterias.FormattingEnabled = true;
-            this.comboMaterias.Location = new System.Drawing.Point(514, 136);
+            this.comboMaterias.Location = new System.Drawing.Point(514, 35);
             this.comboMaterias.Name = "comboMaterias";
             this.comboMaterias.Size = new System.Drawing.Size(121, 21);
             this.comboMaterias.TabIndex = 25;
@@ -351,7 +352,7 @@ namespace iaai.alumno
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(511, 120);
+            this.label8.Location = new System.Drawing.Point(511, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 13);
             this.label8.TabIndex = 26;
@@ -361,7 +362,7 @@ namespace iaai.alumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 778);
+            this.ClientSize = new System.Drawing.Size(717, 636);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboMaterias);
             this.Controls.Add(this.comboTurno);
