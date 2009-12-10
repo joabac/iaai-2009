@@ -362,9 +362,14 @@ namespace iaai.cursos_materias
                             //email.Text = alumno.getEmail();
                             panel_datos.Enabled = true; //habilito el panel de datos
                             nuevo = alumno;
-                            carga_Materias();
-                            checkedList_CurEsp();
-                            carga_Cursos();
+
+                            if (tabControl1.SelectedIndex == 0)
+                                carga_Materias();
+                            if (tabControl1.SelectedIndex == 1)
+                                carga_Cursos();
+                            if(tabControl1.SelectedIndex == 2)
+                                checkedList_CurEsp();
+                            
                             
                         }
                         else
@@ -763,7 +768,13 @@ namespace iaai.cursos_materias
                             //email.Text = alumno.getEmail();
                             panel_datos.Enabled = true; //habilito el panel de datos
                             nuevo = alumno;
-                            carga_Materias();
+
+                            if (tabControl1.SelectedIndex == 0)
+                                carga_Materias();
+                            if (tabControl1.SelectedIndex == 1)
+                                carga_Cursos();
+                            if (tabControl1.SelectedIndex == 2)
+                                checkedList_CurEsp();
                         }
                         else
                         {
@@ -850,9 +861,11 @@ namespace iaai.cursos_materias
         void carga_Cursos()
         {
             dataGrid_cursos.Rows.Clear();
+
             if (tabControl1.SelectedIndex == 1)
             {
                 dataGrid_cursos.Rows.Clear();
+
                 string area = comboBoxArea.SelectedItem.ToString();
                 string nivel = comboBoxNivel.SelectedItem.ToString();
 
@@ -896,11 +909,14 @@ namespace iaai.cursos_materias
                             else
                             {//no inscrito ni condicional ni incscripto
 
-                                string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
+                                if (definitivo == false && condicional == false)
+                                {
+                                    string[] row = { "false", elemento.nombre, "false", elemento.id_curso.ToString() };
 
-                                dataGrid_cursos.Rows.Add(row);
-                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
-                                dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].ReadOnly = false;
+                                    dataGrid_cursos.Rows.Add(row);
+                                    dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                    dataGrid_cursos.Rows[dataGrid_cursos.RowCount - 1].ReadOnly = false;
+                                }
                             }
 
 
@@ -919,7 +935,7 @@ namespace iaai.cursos_materias
 
             if (comboBoxNivel != null && comboBoxArea != null)
             {
-                comboBoxNivel.Focus();
+                
                 carga_Cursos();
             }
         }
@@ -1063,7 +1079,7 @@ namespace iaai.cursos_materias
                                 if (Convert.ToBoolean(itemChecked.Cells[2].Value))
                                     curso_temp.condicion = "condicional";
                                 else
-                                    curso_temp.condicion = "condicional";
+                                    curso_temp.condicion = "inscripto";
 
                                 listado.Add(curso_temp);
                               
@@ -1347,9 +1363,13 @@ namespace iaai.cursos_materias
         {
             if (nuevo != null)
                 nuevo.id_matricula = -1;
-            checkedList_CurEsp();
-            carga_Materias();
-            carga_Cursos();
+
+            if (tabControl1.SelectedIndex == 0)
+                carga_Materias();
+            if (tabControl1.SelectedIndex == 1)
+                carga_Cursos();
+            if (tabControl1.SelectedIndex == 2)
+                checkedList_CurEsp();
         }
 
 
@@ -1375,7 +1395,7 @@ namespace iaai.cursos_materias
             //----------------------Datos del Alumno------------------
             yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
 
-            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre() + "\r\nMatricula: " + nuevo.id_matricula;
+            string alumno = nuevo.getApellido() + ", " + nuevo.getNombre();
 
             e.Graphics.DrawString(alumno, new Font("Arial Black", 12), Brushes.Black, leftMargin, yPos, new StringFormat());
             count += 4;
@@ -1388,7 +1408,7 @@ namespace iaai.cursos_materias
             {
                 yPos = topMargin + (count * printFont.GetHeight(e.Graphics));
 
-                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nNombre Curso: " + elemento.curso_inscripto.nombre + "\r\nDuracion: " + elemento.curso_inscripto.duracion +" [años]\r\nCondición: " + elemento.condicion + "\r\n\r\n";
+                cadena = "Numero de Inscripción: " + elemento.id_inscripcion_curso + "\r\nMatricula: " + db.tieneMatriculaCurso(nuevo.id_alumno,elemento.curso_inscripto.id_curso) + "\r\nNombre Curso: " + elemento.curso_inscripto.nombre + "\r\nDuracion: " + elemento.curso_inscripto.duracion + " [años]\r\nCondición: " + elemento.condicion + "\r\n\r\n";
 
                 e.Graphics.DrawString(cadena, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
                 count += 5;

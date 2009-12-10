@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label15 = new System.Windows.Forms.Label();
@@ -177,7 +177,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(20, 316);
@@ -262,8 +262,8 @@
             this.dataGrid_Listado.AllowUserToDeleteRows = false;
             this.dataGrid_Listado.AllowUserToResizeColumns = false;
             this.dataGrid_Listado.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_Listado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_Listado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGrid_Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -365,8 +365,8 @@
             // 
             this.dataGrid_cursos.AllowUserToAddRows = false;
             this.dataGrid_cursos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_cursos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGrid_cursos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid_cursos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid_cursos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -381,8 +381,8 @@
             this.dataGrid_cursos.Location = new System.Drawing.Point(198, 3);
             this.dataGrid_cursos.MultiSelect = false;
             this.dataGrid_cursos.Name = "dataGrid_cursos";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGrid_cursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_cursos.Size = new System.Drawing.Size(370, 301);
             this.dataGrid_cursos.TabIndex = 2;
@@ -464,7 +464,7 @@
             this.comboBoxNivel.Name = "comboBoxNivel";
             this.comboBoxNivel.Size = new System.Drawing.Size(165, 21);
             this.comboBoxNivel.TabIndex = 1;
-            this.comboBoxNivel.SelectionChangeCommitted += new System.EventHandler(this.cambia_nivel);
+            this.comboBoxNivel.SelectedIndexChanged += new System.EventHandler(this.cambia_nivel);
             // 
             // label16
             // 
@@ -482,7 +482,7 @@
             this.comboBoxArea.Name = "comboBoxArea";
             this.comboBoxArea.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea.TabIndex = 0;
-            this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.cambio_area);
+            this.comboBoxArea.SelectedIndexChanged += new System.EventHandler(this.cambio_area);
             // 
             // tabPage3
             // 
@@ -503,8 +503,8 @@
             // 
             this.dataGridView_CurEsp.AllowUserToAddRows = false;
             this.dataGridView_CurEsp.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView_CurEsp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_CurEsp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView_CurEsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -589,7 +589,7 @@
             this.comboBoxArea_esp.Name = "comboBoxArea_esp";
             this.comboBoxArea_esp.Size = new System.Drawing.Size(165, 21);
             this.comboBoxArea_esp.TabIndex = 0;
-            this.comboBoxArea_esp.SelectionChangeCommitted += new System.EventHandler(this.refrescar_checked_CurEsp);
+            this.comboBoxArea_esp.SelectedIndexChanged += new System.EventHandler(this.refrescar_checked_CurEsp);
             // 
             // label2
             // 
@@ -867,6 +867,7 @@
             this.Controls.Add(this.radioButtonPorApellido);
             this.Controls.Add(this.radioButtonPorDni);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Inscripcion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripcion";
