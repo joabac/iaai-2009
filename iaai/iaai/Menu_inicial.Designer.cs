@@ -70,6 +70,7 @@ namespace iaai
             // menu
             // 
             this.menu.AutoSize = false;
+            this.menu.BackColor = System.Drawing.Color.Khaki;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alumnosMenu,
             this.profesoresMenu,
@@ -273,7 +274,8 @@ namespace iaai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::iaai.Properties.Resources.musicdancesmrm;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::iaai.Properties.Resources.Aethlet_Reprise_by_archanN;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(651, 370);
             this.Controls.Add(this.estado);
