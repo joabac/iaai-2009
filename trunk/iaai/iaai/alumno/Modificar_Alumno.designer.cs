@@ -298,7 +298,7 @@
             this.Controls.Add(this.nombre);
             this.Name = "ModificarAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modificar Profesor";
+            this.Text = "Modificar Alumno";
             this.ResumeLayout(false);
             this.PerformLayout();
 
