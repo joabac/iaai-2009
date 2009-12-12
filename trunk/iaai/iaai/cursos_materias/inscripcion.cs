@@ -279,7 +279,17 @@ namespace iaai.cursos_materias
 
                                         dataGrid_Listado.Rows.Add(row);
 
+                                        string turno_inscripto = db.obtener_turno(materia_actual.id_materia,nuevo.id_matricula);
+                                        if(turno_inscripto.Contains(comboTurno.SelectedItem.ToString()))
+                                        {
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                        }
+                                        else
+                                        {
+                                            dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                                            dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.ForeColor = Color.Gray;
+                                        }
+                                        
                                         dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].ReadOnly = true;
 
                                     }
@@ -1438,17 +1448,31 @@ namespace iaai.cursos_materias
         private void cambiar_condicion(object sender, KeyEventArgs e)
         {
             Cambiar_Turno ventanaturno = new Cambiar_Turno();
-            List<string> disponibles = new List<string>();
+            ventanaturno.Owner = this;
 
+            List<string> disponibles = new List<string>();
+            string turno_actual;
+            int materia;
 
             if(e.KeyCode == Keys.F10)
             {
-                if (dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow &&
-                    dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor == Color.LightBlue)
+                if (dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor != Color.LightYellow &&
+                    dataGrid_Listado.CurrentRow.DefaultCellStyle.BackColor != Color.LightGreen)
                 {
-                    disponibles = cargarTurnosDisponibles(nuevo, Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[3].Value),comboTurno.Text.ToString());
+                    materia= Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[3].Value);
+                    turno_actual = db.obtener_turno(materia, nuevo.id_matricula);
 
-                    ventanaturno.inicializar(disponibles);
+
+                    if (turno_actual != "")
+                    {
+                        disponibles = cargarTurnosDisponibles(nuevo, materia, turno_actual);
+
+                        int id_mat = Convert.ToInt32(dataGrid_Listado.CurrentRow.Cells[3].Value);
+                        int id_turno = db.obtener_Id_turno(materia, turno_actual);
+
+                        ventanaturno.inicializar(disponibles, nuevo, id_mat, id_turno);
+                        carga_Materias();
+                    }
                 }
             }
 
@@ -1577,6 +1601,11 @@ namespace iaai.cursos_materias
                     }
                 }
             }     
+        }
+
+        private void bt_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 
