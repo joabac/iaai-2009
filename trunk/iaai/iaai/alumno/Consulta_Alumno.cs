@@ -167,10 +167,12 @@ namespace iaai.alumno
                     }
                 }
             }
+#pragma warning disable
             catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion
             {
                 //no realizo tarea alguna es solo para protejer la ejecucion
             }
+#pragma warning enable
 
         }
 

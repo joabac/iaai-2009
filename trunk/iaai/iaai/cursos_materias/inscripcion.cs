@@ -24,8 +24,10 @@ namespace iaai.cursos_materias
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         List<Profesorado> listado_profesorados = new List<Profesorado>();
         List<Materia> listadoMaterias = null;
+#pragma warning disable
         List<Curso> listadoCursos = null;
-       
+#pragma warning enable
+
         /// <summary>
         /// El alumno que se maneja dentro del formulario y sobre el cual se realizan 
         /// las operaciones de asgnacion de cursos
@@ -161,10 +163,12 @@ namespace iaai.cursos_materias
                     }
                 }
             }
+#pragma warning disable
             catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion
             {
                 //no realizo tarea alguna es solo para protejer la ejecucion
             }
+#pragma warning enable
 
         }
 
@@ -381,9 +385,11 @@ namespace iaai.cursos_materias
 
                 }
             }
-            catch(Exception ex){
+#pragma warning disable
+           catch (Exception ex){
                     //capturo excepciones para evitar salidas abruptas
-            }
+           }
+#pragma warning enable
         }
 
         
@@ -785,10 +791,12 @@ namespace iaai.cursos_materias
 
                 }
             }
+#pragma warning disable
             catch (Exception ex)
             {
                 //capturo excepciones para evitar salidas abruptas
             }
+#pragma warning enable
         }
 
         /// <summary>
@@ -1265,7 +1273,7 @@ namespace iaai.cursos_materias
             List<CursosEsp> listado = new List<CursosEsp>();
             CursosEsp curso = new CursosEsp();
             bool estado;
-            int indice;
+
 
 
             //protejo de seleccion sin area
@@ -1420,6 +1428,13 @@ namespace iaai.cursos_materias
             }
         }
 
+
+        /// <summary>
+        /// Rutina para el cambio de estado de condicional a inscripto de forma forzosa "y"
+        /// Para el control de cambio de turnos si hay cupo en los turnos disponibles
+        /// </summary>
+        /// <param name="sender">objeto llamador</param>
+        /// <param name="e">parametros del evento KeyDown</param>
         private void cambiar_condicion(object sender, KeyEventArgs e)
         {
             Cambiar_Turno ventanaturno = new Cambiar_Turno();

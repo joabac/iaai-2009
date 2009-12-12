@@ -11,12 +11,18 @@ namespace iaai.cursos_materias
 {
     public partial class Cambiar_Turno : Form
     {
+        /// <summary>
+        /// Constructor publico de clase cambia turno
+        /// </summary>
         public Cambiar_Turno()
         {
 
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Inicializacion de Form cambia turno
+        /// </summary>
         public void inicializar()
         {
 

@@ -389,10 +389,12 @@ namespace iaai.metodos_comunes
                     else
                         return 1; //si fecha correcta y mayor de edad retorno 1
                 }
+#pragma warning disable
                 catch (FormatException exc_form) {
 
                     return -1;
                 }
+#pragma warning enable
             }
             else
                 return -1;

@@ -10,6 +10,9 @@ using iaai.metodos_comunes;
 
 namespace iaai.responsable
 {
+    /// <summary>
+    /// Clase de consulta Responsable
+    /// </summary>
     public partial class Consulta_Responsable : Form
     {
         Data_base.Data_base db = new iaai.Data_base.Data_base();
@@ -17,6 +20,9 @@ namespace iaai.responsable
         Responsable responsable = new Responsable();
         List<Responsable> responsables_encontrados = new List<Responsable>();
 
+        /// <summary>
+        /// Constructor de clase Consulta Profesor
+        /// </summary>
         public Consulta_Responsable()
         {
             InitializeComponent();
@@ -160,10 +166,12 @@ namespace iaai.responsable
                     }
                 }
             }
+#pragma warning disable
             catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion
             {
                 //no realizo tarea alguna es solo para protejer la ejecucion
             }
+#pragma warning enable
 
         }
 
@@ -244,9 +252,11 @@ namespace iaai.responsable
 
                 }
             }
+            #pragma warning disable 
             catch(Exception ex){
                     //capturo excepciones para evitar salidas abruptas
             }
+            #pragma warning enable
         }
 
       

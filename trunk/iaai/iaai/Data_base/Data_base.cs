@@ -270,6 +270,9 @@ namespace iaai.Data_base
         /// <param name="alumno">
         /// Se debe ingresar un instancia de Alumno
         /// </param>
+        /// <param name="dni_viejo">
+        /// Se espera el dni registrado en base actualmente
+        /// </param>
         /// <returns>
         /// {true= si se dio la modificación del alumno}  
         /// {false= si no se pudo modificar}
@@ -312,6 +315,9 @@ namespace iaai.Data_base
         /// </summary>
         /// <param name="responsable">
         /// Se debe ingresar un instancia de Responsable
+        /// </param>
+        /// <param name="dni_viejo">
+        /// Se espera el dni registrado actualmente en base de datos
         /// </param>
         /// <returns>
         /// {true= si se dio la modificación del responsable}  
@@ -634,9 +640,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Busca el consjunto de profesores dados de baja del sistema
         /// </summary>
-       
         /// <returns>Lista de profesores inactivos</returns>
-        
         public List<Profesor> Buscar_Profesor_inactivos()
         {
 
@@ -2340,9 +2344,8 @@ namespace iaai.Data_base
 
         /// <summary>Inscribir un alumno a una lista de cursos</summary>
         /// <param name="nuevo">alumno que se va a inscribir a cursos</param>
-        /// <param name="id_area">area correspondiente a los cursos</param>
-        /// <param name="cursos_select">lista de cursos seleccionados</param>
-        /// <returns>Lista de las inscripciones del alunno a los cursos</returns>
+        /// <param name="curso_select">Curso al que se va a inscribir el alumno</param>
+        /// <returns>Inscripto_curso: registro del curso y condicion en que quedo el alumno</returns>
 
         internal Inscripto_curso inscribirCursos(Alumno nuevo,Curso curso_select)
         {
@@ -3445,7 +3448,9 @@ namespace iaai.Data_base
         /// </summary>
         /// <param name="nuevo">alumno al que se hace referencia</param>
         /// <param name="elemento">curso al que se hace referencia</param>
-        /// <returns></returns>
+        /// <param name="condicion">Condicion que se quiere verificar</param>
+        /// <returns>{true: si esta inscripto el alumno a ese curso y en esa condicion}
+        /// {false: si el alumno NO esta inscripto al curso o NO esta en esa condicion}</returns>
         internal bool inscriptoACurso(Alumno nuevo, Curso elemento, string condicion)
         {
 

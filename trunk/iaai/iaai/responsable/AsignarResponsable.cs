@@ -110,8 +110,10 @@ namespace iaai.responsable
                     {
                         ((AltaAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
                     }
+#pragma warning disable
                     catch (Exception exception)
                     {
+#pragma warning enable
                         ((ModificarAlumno)this.Owner).asignarResponsable((int)(Convert.ToUInt32(tablaResultado.Rows[fila].Cells[0].Value)));
                     }
                     break;

@@ -29,9 +29,11 @@ namespace iaai.cursos_materias
             {
                 materias = db.getMaterias(id_profesorado,nivel,turno);
             }
-            catch(Exception exc) {
-               
+#pragma warning disable
+            catch (Exception exc) {
+
             }
+#pragma warning enable
 
             return materias;
         }

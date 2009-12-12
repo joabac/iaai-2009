@@ -869,7 +869,7 @@
             this.Controls.Add(this.radioButtonPorApellido);
             this.Controls.Add(this.radioButtonPorDni);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Inscripcion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripcion";
@@ -949,7 +949,7 @@
         private System.Windows.Forms.Button button3;
         private System.Drawing.Printing.PrintDocument reporte_curso_especial;
         private System.Drawing.Printing.PrintDocument reporte_curso;
-        private System.Windows.Forms.CheckedListBox chkedListBox_curEsp_condicion;
+       
         private System.Windows.Forms.DataGridViewCheckBoxColumn inscribe;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreMat;
         private System.Windows.Forms.DataGridViewTextBoxColumn profesor;
