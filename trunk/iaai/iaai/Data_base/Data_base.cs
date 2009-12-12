@@ -3491,6 +3491,103 @@ namespace iaai.Data_base
 
             return esta_Inscripto;
         }
+
+        internal bool cambiarEstadoCurso(Alumno nuevo, int id_curso)
+        {
+
+
+            int matricula = tieneMatriculaCurso(nuevo.id_alumno, id_curso);
+
+            if (conexion.State == System.Data.ConnectionState.Closed)
+                open_db();
+
+            MySqlTransaction transaccion = conexion.BeginTransaction(); ;
+            MySqlCommand MyCommand;
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+
+                MyCommand = new MySqlCommand("update registro_curso " +
+                                              "set condicion = 'inscripto' " +
+                                              "where id_curso = " + id_curso + " and id_matricula = " + matricula, conexion);
+
+                MyCommand.Connection = conexion;
+                MyCommand.Transaction = transaccion;
+
+
+                MyCommand.ExecuteNonQuery();
+
+                transaccion.Commit();
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    transaccion.Rollback();
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Matricula para Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+ 
+        }
+
+        internal bool cambiarEstadoCursoEsp(Alumno nuevo, int id_curso)
+        {
+            int matricula = tieneMatriculaCursoEspecial(nuevo.id_alumno, id_curso);
+
+            if (conexion.State == System.Data.ConnectionState.Closed)
+                open_db();
+
+            MySqlTransaction transaccion = conexion.BeginTransaction(); ;
+            MySqlCommand MyCommand;
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+
+                MyCommand = new MySqlCommand("update registro_curso_especial " +
+                                              "set condicion = 'inscripto' " +
+                                              "where id_curso_especial = " + id_curso + " and id_matricula = " + matricula, conexion);
+
+                MyCommand.Connection = conexion;
+                MyCommand.Transaction = transaccion;
+
+
+                MyCommand.ExecuteNonQuery();
+
+                transaccion.Commit();
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    transaccion.Rollback();
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Matricula para Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+        }
     }
 
     
