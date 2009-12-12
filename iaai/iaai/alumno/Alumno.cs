@@ -7,8 +7,16 @@ using iaai.cursos_materias;
 
 namespace iaai.alumno
 {
+
+    /// <summary>
+    /// Clase Alumno 
+    /// Contienen todas las estructuras para soportar los datos de un alumno y sus metodos asociadoss
+    /// </summary>
     public class Alumno
     {
+        /// <summary>
+        /// Obtiene o establece el id del alumno
+        /// </summary>
         public int id_alumno { get; set; }
         private string nombre;
         private string apellido;
@@ -20,13 +28,20 @@ namespace iaai.alumno
         private int escuela_año;
         private string direccion;
         private int id_responsable;
+
+        /// <summary>
+        /// Obtiene o establece la matricula actual de trabajo del alumno
+        /// </summary>
         public int id_matricula { get; set; }
         
         List<Materia> mis_materias {get; set;}
         
         Data_base.Data_base db = null;
 
-        //CONSTRUCTOR DE LA CLASE
+        /// <summary>
+        /// Constructor de clase Alumno
+        /// </summary>
+        /// <param name="datos"></param>
         public Alumno(IDictionary<string,object> datos)
         {
             id_alumno = -1;
@@ -48,6 +63,9 @@ namespace iaai.alumno
                 id_responsable = int.Parse(datos["id_responsable"].ToString());
         }
 
+        /// <summary>
+        /// Constructor vacio de clase Alumno
+        /// </summary>
         public Alumno()
         {}
 
@@ -55,7 +73,7 @@ namespace iaai.alumno
         /// Constructor que instancia el alumno con 
         /// sus materias si este tiene materias en algun profesorado
         /// </summary>
-        /// <param name="id_profesorado"></param>
+        /// <param name="id_profesorado">int que representa el profesorado al que se asocia el alumno</param>
         public Alumno(int id_profesorado) {
 
             db = new iaai.Data_base.Data_base();
@@ -63,119 +81,197 @@ namespace iaai.alumno
             mis_materias =  db.getMateriasAlumno(id_profesorado, id_alumno);
             
         }
-        //ESTOS SON LOS GET
+        
+        /// <summary>
+        /// Retorna el id de un alumno
+        /// </summary>
+        /// <returns>int que representa su id unico</returns>
 
         public int getId_alumno()
         {
             return id_alumno;
         }
+
+        /// <summary>
+        /// Retorna el nombre de un alumno
+        /// </summary>
+        /// <returns>String</returns>
         public string getNombre()
         {
             return nombre;
         }
+
+        /// <summary>
+        /// Retorna el apellido de un alumno
+        /// </summary>
+        /// <returns>String</returns>
         public string getApellido()
         {
             return apellido;
         }
+
+        /// <summary>
+        ///Retorna el DNI del alumno 
+        /// </summary>
+        /// <returns>String que representa el DNI</returns>
         public string getDni()
         {
             return dni;
         }
+
+        /// <summary>
+        /// Retorna la fecha de nacimiento registrada asociada al alumno
+        /// </summary>
+        /// <returns>Objeto del tipo DateTime con la fecha de nacimiento</returns>
         public DateTime getFecha_nac()
         {
             return fecha_nac;
         }
+
+        /// <summary>
+        /// Retorna la caracteristica del telefono registrado
+        /// </summary>
+        /// <returns>String que representa la caracteristica</returns>
         public string getTelefono_carac()
         {
             return telefono_carac;
         }
+
+        /// <summary>
+        /// Retorna el telefono del alumno
+        /// </summary>
+        /// <returns>String que representa el numero de telefono</returns>
         public string getTelefono_numero()
         {
             return telefono_numero;
         }
+
+        /// <summary>
+        /// Retorna el año de cursado declarado asociado al alumno
+        /// </summary>
+        /// <returns>int año</returns>
         public int getEscuela_año()
         {
             return escuela_año;
         }
+
+        /// <summary>
+        /// Retorna el nombre de la escuela en que cursa el alumno
+        /// </summary>
+        /// <returns>String: Nombre de la escuela</returns>
         public string getEscuela_nombre()
         {
             return escuela_nombre;
         }
+
+        /// <summary>
+        /// Retorna la direccion o domicilio del alumno
+        /// </summary>
+        /// <returns>String: domicilio</returns>
         public string getDireccion()
         {
             return direccion;
         }
+
+        /// <summary>
+        /// Retorna el id del responsable
+        /// </summary>
+        /// <returns>int: id del responsable asociado</returns>
         public int getId_responsable()
         {
             return id_responsable;
         }
 
-        //ESTOS SON LOS SET VITEH
-
+        
+        /// <summary>
+        /// Setea el nombre del alumno
+        /// </summary>
+        /// <param name="nom">String Nombre valido a guardar</param>
         public void setNombre(string nom)
         {
             nombre = nom;
         }
+
+        /// <summary>
+        /// setea el apellido del alumno
+        /// </summary>
+        /// <param name="ap">String: apellido valido a guardar</param>
         public void setApellido(string ap)
         {
             apellido = ap;
         }
+
+        /// <summary>
+        /// setea el dni del alumno
+        /// </summary>
+        /// <param name="denei">String: dni valido a guardar</param>
         public void setDni(string denei)
         {
             dni = denei;
         }
+
+        /// <summary>
+        /// Setea la fecha de nacimiento del alumno
+        /// </summary>
+        /// <param name="fec">DateTime: valido a guardar</param>
         public void setFecha_nac(DateTime fec)
         {
             fecha_nac = fec;
         }
+
+        /// <summary>
+        /// setea la caracteristica del telefono del alumno
+        /// </summary>
+        /// <param name="carac">String: caracteristica valida a  guardar</param>
         public void setTelefono_carac(string carac)
         {
             telefono_carac = carac;
         }
+
+        /// <summary>
+        /// setea el numero de telefono del alumno
+        /// </summary>
+        /// <param name="num">String: numero valido a guardar</param>
         public void setTelefono_numero(string num)
         {
             telefono_numero = num;
         }
+
+        /// <summary>
+        /// setea el año de cursado en la escuela del alumno menor
+        /// </summary>
+        /// <param name="año">int: valido año de cursado</param>
         public void setEscuela_año(int año)
         {
             escuela_año = año;
         }
+
+        /// <summary>
+        /// setea el nombre de la escuela al que concurre el alumno
+        /// </summary>
+        /// <param name="esc">String: escuela de cursado</param>
         public void setEscuela_nombre(string esc )
         {
             escuela_nombre = esc;
         }
+
+        /// <summary>
+        /// setea la direccion del alumno
+        /// </summary>
+        /// <param name="dir">String: direccion valida</param>
         public void setDireccion(string dir)
         {
             direccion = dir;
         }
+
+        /// <summary>
+        /// setea el id del responsable asociado
+        /// </summary>
+        /// <param name="resp">int:  id valido del responsable</param>
         public void setId_responsable(int resp)
         {
             id_responsable = resp;
         }
-
-        /*static void Main()
-        {
-            
-            IDictionary<string, object> index = new Dictionary<string, object>();
-
-            index["id"] = 1;
-            index["nombre"] = "Matías";
-            index["apellido"] = "Milesi";
-            index["dni"] = "2222";
-            index["fecha_nac"] = "28/06/1984";
-            index["telefono_carac"] = 342;
-            index["telefono_numero"] = 4550871;
-            index["escuela_nombre"] = "comercial";
-            index["escuela_año"] = 2001;
-            index["direccion"] = "conchabamba 1123";
-            index["id_responsable"] = 2;
-
-            Alumno t = new Alumno(index);
-
-            Console.WriteLine(t.getApellido());
-            
-        }*/
-
         
     }
 }

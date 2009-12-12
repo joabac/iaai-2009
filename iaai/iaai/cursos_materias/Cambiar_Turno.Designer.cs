@@ -1,5 +1,8 @@
 ﻿namespace iaai.cursos_materias
 {
+    /// <summary>
+    /// Clase para cambio de turnos
+    /// </summary>
     partial class Cambiar_Turno
     {
         /// <summary>

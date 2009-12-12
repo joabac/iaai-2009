@@ -1,5 +1,9 @@
 ﻿namespace iaai.profesor
 {
+
+    /// <summary>
+    /// Clase para diseño de Form de Consulta profesor
+    /// </summary>
     partial class Consulta_Profesor
     {
         /// <summary>

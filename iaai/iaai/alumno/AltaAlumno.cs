@@ -21,7 +21,9 @@ namespace iaai.alumno
         private string error = "";
         private int responsable = -1;
         Utiles metodo = new Utiles();
+#pragma warning disable
         bool exito = false;
+#pragma warning enable
         Alumno alumno_cargado = null;
         Inscripcion formulario {get; set ;}
        

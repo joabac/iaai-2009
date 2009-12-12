@@ -17,6 +17,9 @@ namespace iaai.profesor
         Profesor profe = new Profesor();
         List<Profesor> profes_encontrados = new List<Profesor>();
 
+        /// <summary>
+        /// Constructor publico de Consulta profesor
+        /// </summary>
         public Consulta_Profesor()
         {
             InitializeComponent();
@@ -159,10 +162,12 @@ namespace iaai.profesor
                     }
                 }
             }
+#pragma warning disable
             catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion
             {
                 //no realizo tarea alguna es solo para protejer la ejecucion
             }
+#pragma warning enable
 
         }
 
@@ -242,9 +247,11 @@ namespace iaai.profesor
 
                 }
             }
-            catch(Exception ex){
+#pragma warning disable
+            catch (Exception ex){
                     //capturo excepciones para evitar salidas abruptas
             }
+#pragma warning enable
         }
 
       

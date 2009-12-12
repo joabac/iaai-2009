@@ -268,7 +268,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Button button_buscar;
-        private System.Windows.Forms.Button modificarResponsable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox dni;
     }

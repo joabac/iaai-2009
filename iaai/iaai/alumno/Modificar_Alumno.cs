@@ -12,6 +12,9 @@ using iaai.responsable;
 namespace iaai.alumno
 
 {
+    /// <summary>
+    /// Clase publica para modificacion de alumnos heredada de Form
+    /// </summary>
     public partial class ModificarAlumno : Form
     {
         Alumno alumno_encontrado = new Alumno();
@@ -23,6 +26,9 @@ namespace iaai.alumno
 
         private int responsable = -1;
 
+        /// <summary>
+        /// Constructor de ventana Modifica Alumno
+        /// </summary>
         public ModificarAlumno()
         {
             InitializeComponent();
@@ -315,6 +321,10 @@ namespace iaai.alumno
             }
         }
 
+        /// <summary>
+        /// Rutina para la asociacion del id de responsable al alumno a modificar
+        /// </summary>
+        /// <param name="resp"></param>
         public void asignarResponsable(int resp)
         {
             this.responsable = resp;
