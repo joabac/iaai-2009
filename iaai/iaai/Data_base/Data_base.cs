@@ -971,7 +971,7 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Arma el listado de alumnos para presentar al seguro
+        /// Arma el listado de alumnos matriculados para presentar al seguro 
         /// </summary>
         /// <returns>
         /// List de Strings
@@ -3592,6 +3592,180 @@ namespace iaai.Data_base
 
 
             return true;
+        }
+
+
+        /// <summary>
+        /// Obtiene el id de turno para una materia y turno especificado
+        /// </summary>
+        /// <param name="id_materia">id de la materia a buscar</param>
+        /// <param name="turno">String: turno a consultar</param>
+        /// <returns>-1: si error o turno inexistente
+        /// id_turno: si turno existe y materia valida
+        /// </returns>
+        internal int obtener_Id_turno(int id_materia, string turno)
+        {
+
+            int turno_trabajo = -1;
+            
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                
+                    MySqlCommand id_turno = new MySqlCommand("SELECT id_turno "+
+                                                             "from turno "+
+                                                             "where id_materia = "+id_materia+" and turno like '"+turno+"'", conexion);
+
+                    MySqlDataReader idTurno_reader = id_turno.ExecuteReader();
+
+                    if (idTurno_reader.Read())
+                    {
+
+                        turno_trabajo = Convert.ToInt32(idTurno_reader[0].ToString());
+                        
+                        idTurno_reader.Close();
+                    }
+                    else
+                    { //significa que no hay turno asociado
+
+                        turno_trabajo = -1;
+
+                    }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    turno_trabajo = -1;
+                }
+
+            }
+
+
+            return turno_trabajo;
+        }
+
+
+        /// <summary>
+        /// Rutina para el cambio de turno en una materia de un alumno
+        /// </summary>
+        /// <param name="id_materia">id de la materia a cambiar de turno</param>
+        /// <param name="matricula">matricula del alumno para el profesorado asociado a las materias</param>
+        /// <param name="id_turno_actual">el turno actual de la materia</param>
+        /// <param name="id_turno_nuevo">el turno nuevo de la materia</param>
+        /// <returns>true: si exito  false: si fallo o error</returns>
+        /// 
+        internal bool cambiarTurno(int id_materia,int matricula, int id_turno_actual, int id_turno_nuevo)
+        {
+
+
+            if (conexion.State == System.Data.ConnectionState.Closed)
+                open_db();
+
+            MySqlTransaction transaccion = conexion.BeginTransaction(); ;
+            MySqlCommand MyCommand;
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+
+                MyCommand = new MySqlCommand("update registro_materia " +
+                                              "set id_turno =" + id_turno_nuevo + 
+                                              " where id_materia = " + id_materia + " and id_turno = " + id_turno_actual + " and id_matricula = " + matricula, conexion);
+
+                MyCommand.Connection = conexion;
+                MyCommand.Transaction = transaccion;
+
+
+                MyCommand.ExecuteNonQuery();
+
+                transaccion.Commit();
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    transaccion.Rollback();
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Matricula para Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Rutina para el retorno del string turno actual para una materia y matricula especificados
+        /// </summary>
+        /// <param name="materia">materia a buscar</param>
+        /// <param name="matricula">matricula del alumno</param>
+        /// <returns>String: turno actual de la materia para la matricula especificada
+        /// String: "" si no encuentra materia o matricula asociadas</returns>
+        internal string obtener_turno(int materia, int matricula)
+        {
+            string turno_trabajo = "";
+
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand id_turno = new MySqlCommand("SELECT t.turno "+
+                                                         "FROM registro_materia r , turno t "+
+                                                         "where r.id_turno = t.id_turno "+
+                                                         "and r.id_materia = "+materia+" and r.id_matricula = "+matricula, conexion);
+
+                MySqlDataReader idTurno_reader = id_turno.ExecuteReader();
+
+                if (idTurno_reader.Read())
+                {
+
+                    turno_trabajo = idTurno_reader[0].ToString();
+
+                    idTurno_reader.Close();
+                }
+                else
+                { //significa que no hay turno asociado
+
+                    turno_trabajo = "";
+
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    turno_trabajo = "";
+                }
+
+            }
+
+
+            return turno_trabajo;            
         }
     }
 

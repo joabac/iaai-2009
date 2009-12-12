@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -53,6 +55,7 @@
             this.condicional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.combo_profesorados = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
             this.dataGrid_cursos = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +69,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.comboBoxArea = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
             this.dataGridView_CurEsp = new System.Windows.Forms.DataGridView();
             this.inscribir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nombre_curso_esp = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,16 +124,18 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(259, 7);
+            this.tabControl1.Location = new System.Drawing.Point(276, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(579, 378);
+            this.tabControl1.Size = new System.Drawing.Size(579, 406);
             this.tabControl1.TabIndex = 7;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.limpiar_Matricula);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.label20);
+            this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label13);
@@ -145,10 +151,28 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(571, 352);
+            this.tabPage1.Size = new System.Drawing.Size(571, 380);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profesorados";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(3, 364);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(100, 13);
+            this.label20.TabIndex = 13;
+            this.label20.Text = "F10: Cambiar Turno";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(3, 350);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(232, 13);
+            this.label22.TabIndex = 12;
+            this.label22.Text = "F9: Cambiar Condición  {condicional a inscripto}";
             // 
             // label15
             // 
@@ -188,16 +212,17 @@
             // 
             // bt_cancel
             // 
-            this.bt_cancel.Location = new System.Drawing.Point(490, 316);
+            this.bt_cancel.Location = new System.Drawing.Point(493, 350);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(75, 23);
             this.bt_cancel.TabIndex = 5;
             this.bt_cancel.Text = "Cancelar";
             this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
             // bt_inscribe
             // 
-            this.bt_inscribe.Location = new System.Drawing.Point(409, 316);
+            this.bt_inscribe.Location = new System.Drawing.Point(412, 350);
             this.bt_inscribe.Name = "bt_inscribe";
             this.bt_inscribe.Size = new System.Drawing.Size(75, 23);
             this.bt_inscribe.TabIndex = 4;
@@ -284,7 +309,7 @@
             this.dataGrid_Listado.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGrid_Listado.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGrid_Listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGrid_Listado.Size = new System.Drawing.Size(559, 257);
+            this.dataGrid_Listado.Size = new System.Drawing.Size(562, 260);
             this.dataGrid_Listado.TabIndex = 3;
             this.dataGrid_Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambiar_condicion);
             // 
@@ -346,6 +371,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.dataGrid_cursos);
             this.tabPage2.Controls.Add(this.buttonInscribir);
             this.tabPage2.Controls.Add(this.buttonCancelar);
@@ -356,10 +382,19 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(571, 352);
+            this.tabPage2.Size = new System.Drawing.Size(571, 380);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cursos";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 364);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(232, 13);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "F9: Cambiar Condición  {condicional a inscripto}";
             // 
             // dataGrid_cursos
             // 
@@ -384,7 +419,7 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGrid_cursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGrid_cursos.Size = new System.Drawing.Size(370, 301);
+            this.dataGrid_cursos.Size = new System.Drawing.Size(370, 342);
             this.dataGrid_cursos.TabIndex = 2;
             this.dataGrid_cursos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambia_Condicion_Curso);
             // 
@@ -432,7 +467,7 @@
             // 
             // buttonInscribir
             // 
-            this.buttonInscribir.Location = new System.Drawing.Point(400, 310);
+            this.buttonInscribir.Location = new System.Drawing.Point(412, 351);
             this.buttonInscribir.Name = "buttonInscribir";
             this.buttonInscribir.Size = new System.Drawing.Size(75, 23);
             this.buttonInscribir.TabIndex = 3;
@@ -442,7 +477,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(490, 310);
+            this.buttonCancelar.Location = new System.Drawing.Point(493, 351);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 4;
@@ -488,6 +523,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.dataGridView_CurEsp);
             this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
             this.tabPage3.Controls.Add(this.button3);
@@ -495,10 +531,19 @@
             this.tabPage3.Controls.Add(this.comboBoxArea_esp);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(571, 352);
+            this.tabPage3.Size = new System.Drawing.Size(571, 380);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cursos de Especialización";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(3, 364);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(232, 13);
+            this.label19.TabIndex = 4;
+            this.label19.Text = "F9: Cambiar Condición  {condicional a inscripto}";
             // 
             // dataGridView_CurEsp
             // 
@@ -507,6 +552,7 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_CurEsp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_CurEsp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_CurEsp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView_CurEsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_CurEsp.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -519,7 +565,7 @@
             this.dataGridView_CurEsp.MultiSelect = false;
             this.dataGridView_CurEsp.Name = "dataGridView_CurEsp";
             this.dataGridView_CurEsp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_CurEsp.Size = new System.Drawing.Size(370, 301);
+            this.dataGridView_CurEsp.Size = new System.Drawing.Size(370, 342);
             this.dataGridView_CurEsp.TabIndex = 1;
             this.dataGridView_CurEsp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cambia_Condicion_CurExp);
             // 
@@ -558,7 +604,7 @@
             // 
             // button_Inscribe_Curso_Especial
             // 
-            this.button_Inscribe_Curso_Especial.Location = new System.Drawing.Point(400, 310);
+            this.button_Inscribe_Curso_Especial.Location = new System.Drawing.Point(412, 351);
             this.button_Inscribe_Curso_Especial.Name = "button_Inscribe_Curso_Especial";
             this.button_Inscribe_Curso_Especial.Size = new System.Drawing.Size(75, 23);
             this.button_Inscribe_Curso_Especial.TabIndex = 2;
@@ -568,7 +614,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(490, 310);
+            this.button3.Location = new System.Drawing.Point(493, 351);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -859,7 +905,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 397);
+            this.ClientSize = new System.Drawing.Size(867, 427);
             this.Controls.Add(this.alta);
             this.Controls.Add(this.panel_datos);
             this.Controls.Add(this.label2);
@@ -967,5 +1013,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_curso_esp;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Condicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_curso;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label22;
     }
 }
