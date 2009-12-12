@@ -792,7 +792,7 @@ namespace iaai.cursos_materias
         }
 
         /// <summary>
-        /// Rutina para refresco de checked list Cursos especiales
+        /// Rutina para refresco de combo Cursos especiales
         /// </summary>
         private void checkedList_CurEsp() 
         {
@@ -1516,6 +1516,52 @@ namespace iaai.cursos_materias
         private void refrescar_checked_CurEsp(object sender, EventArgs e)
         {
             checkedList_CurEsp();
+        }
+
+        private void cambia_Condicion_Curso(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                if (dataGrid_cursos.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow)
+                {
+                    if (Convert.ToBoolean(dataGrid_cursos.CurrentRow.Cells[2].Value) == true)
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Está seguro que desea cambiar la condición del alumno a \"inscripto\" ?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+                        if (respuesta == DialogResult.Yes)
+                        {
+
+                            db.cambiarEstadoCurso(nuevo, Convert.ToInt32(dataGrid_cursos.CurrentRow.Cells[3].Value));
+
+
+                            carga_Cursos();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void cambia_Condicion_CurExp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                if (dataGridView_CurEsp.CurrentRow.DefaultCellStyle.BackColor == Color.LightYellow)
+                {
+                    if (Convert.ToBoolean(dataGridView_CurEsp.CurrentRow.Cells[2].Value) == true)
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Está seguro que desea cambiar la condición del alumno a \"inscripto\" ?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+                        if (respuesta == DialogResult.Yes)
+                        {
+
+                            db.cambiarEstadoCursoEsp(nuevo, Convert.ToInt32(dataGridView_CurEsp.CurrentRow.Cells[3].Value));
+
+
+                            checkedList_CurEsp();
+                        }
+                    }
+                }
+            }     
         }
 
 
