@@ -112,6 +112,7 @@ namespace iaai_test
             datos["escuela_nombre"] = null;
             datos["escuela_año"] = null;
             datos["id_responsable"] = null;
+            datos["email"] = null;
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -131,6 +132,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '22222222' ");
@@ -141,6 +143,7 @@ namespace iaai_test
 
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "1";
+            datos["email"] = "micorreo@hotmail.com";
             esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             metodo.altaAlumno(esperado); //Alta del Alumno
@@ -157,6 +160,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail().ToString(), recuperado.getEmail().ToString());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '22222222' ");
@@ -184,6 +188,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial";
             datos["escuela_año"] = 3;
             datos["id_responsable"] = null;
+            datos["email"] = "mimail@hotmail.com";
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -203,6 +208,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '14141414' ");
@@ -230,6 +236,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = null;
+            datos["email"] = null;
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -241,6 +248,7 @@ namespace iaai_test
             datos["dni"] = "11111111";
             datos["fecha_nac"] = "1984-04-01";
             datos["telefono_numero"] = "123456";
+            datos["email"] = "micorreo@gmail.com";
 
             Alumno modificado = new Alumno(datos);
             
@@ -261,6 +269,8 @@ namespace iaai_test
                 Assert.AreEqual(modificado.getEscuela_nombre(), recuperado.getEscuela_nombre());
                 Assert.AreEqual(modificado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
                 Assert.AreEqual(modificado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+                Assert.AreEqual(modificado.getEmail(), recuperado.getEmail());
+                
             }
             else
             {
@@ -294,6 +304,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = null;
+            datos["email"] = null;
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -332,6 +343,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = null;
+            datos["email"] = null;
             Alumno alumn = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -385,6 +397,8 @@ namespace iaai_test
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "1111111";
             datos["direccion"] = "Av. Freyre 1234";
+            datos["email"] = null;
+            
             Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
 
             //prueba 1
@@ -401,6 +415,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
             Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
             Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
             
             //elimino manualmente el Responsable de prueba generado
             metodo.consulta("delete from responsable where dni like '22222222' ");
@@ -426,6 +441,8 @@ namespace iaai_test
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "1111111";
             datos["direccion"] = "Av. Freyre 1234";
+            datos["email"] = null;
+            
             Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
 
             //prueba 1
@@ -441,6 +458,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
             Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
             Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el Responsable de prueba generado
             metodo.consulta("delete from responsable where dni like '44444444' ");
@@ -465,6 +483,8 @@ namespace iaai_test
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "1111111";
             datos["direccion"] = "Av. Freyre 1234";
+            datos["email"] = "guardado@mail.com";
+            
             Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
 
             //prueba 1
@@ -481,10 +501,10 @@ namespace iaai_test
 
             //se modifica al Responsable
             metodo.modificarResponsable(modificado, dni_viejo);
-
+            
             //recupero el Responsable modificado de la base datos
             Responsable recuperado = metodo.Buscar_Responsable(modificado.getDni().ToString());
-
+            
             if (recuperado != null)
             {
                 //verificación de los datos
@@ -493,6 +513,7 @@ namespace iaai_test
                 Assert.AreEqual(modificado.getApellido().ToString(), recuperado.getApellido().ToString());
                 Assert.AreEqual(modificado.getDireccion().ToString(), recuperado.getDireccion().ToString());
                 Assert.AreEqual(modificado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+                Assert.AreEqual(modificado.getEmail(), recuperado.getEmail());
             }
             else
             {
@@ -523,6 +544,7 @@ namespace iaai_test
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "1111111";
             datos["direccion"] = "Av. Freyre 1234";
+            datos["email"] = "mimail@hotmail.com";
             Responsable esperado = new Responsable(datos);  //se crea el objeto Responsable
 
             //prueba 1
@@ -559,6 +581,7 @@ namespace iaai_test
             datos["telefono_carac"] = "0342";
             datos["telefono_numero"] = "1111111";
             datos["direccion"] = "Av. Freyre 1234";
+            datos["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos);  //se crea el objeto Responsable
 
             //prueba 1
@@ -614,9 +637,11 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "1111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp); //Alta del Responsable
+           
             resp.setIdResponsable(metodo.Buscar_Responsable("11111111").getId_responsable());
             
 
@@ -634,6 +659,7 @@ namespace iaai_test
             datos["escuela_nombre"] = null;
             datos["escuela_año"] = null;
             datos["id_responsable"] = resp.getId_responsable().ToString();
+            datos["email"] = "mimail@hotmail.com";
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -653,6 +679,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '22222222' ");
@@ -663,6 +690,7 @@ namespace iaai_test
 
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "1";
+            datos["email"] = null;
             esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             metodo.altaAlumno(esperado); //Alta del Alumno
@@ -680,6 +708,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '22222222' ");
@@ -706,6 +735,7 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "11111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp); //Alta del Responsable
@@ -724,6 +754,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = resp.getId_responsable();
+            datos["email"] = "mimail@hotmail.com";
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -743,6 +774,7 @@ namespace iaai_test
             Assert.AreEqual(esperado.getEscuela_nombre(), recuperado.getEscuela_nombre());
             Assert.AreEqual(esperado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
             Assert.AreEqual(esperado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+            Assert.AreEqual(esperado.getEmail(), recuperado.getEmail());
 
             //elimino manualmente el alumno de prueba generado
             metodo.consulta("delete from alumno where dni like '44444444' ");
@@ -768,6 +800,7 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "1111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp); //Alta del Responsable
@@ -781,6 +814,7 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "1111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp2 = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp2); //Alta del Responsable
@@ -800,6 +834,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = resp.getId_responsable();
+            datos["email"] = "mimail@hotmail.com";
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
@@ -812,6 +847,7 @@ namespace iaai_test
             datos["fecha_nac"] = "1984-04-01";
             datos["telefono_numero"] = "123456";
             datos["id_responsable"] = resp2.getId_responsable();
+            datos["email"] = null;
 
             Alumno modificado = new Alumno(datos);
 
@@ -832,6 +868,7 @@ namespace iaai_test
                 Assert.AreEqual(modificado.getEscuela_nombre(), recuperado.getEscuela_nombre());
                 Assert.AreEqual(modificado.getEscuela_año().ToString(), recuperado.getEscuela_año().ToString());
                 Assert.AreEqual(modificado.getId_responsable().ToString(), recuperado.getId_responsable().ToString());
+                Assert.AreEqual(modificado.getEmail(), recuperado.getEmail());
             }
             else
             {
@@ -867,6 +904,7 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "1111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp); //Alta del Responsable
@@ -885,6 +923,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = resp.getId_responsable();
+            datos["email"] = "mimail@hotmail.com";
 
             Alumno esperado = new Alumno(datos);  //se crea el objeto Alumno
 
@@ -922,6 +961,7 @@ namespace iaai_test
             datos2["telefono_carac"] = "0342";
             datos2["telefono_numero"] = "1111111";
             datos2["direccion"] = "Av. Freyre 3333";
+            datos2["email"] = "mimail@hotmail.com";
             Responsable resp = new Responsable(datos2);  //se crea el objeto Responsable
 
             metodo.altaResponsable(resp); //Alta del Responsable
@@ -940,6 +980,7 @@ namespace iaai_test
             datos["escuela_nombre"] = "Comercial Domingo. G Silva";
             datos["escuela_año"] = "4";
             datos["id_responsable"] = resp.getId_responsable();
+            datos["email"] = "mimail@hotmail.com";
             Alumno alumn = new Alumno(datos);  //se crea el objeto Alumno
 
             //prueba 1
