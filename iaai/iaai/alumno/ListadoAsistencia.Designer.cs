@@ -82,7 +82,7 @@ namespace iaai.alumno
             this.lista.Name = "lista";
             this.lista.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.lista.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.lista.Size = new System.Drawing.Size(344, 389);
+            this.lista.Size = new System.Drawing.Size(344, 211);
             this.lista.TabIndex = 0;
             // 
             // nombre
@@ -111,7 +111,7 @@ namespace iaai.alumno
             // 
             // imprimir
             // 
-            this.imprimir.Location = new System.Drawing.Point(323, 599);
+            this.imprimir.Location = new System.Drawing.Point(324, 427);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
             this.imprimir.TabIndex = 1;
@@ -121,7 +121,7 @@ namespace iaai.alumno
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(477, 599);
+            this.cancelar.Location = new System.Drawing.Point(478, 427);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
             this.cancelar.TabIndex = 2;
@@ -131,7 +131,7 @@ namespace iaai.alumno
             // 
             // previa
             // 
-            this.previa.Location = new System.Drawing.Point(169, 599);
+            this.previa.Location = new System.Drawing.Point(170, 427);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
             this.previa.TabIndex = 3;
@@ -362,7 +362,7 @@ namespace iaai.alumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 636);
+            this.ClientSize = new System.Drawing.Size(717, 491);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboMaterias);
             this.Controls.Add(this.comboTurno);
