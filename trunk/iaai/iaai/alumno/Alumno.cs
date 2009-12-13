@@ -28,6 +28,7 @@ namespace iaai.alumno
         private int escuela_año;
         private string direccion;
         private int id_responsable;
+        private string email;
 
         /// <summary>
         /// Obtiene o establece la matricula actual de trabajo del alumno
@@ -61,6 +62,8 @@ namespace iaai.alumno
             direccion = (string)datos["direccion"];
             if (datos["id_responsable"] != null)
                 id_responsable = int.Parse(datos["id_responsable"].ToString());
+            if (datos["email"] != null)
+                email = datos["email"].ToString();
         }
 
         /// <summary>
@@ -174,9 +177,17 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// Retorna el id del responsable
+        /// Retorna el id del alumno
         /// </summary>
         /// <returns>int: id del responsable asociado</returns>
+        public string getEmail()
+        {
+            return email;
+        }
+        /// <summary>
+        /// Retorna el email del responsable
+        /// </summary>
+        /// <returns></returns>
         public int getId_responsable()
         {
             return id_responsable;
@@ -272,6 +283,14 @@ namespace iaai.alumno
         {
             id_responsable = resp;
         }
-        
+
+        /// <summary>
+        /// setea el email del alumno asociado
+        /// </summary>
+        /// <param name="em">int:  id valido del alumno</param>
+        public void setEmail(string em)
+        {
+            email = em;
+        }
     }
 }

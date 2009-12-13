@@ -58,6 +58,8 @@ namespace iaai.alumno
                     telefono_carac.Text = alumno_encontrado.getTelefono_carac().ToString();
                     telefono_numero.Text = alumno_encontrado.getTelefono_numero().ToString();
                     direccion.Text = alumno_encontrado.getDireccion();
+                    if (alumno_encontrado.getEmail() != null)
+                        email.Text = alumno_encontrado.getEmail().ToString();
                 }
             }
             else

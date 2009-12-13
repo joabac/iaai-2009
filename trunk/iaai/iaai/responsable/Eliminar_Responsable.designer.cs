@@ -47,6 +47,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.textBoxDni = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonBuscar
@@ -198,11 +200,32 @@
             this.textBoxDni.TabIndex = 68;
             this.textBoxDni.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(356, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 69;
+            this.label2.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.BackColor = System.Drawing.SystemColors.Control;
+            this.email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email.Location = new System.Drawing.Point(396, 161);
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 70;
+            // 
             // EliminarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 255);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.textBoxDni);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.direccion);
@@ -244,5 +267,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.TextBox textBoxDni;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox email;
     }
 }

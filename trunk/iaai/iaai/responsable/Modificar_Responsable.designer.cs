@@ -47,6 +47,8 @@
             this.button_buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dni = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Cancel
@@ -72,7 +74,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(328, 107);
+            this.label9.Location = new System.Drawing.Point(326, 107);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
             this.label9.TabIndex = 53;
@@ -217,11 +219,30 @@
             this.dni.Size = new System.Drawing.Size(137, 20);
             this.dni.TabIndex = 61;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(344, 133);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 63;
+            this.label2.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.Enabled = false;
+            this.email.Location = new System.Drawing.Point(386, 130);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 64;
+            // 
             // ModificarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 245);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dni);
             this.Controls.Add(this.button_buscar);
@@ -270,5 +291,7 @@
         private System.Windows.Forms.Button button_buscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox dni;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox email;
     }
 }

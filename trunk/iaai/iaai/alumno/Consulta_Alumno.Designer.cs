@@ -57,6 +57,8 @@
             this.escuela_año = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.escuela_nombre = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -294,11 +296,31 @@
             this.escuela_nombre.Size = new System.Drawing.Size(181, 20);
             this.escuela_nombre.TabIndex = 60;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(365, 248);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 64;
+            this.label11.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email.Location = new System.Drawing.Point(405, 245);
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Size = new System.Drawing.Size(181, 20);
+            this.email.TabIndex = 63;
+            // 
             // Consulta_Alumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 277);
+            this.ClientSize = new System.Drawing.Size(598, 314);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.escuela_año);
             this.Controls.Add(this.label1);
@@ -359,5 +381,7 @@
         private System.Windows.Forms.TextBox escuela_año;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox escuela_nombre;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox email;
     }
 }

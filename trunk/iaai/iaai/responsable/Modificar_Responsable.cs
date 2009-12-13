@@ -100,6 +100,10 @@ namespace iaai.responsable
 
 
             datos["direccion"] = direccion.Text;
+            if (email.Text.Length != 0)
+                datos["email"] = email.Text;
+            else
+                datos["email"] = null;
 
         }
 
@@ -176,6 +180,9 @@ namespace iaai.responsable
                 if (!metodo.validar_Direccion(direccion.Text))
                     error = error + "Formato de dirección no válido \r\n";
             }
+            if(email.Text.Length != 0)
+                if (metodo.validar_email(email.Text) == false)
+                    error = error + ("Formato de email no valido\r\n");
 
             if (error.Length > 0)
             {
@@ -212,6 +219,7 @@ namespace iaai.responsable
                     telefono_carac.Enabled = true;
                     telefono_numero.Enabled = true;
                     direccion.Enabled = true;
+                    email.Enabled = true;
 
                     //se cargan los datos del responsable, en los textBox
                     nombre.Text = responsable_encontrado.getNombre();
@@ -229,6 +237,8 @@ namespace iaai.responsable
                     }
                     telefono_numero.Text = responsable_encontrado.getTelefono_numero().ToString();
                     direccion.Text = responsable_encontrado.getDireccion();
+                    if (responsable_encontrado.getEmail() != null)
+                        email.Text = responsable_encontrado.getEmail().ToString();
 
                 }
 

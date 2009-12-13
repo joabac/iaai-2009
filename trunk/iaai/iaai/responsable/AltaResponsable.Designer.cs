@@ -44,6 +44,8 @@
             this.direccion = new System.Windows.Forms.TextBox();
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // nombre
@@ -180,11 +182,29 @@
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cancelar_MouseClick);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(319, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.Location = new System.Drawing.Point(359, 92);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 19;
+            // 
             // AltaResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 223);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.label9);
@@ -228,5 +248,7 @@
         private System.Windows.Forms.TextBox direccion;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox email;
     }
 }

@@ -49,6 +49,8 @@
             this.agregarResponsable = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // nombre
@@ -70,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(326, 94);
+            this.label2.Location = new System.Drawing.Point(326, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 3;
@@ -78,10 +80,10 @@
             // 
             // escuela_nombre
             // 
-            this.escuela_nombre.Location = new System.Drawing.Point(377, 91);
+            this.escuela_nombre.Location = new System.Drawing.Point(377, 118);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
-            this.escuela_nombre.TabIndex = 7;
+            this.escuela_nombre.TabIndex = 8;
             // 
             // label3
             // 
@@ -168,7 +170,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(289, 119);
+            this.label8.Location = new System.Drawing.Point(289, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 15;
@@ -176,10 +178,11 @@
             // 
             // escuela_año
             // 
-            this.escuela_año.Location = new System.Drawing.Point(377, 117);
+            this.escuela_año.Location = new System.Drawing.Point(377, 144);
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.Size = new System.Drawing.Size(137, 20);
-            this.escuela_año.TabIndex = 8;
+            this.escuela_año.TabIndex = 9;
+            
             // 
             // label9
             // 
@@ -199,40 +202,57 @@
             // 
             // agregarResponsable
             // 
-            this.agregarResponsable.Location = new System.Drawing.Point(376, 153);
+            this.agregarResponsable.Location = new System.Drawing.Point(376, 179);
             this.agregarResponsable.Name = "agregarResponsable";
             this.agregarResponsable.Size = new System.Drawing.Size(138, 22);
-            this.agregarResponsable.TabIndex = 9;
+            this.agregarResponsable.TabIndex = 10;
             this.agregarResponsable.Text = "Cargar Responsable";
             this.agregarResponsable.UseVisualStyleBackColor = true;
             this.agregarResponsable.Click += new System.EventHandler(this.agregarResponsable_Click);
             // 
             // aceptar
             // 
-            this.aceptar.Location = new System.Drawing.Point(139, 200);
+            this.aceptar.Location = new System.Drawing.Point(136, 227);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 10;
+            this.aceptar.TabIndex = 11;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(359, 200);
+            this.cancelar.Location = new System.Drawing.Point(356, 227);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 11;
+            this.cancelar.TabIndex = 12;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
-          
             this.cancelar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cancelar_MouseClick);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(337, 95);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.Location = new System.Drawing.Point(377, 92);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 7;
             // 
             // AltaAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 250);
+            this.ClientSize = new System.Drawing.Size(567, 276);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.agregarResponsable);
@@ -286,5 +306,7 @@
         private System.Windows.Forms.Button agregarResponsable;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox email;
     }
 }
