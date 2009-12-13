@@ -84,7 +84,7 @@ namespace iaai_test
 
 
             a = "2°";
-            esperado = true;
+            esperado = false;
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);
 
@@ -93,17 +93,22 @@ namespace iaai_test
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);
 
-            a = "e1°";
+            a = "e1";
             esperado = false;
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);
 
-            a = "2q°";
+            a = "2q";
             esperado = false;
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);
 
             a = "1,";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "s1";
             esperado = false;
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);
@@ -114,7 +119,7 @@ namespace iaai_test
             Assert.AreEqual(esperado, actual);
 
 
-            a = "2 °";
+            a = "2 ";
             esperado = false;
             actual = target.validar_Escuela_Año(a);
             Assert.AreEqual(esperado, actual);

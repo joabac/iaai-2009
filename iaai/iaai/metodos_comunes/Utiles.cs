@@ -227,7 +227,7 @@ namespace iaai.metodos_comunes
 
             foreach (char c in cadena)
             {
-                if (Char.IsDigit(c) || c == '°')
+                if (Char.IsDigit(c))
                 {
                     valido = true;
                 }
