@@ -20,12 +20,14 @@ namespace iaai.alumno
     {
         private string error = "";
         private int responsable = -1;
+        
         Utiles metodo = new Utiles();
 #pragma warning disable
         bool exito = false;
 #pragma warning enable
         Alumno alumno_cargado = null;
         Inscripcion formulario {get; set ;}
+        
        
 
         //objeto diccionario para PRE almacenar los datos y permitir luego la generacion de un objeto Alumno
@@ -33,6 +35,19 @@ namespace iaai.alumno
         
         Data_base.Data_base db = new iaai.Data_base.Data_base();
 
+        List<int> altasResp = new List<int>(); //para guardar los responsables dados de alta
+
+        /// <summary>
+        /// método que agrega los id_responsables de los responsables que hayan sido cargados en base de datos
+        /// </summary>
+        /// <param name="a"></param>
+        public void agregarAltaResp(List<int> a)
+        {
+            foreach (int f in a)
+            {
+                altasResp.Add(f);
+            }
+        }
 
         /// <summary>
         /// Constructor de clase AltaAlumno
@@ -62,6 +77,13 @@ namespace iaai.alumno
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
+            //se elimina los responsables que hayan sido cargados al sistema como motivo de la carga cancelada de un alumno
+            db.deshacerResponsableLista(altasResp);//elimina los responsables ingresados y no asignados
+                                                  //a ningún alumno cargado.
+            if(altasResp.Count > 0)
+                MessageBox.Show("Se eliminó el o los responsables dado de alta para el alta alumno cancelado.");
+
+                       
             if(Owner!= null)
                 Owner.Enabled = true;
                 
@@ -196,6 +218,9 @@ namespace iaai.alumno
             this.responsable = resp;
         }
 
+       
+
+
 
         /// <summary>
         /// Agrega los datos del alumno al IDictionary
@@ -261,8 +286,9 @@ namespace iaai.alumno
             {
                 AsignarResponsable asignarResponsable = new AsignarResponsable();
                 asignarResponsable.Owner = this;
-                this.SetVisibleCore(false);
-                asignarResponsable.Show();
+                //this.SetVisibleCore(false);
+                asignarResponsable.Show(1);
+
             }
         }
 
@@ -273,9 +299,16 @@ namespace iaai.alumno
                 guardarDatos();
 
                 alumno_cargado = new Alumno(datos);
-
-
-
+                //se pregunta si se cargó un alumno menor de 21
+                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
+                {
+                    //se elimina de la lista el responsable cargado
+                    if (responsable != -1 && altasResp.Contains(responsable))
+                        altasResp.RemoveAt(altasResp.IndexOf(responsable));
+                    db.deshacerResponsableLista(altasResp);//elimina los responsables ingresados y no asignados
+                                                           //a ningún alumno cargado.
+                    
+                }
                 if (db.altaAlumno(alumno_cargado))
                 {
                     MessageBox.Show("El alumno fué dado de alta con éxito.");
@@ -287,6 +320,7 @@ namespace iaai.alumno
                 {
                     alumno_cargado = null;
                     MessageBox.Show("Ocurrió un error en base de datos.");
+                    
                     exito = false;
                 }
 

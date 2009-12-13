@@ -285,8 +285,8 @@ namespace iaai.Data_base
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set nombre = '" +
                                                             apostrofos(alumno.getNombre()) + "',apellido = '" + apostrofos(alumno.getApellido()) + "',dni = '" +
-                                                            alumno.getDni() + "', telefono_carac = " + alumno.getTelefono_carac() + ",telefono_numero = " +
-                                                            alumno.getTelefono_numero() + ",fecha_nac = '" +
+                                                            alumno.getDni() + "', telefono_carac = '" + alumno.getTelefono_carac() + "',telefono_numero = '" +
+                                                            alumno.getTelefono_numero() + "',fecha_nac = '" +
                                                             alumno.getFecha_nac().ToString("yyyy-MM-dd") +
                                                             "',direccion = '" + apostrofos(alumno.getDireccion()) +
                                                             "',escuela_nombre = '" + apostrofos(alumno.getEscuela_nombre()) +
@@ -948,6 +948,7 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
+                
 
                 MySqlCommand MyCommand = new MySqlCommand("update responsable set activo = 0 " +
                                                            "where dni like '" + dni + "'", conexion);
@@ -968,6 +969,85 @@ namespace iaai.Data_base
             return true;
 
         }
+
+        /// <summary>
+        /// Borra de la base de datos responsable un responsable que fue dado de alta y posteriormente 
+        /// el alta del alumno no concluyó correctamente. (validando de que no haya ningún alumno referenciado por él)
+        /// </summary>
+        /// <param name="id">String del responsable a elimnar</param>
+        /// <returns>true: si pudo eliminar 
+        /// false: si no pudo realizar la eliminacion</returns>
+        public bool deshacerResponsable(int id)
+        {
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand1 = new MySqlCommand("select id_alumno from alumno where id_responsable = '" + id + "'", conexion);
+                MySqlDataReader re = MyCommand1.ExecuteReader();
+                if (!(re.Read()))
+                {
+                    conexion.Close();
+                    this.open_db();
+                    MySqlCommand MyCommand = new MySqlCommand("delete from responsable where id_responsable like '" + id + "'", conexion);
+                    MyCommand.ExecuteNonQuery();
+                }
+                else
+                {
+                    conexion.Close();
+                    return false;
+                }
+                conexion.Close();
+
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            return true;
+
+        }
+
+        public void deshacerResponsableLista(List<int> ids)
+        {
+            try
+            {
+                this.open_db();
+                foreach(int id_res in ids)
+                {
+                MySqlCommand MyCommand1 = new MySqlCommand("select id_alumno from alumno where id_responsable = '" + id_res + "'", conexion);
+                MySqlDataReader re = MyCommand1.ExecuteReader();
+                if (!(re.Read()))
+                {
+                    conexion.Close();
+                    this.open_db();
+                    MySqlCommand MyCommand = new MySqlCommand("delete from responsable where id_responsable like '" + id_res + "'", conexion);
+                    MyCommand.ExecuteNonQuery();
+                }
+                }
+                
+                conexion.Close();
+
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+
+            }
+            
+
+        }
+
 
 
         /// <summary>

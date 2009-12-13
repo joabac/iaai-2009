@@ -168,7 +168,6 @@
             this.aceptar.TabIndex = 10;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
-            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             this.aceptar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.aceptar_MouseClick);
             // 
             // cancelar

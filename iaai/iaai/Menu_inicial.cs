@@ -51,7 +51,7 @@ namespace iaai
         {
             
         }
-
+        /*
         private void altaResponsableToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AltaResponsable alta_resp = new AltaResponsable();
@@ -59,7 +59,7 @@ namespace iaai
             alta_resp.MdiParent = this;
 
             alta_resp.Show();
-        }
+        }*/
 
 
         private void ModificarProfesorToolStripMenuItem_Click(object sender, EventArgs e)

@@ -222,9 +222,9 @@ namespace iaai.alumno
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(259, 103);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Curso Especial";
+            this.label5.Text = "Especialización";
             // 
             // seleccionCurso
             // 
