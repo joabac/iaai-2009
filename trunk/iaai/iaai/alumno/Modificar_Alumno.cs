@@ -26,6 +26,21 @@ namespace iaai.alumno
 
         private int responsable = -1;
 
+        List<int> altasResp = new List<int>(); //para guardar los responsables dados de alta
+
+        /// <summary>
+        /// método que agrega los id_responsables de los responsables que hayan sido cargados en base de datos
+        /// </summary>
+        /// <param name="a"></param>
+        public void agregarAltaResp(List<int> a)
+        {
+            foreach (int f in a)
+            {
+                altasResp.Add(f);
+            }
+        }
+
+
         /// <summary>
         /// Constructor de ventana Modifica Alumno
         /// </summary>
@@ -50,7 +65,17 @@ namespace iaai.alumno
 
 
                 Alumno alumno = new Alumno(datos);
-                
+                //se pregunta si se cargó un alumno menor de 21
+                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
+                {
+                    //se elimina de la lista el responsable cargado
+                    if(responsable != -1 && altasResp.Contains(responsable))
+                        altasResp.RemoveAt(altasResp.IndexOf(responsable));
+                    db.deshacerResponsableLista(altasResp);//elimina los responsables ingresados y no asignados
+                    //a ningún alumno cargado.
+
+                }
+
                 //si se pudieron modificar los datos del alumno
                 if (db.modificarAlumno(alumno,dni_viejo))
                 {
@@ -300,6 +325,13 @@ namespace iaai.alumno
         private void Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            //se elimina los responsables que hayan sido cargados al sistema como motivo de la carga cancelada de un alumno
+            db.deshacerResponsableLista(altasResp);//elimina los responsables ingresados y no asignados
+            //a ningún alumno cargado.
+            if (altasResp.Count > 0)
+                MessageBox.Show("Se eliminó el o los responsables dado de alta para el alta alumno cancelado.");
+            if (Owner != null)
+                Owner.Enabled = true;
         }
 
         private void modificarResponsable_Click(object sender, EventArgs e)
@@ -316,8 +348,7 @@ namespace iaai.alumno
             {
                 AsignarResponsable modificarResponsable = new AsignarResponsable(alumno_encontrado.getId_responsable());
                 modificarResponsable.Owner = this;
-                this.SetVisibleCore(false);
-                modificarResponsable.Show();
+                modificarResponsable.Show(1);
             }
         }
 

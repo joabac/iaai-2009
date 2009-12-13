@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using iaai.metodos_comunes;
 
+
 namespace iaai.responsable
 {
 
@@ -20,6 +21,18 @@ namespace iaai.responsable
         IDictionary<string, object> datos = new Dictionary<string, object>();
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
+        //List<int> altas = new List<int>();
+
+        /// <summary>
+        /// Nuevo metodo Show para retornar elementos desde alta
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public void Show(int i)
+        {
+            Owner.Enabled = false;
+            this.ShowDialog();
+        }
 
 
         /// <summary>
@@ -37,13 +50,26 @@ namespace iaai.responsable
                 guardarDatos();
 
                 Responsable responsable = new Responsable(datos);
-
-
-
+                
                 if (db.altaResponsable(responsable))
+                {
+                    int id_respon_aux = db.Buscar_Responsable(responsable.getDni().ToString()).getId_responsable();
+                    ((AsignarResponsable)this.Owner).guardaAltasResponsable(id_respon_aux);
+                    try
+                    {
+                        ((AsignarResponsable)this.Owner).seleccionaNuevoResponsable(id_respon_aux);
+                    }
+                    catch
+                    {
+                    }
                     MessageBox.Show("El responsable fué dado de alta con éxito.");
+                    this.Close();
+                    if (Owner != null)
+                        Owner.Enabled = true;
+                }
                 else
                     MessageBox.Show("Ocurrió un error en base de datos.");
+                 
             }
 
         }
@@ -51,6 +77,8 @@ namespace iaai.responsable
         private void cancelar_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
+            if (Owner != null)
+                Owner.Enabled = true;
         }
 
         private Boolean validar()
@@ -154,10 +182,7 @@ namespace iaai.responsable
 
         }
 
-        private void aceptar_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
     }
 }

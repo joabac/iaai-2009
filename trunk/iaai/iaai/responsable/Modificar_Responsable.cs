@@ -24,6 +24,19 @@ namespace iaai.responsable
         Utiles metodo = new Utiles();
         string dni_viejo;
 
+
+        /// <summary>
+        /// Nuevo metodo Show para retornar elementos desde alta
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public void Show(int i)
+        {
+            Owner.Enabled = false;
+            this.ShowDialog();
+        }
+
+
         /// <summary>
         /// Constructor de ModificarResponsable Form
         /// </summary>
@@ -230,6 +243,8 @@ namespace iaai.responsable
         private void Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            if (Owner != null)
+                Owner.Enabled = true;
         }
 
               

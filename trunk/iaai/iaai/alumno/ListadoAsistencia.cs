@@ -386,7 +386,7 @@ namespace iaai.alumno
                     else
                     {
                         lista.Rows.Clear();
-                        MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                        MessageBox.Show("No existen alumnos inscriptos para el curso seleccionado.");
                     }
                 }
                 else
@@ -404,7 +404,7 @@ namespace iaai.alumno
                     else
                     {
                         lista.Rows.Clear();
-                        MessageBox.Show("No existen alumnos regulares para el curso seleccionado.");
+                        MessageBox.Show("No existen alumnos inscriptos para el curso seleccionado.");
                     }
                 }
                 else
@@ -422,7 +422,7 @@ namespace iaai.alumno
                     else
                     {
                         lista.Rows.Clear();
-                        MessageBox.Show("No existen alumnos regulares para la materia seleccionada.");
+                        MessageBox.Show("No existen alumnos inscriptos para la materia seleccionada.");
                     }
                 }
                 else
