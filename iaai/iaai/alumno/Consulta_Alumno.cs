@@ -58,6 +58,8 @@ namespace iaai.alumno
                             escuela_nombre.Text = alumno.getEscuela_nombre();
                             if(!alumno.getEscuela_año().ToString().Equals("0"))
                                 escuela_año.Text = alumno.getEscuela_año().ToString();
+                            if (alumno.getEmail() != null)
+                                email.Text = alumno.getEmail();
 
                         }
                         else
@@ -95,6 +97,8 @@ namespace iaai.alumno
                             escuela_nombre.Text = alumno.getEscuela_nombre();
                             if (!alumno.getEscuela_año().ToString().Equals("0"))
                                 escuela_año.Text = alumno.getEscuela_año().ToString();
+                            if (alumno.getEmail() != null)
+                                email.Text = alumno.getEmail();
                         }
                         else
                         {
@@ -246,6 +250,8 @@ namespace iaai.alumno
                             escuela_nombre.Text = alumno.getEscuela_nombre();
                             if (!alumno.getEscuela_año().ToString().Equals("0"))
                                 escuela_año.Text = alumno.getEscuela_año().ToString();
+                            if (alumno.getEmail() != null)
+                                email.Text = alumno.getEmail().ToString();
                         }
                         else
                         {

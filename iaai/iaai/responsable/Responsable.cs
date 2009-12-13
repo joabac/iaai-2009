@@ -15,6 +15,7 @@ namespace iaai.responsable
         private int telefono_carac;
         private int telefono_numero;
         private string direccion;
+        private string email;
 
         //CONSTRUCTOR DE LA CLASE
         public Responsable()
@@ -32,6 +33,9 @@ namespace iaai.responsable
                 telefono_carac = int.Parse(datos["telefono_carac"].ToString());
             telefono_numero = int.Parse(datos["telefono_numero"].ToString());
             direccion = (string)datos["direccion"];
+            if (datos["email"] != null)
+                email = (string)datos["email"];
+                
         }
 
 
@@ -69,6 +73,10 @@ namespace iaai.responsable
         {
             return direccion;
         }
+        public string getEmail()
+        {
+            return email;
+        }
 
         //ESTOS SON LOS SET VITEH
 
@@ -100,6 +108,11 @@ namespace iaai.responsable
         public void setDireccion(string dir)
         {
             direccion = dir;
+        }
+
+        public void setEmail(string e)
+        {
+            email = e;
         }
 
         public void setIdResponsable(int id)

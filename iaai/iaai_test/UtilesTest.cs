@@ -67,6 +67,65 @@ namespace iaai_test
         //
         #endregion
 
+        /// <summary>
+        ///Una prueba de Validar_Escuela_Año
+        ///</summary>
+        [TestMethod()]
+        public void Validar_Escuela_AñoTest()
+        {
+
+            Utiles target = new Utiles();
+            // TODO: Inicializar en un valor adecuado
+
+            string a = "2";  //caso de prueba
+            bool esperado = true;      //valor esperado
+            bool actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+
+            a = "2°";
+            esperado = true;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "2F";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "e1°";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "2q°";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "1,";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = " 2";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+
+            a = "2 °";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            a = "";
+            esperado = false;
+            actual = target.validar_Escuela_Año(a);
+            Assert.AreEqual(esperado, actual);
+
+            
+        }//fin prueba validar escuela_año
 
         /// <summary>
         ///Una prueba de ValidarDni

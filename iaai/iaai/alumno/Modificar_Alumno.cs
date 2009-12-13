@@ -134,6 +134,14 @@ namespace iaai.alumno
             {
                 datos["id_responsable"] = null;
             }
+            if (email.Text.Length != 0)
+            {
+                datos["email"] = email.Text;
+            }
+            else
+            {
+                datos["email"] = null;
+            }
 
         }
 
@@ -207,17 +215,23 @@ namespace iaai.alumno
 
 
 
+            
+            //Validación nombre escuela
             if (escuela_nombre.Text.Length > 0)
             {
                 //si ingreso la escuela, controlo que ingrese el año de cursado
                 if (escuela_año.Text.Length == 0)
                     error = error + "Ingrese el año de cursado. \r\n";
+                else
+                    if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                        error = error + "Formato incorrecto para el año de cursado. \r\n";
             }
             else if (escuela_año.Text.Length > 0)
             {
+                if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                    error = error + "Formato incorrecto para el año de cursado. \r\n";
                 error = error + "Ingrese el nombre de la escuela. \n";
             }
-
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
             {
@@ -234,7 +248,10 @@ namespace iaai.alumno
                     responsable = -1;
                 }
             }
-
+            if(email.Text.Length != 0)
+                if (metodo.validar_email(email.Text) == false)
+                    error = error + ("Formato de email no valido\r\n");
+ 
             if (error.Length > 0)
             {
                 error = "Se han producido errores: \r\n" + error;
@@ -274,6 +291,7 @@ namespace iaai.alumno
                     escuela_nombre.Enabled = true;
                     escuela_año.Enabled = true;
                     modificarResponsable.Enabled = true;
+                    email.Enabled = true;
 
                     //se cargan los datos del alumno, en los textBox
                     nombre.Text = alumno_encontrado.getNombre();
@@ -310,6 +328,8 @@ namespace iaai.alumno
                     {
                         responsable = alumno_encontrado.getId_responsable();
                     }
+                    if(alumno_encontrado.getEmail() != null)
+                        email.Text = alumno_encontrado.getEmail().ToString();
                     
 
                 }

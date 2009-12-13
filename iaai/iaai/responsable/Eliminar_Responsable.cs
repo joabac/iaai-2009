@@ -53,6 +53,8 @@ namespace iaai.responsable
                     telefono_carac.Text = responsable_encontrado.getTelefono_carac().ToString();
                     telefono_numero.Text = responsable_encontrado.getTelefono_numero().ToString();
                     direccion.Text = responsable_encontrado.getDireccion();
+                    if(responsable_encontrado.getEmail() != null)
+                        email.Text = responsable_encontrado.getEmail().ToString();
                 }
             }
             else

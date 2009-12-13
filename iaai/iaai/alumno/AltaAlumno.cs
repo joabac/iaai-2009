@@ -173,9 +173,14 @@ namespace iaai.alumno
                 //si ingreso la escuela, controlo que ingrese el año de cursado
                 if(escuela_año.Text.Length == 0)
                     error = error + "Ingrese el año de cursado. \r\n";
+                else
+                    if(!metodo.validar_Escuela_Año(escuela_año.Text))
+                        error = error + "Formato incorrecto para el año de cursado. \r\n";
             }
             else if (escuela_año.Text.Length > 0)
             {
+                if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                    error = error + "Formato incorrecto para el año de cursado. \r\n";
                 error = error + "Ingrese el nombre de la escuela. \n";
             }
 
@@ -191,6 +196,10 @@ namespace iaai.alumno
                     }
                 }
             }
+            if (email.Text.Length != 0)
+                if (metodo.validar_email(email.Text))
+                    error = error + "Formato de email no valido\r\n";
+
             //Si existe algún error se arma el mensaje para mostrar al usuario
             if (error.Length > 0)
             {
@@ -261,7 +270,14 @@ namespace iaai.alumno
             {
                 datos["id_responsable"] = null;
             }
-
+            if (email.Text.Length != 0)
+            {
+                datos["email"] = email.Text;
+            }
+            else
+            {
+                datos["email"] = null;
+            }
         }
 
         

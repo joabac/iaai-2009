@@ -51,6 +51,8 @@
             this.escuela_año = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.escuela_nombre = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonBuscar
@@ -65,7 +67,7 @@
             // 
             // buttonAceptar
             // 
-            this.buttonAceptar.Location = new System.Drawing.Point(425, 253);
+            this.buttonAceptar.Location = new System.Drawing.Point(396, 265);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptar.TabIndex = 2;
@@ -75,7 +77,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(524, 252);
+            this.buttonCancelar.Location = new System.Drawing.Point(495, 265);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 3;
@@ -238,11 +240,31 @@
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
             this.escuela_nombre.TabIndex = 70;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(356, 219);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 74;
+            this.label1.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email.Location = new System.Drawing.Point(396, 216);
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 73;
+            // 
             // EliminarAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 288);
+            this.ClientSize = new System.Drawing.Size(582, 309);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.escuela_año);
             this.Controls.Add(this.label2);
@@ -292,5 +314,7 @@
         private System.Windows.Forms.TextBox escuela_año;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox escuela_nombre;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox email;
     }
 }

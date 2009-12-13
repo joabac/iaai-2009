@@ -172,10 +172,10 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable) values('" + 
+                MySqlCommand MyCommand = new MySqlCommand("insert into alumno(nombre, apellido, dni, fecha_nac, telefono_carac, telefono_numero, escuela_nombre, escuela_año, direccion, id_responsable, email) values('" + 
                                                             apostrofos(a.getNombre()) + "', '" + apostrofos(a.getApellido()) + "', '" + a.getDni() + "', '" + a.getFecha_nac().ToString("yyyy-MM-dd") +
                                                             "', '" + a.getTelefono_carac() + "', '" + a.getTelefono_numero() + "', '" + apostrofos(a.getEscuela_nombre()) +
-                                                            "', '" + a.getEscuela_año()+ "', '" + apostrofos(a.getDireccion()) + "', '" + a.getId_responsable() + "')", conexion);
+                                                            "', '" + a.getEscuela_año()+ "', '" + apostrofos(a.getDireccion()) + "', '" + a.getId_responsable() + "', '" + a.getEmail() + "')", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -205,9 +205,9 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion) values('" + 
+                MySqlCommand MyCommand = new MySqlCommand("insert into responsable(nombre_respon, apellido_respon, dni, fecha_nac, telefono_carac, telefono_numero, direccion, email) values('" + 
                                                         apostrofos(r.getNombre()) + "', '" + apostrofos(r.getApellido()) + "', '" + r.getDni() + "', '" + r.getFecha_nac().ToString("yyyy-MM-dd") + "', '" + 
-                                                        r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + apostrofos(r.getDireccion()) + "')", conexion);
+                                                        r.getTelefono_carac() + "', '" + r.getTelefono_numero() + "', '" + apostrofos(r.getDireccion()) + "','" + r.getEmail() + "')", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -291,7 +291,7 @@ namespace iaai.Data_base
                                                             "',direccion = '" + apostrofos(alumno.getDireccion()) +
                                                             "',escuela_nombre = '" + apostrofos(alumno.getEscuela_nombre()) +
                                                             "', escuela_año = '" + alumno.getEscuela_año() + 
-                                                            "', id_responsable = '" + alumno.getId_responsable() + "' where dni like '" + dni_viejo + "'", conexion);
+                                                            "', id_responsable = '" + alumno.getId_responsable() + "', email = '" + alumno.getEmail() + "' where dni like '" + dni_viejo + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -334,7 +334,7 @@ namespace iaai.Data_base
                                                             responsable.getDni() + "', telefono_carac = " + responsable.getTelefono_carac() + ",telefono_numero = " +
                                                             responsable.getTelefono_numero() + ",fecha_nac = '" +
                                                             responsable.getFecha_nac().ToString("yyyy-MM-dd") +
-                                                            "',direccion = '" + apostrofos(responsable.getDireccion()) + "' where dni like '" + dni_viejo + "'", conexion);
+                                                            "',direccion = '" + apostrofos(responsable.getDireccion()) + "', email = '" + responsable.getEmail() + "' where dni like '" + dni_viejo + "'", conexion);
                 MyCommand.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -370,7 +370,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable, email " +
                                                           "from alumno " +
                                                           "where dni like '" + dni + "' AND activo = '1'", conexion);
 
@@ -407,6 +407,10 @@ namespace iaai.Data_base
                         datos["id_responsable"] = (Convert.ToInt32(reader[10].ToString()));
                     else
                         datos["id_responsable"] = null;
+                    if (reader[11] != null)
+                        datos["email"] = reader[11].ToString();
+                    else
+                        datos["email"] = null;
                     
                     alumno = new Alumno(datos);
                     alumno.id_alumno = (Convert.ToInt32(reader[0]));
@@ -468,7 +472,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, id_responsable " +
+                MySqlCommand MyCommand = new MySqlCommand("select nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, id_responsable, email " +
                                                           "from responsable " +
                                                           "where dni like '" + dni + "' AND activo = '1'", conexion);
 
@@ -484,6 +488,7 @@ namespace iaai.Data_base
                     responsable.setFecha_nac(Convert.ToDateTime(reader[5]));
                     responsable.setDireccion(reader[6].ToString());
                     responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
+                    responsable.setEmail(reader[8].ToString());
                 }
                 else
                 {
@@ -1176,7 +1181,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable " +
+                MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable, email " +
                                                           "from alumno " +
                                                           "where apellido like '" + apostrofos(apellido) +"%' and activo = true", conexion);
 
@@ -1200,6 +1205,7 @@ namespace iaai.Data_base
                         alum_tem.setEscuela_nombre(reader[8].ToString());
                         alum_tem.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
                         alum_tem.setId_responsable(Convert.ToInt32(reader[10].ToString()));
+                        alum_tem.setEmail(reader[11].ToString());
 
                         alum.Add(alum_tem); //agrega a la lista de retorno
 
@@ -1240,7 +1246,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion " +
+                MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
                                                           "from responsable " +
                                                           "where apellido_respon like '" + apostrofos(apellido) + "%'", conexion);
 
@@ -1261,6 +1267,7 @@ namespace iaai.Data_base
                         respon_tem.setTelefono_numero(Convert.ToInt32(reader[5]));
                         respon_tem.setFecha_nac(Convert.ToDateTime(reader[6]));
                         respon_tem.setDireccion(reader[7].ToString());
+                        respon_tem.setEmail(reader[8].ToString());
 
                         responsables.Add(respon_tem); //agrega a la lista de retorno
 

@@ -49,6 +49,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.busca_apellido = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -248,11 +250,31 @@
             this.label2.TabIndex = 53;
             this.label2.Text = "Seleccione Criterio de Busqueda";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(365, 195);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email.Location = new System.Drawing.Point(405, 192);
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Size = new System.Drawing.Size(181, 20);
+            this.email.TabIndex = 55;
+            // 
             // Consulta_Responsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 208);
+            this.ClientSize = new System.Drawing.Size(598, 227);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label9);
@@ -305,5 +327,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox busca_apellido;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox email;
     }
 }

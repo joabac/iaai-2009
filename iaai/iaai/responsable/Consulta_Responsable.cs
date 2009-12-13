@@ -57,6 +57,8 @@ namespace iaai.responsable
                                 telefono_carac.Text = responsable.getTelefono_carac().ToString();
                             telefono_numero.Text = responsable.getTelefono_numero().ToString();
                             direccion.Text = responsable.getDireccion();
+                            if (responsable.getEmail() != null)
+                                email.Text = responsable.getEmail().ToString(); 
                         }
                         else
                         {
@@ -92,6 +94,8 @@ namespace iaai.responsable
                                 telefono_carac.Text = responsable.getTelefono_carac().ToString();
                             telefono_numero.Text = responsable.getTelefono_numero().ToString();
                             direccion.Text = responsable.getDireccion();
+                            if (responsable.getEmail() != null)
+                                email.Text = responsable.getEmail().ToString();
 
                         }
                         else
@@ -242,6 +246,8 @@ namespace iaai.responsable
                               telefono_carac.Text = responsable.getTelefono_carac().ToString();
                             telefono_numero.Text = responsable.getTelefono_numero().ToString();
                             direccion.Text = responsable.getDireccion();
+                            if (responsable.getEmail() != null)
+                                email.Text = responsable.getEmail();
                         }
                         else
                         {

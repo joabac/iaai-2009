@@ -52,11 +52,13 @@
             this.escuela_nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dni = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(492, 247);
+            this.Cancel.Location = new System.Drawing.Point(501, 277);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 10;
@@ -66,7 +68,7 @@
             // 
             // aceptar
             // 
-            this.aceptar.Location = new System.Drawing.Point(390, 247);
+            this.aceptar.Location = new System.Drawing.Point(399, 277);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
             this.aceptar.TabIndex = 9;
@@ -208,7 +210,7 @@
             // modificarResponsable
             // 
             this.modificarResponsable.Enabled = false;
-            this.modificarResponsable.Location = new System.Drawing.Point(385, 199);
+            this.modificarResponsable.Location = new System.Drawing.Point(385, 228);
             this.modificarResponsable.Name = "modificarResponsable";
             this.modificarResponsable.Size = new System.Drawing.Size(138, 22);
             this.modificarResponsable.TabIndex = 57;
@@ -219,7 +221,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(298, 165);
+            this.label8.Location = new System.Drawing.Point(298, 194);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 58;
@@ -228,7 +230,7 @@
             // escuela_año
             // 
             this.escuela_año.Enabled = false;
-            this.escuela_año.Location = new System.Drawing.Point(386, 163);
+            this.escuela_año.Location = new System.Drawing.Point(386, 192);
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.Size = new System.Drawing.Size(137, 20);
             this.escuela_año.TabIndex = 56;
@@ -236,7 +238,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(335, 136);
+            this.label2.Location = new System.Drawing.Point(335, 165);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 54;
@@ -245,7 +247,7 @@
             // escuela_nombre
             // 
             this.escuela_nombre.Enabled = false;
-            this.escuela_nombre.Location = new System.Drawing.Point(386, 133);
+            this.escuela_nombre.Location = new System.Drawing.Point(386, 162);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
             this.escuela_nombre.TabIndex = 55;
@@ -267,11 +269,30 @@
             this.dni.Size = new System.Drawing.Size(137, 20);
             this.dni.TabIndex = 59;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(346, 136);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 62;
+            this.label11.Text = "e-mail";
+            // 
+            // email
+            // 
+            this.email.Enabled = false;
+            this.email.Location = new System.Drawing.Point(386, 133);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.TabIndex = 61;
+            // 
             // ModificarAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 297);
+            this.ClientSize = new System.Drawing.Size(588, 326);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dni);
             this.Controls.Add(this.modificarResponsable);
@@ -330,5 +351,7 @@
         private System.Windows.Forms.TextBox escuela_nombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox dni;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox email;
     }
 }

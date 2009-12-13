@@ -211,6 +211,34 @@ namespace iaai.metodos_comunes
             return valido;
         }
 
+        /// <summary>
+        /// Valida caracteres validos para el año de cursado
+        /// </summary>
+        /// <returns>
+        /// true: si es valido
+        /// false: si no es valido
+        ///</returns>
+        public bool validar_Escuela_Año(String cadena)
+        {
+            if (cadena == "")
+                return false;
+
+            bool valido = true;
+
+            foreach (char c in cadena)
+            {
+                if (Char.IsDigit(c) || c == '°')
+                {
+                    valido = true;
+                }
+                else
+                    return false;
+
+
+            }
+
+            return valido;
+        }
 
 
         /// <summary>
