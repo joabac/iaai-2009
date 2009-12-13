@@ -403,11 +403,11 @@ namespace iaai.Data_base
                         datos["escuela_año"] = null;
                     }
                     datos["direccion"] = (reader[7].ToString());
-                    if (reader[10] != null)
+                    if (reader[10].ToString().Length > 0)
                         datos["id_responsable"] = (Convert.ToInt32(reader[10].ToString()));
                     else
                         datos["id_responsable"] = null;
-                    if (reader[11] != null)
+                    if (reader[11].ToString().Length > 0)
                         datos["email"] = reader[11].ToString();
                     else
                         datos["email"] = null;
@@ -480,6 +480,24 @@ namespace iaai.Data_base
 
                 if (reader.Read())
                 {
+                    IDictionary<string, object> datos = new Dictionary<string, object>();
+
+                    //se generan los dato del Responsable a dar de alta
+                    datos["nombre"] = (reader[0].ToString());
+                    datos["apellido"] = (reader[1].ToString());
+                    datos["dni"] = reader[2].ToString();
+                    datos["fecha_nac"] = (Convert.ToDateTime(reader[5]));
+                    datos["telefono_carac"] = reader[3].ToString();
+                    datos["telefono_numero"] = reader[4].ToString();
+                    //datos["id_responsable"] = reader[7].ToString();
+                    datos["direccion"] = reader[6].ToString();
+                    if (reader[8].ToString().Length > 0)
+                        datos["email"] = reader[8].ToString();
+                    else
+                        datos["email"] = null;
+                    responsable = new Responsable(datos);
+                    responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
+                    /*
                     responsable.setNombre(reader[0].ToString());
                     responsable.setApellido(reader[1].ToString());
                     responsable.setDni(Convert.ToInt32(reader[2]));
@@ -488,7 +506,11 @@ namespace iaai.Data_base
                     responsable.setFecha_nac(Convert.ToDateTime(reader[5]));
                     responsable.setDireccion(reader[6].ToString());
                     responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
-                    responsable.setEmail(reader[8].ToString());
+                    if (reader[8].ToString().Length < 0)
+                        responsable.setEmail(null);
+                    else
+                        responsable.setEmail(reader[8].ToString());
+                     */
                 }
                 else
                 {
