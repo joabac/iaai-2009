@@ -1057,6 +1057,45 @@ namespace iaai_test
             metodo.consulta("delete from profesor where dni like '22222222M' ");
 
 
+
+            //++++++++++++++++++ prueba 2 ++++++++++++++++++++++++++++++++++
+
+            //genero un profesor para poder manipular los datos ingresados
+            datos["nombre"] = "con_ap'ostrofos";
+            datos["apellido"] = "apellido'apostrofo";
+            datos["dni"] = "22222222M";
+            datos["fecha_nac"] = "1981-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "123456";
+            datos["direccion"] = "L'Hospital 56 7º B";
+            datos["email"] = "prueba@prueba.com";
+
+            esperado = null;
+            esperado = new Profesor(datos);  //cargo el nuevo profesor
+
+            
+            //++++++++++++codigo que se prueba 
+
+            metodo.altaProfesor(esperado); //Doy de alta el profesor
+
+            //+++++
+
+            //busco el profesor en la base de datos para ver como quedo cargado
+
+            recuperado = metodo.Buscar_Profesor("22222222M");
+
+            //verifico campo a campo los datos registrados
+            Assert.AreEqual(esperado.getDni().ToString(), recuperado.getDni().ToString()); // comparo si lo que se grabo es lo que se especifico
+            Assert.AreEqual(esperado.getNombre().ToString(), recuperado.getNombre().ToString());
+            Assert.AreEqual(esperado.getApellido().ToString(), recuperado.getApellido().ToString());
+            Assert.AreEqual(esperado.getDireccion().ToString(), recuperado.getDireccion().ToString());
+            Assert.AreEqual(esperado.getEmail().ToString(), recuperado.getEmail().ToString());
+            Assert.AreEqual(esperado.getFecha_nac().ToString("yyyy-MM-dd"), recuperado.getFecha_nac().ToString("yyyy-MM-dd"));
+
+
+            //elimino manualmente el profesor de prueba generado
+            metodo.consulta("delete from profesor where dni like '22222222M' ");
+
         }
 
         /// <summary>
@@ -1333,15 +1372,7 @@ namespace iaai_test
         [TestMethod()]
         public void esta_Inscripto_CursoEspTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.esta_Inscripto_CursoEsp(id_curso, id_alumno, condicion);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            
         }
 
         /// <summary>
