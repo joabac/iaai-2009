@@ -56,7 +56,6 @@ namespace iaai.Data_base
         /// true: si no lo encontro
         /// false: si lo encontro
         /// </returns>
-
         public bool buscarDniAlumno(string dni)
         {
             try
@@ -414,26 +413,7 @@ namespace iaai.Data_base
                     
                     alumno = new Alumno(datos);
                     alumno.id_alumno = (Convert.ToInt32(reader[0]));
-                    /*
-                    alumno.id_alumno = (Convert.ToInt32(reader[0]));
-                    alumno.setNombre(reader[1].ToString());
-                    alumno.setApellido(reader[2].ToString());
-                    alumno.setDni(reader[3].ToString());
-                    if (reader[4] != null)
-                        alumno.setTelefono_carac(reader[4].ToString());
-                    alumno.setTelefono_numero(reader[5].ToString());
-                    alumno.setFecha_nac(Convert.ToDateTime(reader[6]));
-                    alumno.setDireccion(reader[7].ToString());
-                    if (reader[8] != null)
-                        alumno.setEscuela_nombre(reader[8].ToString());
-                    else
-                        alumno.setEscuela_nombre(null);
-
-                    if (reader[9] != "0")
-                        alumno.setEscuela_año(Convert.ToInt32(reader[9].ToString()));
                     
-                    if (reader[10] != null)
-                        alumno.setId_responsable(Convert.ToInt32(reader[10].ToString()));*/
                 }
                 else
                 {
@@ -497,20 +477,7 @@ namespace iaai.Data_base
                         datos["email"] = null;
                     responsable = new Responsable(datos);
                     responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
-                    /*
-                    responsable.setNombre(reader[0].ToString());
-                    responsable.setApellido(reader[1].ToString());
-                    responsable.setDni(Convert.ToInt32(reader[2]));
-                    responsable.setTelefono_carac(Convert.ToInt32(reader[3].ToString()));
-                    responsable.setTelefono_numero(Convert.ToInt32(reader[4].ToString()));
-                    responsable.setFecha_nac(Convert.ToDateTime(reader[5]));
-                    responsable.setDireccion(reader[6].ToString());
-                    responsable.setIdResponsable(Convert.ToInt32(reader[7].ToString()));
-                    if (reader[8].ToString().Length < 0)
-                        responsable.setEmail(null);
-                    else
-                        responsable.setEmail(reader[8].ToString());
-                     */
+                   
                 }
                 else
                 {
@@ -1193,7 +1160,11 @@ namespace iaai.Data_base
             return true;
         }
 
-
+        /// <summary>
+        /// Busca alumnos por una porcion de su apellido
+        /// </summary>
+        /// <param name="apellido">String: porcion de apellido</param>
+        /// <returns>List Alumnos: listado de alumnos que coinciden con el criterio de busqueda</returns>
         internal List<Alumno> Buscar_Alumno_Por_apellido(string apellido)
         {
             List<Alumno> alum = new List<Alumno>();
@@ -1259,6 +1230,11 @@ namespace iaai.Data_base
             return alum;
         }
 
+        /// <summary>
+        /// Busca un responsable por su apellido o parte de el
+        /// </summary>
+        /// <param name="apellido">String: porcion de apellido</param>
+        /// <returns>List de Responsabl: Responsables que cumplieron con el criterio</returns>
         internal List<Responsable> Buscar_Responsable_Por_apellido(string apellido)
         {
             List<Responsable> responsables = new List<Responsable>();
@@ -1323,7 +1299,10 @@ namespace iaai.Data_base
 
 
 
-
+        /// <summary>
+        /// Retorna todas las carreras que existen actualmente en el sistema
+        /// </summary>
+        /// <returns>List Profesorado</returns>
         internal List<Profesorado> getCarreras()
         {
             List<Profesorado> profesorado = new List<Profesorado>();
@@ -1379,6 +1358,13 @@ namespace iaai.Data_base
             return profesorado;
         }
 
+        /// <summary>
+        /// Retorna el listado de materias asociadas a un profeesorado
+        /// </summary>
+        /// <param name="id_prof">id del profesorado a buscar</param>
+        /// <param name="nivel">nivel para el cual se buscan materias</param>
+        /// <param name="turno">String turno para el cual se buscan materias</param>
+        /// <returns></returns>
         internal List<Materia> getMaterias(int id_prof,int nivel, string turno)
         {
             List<Materia> materias = new List<Materia>();
@@ -1438,6 +1424,12 @@ namespace iaai.Data_base
             return materias;
         }
 
+
+        /// <summary>
+        /// Busca un profesor por su id de profesor
+        /// </summary>
+        /// <param name="id_profesor">id del profesor a buscar</param>
+        /// <returns></returns>
         internal Profesor Buscar_Profesor(int id_profesor)
         {
             Profesor profe = new Profesor();
@@ -1488,6 +1480,11 @@ namespace iaai.Data_base
             return profe;
         }
 
+        /// <summary>
+        /// Recupera los turnos disponibles para una materia especifica
+        /// </summary>
+        /// <param name="id_materia">materia para la que se buscan los turnos</param>
+        /// <returns>List Turno: turnos asociados a la materia</returns>
         internal List<Turno> getTurno(int id_materia)
         {
             List<Turno> listado_turno = new List<Turno>();
@@ -1746,6 +1743,16 @@ namespace iaai.Data_base
             return materias;
         }
 
+
+        /// <summary>
+        /// Verifica si un alumno esta inscripto en una materia de un profesorado
+        /// </summary>
+        /// <param name="id_profesorado">id del profesorado a filtrar</param>
+        /// <param name="id_materia">id de la materia a checkear</param>
+        /// <param name="id_alumno">id del alumno asociado a la materia</param>
+        /// <param name="turno">String del turno a verificar</param>
+        /// <param name="condicion">String condicion que se quiere verificar</param>
+        /// <returns></returns>
         public bool esta_Inscripto_Materia(int id_profesorado,int id_materia,int id_alumno, string turno, string condicion) {
 
             bool esta_Inscripto = false;
@@ -2221,7 +2228,11 @@ namespace iaai.Data_base
 
         
 
-
+        /// <summary>
+        /// Recupera cursos del sistema
+        /// </summary>
+        /// <param name="curso">String: id de curso</param>
+        /// <returns>List de String de cursos</returns>
         public List<List<string>> getListadoCursos(string curso)
         {
             List<List<string>> listado = new List<List<string>>();
@@ -2277,6 +2288,12 @@ namespace iaai.Data_base
             return listado;
         }
 
+
+        /// <summary>
+        /// recupera cursos especiales
+        /// </summary>
+        /// <param name="curso">id del curso especial a buscar</param>
+        /// <returns>List de string de cursos especiales</returns>
         public List<List<string>> getListadoCursosEspeciales(string curso)
         {
             List<List<string>> listado = new List<List<string>>();
@@ -2332,6 +2349,13 @@ namespace iaai.Data_base
             return listado;
         }
 
+
+        /// <summary>
+        /// Listado de materias
+        /// </summary>
+        /// <param name="id_materia"></param>
+        /// <param name="turno"></param>
+        /// <returns></returns>
         public List<List<string>> getListadoMateria(string id_materia, string turno)
         {
             List<List<string>> listado = new List<List<string>>();
@@ -2748,6 +2772,9 @@ namespace iaai.Data_base
             return cursos;
         }
 
+
+
+//*****************************************comentar
         internal List<List<string>> getAreas()
         {
 
@@ -2805,6 +2832,10 @@ namespace iaai.Data_base
             return listado_retorno;
         }
 
+        /// <summary>
+        /// Recupera los niveles disponibles en el sistema
+        /// </summary>
+        /// <returns>List string de niveles disponibles</returns>
         internal List<string> getNiveles()
         {
             List<string> listado = new List<string>();
@@ -3016,7 +3047,13 @@ namespace iaai.Data_base
             return inscripto_tmp;
         }
 
-
+        /// <summary>
+        /// Verifica el cupo de cursos especiales
+        /// </summary>
+        /// <param name="id_curso">id de curso a verificar</param>
+        /// <returns>{-1: si error}
+        /// {cupo: si hay cupo}
+        /// {0: si no hay cupo}</returns>
         private int verificarCupoCursoEspecial(int id_curso)
         {
             int disponible = -1;
@@ -3090,7 +3127,13 @@ namespace iaai.Data_base
         }
 
         
-
+        /// <summary>
+        /// verifica si un alumno tiene matricula en un curso especial
+        /// </summary>
+        /// <param name="id_alumno">id del alumno</param>
+        /// <param name="id_cursoEsp">id del curso a verificar</param>
+        /// <returns>numero de matricula: si esta matriculado
+        /// -1 si no existe matricula para el curso</returns>
         internal int tieneMatriculaCursoEspecial(int id_alumno, int id_cursoEsp)
         {
             int matricula = -1;
@@ -3606,6 +3649,13 @@ namespace iaai.Data_base
             return esta_Inscripto;
         }
 
+        /// <summary>
+        /// Cambia un curso de condicional a inscripto
+        /// </summary>
+        /// <param name="nuevo">Alumno asociado al curso</param>
+        /// <param name="id_curso">id del curso a cambiar de estado</param>
+        /// <returns>true: si exito
+        /// false: si fallo</returns>
         internal bool cambiarEstadoCurso(Alumno nuevo, int id_curso)
         {
 
@@ -3656,6 +3706,12 @@ namespace iaai.Data_base
  
         }
 
+        /// <summary>
+        /// cambia el estado de un curso especial de condicional a inscripto
+        /// </summary>
+        /// <param name="nuevo">Alumno asociado al curso</param>
+        /// <param name="id_curso">id del curso especial</param>
+        /// <returns>true: si exito false: si fallo</returns>
         internal bool cambiarEstadoCursoEsp(Alumno nuevo, int id_curso)
         {
             int matricula = tieneMatriculaCursoEspecial(nuevo.id_alumno, id_curso);
@@ -3770,8 +3826,7 @@ namespace iaai.Data_base
         /// <param name="matricula">matricula del alumno para el profesorado asociado a las materias</param>
         /// <param name="id_turno_actual">el turno actual de la materia</param>
         /// <param name="id_turno_nuevo">el turno nuevo de la materia</param>
-        /// <returns>true: si exito  false: si fallo o error</returns>
-        /// 
+        /// <returns>true: si exito  false: si fallo o error</returns> 
         internal bool cambiarTurno(int id_materia,int matricula, int id_turno_actual, int id_turno_nuevo)
         {
 

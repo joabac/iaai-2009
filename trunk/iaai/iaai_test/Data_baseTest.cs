@@ -5,6 +5,7 @@ using iaai.responsable;
 using iaai.alumno;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using iaai.cursos_materias;
 
 namespace iaai_test
 {
@@ -1276,6 +1277,531 @@ namespace iaai_test
             actual = target.apostrofos(cadena);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///Una prueba de generarMatriculaProfesorado
+        ///</summary>
+        [TestMethod()]
+        public void generarMatriculaProfesoradoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.generarMatriculaProfesorado(id_alumno, id_profesorado);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de generarMatriculaCursoEspecial
+        ///</summary>
+        [TestMethod()]
+        public void generarMatriculaCursoEspecialTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_cursoEsp = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.generarMatriculaCursoEspecial(id_alumno, id_cursoEsp);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de generarMatriculaCurso
+        ///</summary>
+        [TestMethod()]
+        public void generarMatriculaCursoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.generarMatriculaCurso(id_alumno, id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de esta_Inscripto_CursoEsp
+        ///</summary>
+        [TestMethod()]
+        public void esta_Inscripto_CursoEspTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.esta_Inscripto_CursoEsp(id_curso, id_alumno, condicion);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de esta_Inscripto_Materia
+        ///</summary>
+        [TestMethod()]
+        public void esta_Inscripto_MateriaTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
+            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.esta_Inscripto_Materia(id_profesorado, id_materia, id_alumno, turno, condicion);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de cambiarEstado
+        ///</summary>
+        [TestMethod()]
+        public void cambiarEstadoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            int id_mat = 0; // TODO: Inicializar en un valor adecuado
+            int id_turno = 0; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.cambiarEstado(nuevo, id_mat, id_turno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de cambiarEstadoCurso
+        ///</summary>
+        [TestMethod()]
+        public void cambiarEstadoCursoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.cambiarEstadoCurso(nuevo, id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de cambiarEstadoCursoEsp
+        ///</summary>
+        [TestMethod()]
+        public void cambiarEstadoCursoEspTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.cambiarEstadoCursoEsp(nuevo, id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de condicion
+        ///</summary>
+        [TestMethod()]
+        public void condicionTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_mat = 0; // TODO: Inicializar en un valor adecuado
+            int id_matricula = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.condicion(id_mat, id_matricula);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de cambiarTurno
+        ///</summary>
+        [TestMethod()]
+        public void cambiarTurnoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; // TODO: Inicializar en un valor adecuado
+            int matricula = 0; // TODO: Inicializar en un valor adecuado
+            int id_turno_actual = 0; // TODO: Inicializar en un valor adecuado
+            int id_turno_nuevo = 0; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.cambiarTurno(id_materia, matricula, id_turno_actual, id_turno_nuevo);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getAreas
+        ///</summary>
+        [TestMethod()]
+        public void getAreasTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            List<List<string>> actual;
+            actual = target.getAreas();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCarreras
+        ///</summary>
+        [TestMethod()]
+        public void getCarrerasTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<Profesorado> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Profesorado> actual;
+            actual = target.getCarreras();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCurso
+        ///</summary>
+        [TestMethod()]
+        public void getCursoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            string area = string.Empty; // TODO: Inicializar en un valor adecuado
+            string nivel = string.Empty; // TODO: Inicializar en un valor adecuado
+            List<Curso> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Curso> actual;
+            actual = target.getCurso(area, nivel);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCursoEspecial
+        ///</summary>
+        [TestMethod()]
+        public void getCursoEspecialTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            string area = string.Empty; // TODO: Inicializar en un valor adecuado
+            List<CursosEsp> expected = null; // TODO: Inicializar en un valor adecuado
+            List<CursosEsp> actual;
+            actual = target.getCursoEspecial(area);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCursos
+        ///</summary>
+        [TestMethod()]
+        public void getCursosTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            List<List<string>> actual;
+            actual = target.getCursos();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCursosEsp
+        ///</summary>
+        [TestMethod()]
+        public void getCursosEspTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            List<List<string>> actual;
+            actual = target.getCursosEsp();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de verificarCupoMateria
+        ///</summary>
+        [TestMethod()]
+        public void verificarCupoMateriaTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; // TODO: Inicializar en un valor adecuado
+            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.verificarCupoMateria(id_materia, turno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de verificarCupoCursoEspecial
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("iaai.exe")]
+        public void verificarCupoCursoEspecialTest()
+        {
+            Data_base_Accessor target = new Data_base_Accessor(); // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.verificarCupoCursoEspecial(id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de verificarCupoCurso
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("iaai.exe")]
+        public void verificarCupoCursoTest()
+        {
+            Data_base_Accessor target = new Data_base_Accessor(); // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.verificarCupoCurso(id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de tieneMatriculaProfesorado
+        ///</summary>
+        [TestMethod()]
+        public void tieneMatriculaProfesoradoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.tieneMatriculaProfesorado(id_alumno, id_profesorado);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de tieneMatriculaCursoEspecial
+        ///</summary>
+        [TestMethod()]
+        public void tieneMatriculaCursoEspecialTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_cursoEsp = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.tieneMatriculaCursoEspecial(id_alumno, id_cursoEsp);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de tieneMatriculaCurso
+        ///</summary>
+        [TestMethod()]
+        public void tieneMatriculaCursoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            int id_curso = 0; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.tieneMatriculaCurso(id_alumno, id_curso);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de obtener_turno
+        ///</summary>
+        [TestMethod()]
+        public void obtener_turnoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int materia = 0; // TODO: Inicializar en un valor adecuado
+            int matricula = 0; // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.obtener_turno(materia, matricula);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de obtener_Id_turno
+        ///</summary>
+        [TestMethod()]
+        public void obtener_Id_turnoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; // TODO: Inicializar en un valor adecuado
+            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
+            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int actual;
+            actual = target.obtener_Id_turno(id_materia, turno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de inscriptoACurso
+        ///</summary>
+        [TestMethod()]
+        public void inscriptoACursoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            Curso elemento = null; // TODO: Inicializar en un valor adecuado
+            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.inscriptoACurso(nuevo, elemento, condicion);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de inscribirMaterias
+        ///</summary>
+        [TestMethod()]
+        public void inscribirMateriasTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
+            List<Materia> mat_select = null; // TODO: Inicializar en un valor adecuado
+            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
+            List<Inscripto> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Inscripto> actual;
+            actual = target.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de inscribirCursosEspeciales
+        ///</summary>
+        [TestMethod()]
+        public void inscribirCursosEspecialesTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            CursosEsp curso_select = null; // TODO: Inicializar en un valor adecuado
+            InscriptoCursoEsp expected = null; // TODO: Inicializar en un valor adecuado
+            InscriptoCursoEsp actual;
+            actual = target.inscribirCursosEspeciales(nuevo, curso_select);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de inscribirCursos
+        ///</summary>
+        [TestMethod()]
+        public void inscribirCursosTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
+            Curso curso_select = null; // TODO: Inicializar en un valor adecuado
+            Inscripto_curso expected = null; // TODO: Inicializar en un valor adecuado
+            Inscripto_curso actual;
+            actual = target.inscribirCursos(nuevo, curso_select);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getTurno
+        ///</summary>
+        [TestMethod()]
+        public void getTurnoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; // TODO: Inicializar en un valor adecuado
+            List<Turno> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Turno> actual;
+            actual = target.getTurno(id_materia);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getNiveles
+        ///</summary>
+        [TestMethod()]
+        public void getNivelesTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<string> expected = null; // TODO: Inicializar en un valor adecuado
+            List<string> actual;
+            actual = target.getNiveles();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getMateriasAlumno
+        ///</summary>
+        [TestMethod()]
+        public void getMateriasAlumnoTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
+            List<Materia> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Materia> actual;
+            actual = target.getMateriasAlumno(id_profesorado, id_alumno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getMaterias
+        ///</summary>
+        [TestMethod()]
+        public void getMateriasTest1()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            List<List<string>> actual;
+            actual = target.getMaterias();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getMaterias
+        ///</summary>
+        [TestMethod()]
+        public void getMateriasTest()
+        {
+            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            int id_prof = 0; // TODO: Inicializar en un valor adecuado
+            int nivel = 0; // TODO: Inicializar en un valor adecuado
+            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
+            List<Materia> expected = null; // TODO: Inicializar en un valor adecuado
+            List<Materia> actual;
+            actual = target.getMaterias(id_prof, nivel, turno);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
     }
 }
