@@ -436,7 +436,7 @@ namespace iaai.cursos_materias
 
                 nuevo = alumno_nuevo.get_cargado();
                 if (nuevo != null)
-                cargado  = alumno_nuevo.get_cargado();
+                    cargado  = alumno_nuevo.get_cargado();
                 
                 if (cargado != null)
                 {
@@ -445,6 +445,7 @@ namespace iaai.cursos_materias
                     panel_datos.Enabled = true;
                     busca_apellido.Items.Clear();
                     busca_apellido.Text = nuevo.getApellido()+", "+nuevo.getNombre();
+                    carga_Materias();
                 }
 
                 else
