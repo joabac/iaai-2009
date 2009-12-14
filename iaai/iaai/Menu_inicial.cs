@@ -33,10 +33,7 @@ namespace iaai
         
         private void acercaDeIAAIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Data_base.Data_base datos = new iaai.Data_base.Data_base();
-
-
-            datos.open_db();
+           
         }
 
         private void altaAlumnoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -150,14 +147,7 @@ namespace iaai
             elimina_responsable.Show();
         }
 
-        private void asignarCursosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Inscripcion inscripcion = new Inscripcion();
-            inscripcion.Parent = this.Parent;
-            inscripcion.MdiParent = this;
-
-            inscripcion.Show();
-        }
+        
 
         private void listadoAsistenciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -189,6 +179,21 @@ namespace iaai
             consulta_responsable.Show();
         }
 
+        private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.Parent = this.Parent;
+            inscripcion.MdiParent = this;
+
+            inscripcion.Show();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+      
 
         
     }
