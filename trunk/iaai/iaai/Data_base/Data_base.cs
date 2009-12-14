@@ -20,14 +20,25 @@ namespace iaai.Data_base
     {
         string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
 
-        //string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
+        
+        MySqlConnection conexion = null;
 
-        MySqlConnection conexion = new MySqlConnection("server=localhost;user=iaai;database=iaai;port=3306;password=iaai;");
+        public Data_base(){
 
-        //MySqlConnection conexion = new MySqlConnection("server=localhost;user=root;database=iaai;port=3306;password=root;");
+            conexion = new MySqlConnection(cadena_coneccion);
+            
+        }
 
 
+        public Data_base(string cadena) 
+        {
+            conexion = new MySqlConnection(cadena);
+        }
 
+        public void connectionString(string cadena)
+        {
+            cadena_coneccion = cadena;
+        }
 
         public bool open_db(){
 
