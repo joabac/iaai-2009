@@ -75,8 +75,8 @@ namespace iaai_test
         [TestMethod()]
         public void open_dbTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            bool expected = true; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            bool expected = true; 
             bool actual;
             actual = target.open_db();
             Assert.AreEqual(expected, actual);
@@ -1325,9 +1325,9 @@ namespace iaai_test
         public void generarMatriculaProfesoradoTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; 
+            int id_profesorado = 0; 
+            int expected = 0; 
             int actual;
             actual = target.generarMatriculaProfesorado(id_alumno, id_profesorado);
             Assert.AreEqual(expected, actual);
@@ -1341,9 +1341,9 @@ namespace iaai_test
         public void generarMatriculaCursoEspecialTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_cursoEsp = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; 
+            int id_cursoEsp = 0; 
+            int expected = 0; 
             int actual;
             actual = target.generarMatriculaCursoEspecial(id_alumno, id_cursoEsp);
             Assert.AreEqual(expected, actual);
@@ -1357,9 +1357,9 @@ namespace iaai_test
         public void generarMatriculaCursoTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int id_alumno = 0; 
+            int id_curso = 0; 
+            int expected = 0; 
             int actual;
             actual = target.generarMatriculaCurso(id_alumno, id_curso);
             Assert.AreEqual(expected, actual);
@@ -1381,17 +1381,61 @@ namespace iaai_test
         [TestMethod()]
         public void esta_Inscripto_MateriaTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
-            int id_materia = 0; // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
-            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            //++++++++++++++++++++++++ prueba 1
+            int id_profesorado = 1; 
+            int id_materia = 1; 
+            int id_alumno = 18; 
+            string turno = "mañana"; 
+            string condicion = "inscripto"; 
+            bool expected = true; 
             bool actual;
+            
             actual = target.esta_Inscripto_Materia(id_profesorado, id_materia, id_alumno, turno, condicion);
+
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            //++++++++++++++++++++++++ prueba 2
+            id_profesorado = 1;
+            id_materia = 1;
+             id_alumno = 18;
+             turno = "mañana";
+             condicion = "condicional";
+             expected = false;
+             
+
+            actual = target.esta_Inscripto_Materia(id_profesorado, id_materia, id_alumno, turno, condicion);
+
+            Assert.AreEqual(expected, actual);
+
+
+            //++++++++++++++++++++++++ prueba 3
+            id_profesorado = 1;
+            id_materia = 5;
+            id_alumno = 18;
+            turno = "mañana";
+            condicion = "condicional";
+            expected = true;
+            
+
+            actual = target.esta_Inscripto_Materia(id_profesorado, id_materia, id_alumno, turno, condicion);
+
+            Assert.AreEqual(expected, actual);
+
+
+
+            //++++++++++++++++++++++++ prueba 2
+            id_profesorado = 1;
+            id_materia = 3;
+            id_alumno = 18;
+            turno = "%";     //permito que sean de cualquier turno o condicion para validar 
+            condicion = "%"; // que chequee correctamente lpara todos los turnos y condiciones
+            expected = false;
+            
+
+            actual = target.esta_Inscripto_Materia(id_profesorado, id_materia, id_alumno, turno, condicion);
+
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1401,10 +1445,10 @@ namespace iaai_test
         public void cambiarEstadoTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            int id_mat = 0; // TODO: Inicializar en un valor adecuado
-            int id_turno = 0; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            int id_mat = 0; 
+            int id_turno = 0; 
+            bool expected = false; 
             bool actual;
             actual = target.cambiarEstado(nuevo, id_mat, id_turno);
             Assert.AreEqual(expected, actual);
@@ -1418,9 +1462,9 @@ namespace iaai_test
         public void cambiarEstadoCursoTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            int id_curso = 0; 
+            bool expected = false; 
             bool actual;
             actual = target.cambiarEstadoCurso(nuevo, id_curso);
             Assert.AreEqual(expected, actual);
@@ -1434,9 +1478,9 @@ namespace iaai_test
         public void cambiarEstadoCursoEspTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            int id_curso = 0; 
+            bool expected = false; 
             bool actual;
             actual = target.cambiarEstadoCursoEsp(nuevo, id_curso);
             Assert.AreEqual(expected, actual);
@@ -1450,9 +1494,9 @@ namespace iaai_test
         public void condicionTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_mat = 0; // TODO: Inicializar en un valor adecuado
-            int id_matricula = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            int id_mat = 0; 
+            int id_matricula = 0; 
+            int expected = 0; 
             int actual;
             actual = target.condicion(id_mat, id_matricula);
             Assert.AreEqual(expected, actual);
@@ -1466,11 +1510,11 @@ namespace iaai_test
         public void cambiarTurnoTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_materia = 0; // TODO: Inicializar en un valor adecuado
-            int matricula = 0; // TODO: Inicializar en un valor adecuado
-            int id_turno_actual = 0; // TODO: Inicializar en un valor adecuado
-            int id_turno_nuevo = 0; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            int id_materia = 0; 
+            int matricula = 0; 
+            int id_turno_actual = 0; 
+            int id_turno_nuevo = 0; 
+            bool expected = false; 
             bool actual;
             actual = target.cambiarTurno(id_materia, matricula, id_turno_actual, id_turno_nuevo);
             Assert.AreEqual(expected, actual);
@@ -1483,12 +1527,40 @@ namespace iaai_test
         [TestMethod()]
         public void getAreasTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            List<List<string>> expected = new List<List<string>>();
+
+            List<string> area1 = new List<string>();
+            List<string> area2 = new List<string>() ;
+            List<string> area3 = new List<string>();
+
+            area1.Add("1");
+            area1.Add("Idioma");
+
+            area2.Add("2");
+            area2.Add("Arte");
+
+            area3.Add("3");
+            area3.Add("Danza");
+
+            expected.Add(area1);
+            expected.Add(area2);
+            expected.Add(area3);
+
             List<List<string>> actual;
+            
             actual = target.getAreas();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            int indice = 0;
+
+            foreach (List<string> area in actual)
+            {
+                Assert.AreEqual(expected[indice][1].ToString(), area[1]);
+                indice++;
+            }
+           
+
+            
+            
         }
 
         /// <summary>
@@ -1497,12 +1569,36 @@ namespace iaai_test
         [TestMethod()]
         public void getCarrerasTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<Profesorado> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            List<Profesorado> expected = new List<Profesorado>(); 
             List<Profesorado> actual;
+
+
+            Profesorado prof1 = new Profesorado();
+            prof1.id_profesorado = 2;
+            prof1.nombre = "Profesorado Ingles";
+            prof1.niveles = 4;
+
+            Profesorado prof2 = new Profesorado();
+            prof2.id_profesorado = 1;
+            prof2.nombre = "Traductorado";
+            prof2.niveles = 5;
+
+
+            expected.Add(prof2);
+            expected.Add(prof1);
+
             actual = target.getCarreras();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            int indice = 0;
+
+            foreach (Profesorado elemento in actual)
+            {
+                Assert.AreEqual(expected[indice].id_profesorado, elemento.id_profesorado);
+                Assert.AreEqual(expected[indice].nombre, elemento.nombre);
+                Assert.AreEqual(expected[indice].niveles, elemento.niveles);
+                indice++;
+            }
+            
         }
 
         /// <summary>
@@ -1511,14 +1607,27 @@ namespace iaai_test
         [TestMethod()]
         public void getCursoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string area = string.Empty; // TODO: Inicializar en un valor adecuado
-            string nivel = string.Empty; // TODO: Inicializar en un valor adecuado
-            List<Curso> expected = null; // TODO: Inicializar en un valor adecuado
+
+//busco curso con niveles que si existe y tiene varios niveles
+            Data_base target = new Data_base();
+            string area = "Idioma";
+            string nivel = "inicial";
+
+            int esperado = 3;
             List<Curso> actual;
+
             actual = target.getCurso(area, nivel);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Assert.AreEqual(esperado, actual.Count);
+
+//busco un curso en nivel que no existe
+            area = "Arte";
+            nivel = "intermedio";
+
+            actual = target.getCurso(area, nivel);
+
+            Assert.AreEqual(null, actual);
+           
         }
 
         /// <summary>
@@ -1527,13 +1636,23 @@ namespace iaai_test
         [TestMethod()]
         public void getCursoEspecialTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            string area = string.Empty; // TODO: Inicializar en un valor adecuado
-            List<CursosEsp> expected = null; // TODO: Inicializar en un valor adecuado
+            //busco area con elementos
+            Data_base target = new Data_base();
+            string area = "Idioma";
+
+            int esperado = 2;
             List<CursosEsp> actual;
+
             actual = target.getCursoEspecial(area);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Assert.AreEqual(esperado, actual.Count);
+
+            //busco un area que no tiene elementos
+            area = "Danza";
+           
+            actual = target.getCursoEspecial(area);
+
+            Assert.AreEqual(null, actual);
         }
 
         /// <summary>
@@ -1542,12 +1661,16 @@ namespace iaai_test
         [TestMethod()]
         public void getCursosTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            //busco curso con niveles que si existe y tiene varios niveles
+            Data_base target = new Data_base();
+            
             List<List<string>> actual;
+
             actual = target.getCursos();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Assert.AreNotEqual(null, actual);
+
+            
         }
 
         /// <summary>
@@ -1556,12 +1679,14 @@ namespace iaai_test
         [TestMethod()]
         public void getCursosEspTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            //busco area con elementos
+            Data_base target = new Data_base();
+            
             List<List<string>> actual;
+
             actual = target.getCursosEsp();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Assert.AreNotEqual(null, actual);
         }
 
         /// <summary>
@@ -1570,14 +1695,39 @@ namespace iaai_test
         [TestMethod()]
         public void verificarCupoMateriaTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_materia = 0; // TODO: Inicializar en un valor adecuado
-            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int id_materia = 3; //lengua inglesa II
+            string turno = "mañana"; 
+            int expected = 0;   // deberia ser cero
+            
             int actual;
             actual = target.verificarCupoMateria(id_materia, turno);
+
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+             id_materia = 1; //lengua inglesa I
+             turno = "mañana";
+             int not_expected = 0; //esperamos mayor a cero
+             int not_expected2 = -1;
+
+            
+            actual = target.verificarCupoMateria(id_materia, turno);
+
+            Assert.AreNotEqual(not_expected, actual);
+            Assert.AreNotEqual(not_expected2, actual);
+
+            id_materia = 9999; //una materia no existente
+            turno = "mañana";
+            expected = -1; //esperamos mayor a cero
+            
+
+
+            actual = target.verificarCupoMateria(id_materia, turno);
+
+            Assert.AreEqual(expected, actual);
+            
+            
         }
 
         /// <summary>
@@ -1587,13 +1737,29 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void verificarCupoCursoEspecialTest()
         {
-            Data_base_Accessor target = new Data_base_Accessor(); // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base_Accessor target = new Data_base_Accessor(); 
+            int id_curso = 4; //artes visuales inicial
+            int expected = 0;  //deberia ser cero el cupo
             int actual;
             actual = target.verificarCupoCursoEspecial(id_curso);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            id_curso = 1; //grabado en madera
+            int not_expected = 0;  //deberia ser 0 no hay cupo
+            int not_expected2 = -1;
+
+            actual = target.verificarCupoCursoEspecial(id_curso);
+            Assert.AreNotEqual(not_expected, actual);
+            Assert.AreNotEqual(not_expected2, actual);
+
+
+            id_curso = 99; //curso inexistente
+            expected = -1;  //deberia ser -1 no hay curso
+            
+            actual = target.verificarCupoCursoEspecial(id_curso);
+            Assert.AreEqual(expected, actual);
+            
         }
 
         /// <summary>
@@ -1603,13 +1769,27 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void verificarCupoCursoTest()
         {
-            Data_base_Accessor target = new Data_base_Accessor(); // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base_Accessor target = new Data_base_Accessor(); 
+            int id_curso = 10; //artes visuales inicial
+            int expected = 0;  //deberia ser cero el cupo
             int actual;
             actual = target.verificarCupoCurso(id_curso);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            id_curso = 11; //grabado en madera
+            int not_expected = 0;  //deberia ser 0 no hay cupo
+            int not_expected2 = -1;
+
+            actual = target.verificarCupoCurso(id_curso);
+            Assert.AreNotEqual(not_expected, actual);
+            Assert.AreNotEqual(not_expected2, actual);
+
+            id_curso = 99; //curso inexistente
+            expected = -1;  //deberia ser -1 no hay curso
+
+            actual = target.verificarCupoCurso(id_curso);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1618,14 +1798,23 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaProfesoradoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int id_alumno = 18; //alumno de prueba
+            int id_profesorado = 1;  //traductorado
+            int expected = 42;  //matricula esperada
             int actual;
+
             actual = target.tieneMatriculaProfesorado(id_alumno, id_profesorado);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+             id_alumno = 18; 
+             id_profesorado = 2; //profesorado de ingles
+             expected = -1;   //se espera que no este registrado
+            
+
+            actual = target.tieneMatriculaProfesorado(id_alumno, id_profesorado);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1634,14 +1823,21 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaCursoEspecialTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_cursoEsp = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base();
+            int id_alumno = 18;
+            int id_cursoEsp = 1;  //Ingles Tecnico (Medicina)
+            int expected = 45;   //matricula esperada
             int actual;
             actual = target.tieneMatriculaCursoEspecial(id_alumno, id_cursoEsp);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+             id_alumno = 18;
+             id_cursoEsp = 4;  //Grabado en Madera
+             expected = -1;   //no esta matriculado
+           
+            actual = target.tieneMatriculaCursoEspecial(id_alumno, id_cursoEsp);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1650,14 +1846,22 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaCursoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            int id_curso = 0; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int id_alumno = 18;
+            int id_curso = 1;   //Inglés Inicial
+            int expected = 43; //matricula del curso
             int actual;
             actual = target.tieneMatriculaCurso(id_alumno, id_curso);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+             id_alumno = 18;
+             id_curso = 17;   //Danzas Folkloricas Especialización 
+             expected = -1;   //no esta matriculado  
+            
+            actual = target.tieneMatriculaCurso(id_alumno, id_curso);
+            Assert.AreEqual(expected, actual);
+           
         }
 
         /// <summary>
@@ -1666,14 +1870,28 @@ namespace iaai_test
         [TestMethod()]
         public void obtener_turnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int materia = 0; // TODO: Inicializar en un valor adecuado
-            int matricula = 0; // TODO: Inicializar en un valor adecuado
-            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base();
+            int materia = 1;  //LENGUA INGLESA I
+            int matricula = 42; //alumno de prueba
+            string expected = "mañana"; 
             string actual;
             actual = target.obtener_turno(materia, matricula);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+             materia = 5;  //FONOLOGÍA II PRÁCTICA DE LABORATORIO 
+             matricula = 42; //alumno de prueba
+             expected = "mañana";  //esta inscripto condicional
+           
+            actual = target.obtener_turno(materia, matricula);
+            Assert.AreEqual(expected, actual);
+
+
+            materia = 3;  //LENGUA INGLESA II
+            matricula = 42; //alumno de prueba
+            expected = "";  //no esta inscrito
+            actual = target.obtener_turno(materia, matricula);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1682,14 +1900,28 @@ namespace iaai_test
         [TestMethod()]
         public void obtener_Id_turnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_materia = 0; // TODO: Inicializar en un valor adecuado
-            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
-            int expected = 0; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base();
+            int materia = 1;  //LENGUA INGLESA I
+            string turno = "mañana"; //turno a chequear
+            int expected = 1;
             int actual;
-            actual = target.obtener_Id_turno(id_materia, turno);
+            actual = target.obtener_Id_turno(materia, turno);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            materia = 5;  //FONOLOGÍA II PRÁCTICA DE LABORATORIO 
+            turno = "mañana"; //turno a chequear
+            expected = 5;  //esta inscripto condicional
+
+            actual = target.obtener_Id_turno(materia, turno);
+            Assert.AreEqual(expected, actual);
+
+
+            materia = 99;  //no existente
+            turno = "mañana"; //turno a chequear
+            expected = -1;  //no esta inscrito
+            actual = target.obtener_Id_turno(materia, turno);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1698,15 +1930,51 @@ namespace iaai_test
         [TestMethod()]
         public void inscriptoACursoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            Curso elemento = null; // TODO: Inicializar en un valor adecuado
-            string condicion = string.Empty; // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            Alumno nuevo = new Alumno();
+            Curso elemento = new Curso();
+
+            nuevo.id_alumno = 18;
+            elemento.id_curso = 1;  //Inglés Inicial
+
+            string condicion = "inscripto"; 
+            bool expected = true; 
             bool actual;
             actual = target.inscriptoACurso(nuevo, elemento, condicion);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            //----------------------------------
+            nuevo.id_alumno = 18;
+            elemento.id_curso = 4; //Francés Inicial
+
+             condicion = "inscripto";  //esta en forma condicional
+             expected = false;
+             
+            actual = target.inscriptoACurso(nuevo, elemento, condicion);
+            Assert.AreEqual(expected, actual);
+
+
+            //----------------------------------
+            nuevo.id_alumno = 18;
+            elemento.id_curso = 99; //no existe el curso
+
+            condicion = "%";  //furzo que sea cualquier condicion
+            expected = false;
+
+            actual = target.inscriptoACurso(nuevo, elemento, condicion);
+            Assert.AreEqual(expected, actual);
+
+
+
+            //-------------------------------
+            nuevo.id_alumno = 18;
+            elemento.id_curso = 4; //Francés Inicial
+
+            condicion = "condicional";  //esta en forma condicional
+            expected = true;
+
+            actual = target.inscriptoACurso(nuevo, elemento, condicion);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -1716,11 +1984,11 @@ namespace iaai_test
         public void inscribirMateriasTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
-            List<Materia> mat_select = null; // TODO: Inicializar en un valor adecuado
-            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
-            List<Inscripto> expected = null; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            int id_profesorado = 0; 
+            List<Materia> mat_select = null; 
+            string turno = string.Empty; 
+            List<Inscripto> expected = null; 
             List<Inscripto> actual;
             actual = target.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
             Assert.AreEqual(expected, actual);
@@ -1734,9 +2002,9 @@ namespace iaai_test
         public void inscribirCursosEspecialesTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            CursosEsp curso_select = null; // TODO: Inicializar en un valor adecuado
-            InscriptoCursoEsp expected = null; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            CursosEsp curso_select = null; 
+            InscriptoCursoEsp expected = null; 
             InscriptoCursoEsp actual;
             actual = target.inscribirCursosEspeciales(nuevo, curso_select);
             Assert.AreEqual(expected, actual);
@@ -1750,9 +2018,9 @@ namespace iaai_test
         public void inscribirCursosTest()
         {
             Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            Alumno nuevo = null; // TODO: Inicializar en un valor adecuado
-            Curso curso_select = null; // TODO: Inicializar en un valor adecuado
-            Inscripto_curso expected = null; // TODO: Inicializar en un valor adecuado
+            Alumno nuevo = null; 
+            Curso curso_select = null; 
+            Inscripto_curso expected = null; 
             Inscripto_curso actual;
             actual = target.inscribirCursos(nuevo, curso_select);
             Assert.AreEqual(expected, actual);
@@ -1765,13 +2033,18 @@ namespace iaai_test
         [TestMethod()]
         public void getTurnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_materia = 0; // TODO: Inicializar en un valor adecuado
-            List<Turno> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base();
+            int id_materia = 3;  //LENGUA INGLESA II
+            int expected = 2;  //Tiene 2 turnos mañana y noche
+            
             List<Turno> actual;
+
             actual = target.getTurno(id_materia);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Assert.AreEqual(expected, actual.Count);
+            Assert.AreEqual("mañana", actual[0].turno);
+            Assert.AreEqual("noche", actual[1].turno);
+
+            
         }
 
         /// <summary>
@@ -1780,12 +2053,16 @@ namespace iaai_test
         [TestMethod()]
         public void getNivelesTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<string> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            string[] lista = { "inicial", "intermedio", "especialización" };
+
+            List<string> expected = new List<string>(lista); 
             List<string> actual;
             actual = target.getNiveles();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            
+            Assert.AreEqual(expected[0], actual[0]);
+            Assert.AreEqual(expected[1], actual[1]);
+            Assert.AreEqual(expected[2], actual[2]);
         }
 
         /// <summary>
@@ -1794,28 +2071,43 @@ namespace iaai_test
         [TestMethod()]
         public void getMateriasAlumnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_profesorado = 0; // TODO: Inicializar en un valor adecuado
-            int id_alumno = 0; // TODO: Inicializar en un valor adecuado
-            List<Materia> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int id_profesorado = 1; 
+            int id_alumno = 18; 
+            int expected = 1;  //solo 1 porque en la otra esta condicional
+
             List<Materia> actual;
             actual = target.getMateriasAlumno(id_profesorado, id_alumno);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Assert.AreEqual(expected, actual.Count);
+            Assert.AreEqual("LENGUA INGLESA I", actual[0].nombre);
+
+            
+             id_profesorado = 2; 
+             id_alumno = 18;
+             List<Materia> esperado = null; //no esta inscripto a ninguna materia de este profesorado
+
+            
+            actual = target.getMateriasAlumno(id_profesorado, id_alumno);
+            Assert.AreEqual(esperado, actual);
+            
+            
         }
 
         /// <summary>
-        ///Una prueba de getMaterias
+        ///Una prueba de getMaterias recupera todas las materias del instituto
         ///</summary>
         [TestMethod()]
         public void getMateriasTest1()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            List<List<string>> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int not_expected = 0;
             List<List<string>> actual;
             actual = target.getMaterias();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Assert.AreNotEqual(not_expected, actual.Count);
+            Assert.AreNotEqual(null, actual);
+
+
+
         }
 
         /// <summary>
@@ -1824,15 +2116,38 @@ namespace iaai_test
         [TestMethod()]
         public void getMateriasTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
-            int id_prof = 0; // TODO: Inicializar en un valor adecuado
-            int nivel = 0; // TODO: Inicializar en un valor adecuado
-            string turno = string.Empty; // TODO: Inicializar en un valor adecuado
-            List<Materia> expected = null; // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base(); 
+            int id_prof = 1;  //traductorado
+            int nivel = 2;   //nivel 2
+            string turno = "mañana";  //turno mañana
+            int expected = 2;  //tiene cargadas solo 2 materias
+            
             List<Materia> actual;
             actual = target.getMaterias(id_prof, nivel, turno);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            Assert.AreEqual(expected, actual.Count);
+
+
+             id_prof = 1;  
+             nivel = 1;      //nivel 1
+             turno = "tarde";  //turno tarde
+             expected = 1;  //tiene cargadas solo 1 materia
+
+            
+            actual = target.getMaterias(id_prof, nivel, turno);
+
+            Assert.AreEqual(expected, actual.Count);
+
+
+            id_prof = 2;
+            nivel = 1;      //nivel 1
+            turno = "%";  //cualquier turno
+            List<Materia> expect = null;  //no existn materias
+
+
+            actual = target.getMaterias(id_prof, nivel, turno);
+
+            Assert.AreEqual(expect, actual);
         }
     }
 }

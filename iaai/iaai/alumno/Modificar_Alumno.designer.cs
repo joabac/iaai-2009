@@ -61,7 +61,7 @@
             this.Cancel.Location = new System.Drawing.Point(501, 277);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 10;
+            this.Cancel.TabIndex = 14;
             this.Cancel.Text = "Cancelar";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -71,7 +71,7 @@
             this.aceptar.Location = new System.Drawing.Point(399, 277);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 9;
+            this.aceptar.TabIndex = 13;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -91,7 +91,7 @@
             this.direccion.Location = new System.Drawing.Point(386, 104);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(137, 20);
-            this.direccion.TabIndex = 7;
+            this.direccion.TabIndex = 8;
             // 
             // label7
             // 
@@ -109,7 +109,7 @@
             this.fecha_nacimiento.Mask = "00/00/0000";
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
-            this.fecha_nacimiento.TabIndex = 4;
+            this.fecha_nacimiento.TabIndex = 5;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -160,7 +160,7 @@
             this.telefono_carac.Location = new System.Drawing.Point(386, 78);
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.Size = new System.Drawing.Size(41, 20);
-            this.telefono_carac.TabIndex = 5;
+            this.telefono_carac.TabIndex = 6;
             // 
             // label3
             // 
@@ -177,7 +177,7 @@
             this.telefono_numero.Location = new System.Drawing.Point(449, 78);
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.Size = new System.Drawing.Size(74, 20);
-            this.telefono_numero.TabIndex = 6;
+            this.telefono_numero.TabIndex = 7;
             // 
             // label10
             // 
@@ -213,7 +213,7 @@
             this.modificarResponsable.Location = new System.Drawing.Point(385, 228);
             this.modificarResponsable.Name = "modificarResponsable";
             this.modificarResponsable.Size = new System.Drawing.Size(138, 22);
-            this.modificarResponsable.TabIndex = 57;
+            this.modificarResponsable.TabIndex = 12;
             this.modificarResponsable.Text = "Modificar Responsable";
             this.modificarResponsable.UseVisualStyleBackColor = true;
             this.modificarResponsable.Click += new System.EventHandler(this.modificarResponsable_Click);
@@ -233,7 +233,7 @@
             this.escuela_año.Location = new System.Drawing.Point(386, 192);
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.Size = new System.Drawing.Size(137, 20);
-            this.escuela_año.TabIndex = 56;
+            this.escuela_año.TabIndex = 11;
             // 
             // label2
             // 
@@ -250,7 +250,7 @@
             this.escuela_nombre.Location = new System.Drawing.Point(386, 162);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.Size = new System.Drawing.Size(137, 20);
-            this.escuela_nombre.TabIndex = 55;
+            this.escuela_nombre.TabIndex = 10;
             // 
             // label1
             // 
@@ -267,7 +267,7 @@
             this.dni.Location = new System.Drawing.Point(136, 133);
             this.dni.Name = "dni";
             this.dni.Size = new System.Drawing.Size(137, 20);
-            this.dni.TabIndex = 59;
+            this.dni.TabIndex = 4;
             // 
             // label11
             // 
@@ -284,7 +284,7 @@
             this.email.Location = new System.Drawing.Point(386, 133);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(137, 20);
-            this.email.TabIndex = 61;
+            this.email.TabIndex = 9;
             // 
             // ModificarAlumno
             // 

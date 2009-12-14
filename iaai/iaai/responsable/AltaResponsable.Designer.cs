@@ -167,7 +167,7 @@
             this.aceptar.Location = new System.Drawing.Point(143, 173);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 10;
+            this.aceptar.TabIndex = 8;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -178,7 +178,7 @@
             this.cancelar.Location = new System.Drawing.Point(363, 173);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 11;
+            this.cancelar.TabIndex = 9;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cancelar_MouseClick);
@@ -197,7 +197,7 @@
             this.email.Location = new System.Drawing.Point(359, 92);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(137, 20);
-            this.email.TabIndex = 19;
+            this.email.TabIndex = 7;
             // 
             // AltaResponsable
             // 
