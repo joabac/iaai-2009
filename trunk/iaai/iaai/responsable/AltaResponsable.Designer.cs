@@ -222,6 +222,7 @@
             this.Controls.Add(this.telefono_numero);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nombre);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AltaResponsable";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

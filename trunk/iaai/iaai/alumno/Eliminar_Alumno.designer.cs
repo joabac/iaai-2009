@@ -285,6 +285,7 @@
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "EliminarAlumno";
             this.Text = "Eliminar Alumno";
             this.ResumeLayout(false);

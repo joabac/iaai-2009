@@ -317,6 +317,7 @@
             this.Controls.Add(this.telefono_numero);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.nombre);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModificarAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Alumno";

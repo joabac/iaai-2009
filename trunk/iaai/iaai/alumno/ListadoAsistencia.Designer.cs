@@ -37,6 +37,7 @@ namespace iaai.alumno
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.asistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imprimir = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.previa = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@ namespace iaai.alumno
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.comboMaterias = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.asistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,6 +110,12 @@ namespace iaai.alumno
             this.dni.Name = "dni";
             this.dni.ReadOnly = true;
             this.dni.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // asistencia
+            // 
+            this.asistencia.HeaderText = "Presentes";
+            this.asistencia.Name = "asistencia";
+            this.asistencia.Visible = false;
             // 
             // imprimir
             // 
@@ -360,12 +366,6 @@ namespace iaai.alumno
             this.label8.TabIndex = 26;
             this.label8.Text = "Materia";
             // 
-            // asistencia
-            // 
-            this.asistencia.HeaderText = "Presentes";
-            this.asistencia.Name = "asistencia";
-            this.asistencia.Visible = false;
-            // 
             // ListadoAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +397,7 @@ namespace iaai.alumno
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.imprimir);
             this.Controls.Add(this.lista);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ListadoAsistencia";
             this.Text = "Listado de Asistencia";
             ((System.ComponentModel.ISupportInitialize)(this.lista)).EndInit();

@@ -182,7 +182,6 @@
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.Size = new System.Drawing.Size(137, 20);
             this.escuela_año.TabIndex = 9;
-            
             // 
             // label9
             // 
@@ -274,6 +273,7 @@
             this.Controls.Add(this.escuela_nombre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nombre);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AltaAlumno";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

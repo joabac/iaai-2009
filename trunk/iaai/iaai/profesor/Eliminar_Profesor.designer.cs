@@ -253,6 +253,7 @@
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Eliminar_Profesor";
             this.Text = "EliminarProfesor";
             this.ResumeLayout(false);

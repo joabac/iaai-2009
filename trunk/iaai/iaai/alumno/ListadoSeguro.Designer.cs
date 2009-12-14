@@ -149,6 +149,7 @@
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.imprimir);
             this.Controls.Add(this.lista);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ListadoSeguro";
             this.Text = "Listado para Seguro";
             ((System.ComponentModel.ISupportInitialize)(this.lista)).EndInit();
