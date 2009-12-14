@@ -2775,7 +2775,10 @@ namespace iaai.Data_base
 
 
 
-//*****************************************comentar
+/// <summary>
+/// retorna las areas registradas en el sistema
+/// </summary>
+/// <returns></returns>
         internal List<List<string>> getAreas()
         {
 
@@ -3066,7 +3069,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                
                 MySqlCommand cupo_comand = new MySqlCommand("select ce.cupo cupo " +
                                                           "from curso_especial ce " +
                                                           "where ce.id_curso_especial = " + id_curso, conexion);
@@ -3439,7 +3442,7 @@ namespace iaai.Data_base
         /// Verifica el cupo del curso
         /// </summary>
         /// <param name="id_curso"></param>
-        /// <returns>retorna el cupo disponible del curso, 0 si no hay o -1 si no hay cupo</returns>
+        /// <returns>retorna el cupo disponible del curso, 0 si no hay o -1 si error</returns>
         private int verificarCupoCurso(int id_curso)
         {            
             int disponible = -1;
@@ -3451,7 +3454,7 @@ namespace iaai.Data_base
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     this.open_db();
 
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                
                 MySqlCommand cupo_comand = new MySqlCommand("select ce.cupo cupo " +
                                                           "from curso ce " +
                                                           "where ce.id_curso = " + id_curso, conexion);
