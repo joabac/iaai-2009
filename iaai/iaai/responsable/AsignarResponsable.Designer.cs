@@ -41,9 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nombreBusqueda = new System.Windows.Forms.TextBox();
             this.tablaResultado = new System.Windows.Forms.DataGridView();
-            this.aceptar = new System.Windows.Forms.Button();
-            this.cancelar = new System.Windows.Forms.Button();
-            this.nuevo = new System.Windows.Forms.Button();
             this.id_responsable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +48,9 @@
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asignar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.aceptar = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaResultado)).BeginInit();
             this.SuspendLayout();
@@ -152,36 +152,6 @@
             this.tablaResultado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaResultado_CellClick);
             this.tablaResultado.CurrentCellDirtyStateChanged += new System.EventHandler(this.tablaResultado_CurrentCellDirtyStateChanged);
             // 
-            // aceptar
-            // 
-            this.aceptar.Location = new System.Drawing.Point(216, 325);
-            this.aceptar.Name = "aceptar";
-            this.aceptar.Size = new System.Drawing.Size(75, 23);
-            this.aceptar.TabIndex = 2;
-            this.aceptar.Text = "Aceptar";
-            this.aceptar.UseVisualStyleBackColor = true;
-            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
-            // 
-            // cancelar
-            // 
-            this.cancelar.Location = new System.Drawing.Point(372, 325);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 3;
-            this.cancelar.Text = "Cancelar";
-            this.cancelar.UseVisualStyleBackColor = true;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // nuevo
-            // 
-            this.nuevo.Location = new System.Drawing.Point(570, 288);
-            this.nuevo.Name = "nuevo";
-            this.nuevo.Size = new System.Drawing.Size(75, 23);
-            this.nuevo.TabIndex = 4;
-            this.nuevo.Text = "Nuevo";
-            this.nuevo.UseVisualStyleBackColor = true;
-            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
-            // 
             // id_responsable
             // 
             this.id_responsable.Frozen = true;
@@ -231,6 +201,36 @@
             this.asignar.HeaderText = "Responsable";
             this.asignar.Name = "asignar";
             // 
+            // aceptar
+            // 
+            this.aceptar.Location = new System.Drawing.Point(216, 325);
+            this.aceptar.Name = "aceptar";
+            this.aceptar.Size = new System.Drawing.Size(75, 23);
+            this.aceptar.TabIndex = 2;
+            this.aceptar.Text = "Aceptar";
+            this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
+            // 
+            // cancelar
+            // 
+            this.cancelar.Location = new System.Drawing.Point(372, 325);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(75, 23);
+            this.cancelar.TabIndex = 3;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
+            // nuevo
+            // 
+            this.nuevo.Location = new System.Drawing.Point(570, 288);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 4;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
+            // 
             // AsignarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,6 +241,7 @@
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.tablaResultado);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AsignarResponsable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignar Responsable";

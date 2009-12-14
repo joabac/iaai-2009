@@ -307,6 +307,7 @@
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.radioButtonPorApellido);
             this.Controls.Add(this.radioButtonPorDni);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Consulta_Responsable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta Responsable";

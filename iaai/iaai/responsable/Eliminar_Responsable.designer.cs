@@ -242,6 +242,7 @@
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "EliminarResponsable";
             this.Text = "Eliminar Responsable";
             this.ResumeLayout(false);

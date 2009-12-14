@@ -84,7 +84,7 @@
             this.Controls.Add(this.acept);
             this.Controls.Add(this.comboBox_turnos);
             this.Controls.Add(this.labelTurno);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Cambiar_Turno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambiar Turno";
