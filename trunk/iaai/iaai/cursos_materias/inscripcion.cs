@@ -1612,6 +1612,16 @@ namespace iaai.cursos_materias
             this.Close();
         }
 
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
 
         
        
