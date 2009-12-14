@@ -421,7 +421,7 @@ namespace iaai.cursos_materias
             telefono_carac.Text = alumno.getTelefono_carac().ToString();
             telefono_numero.Text = alumno.getTelefono_numero().ToString();
             direccion.Text = alumno.getDireccion();
-            //email.Text = alumno.getEmail();
+            email.Text = alumno.getEmail();
             
         }
 

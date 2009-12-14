@@ -3084,7 +3084,7 @@ namespace iaai.Data_base
 
                     MySqlCommand ocupacion_comand = new MySqlCommand("select count(rm.id_matricula) Ocupacion " +
                                                               "from registro_curso_especial rm " +
-                                                              "where rm.id_registro_curso_especial = " + id_curso +
+                                                              "where rm.id_curso_especial = " + id_curso +
                                                               " and condicion like 'inscripto' " +
                                                               "group by rm.id_registro_curso_especial", conexion);
 
