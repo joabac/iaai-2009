@@ -65,7 +65,9 @@ namespace iaai.alumno
             {
                 lista.Columns[3].Visible = true;
                 if (SetupThePrinting())
+                {
                     MyPrintDocument.Print();
+                }
             }
             lista.Columns[3].Visible = false;
         }
@@ -121,15 +123,15 @@ namespace iaai.alumno
 
             if (seleccionCurso.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso: \n" + curso.SelectedItem.ToString() + " \nArea: " + comboBoxArea.SelectedItem.ToString() + " \nNivel: " + curso_nivel.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso: " + curso.SelectedItem.ToString() + " Area: " + comboBoxArea.SelectedItem.ToString() + " Nivel: " + curso_nivel.SelectedItem.ToString();
             }
             else if (seleccionCursoE.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso especial: \n" + cursoE.SelectedItem.ToString() + " \nArea: " + comboBoxArea_esp.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso especial: " + cursoE.SelectedItem.ToString() + " Area: " + comboBoxArea_esp.SelectedItem.ToString();
             }
             else if (seleccionMateria.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para la materia: \n" + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para la materia: " + comboMaterias.SelectedItem.ToString() + " Carrera: " + combo_profesorados.SelectedItem.ToString() + " Nivel: " + combo_niveles.SelectedItem.ToString() + " Turno: " + comboTurno.SelectedItem.ToString();
             }
 
             MyPrintDocument.PrinterSettings = MyPrintDialog.PrinterSettings;
@@ -216,6 +218,7 @@ namespace iaai.alumno
         /// </summary>
         private void cargarNiveles()
         {
+            curso.Items.Clear();
             curso_nivel.Items.Clear();
             foreach (List<string> c in cursos)
             {
@@ -231,6 +234,7 @@ namespace iaai.alumno
                 }
             }
             curso_nivel.Text = null;
+            curso.Text = null;
         }
         /// <summary>
         /// Método que obtiene las Áreas Especiales de la base de datos y las carga a los comboBox correspondientes
