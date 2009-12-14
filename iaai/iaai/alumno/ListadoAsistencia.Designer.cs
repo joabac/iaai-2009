@@ -63,6 +63,7 @@ namespace iaai.alumno
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.comboMaterias = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.asistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,8 @@ namespace iaai.alumno
             this.lista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
             this.apellido,
-            this.dni});
+            this.dni,
+            this.asistencia});
             this.lista.Location = new System.Drawing.Point(186, 183);
             this.lista.MultiSelect = false;
             this.lista.Name = "lista";
@@ -358,6 +360,12 @@ namespace iaai.alumno
             this.label8.TabIndex = 26;
             this.label8.Text = "Materia";
             // 
+            // asistencia
+            // 
+            this.asistencia.HeaderText = "Presentes";
+            this.asistencia.Name = "asistencia";
+            this.asistencia.Visible = false;
+            // 
             // ListadoAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,6 +439,7 @@ namespace iaai.alumno
         private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.ComboBox comboMaterias;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asistencia;
 
     }
 }

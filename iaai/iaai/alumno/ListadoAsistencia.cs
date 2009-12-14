@@ -63,9 +63,11 @@ namespace iaai.alumno
         {
             if (lista.RowCount > 0)
             {
+                lista.Columns[3].Visible = true;
                 if (SetupThePrinting())
                     MyPrintDocument.Print();
             }
+            lista.Columns[3].Visible = false;
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -89,6 +91,7 @@ namespace iaai.alumno
         {
             if (lista.RowCount > 0)
             {
+                lista.Columns[3].Visible = true;
                 if (SetupThePrinting())
                 {
                     PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
@@ -96,6 +99,7 @@ namespace iaai.alumno
                     MyPrintPreviewDialog.ShowDialog();
                 }
             }
+            lista.Columns[3].Visible = false;
         }
         /// <summary>
         /// Método que genera el listado y lo configura para la impresión
@@ -117,25 +121,52 @@ namespace iaai.alumno
 
             if (seleccionCurso.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso: " + curso.SelectedItem.ToString() + " Area: " + comboBoxArea.SelectedItem.ToString() + " Nivel: " + curso_nivel.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso: \n" + curso.SelectedItem.ToString() + " \nArea: " + comboBoxArea.SelectedItem.ToString() + " \nNivel: " + curso_nivel.SelectedItem.ToString();
             }
             else if (seleccionCursoE.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso especial: " + cursoE.SelectedItem.ToString() + " del Area: " + comboBoxArea_esp.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para el curso especial: \n" + cursoE.SelectedItem.ToString() + " \nArea: " + comboBoxArea_esp.SelectedItem.ToString();
             }
             else if (seleccionMateria.Checked)
             {
-                MyPrintDocument.DocumentName = "Listado de Asistencia para la materia: " + comboMaterias.SelectedItem.ToString() + " Carrera: " + combo_profesorados.SelectedItem.ToString() + " Nivel: " + combo_niveles.SelectedItem.ToString() + " Turno: " + comboTurno.SelectedItem.ToString();
+                MyPrintDocument.DocumentName = "Listado de Asistencia para la materia: \n" + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString();
             }
 
             MyPrintDocument.PrinterSettings = MyPrintDialog.PrinterSettings;
             MyPrintDocument.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
             MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
 
-            if (MessageBox.Show("¿Desea que el listado quede centrado en la página?", "InvoiceManager - Center on Page", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para el curso " + curso.SelectedItem.ToString(), new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+            /*if (MessageBox.Show("¿Desea que el listado quede centrado en la página?", "InvoiceManager - Center on Page", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {*/
+                if (seleccionCurso.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para el curso:\n " + curso.SelectedItem.ToString() + " \nArea: " + comboBoxArea.SelectedItem.ToString() + " \nNivel: " + curso_nivel.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+                else if (seleccionCursoE.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para el curso especial:\n " + cursoE.SelectedItem.ToString() + " \nArea: " + comboBoxArea_esp.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+                else if (seleccionMateria.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para la materia:\n " + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+            /*}
             else
-                MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, false, true, "Listado de Asistencia para el curso " + curso.SelectedItem.ToString(), new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+            {
+                if (seleccionCurso.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, false, true, "Listado de Asistencia para el curso:\n " + curso.SelectedItem.ToString() + " \nArea: " + comboBoxArea.SelectedItem.ToString() + " \nNivel: " + curso_nivel.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+                else if (seleccionCursoE.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, false, true, "Listado de Asistencia para el curso especial:\n " + cursoE.SelectedItem.ToString() + " \nArea: " + comboBoxArea_esp.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+                else if (seleccionMateria.Checked)
+                {
+                    MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, false, true, "Listado de Asistencia para la materia:\n " + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                }
+            }*/
+    
 
             return true;
         }
