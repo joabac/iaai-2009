@@ -227,10 +227,10 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.busca_apellido);
-            this.panel1.Location = new System.Drawing.Point(62, 104);
+            this.panel1.Location = new System.Drawing.Point(62, 103);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 40);
-            this.panel1.TabIndex = 52;
+            this.panel1.TabIndex = 4;
             // 
             // busca_apellido
             // 
@@ -274,7 +274,7 @@
             this.button2.Location = new System.Drawing.Point(511, 229);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 56;
+            this.button2.TabIndex = 5;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
