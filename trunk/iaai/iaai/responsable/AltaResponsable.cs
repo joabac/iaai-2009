@@ -145,7 +145,7 @@ namespace iaai.responsable
                     error = error + "Formato de dirección no válido \r\n";
             }
             if(email.Text.Length != 0)
-                if (metodo.validar_email(email.Text) == false) 
+                if (!metodo.validar_email(email.Text) == false) 
                     error = error + ("Formato de email no valido\r\n");
                     
         
@@ -187,6 +187,13 @@ namespace iaai.responsable
             datos["email"] = email.Text;
 
         }
+
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
 
         
 
