@@ -75,7 +75,8 @@ namespace iaai_test
         [TestMethod()]
         public void open_dbTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             bool expected = true; 
             bool actual;
             actual = target.open_db();
@@ -99,7 +100,8 @@ namespace iaai_test
         [TestMethod()]
         public void altaAlumnoTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del alumno a dar de alta (sin datos de la escuela ni del año de cursado)
@@ -175,7 +177,8 @@ namespace iaai_test
         [TestMethod()]
         public void buscarAlumnoTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del alumno a dar de alta (mayor de edad)
@@ -222,7 +225,8 @@ namespace iaai_test
         [TestMethod()]
         public void modificarAlumnoTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del alumno a dar de alta (mayor de edad)
@@ -291,7 +295,8 @@ namespace iaai_test
         public void buscarDniAlumnoTest()
         {
 
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del alumno a dar de alta (mayor de edad)
@@ -330,7 +335,8 @@ namespace iaai_test
         [TestMethod()]
         public void eliminarAlumnoTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del alumno a dar de alta (mayor de edad)
@@ -387,7 +393,8 @@ namespace iaai_test
         [TestMethod()]
         public void altaResponsableTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta
@@ -431,7 +438,8 @@ namespace iaai_test
         [TestMethod()]
         public void buscarResponsableTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -472,7 +480,8 @@ namespace iaai_test
         [TestMethod()]
         public void modificarResponsableTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -534,7 +543,8 @@ namespace iaai_test
         public void buscarDniResponsableTest()
         {
 
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -571,7 +581,8 @@ namespace iaai_test
         public void eliminarResponsableTest()
         {
 
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -626,8 +637,8 @@ namespace iaai_test
         [TestMethod()]
         public void altaAlumnoMenorTest()
         {
-            Data_base metodo = new Data_base();
-            
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos2 = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -725,7 +736,8 @@ namespace iaai_test
         [TestMethod()]
         public void buscarAlumnoMenorTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             IDictionary<string, object> datos2 = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -790,7 +802,8 @@ namespace iaai_test
         [TestMethod()]
         public void modificarAlumnoMenorTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos2 = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -894,7 +907,8 @@ namespace iaai_test
         public void buscarDniAlumnoMenorTest()
         {
 
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos2 = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -951,7 +965,8 @@ namespace iaai_test
         [TestMethod()]
         public void eliminarAlumnoMenorTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos2 = new Dictionary<string, object>();
 
             //se generan los dato del Responsable a dar de alta 
@@ -1018,7 +1033,8 @@ namespace iaai_test
         [TestMethod()]
         public void altaProfesorTest()
         {
-            Data_base metodo = new Data_base(); 
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
             
             //genero un profesor para poder manipular los datos ingresados
@@ -1104,7 +1120,8 @@ namespace iaai_test
         [TestMethod()]
         public void Buscar_ProfesorTest()
         {
-            Data_base metodo = new Data_base(); 
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
             
             //genero un profesor para poder manipular los datos ingresados
@@ -1173,7 +1190,8 @@ namespace iaai_test
         [TestMethod()]
         public void eliminarProfesorTest()
         {
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //genero un profesor para poder manipular los datos ingresados
@@ -1216,7 +1234,8 @@ namespace iaai_test
         public void modificarProfesorTest()
         {
 
-            Data_base metodo = new Data_base();
+            Data_base metodo = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+           
             IDictionary<string, object> datos = new Dictionary<string, object>();
 
             //genero un profesor para poder manipular los datos ingresados
@@ -1276,8 +1295,8 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void apostrofosTest()
         {
-            Data_base_Accessor target = new Data_base_Accessor(); 
-
+            Data_base_Accessor target = new Data_base_Accessor();
+            
 
             //chequeo de cambio de apostrofos por \\'
             string cadena = "cadena con apo'stro'fos"; 
@@ -1324,7 +1343,8 @@ namespace iaai_test
         [TestMethod()]
         public void generarMatriculaProfesoradoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             int id_alumno = 0; 
             int id_profesorado = 0; 
             int expected = 0; 
@@ -1340,7 +1360,8 @@ namespace iaai_test
         [TestMethod()]
         public void generarMatriculaCursoEspecialTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             int id_alumno = 0; 
             int id_cursoEsp = 0; 
             int expected = 0; 
@@ -1356,7 +1377,8 @@ namespace iaai_test
         [TestMethod()]
         public void generarMatriculaCursoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             int id_alumno = 0; 
             int id_curso = 0; 
             int expected = 0; 
@@ -1381,7 +1403,8 @@ namespace iaai_test
         [TestMethod()]
         public void esta_Inscripto_MateriaTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             //++++++++++++++++++++++++ prueba 1
             int id_profesorado = 1; 
             int id_materia = 1; 
@@ -1444,7 +1467,8 @@ namespace iaai_test
         [TestMethod()]
         public void cambiarEstadoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             Alumno nuevo = null; 
             int id_mat = 0; 
             int id_turno = 0; 
@@ -1461,7 +1485,8 @@ namespace iaai_test
         [TestMethod()]
         public void cambiarEstadoCursoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             Alumno nuevo = null; 
             int id_curso = 0; 
             bool expected = false; 
@@ -1477,7 +1502,8 @@ namespace iaai_test
         [TestMethod()]
         public void cambiarEstadoCursoEspTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             Alumno nuevo = null; 
             int id_curso = 0; 
             bool expected = false; 
@@ -1493,7 +1519,8 @@ namespace iaai_test
         [TestMethod()]
         public void condicionTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             int id_mat = 1; 
             int id_matricula = 42; 
             int expected = 1; 
@@ -1525,7 +1552,8 @@ namespace iaai_test
         [TestMethod()]
         public void cambiarTurnoTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
             int id_materia = 0; 
             int matricula = 0; 
             int id_turno_actual = 0; 
@@ -1543,7 +1571,8 @@ namespace iaai_test
         [TestMethod()]
         public void getAreasTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             List<List<string>> expected = new List<List<string>>();
 
             List<string> area1 = new List<string>();
@@ -1585,7 +1614,8 @@ namespace iaai_test
         [TestMethod()]
         public void getCarrerasTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             List<Profesorado> expected = new List<Profesorado>(); 
             List<Profesorado> actual;
 
@@ -1625,7 +1655,8 @@ namespace iaai_test
         {
 
 //busco curso con niveles que si existe y tiene varios niveles
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             string area = "Idioma";
             string nivel = "inicial";
 
@@ -1653,7 +1684,8 @@ namespace iaai_test
         public void getCursoEspecialTest()
         {
             //busco area con elementos
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             string area = "Idioma";
 
             int esperado = 2;
@@ -1678,7 +1710,8 @@ namespace iaai_test
         public void getCursosTest()
         {
             //busco curso con niveles que si existe y tiene varios niveles
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             
             List<List<string>> actual;
 
@@ -1696,8 +1729,9 @@ namespace iaai_test
         public void getCursosEspTest()
         {
             //busco area con elementos
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
             
+
             List<List<string>> actual;
 
             actual = target.getCursosEsp();
@@ -1711,7 +1745,8 @@ namespace iaai_test
         [TestMethod()]
         public void verificarCupoMateriaTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
             int id_materia = 3; //lengua inglesa II
             string turno = "mañana"; 
             int expected = 0;   // deberia ser cero
@@ -1753,7 +1788,9 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void verificarCupoCursoEspecialTest()
         {
-            Data_base_Accessor target = new Data_base_Accessor(); 
+            Data_base_Accessor target = new Data_base_Accessor("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+            
             int id_curso = 1; //artes visuales inicial
             int expected = 0;  //deberia ser cero el cupo
             int actual;
@@ -1785,7 +1822,9 @@ namespace iaai_test
         [DeploymentItem("iaai.exe")]
         public void verificarCupoCursoTest()
         {
-            Data_base_Accessor target = new Data_base_Accessor(); 
+            Data_base_Accessor target = new Data_base_Accessor("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+            
             int id_curso = 1; //artes visuales inicial
             int expected = 0;  //deberia ser cero el cupo
             int actual;
@@ -1814,7 +1853,9 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaProfesoradoTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int id_alumno = 18; //alumno de prueba
             int id_profesorado = 1;  //traductorado
             int expected = 42;  //matricula esperada
@@ -1839,7 +1880,9 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaCursoEspecialTest()
         {
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+            
             int id_alumno = 18;
             int id_cursoEsp = 1;  //Ingles Tecnico (Medicina)
             int expected = 45;   //matricula esperada
@@ -1862,7 +1905,9 @@ namespace iaai_test
         [TestMethod()]
         public void tieneMatriculaCursoTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int id_alumno = 18;
             int id_curso = 1;   //Inglés Inicial
             int expected = 43; //matricula del curso
@@ -1886,7 +1931,9 @@ namespace iaai_test
         [TestMethod()]
         public void obtener_turnoTest()
         {
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int materia = 1;  //LENGUA INGLESA I
             int matricula = 42; //alumno de prueba
             string expected = "mañana"; 
@@ -1916,7 +1963,9 @@ namespace iaai_test
         [TestMethod()]
         public void obtener_Id_turnoTest()
         {
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int materia = 1;  //LENGUA INGLESA I
             string turno = "mañana"; //turno a chequear
             int expected = 1;
@@ -1946,7 +1995,9 @@ namespace iaai_test
         [TestMethod()]
         public void inscriptoACursoTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             Alumno nuevo = new Alumno();
             Curso elemento = new Curso();
 
@@ -1999,7 +2050,9 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirMateriasTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
+
             Alumno nuevo = null; 
             int id_profesorado = 0; 
             List<Materia> mat_select = null; 
@@ -2017,7 +2070,9 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirCursosEspecialesTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
+
             Alumno nuevo = null; 
             CursosEsp curso_select = null; 
             InscriptoCursoEsp expected = null; 
@@ -2033,7 +2088,9 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirCursosTest()
         {
-            Data_base target = new Data_base(); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            
+
             Alumno nuevo = null; 
             Curso curso_select = null; 
             Inscripto_curso expected = null; 
@@ -2049,7 +2106,9 @@ namespace iaai_test
         [TestMethod()]
         public void getTurnoTest()
         {
-            Data_base target = new Data_base();
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int id_materia = 3;  //LENGUA INGLESA II
             int expected = 2;  //Tiene 2 turnos mañana y noche
             
@@ -2069,7 +2128,9 @@ namespace iaai_test
         [TestMethod()]
         public void getNivelesTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             string[] lista = { "inicial", "intermedio", "especialización" };
 
             List<string> expected = new List<string>(lista); 
@@ -2087,7 +2148,9 @@ namespace iaai_test
         [TestMethod()]
         public void getMateriasAlumnoTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int id_profesorado = 1; 
             int id_alumno = 18; 
             int expected = 2;  //solo 1 porque en la otra esta condicional
@@ -2115,7 +2178,9 @@ namespace iaai_test
         [TestMethod()]
         public void getMateriasTest1()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int not_expected = 0;
             List<List<string>> actual;
             actual = target.getMaterias();
@@ -2132,7 +2197,9 @@ namespace iaai_test
         [TestMethod()]
         public void getMateriasTest()
         {
-            Data_base target = new Data_base(); 
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
             int id_prof = 1;  //traductorado
             int nivel = 2;   //nivel 2
             string turno = "mañana";  //turno mañana
