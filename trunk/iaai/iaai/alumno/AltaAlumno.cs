@@ -197,7 +197,7 @@ namespace iaai.alumno
                 }
             }
             if (email.Text.Length != 0)
-                if (metodo.validar_email(email.Text))
+                if (!metodo.validar_email(email.Text))
                     error = error + "Formato de email no valido\r\n";
 
             //Si existe algún error se arma el mensaje para mostrar al usuario
@@ -341,15 +341,6 @@ namespace iaai.alumno
                 }
 
 
-                //---------------------Codigo para pasar parametros
-
-               /* if (exito && Owner.Name.Contains(Inscripcion.ActiveForm.Name))
-                {
-                    formulario.cargar_alumno(alumno_cargado);
-                    Owner.Enabled = true;
-                    this.Close();
-                }*/
-                //--------------------------------------------------
             }
             
         }
