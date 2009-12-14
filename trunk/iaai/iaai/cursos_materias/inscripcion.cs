@@ -52,7 +52,7 @@ namespace iaai.cursos_materias
 
         private void Inscripcion_Load(object sender, EventArgs e)
         {
-            radioButtonPorDni.Checked = true;
+            
             panel_datos.Enabled = false;
 
             try
@@ -102,6 +102,10 @@ namespace iaai.cursos_materias
 
             combo_profesorados.SelectedIndex = 0;
             comboTurno.SelectedIndex = 0;
+
+            radioButtonPorDni.Checked = true;
+            radioButtonPorApellido.Checked = false;
+            panel1.Visible = false;
         }
 
 
@@ -174,7 +178,7 @@ namespace iaai.cursos_materias
 
         private void radioButtonPorApellido_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonPorApellido.Enabled == true)
+            if (radioButtonPorApellido.Checked == true)
             {
                 panel1.Visible = true;
                 busca_apellido.Focus();
@@ -184,7 +188,7 @@ namespace iaai.cursos_materias
 
         private void radioButtonPorDni_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonPorApellido.Enabled == true)
+            if(radioButtonPorDni.Checked == true)
             {
                 panel1.Visible = false;
             }
