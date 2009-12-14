@@ -85,7 +85,7 @@ namespace iaai.alumno
             this.lista.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.lista.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.lista.Size = new System.Drawing.Size(344, 211);
-            this.lista.TabIndex = 0;
+            this.lista.TabIndex = 13;
             // 
             // nombre
             // 
@@ -122,7 +122,7 @@ namespace iaai.alumno
             this.imprimir.Location = new System.Drawing.Point(324, 427);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
-            this.imprimir.TabIndex = 1;
+            this.imprimir.TabIndex = 15;
             this.imprimir.Text = "Imprimir";
             this.imprimir.UseVisualStyleBackColor = true;
             this.imprimir.Click += new System.EventHandler(this.imprimir_Click);
@@ -132,7 +132,7 @@ namespace iaai.alumno
             this.cancelar.Location = new System.Drawing.Point(478, 427);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 2;
+            this.cancelar.TabIndex = 16;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
@@ -142,7 +142,7 @@ namespace iaai.alumno
             this.previa.Location = new System.Drawing.Point(170, 427);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
-            this.previa.TabIndex = 3;
+            this.previa.TabIndex = 14;
             this.previa.Text = "Vista Previa";
             this.previa.UseVisualStyleBackColor = true;
             this.previa.Click += new System.EventHandler(this.previa_Click);
@@ -158,7 +158,7 @@ namespace iaai.alumno
             this.curso.Location = new System.Drawing.Point(389, 78);
             this.curso.Name = "curso";
             this.curso.Size = new System.Drawing.Size(119, 21);
-            this.curso.TabIndex = 4;
+            this.curso.TabIndex = 8;
             // 
             // label1
             // 
@@ -176,7 +176,7 @@ namespace iaai.alumno
             this.combo_niveles.Location = new System.Drawing.Point(262, 35);
             this.combo_niveles.Name = "combo_niveles";
             this.combo_niveles.Size = new System.Drawing.Size(121, 21);
-            this.combo_niveles.TabIndex = 7;
+            this.combo_niveles.TabIndex = 2;
             this.combo_niveles.SelectionChangeCommitted += new System.EventHandler(this.combo_niveles_SelectionChangeCommitted);
             // 
             // combo_profesorados
@@ -186,7 +186,7 @@ namespace iaai.alumno
             this.combo_profesorados.Location = new System.Drawing.Point(95, 35);
             this.combo_profesorados.Name = "combo_profesorados";
             this.combo_profesorados.Size = new System.Drawing.Size(161, 21);
-            this.combo_profesorados.TabIndex = 6;
+            this.combo_profesorados.TabIndex = 1;
             this.combo_profesorados.SelectionChangeCommitted += new System.EventHandler(this.combo_profesorados_SelectionChangeCommitted);
             // 
             // label4
@@ -223,7 +223,7 @@ namespace iaai.alumno
             this.cursoE.Location = new System.Drawing.Point(262, 119);
             this.cursoE.Name = "cursoE";
             this.cursoE.Size = new System.Drawing.Size(121, 21);
-            this.cursoE.TabIndex = 12;
+            this.cursoE.TabIndex = 11;
             // 
             // label5
             // 
@@ -240,7 +240,7 @@ namespace iaai.alumno
             this.seleccionCurso.Location = new System.Drawing.Point(75, 81);
             this.seleccionCurso.Name = "seleccionCurso";
             this.seleccionCurso.Size = new System.Drawing.Size(14, 13);
-            this.seleccionCurso.TabIndex = 14;
+            this.seleccionCurso.TabIndex = 5;
             this.seleccionCurso.TabStop = true;
             this.seleccionCurso.UseVisualStyleBackColor = true;
             this.seleccionCurso.CheckedChanged += new System.EventHandler(this.seleccionCurso_CheckedChanged);
@@ -251,7 +251,7 @@ namespace iaai.alumno
             this.seleccionCursoE.Location = new System.Drawing.Point(75, 122);
             this.seleccionCursoE.Name = "seleccionCursoE";
             this.seleccionCursoE.Size = new System.Drawing.Size(14, 13);
-            this.seleccionCursoE.TabIndex = 15;
+            this.seleccionCursoE.TabIndex = 9;
             this.seleccionCursoE.TabStop = true;
             this.seleccionCursoE.UseVisualStyleBackColor = true;
             this.seleccionCursoE.CheckedChanged += new System.EventHandler(this.seleccionCursoE_CheckedChanged);
@@ -262,7 +262,7 @@ namespace iaai.alumno
             this.seleccionMateria.Location = new System.Drawing.Point(75, 38);
             this.seleccionMateria.Name = "seleccionMateria";
             this.seleccionMateria.Size = new System.Drawing.Size(14, 13);
-            this.seleccionMateria.TabIndex = 16;
+            this.seleccionMateria.TabIndex = 0;
             this.seleccionMateria.TabStop = true;
             this.seleccionMateria.UseVisualStyleBackColor = true;
             this.seleccionMateria.CheckedChanged += new System.EventHandler(this.seleccionMateria_CheckedChanged);
@@ -274,7 +274,7 @@ namespace iaai.alumno
             this.curso_nivel.Location = new System.Drawing.Point(262, 78);
             this.curso_nivel.Name = "curso_nivel";
             this.curso_nivel.Size = new System.Drawing.Size(121, 21);
-            this.curso_nivel.TabIndex = 17;
+            this.curso_nivel.TabIndex = 7;
             this.curso_nivel.SelectionChangeCommitted += new System.EventHandler(this.curso_nivel_SelectionChangeCommitted);
             // 
             // label6
@@ -291,7 +291,7 @@ namespace iaai.alumno
             this.generar.Location = new System.Drawing.Point(519, 140);
             this.generar.Name = "generar";
             this.generar.Size = new System.Drawing.Size(115, 23);
-            this.generar.TabIndex = 19;
+            this.generar.TabIndex = 12;
             this.generar.Text = "Generar Listado";
             this.generar.UseVisualStyleBackColor = true;
             this.generar.Click += new System.EventHandler(this.generar_Click);
@@ -303,7 +303,7 @@ namespace iaai.alumno
             this.comboBoxArea.Location = new System.Drawing.Point(95, 78);
             this.comboBoxArea.Name = "comboBoxArea";
             this.comboBoxArea.Size = new System.Drawing.Size(161, 21);
-            this.comboBoxArea.TabIndex = 20;
+            this.comboBoxArea.TabIndex = 6;
             this.comboBoxArea.SelectionChangeCommitted += new System.EventHandler(this.comboBoxArea_SelectionChangeCommitted);
             // 
             // label7
@@ -331,7 +331,7 @@ namespace iaai.alumno
             this.comboBoxArea_esp.Location = new System.Drawing.Point(95, 119);
             this.comboBoxArea_esp.Name = "comboBoxArea_esp";
             this.comboBoxArea_esp.Size = new System.Drawing.Size(161, 21);
-            this.comboBoxArea_esp.TabIndex = 22;
+            this.comboBoxArea_esp.TabIndex = 10;
             this.comboBoxArea_esp.SelectionChangeCommitted += new System.EventHandler(this.comboBoxArea_esp_SelectionChangeCommitted);
             // 
             // comboTurno
@@ -345,7 +345,7 @@ namespace iaai.alumno
             this.comboTurno.Location = new System.Drawing.Point(389, 35);
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(119, 21);
-            this.comboTurno.TabIndex = 24;
+            this.comboTurno.TabIndex = 3;
             this.comboTurno.SelectionChangeCommitted += new System.EventHandler(this.comboTurno_SelectionChangeCommitted);
             // 
             // comboMaterias
@@ -355,7 +355,7 @@ namespace iaai.alumno
             this.comboMaterias.Location = new System.Drawing.Point(514, 35);
             this.comboMaterias.Name = "comboMaterias";
             this.comboMaterias.Size = new System.Drawing.Size(121, 21);
-            this.comboMaterias.TabIndex = 25;
+            this.comboMaterias.TabIndex = 4;
             // 
             // label8
             // 

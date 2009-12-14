@@ -136,8 +136,8 @@ namespace iaai.alumno
             MyPrintDocument.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
             MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
 
-            /*if (MessageBox.Show("¿Desea que el listado quede centrado en la página?", "InvoiceManager - Center on Page", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {*/
+            if (MessageBox.Show("¿Desea que el listado quede centrado en la página?", "InvoiceManager - Center on Page", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 if (seleccionCurso.Checked)
                 {
                     MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para el curso:\n " + curso.SelectedItem.ToString() + " \nArea: " + comboBoxArea.SelectedItem.ToString() + " \nNivel: " + curso_nivel.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
@@ -150,7 +150,7 @@ namespace iaai.alumno
                 {
                     MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, true, true, "Listado de Asistencia para la materia:\n " + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
                 }
-            /*}
+            }
             else
             {
                 if (seleccionCurso.Checked)
@@ -165,7 +165,7 @@ namespace iaai.alumno
                 {
                     MyDataGridViewPrinter = new DataGridViewPrinter(lista, MyPrintDocument, false, true, "Listado de Asistencia para la materia:\n " + comboMaterias.SelectedItem.ToString() + " \nCarrera: " + combo_profesorados.SelectedItem.ToString() + " \nNivel: " + combo_niveles.SelectedItem.ToString() + " \nTurno: " + comboTurno.SelectedItem.ToString(), new Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
                 }
-            }*/
+            }
     
 
             return true;

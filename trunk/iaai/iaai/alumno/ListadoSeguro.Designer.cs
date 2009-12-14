@@ -111,7 +111,7 @@
             this.imprimir.Location = new System.Drawing.Point(321, 483);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
-            this.imprimir.TabIndex = 1;
+            this.imprimir.TabIndex = 2;
             this.imprimir.Text = "Imprimir";
             this.imprimir.UseVisualStyleBackColor = true;
             this.imprimir.Click += new System.EventHandler(this.imprimir_Click);
@@ -121,7 +121,7 @@
             this.cancelar.Location = new System.Drawing.Point(475, 483);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 2;
+            this.cancelar.TabIndex = 3;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
@@ -131,7 +131,7 @@
             this.previa.Location = new System.Drawing.Point(167, 483);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
-            this.previa.TabIndex = 3;
+            this.previa.TabIndex = 1;
             this.previa.Text = "Vista Previa";
             this.previa.UseVisualStyleBackColor = true;
             this.previa.Click += new System.EventHandler(this.previa_Click);
