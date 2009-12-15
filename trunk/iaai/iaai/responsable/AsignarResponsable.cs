@@ -10,7 +10,7 @@ using iaai.alumno;
 
 
 namespace iaai.responsable
-{
+{   ///Clase AsignarResponsable
     public partial class AsignarResponsable : Form
     {
 
@@ -55,7 +55,7 @@ namespace iaai.responsable
 
         
         /// <summary>
-        /// Este constructor es utilizado cuando para modificar el responsable 
+        /// Constructor utilizado para cambiar el responsable 
         /// de un alumno menor de 21(para cambiar el resp. asignado)
         /// </summary>
         /// <param name="responsable"></param>
@@ -177,7 +177,10 @@ namespace iaai.responsable
             alta_resp.Owner = this;
             alta_resp.Show(1);
         }
-
+        /// <summary>
+        /// Método que valida los datos a ingresar para la búsqueda
+        /// </summary>
+        /// <returns></returns>
         private bool valido()
         {
             if (nombreBusqueda.Text.Length == 0 && apellidoBusqueda.Text.Length == 0 && dniBusqueda.Text.Length == 0)
@@ -187,7 +190,10 @@ namespace iaai.responsable
             }
             return true;
         }
-
+        /// <summary>
+        /// Método que se encarga de armar la consulta que se enviará a base de datos para la carga de
+        /// los datos de los responsables buscados.
+        /// </summary>
         private void armarConsulta()
         {
             consulta = "";
@@ -235,7 +241,10 @@ namespace iaai.responsable
 
         }
 
-
+        /// <summary>
+        /// Método que ejecuta el proceso de búsqueda de los datos del responsable.
+        /// </summary>
+        /// <param name="resp"></param>
         public void seleccionaNuevoResponsable(int resp)
         {
             string dni_responsable;

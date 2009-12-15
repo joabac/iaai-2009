@@ -38,9 +38,10 @@ namespace iaai.alumno
         List<int> altasResp = new List<int>(); //para guardar los responsables dados de alta
 
         /// <summary>
-        /// método que agrega los id_responsables de los responsables que hayan sido cargados en base de datos
+        /// Método que guarda los id_responsables de los responsables que hayan sido cargados en base de datos
+        /// en la carga de un alumno nuevo.
         /// </summary>
-        /// <param name="a"></param>
+        /// <param name="a">id_responsable que se agrega a la lista altasResp</param>
         public void agregarAltaResp(List<int> a)
         {
             foreach (int f in a)
@@ -58,7 +59,7 @@ namespace iaai.alumno
         }
         
         /// <summary>
-        /// Nuevo metodo Show para retornar elementos desde alta
+        /// Redefinición del método Show para deshabilitar las ventanas que esperan el retorno desde AltaAlumno.
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
@@ -71,6 +72,8 @@ namespace iaai.alumno
 
         /// <summary>
         /// Método para cancelar y salir del formulario de AltaAlumno
+        /// Elimina los responsables que fueron dados de alta a partir de esta función y que no fueron referenciados
+        /// a ningún alumno.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -90,7 +93,13 @@ namespace iaai.alumno
         }
 
         
-
+        /// <summary>
+        /// Método que valida los datos del formulario
+        /// </summary>
+        /// <returns>
+        /// true: si se ingresaron todos los datos obligatorios y éstos son válidos (formato y valores) 
+        /// false: si falta algún dato obligatorio o si alguno no respeta el formato o tiene valores no permitidos.
+        /// </returns>
         private Boolean validar()
         {
             //Validación nombre
@@ -221,7 +230,7 @@ namespace iaai.alumno
         /// <summary>
         /// Asigna el id de responsable a un alumno
         /// </summary>
-        /// <param name="resp"></param>
+        /// <param name="resp">id_responsable de un objeto responsable en Base de Datos</param>
         public void asignarResponsable(int resp)
         {
             this.responsable = resp;

@@ -24,7 +24,7 @@ namespace iaai.responsable
         //List<int> altas = new List<int>();
 
         /// <summary>
-        /// Nuevo metodo Show para retornar elementos desde alta
+        /// Redefinición del  método Show para retornar elementos desde alta
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
@@ -80,7 +80,12 @@ namespace iaai.responsable
             if (Owner != null)
                 Owner.Enabled = true;
         }
-
+        /// <summary>
+        /// Método que valida el formato y los valores de los datos dle formulario
+        /// </summary>
+        /// <returns>
+        /// true: si se ingresaron los datos obligatorios y los mismos son válidos en cuanto a formato y valores
+        /// false: en caso de que falte alguno de los datos obligatorios o no sea válido alguno de ellos.</returns>
         private Boolean validar()
         {
             error = "";
@@ -166,7 +171,9 @@ namespace iaai.responsable
             }
         }
 
-
+        /// <summary>
+        /// Método que guarda los datos del responsable
+        /// </summary>
         private void guardarDatos()
         {
             datos["nombre"] = nombre.Text;

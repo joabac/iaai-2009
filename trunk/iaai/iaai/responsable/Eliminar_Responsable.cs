@@ -10,7 +10,7 @@ using iaai.metodos_comunes;
 
 namespace iaai.responsable
 
-{
+{   ///Clase EliminarResponsable
     public partial class EliminarResponsable : Form
     {
         Responsable responsable_encontrado = new Responsable();
