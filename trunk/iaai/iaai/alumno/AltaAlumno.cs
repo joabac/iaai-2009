@@ -147,6 +147,23 @@ namespace iaai.alumno
                 int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
                 if (resultado == -1)
                     error = error + "Formato de fecha de nacimiento no válido. \r\n";
+                else
+                {
+                    bool validar = fecha_nacimiento.Text.Contains(' ');
+                    if (!validar)//si la fecha esta ingresada
+                    {
+
+                        //si menor de 21 años hay que controlar que se le haya asignado un responsable
+                        if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
+                        {
+                            if (responsable == -1)
+                            {
+                                error = error + "Debe asignar un responsable. \n";
+                            }
+                        }
+
+                    }
+                }
             }
 
             //Validación número de teléfono
@@ -184,8 +201,8 @@ namespace iaai.alumno
                     error = error + "Ingrese el año de cursado. \r\n";
                 else
                     if(!metodo.validar_Escuela_Año(escuela_año.Text))
-                        error = error + "Formato incorrecto para el año de cursado. \r\n";
-            }
+                        error = error + "Formato del año de cursado no válido\n              (Debe ingresar sólo números). \r\n";
+            } 
             else if (escuela_año.Text.Length > 0)
             {
                 if (!metodo.validar_Escuela_Año(escuela_año.Text))
@@ -193,18 +210,7 @@ namespace iaai.alumno
                 error = error + "Ingrese el nombre de la escuela. \n";
             }
 
-            bool validar = fecha_nacimiento.Text.Contains(' ');
-            if (!validar)//si la fecha esta ingresada
-            {
-                //si menor de 21 años hay que controlar que se le haya asignado un responsable
-                if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
-                {
-                    if (responsable == -1)
-                    {
-                        error = error + "Debe asignar un responsable. \n";
-                    }
-                }
-            }
+            
             if (email.Text.Length != 0)
                 if (!metodo.validar_email(email.Text))
                     error = error + "Formato de email no valido\r\n";
@@ -303,18 +309,26 @@ namespace iaai.alumno
             {
                 MessageBox.Show("Ingrese la fecha de nacimiento");
             }
-            else if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
-            {
-                MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
-            }
             else
-            {
-                AsignarResponsable asignarResponsable = new AsignarResponsable();
-                asignarResponsable.Owner = this;
-                //this.SetVisibleCore(false);
-                asignarResponsable.Show(1);
+                if (metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text) == 0 || metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text) == 1)
+                {
+                    if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
+                    {
+                        MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
+                    }
+                    else
+                    {
+                        AsignarResponsable asignarResponsable = new AsignarResponsable();
+                        asignarResponsable.Owner = this;
+                        //this.SetVisibleCore(false);
+                        asignarResponsable.Show(1);
 
-            }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Formato de fecha de nacimiento no válido. \r\n");
+                }
         }
 
         private void aceptar_Click(object sender, EventArgs e)
