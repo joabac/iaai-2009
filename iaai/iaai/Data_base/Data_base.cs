@@ -926,11 +926,14 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-
+                /*MySqlCommand MyReadCommand("select id_alumno from alumno where dni like '" + dni + "'", conexion);
+                MySqlDataReader reader = MyReadCommand.ExecuteReader();
+                int id_alumn = Convert.ToInt32(reader[0].ToString());
+                */
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 0 " +
                                                            "where dni like '" + dni + "'", conexion);
-
                 MyCommand.ExecuteNonQuery();
+                
                 conexion.Close();
             }
             catch (MySqlException e)

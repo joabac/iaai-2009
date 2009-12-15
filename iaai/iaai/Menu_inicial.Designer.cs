@@ -78,7 +78,7 @@ namespace iaai
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(651, 24);
-            this.menu.TabIndex = 5;
+            this.menu.TabIndex = 0;
             this.menu.Tag = "Funciones del Sistema";
             this.menu.Text = "menu";
             // 
@@ -167,7 +167,7 @@ namespace iaai
             // inscripcionesToolStripMenuItem
             // 
             this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
-            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
             this.inscripcionesToolStripMenuItem.Click += new System.EventHandler(this.inscripcionesToolStripMenuItem_Click);
             // 

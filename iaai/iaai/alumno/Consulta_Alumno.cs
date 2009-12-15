@@ -186,7 +186,10 @@ namespace iaai.alumno
             {
                 panel1.Visible = true;
                 busca_apellido.Focus();
+                
+                
             }
+           
 
         }
 
@@ -195,6 +198,7 @@ namespace iaai.alumno
             if (radioButtonPorApellido.Enabled == true)
             {
                 panel1.Visible = false;
+                
             }
 
         }

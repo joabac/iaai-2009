@@ -121,6 +121,7 @@
             this.direccion.ReadOnly = true;
             this.direccion.Size = new System.Drawing.Size(181, 20);
             this.direccion.TabIndex = 43;
+            this.direccion.TabStop = false;
             // 
             // label7
             // 
@@ -140,6 +141,7 @@
             this.fecha_nacimiento.ReadOnly = true;
             this.fecha_nacimiento.Size = new System.Drawing.Size(64, 20);
             this.fecha_nacimiento.TabIndex = 40;
+            this.fecha_nacimiento.TabStop = false;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -159,6 +161,7 @@
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(181, 20);
             this.apellido.TabIndex = 37;
+            this.apellido.TabStop = false;
             // 
             // label5
             // 
@@ -177,6 +180,7 @@
             this.dni.ReadOnly = true;
             this.dni.Size = new System.Drawing.Size(181, 20);
             this.dni.TabIndex = 38;
+            this.dni.TabStop = false;
             // 
             // label4
             // 
@@ -195,6 +199,7 @@
             this.telefono_carac.ReadOnly = true;
             this.telefono_carac.Size = new System.Drawing.Size(66, 20);
             this.telefono_carac.TabIndex = 41;
+            this.telefono_carac.TabStop = false;
             // 
             // label3
             // 
@@ -213,6 +218,7 @@
             this.telefono_numero.ReadOnly = true;
             this.telefono_numero.Size = new System.Drawing.Size(100, 20);
             this.telefono_numero.TabIndex = 42;
+            this.telefono_numero.TabStop = false;
             // 
             // label10
             // 
@@ -230,7 +236,8 @@
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(181, 20);
-            this.nombre.TabIndex = 36;
+            this.nombre.TabIndex = 77;
+            this.nombre.TabStop = false;
             // 
             // panel1
             // 
@@ -238,7 +245,7 @@
             this.panel1.Location = new System.Drawing.Point(62, 104);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 40);
-            this.panel1.TabIndex = 52;
+            this.panel1.TabIndex = 2;
             // 
             // busca_apellido
             // 
@@ -271,12 +278,12 @@
             // escuela_año
             // 
             this.escuela_año.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.escuela_año.Enabled = false;
             this.escuela_año.Location = new System.Drawing.Point(405, 219);
             this.escuela_año.Name = "escuela_año";
             this.escuela_año.ReadOnly = true;
             this.escuela_año.Size = new System.Drawing.Size(66, 20);
             this.escuela_año.TabIndex = 61;
+            this.escuela_año.TabStop = false;
             // 
             // label1
             // 
@@ -290,12 +297,12 @@
             // escuela_nombre
             // 
             this.escuela_nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.escuela_nombre.Enabled = false;
             this.escuela_nombre.Location = new System.Drawing.Point(405, 193);
             this.escuela_nombre.Name = "escuela_nombre";
             this.escuela_nombre.ReadOnly = true;
             this.escuela_nombre.Size = new System.Drawing.Size(181, 20);
             this.escuela_nombre.TabIndex = 60;
+            this.escuela_nombre.TabStop = false;
             // 
             // label11
             // 
@@ -314,13 +321,14 @@
             this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(181, 20);
             this.email.TabIndex = 63;
+            this.email.TabStop = false;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(511, 279);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 65;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
