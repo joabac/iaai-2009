@@ -54,6 +54,8 @@ namespace iaai.profesor
                 else
                     MessageBox.Show("Ocurrió un error en base de datos.");
             }
+
+           
         }
 
         /// <summary>

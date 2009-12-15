@@ -76,6 +76,8 @@ namespace iaai
             profesor_form.Parent = this.Parent;
             profesor_form.MdiParent = this;
 
+          
+
             profesor_form.Show();
         }
 

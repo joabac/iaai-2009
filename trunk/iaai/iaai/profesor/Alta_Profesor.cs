@@ -178,12 +178,14 @@ namespace iaai.profesor
                 if (db.altaProfesor(profe))
                 {
                     MessageBox.Show("El profesor fué dado de alta con éxito.");
-
+                    this.Close();
                     limpiar();
                 }
                 else
                     MessageBox.Show("Ocurrió un error en base de datos.");
             }
+
+            
 
             
         }
