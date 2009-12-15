@@ -42,7 +42,7 @@ namespace iaai.alumno
         /// <summary>
         /// Constructor de clase Alumno
         /// </summary>
-        /// <param name="datos"></param>
+        /// <param name="datos">Lista con los atributos de un alumno</param>
         public Alumno(IDictionary<string,object> datos)
         {
             id_alumno = -1;
@@ -67,7 +67,7 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// Constructor vacio de clase Alumno
+        /// Constructor estandar de clase Alumno
         /// </summary>
         public Alumno()
         {}
@@ -88,7 +88,7 @@ namespace iaai.alumno
         /// <summary>
         /// Retorna el id de un alumno
         /// </summary>
-        /// <returns>int que representa su id unico</returns>
+        /// <returns>int que representa su id único</returns>
 
         public int getId_alumno()
         {
@@ -123,7 +123,7 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// Retorna la fecha de nacimiento registrada asociada al alumno
+        /// Retorna la fecha de nacimiento registrada del alumno
         /// </summary>
         /// <returns>Objeto del tipo DateTime con la fecha de nacimiento</returns>
         public DateTime getFecha_nac()
@@ -132,25 +132,25 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// Retorna la caracteristica del telefono registrado
+        /// Retorna la característica del telefono del alumno
         /// </summary>
-        /// <returns>String que representa la caracteristica</returns>
+        /// <returns>String que representa la característica telefónica</returns>
         public string getTelefono_carac()
         {
             return telefono_carac;
         }
 
         /// <summary>
-        /// Retorna el telefono del alumno
+        /// Retorna el n° de teléfono del alumno
         /// </summary>
-        /// <returns>String que representa el numero de telefono</returns>
+        /// <returns>String que representa el número de teléfono</returns>
         public string getTelefono_numero()
         {
             return telefono_numero;
         }
 
         /// <summary>
-        /// Retorna el año de cursado declarado asociado al alumno
+        /// Retorna el año de cursado del alumno en el establecimiento educativo indicado
         /// </summary>
         /// <returns>int año</returns>
         public int getEscuela_año()
@@ -177,17 +177,17 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// Retorna el id del alumno
+        /// Retorna el e-mail del alumno
         /// </summary>
-        /// <returns>int: id del responsable asociado</returns>
+        /// <returns>string</returns>
         public string getEmail()
         {
             return email;
         }
         /// <summary>
-        /// Retorna el email del responsable
+        /// Retorna id del responsable
         /// </summary>
-        /// <returns></returns>
+        /// <returns>int</returns>
         public int getId_responsable()
         {
             return id_responsable;
@@ -197,25 +197,25 @@ namespace iaai.alumno
         /// <summary>
         /// Setea el nombre del alumno
         /// </summary>
-        /// <param name="nom">String Nombre valido a guardar</param>
+        /// <param name="nom">String Nombre válido a guardar</param>
         public void setNombre(string nom)
         {
             nombre = nom;
         }
 
         /// <summary>
-        /// setea el apellido del alumno
+        /// Setea el apellido del alumno
         /// </summary>
-        /// <param name="ap">String: apellido valido a guardar</param>
+        /// <param name="ap">String: apellido váalido a guardar</param>
         public void setApellido(string ap)
         {
             apellido = ap;
         }
 
         /// <summary>
-        /// setea el dni del alumno
+        /// Setea el dni del alumno
         /// </summary>
-        /// <param name="denei">String: dni valido a guardar</param>
+        /// <param name="denei">String: dni válido a guardar</param>
         public void setDni(string denei)
         {
             dni = denei;
@@ -224,41 +224,41 @@ namespace iaai.alumno
         /// <summary>
         /// Setea la fecha de nacimiento del alumno
         /// </summary>
-        /// <param name="fec">DateTime: valido a guardar</param>
+        /// <param name="fec">DateTime: válido a guardar</param>
         public void setFecha_nac(DateTime fec)
         {
             fecha_nac = fec;
         }
 
         /// <summary>
-        /// setea la caracteristica del telefono del alumno
+        /// Setea la característica del teléfono del alumno
         /// </summary>
-        /// <param name="carac">String: caracteristica valida a  guardar</param>
+        /// <param name="carac">String: caracteristica válida a  guardar</param>
         public void setTelefono_carac(string carac)
         {
             telefono_carac = carac;
         }
 
         /// <summary>
-        /// setea el numero de telefono del alumno
+        /// Setea el número de teléfono del alumno
         /// </summary>
-        /// <param name="num">String: numero valido a guardar</param>
+        /// <param name="num">String: número válido a guardar</param>
         public void setTelefono_numero(string num)
         {
             telefono_numero = num;
         }
 
         /// <summary>
-        /// setea el año de cursado en la escuela del alumno menor
+        /// Setea el año de cursado en la escuela del alumno menor
         /// </summary>
-        /// <param name="año">int: valido año de cursado</param>
+        /// <param name="año">int: año válido de cursado</param>
         public void setEscuela_año(int año)
         {
             escuela_año = año;
         }
 
         /// <summary>
-        /// setea el nombre de la escuela al que concurre el alumno
+        /// Setea el nombre de la escuela al que concurre el alumno
         /// </summary>
         /// <param name="esc">String: escuela de cursado</param>
         public void setEscuela_nombre(string esc )
@@ -267,27 +267,27 @@ namespace iaai.alumno
         }
 
         /// <summary>
-        /// setea la direccion del alumno
+        /// Setea la dirección del alumno
         /// </summary>
-        /// <param name="dir">String: direccion valida</param>
+        /// <param name="dir">String: dirección válida</param>
         public void setDireccion(string dir)
         {
             direccion = dir;
         }
 
         /// <summary>
-        /// setea el id del responsable asociado
+        /// Setea el id del responsable asociado
         /// </summary>
-        /// <param name="resp">int:  id valido del responsable</param>
+        /// <param name="resp">int:  id válido del responsable</param>
         public void setId_responsable(int resp)
         {
             id_responsable = resp;
         }
 
         /// <summary>
-        /// setea el email del alumno asociado
+        /// Setea el email del alumno asociado
         /// </summary>
-        /// <param name="em">int:  id valido del alumno</param>
+        /// <param name="em">int:  id válido del alumno</param>
         public void setEmail(string em)
         {
             email = em;

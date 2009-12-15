@@ -88,7 +88,11 @@ namespace iaai.alumno
             if (more == true)
                 e.HasMorePages = true;
         }
-
+        /// <summary>
+        /// Método que muestra una vista previa del listado de alumnos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void previa_Click(object sender, EventArgs e)
         {
             if (lista.RowCount > 0)

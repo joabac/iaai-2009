@@ -13,7 +13,7 @@ namespace iaai.responsable
 
 {
     /// <summary>
-    /// Form para la modificacion de datos de responsabes
+    /// Form para la modificacion de datos de responsables
     /// </summary>
     public partial class ModificarResponsable : Form
     {
@@ -26,7 +26,7 @@ namespace iaai.responsable
 
 
         /// <summary>
-        /// Nuevo metodo Show para retornar elementos desde alta
+        /// Redefinición del metodo Show para retornar elementos desde alta
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
@@ -110,8 +110,8 @@ namespace iaai.responsable
         /// <summary>
         /// Se validan los datos personales del alumno y se muestran los errores si existen
         /// </summary>
-        /// <returns>true: si no tiene errores
-        ///          false: si tiene errores
+        /// <returns>true: si se ingresaron todos los datos obligatorios y con el formato correspondiente
+        ///          false: si faltan datos obligatorios o los ingresados son erróneos en cuanto a formato y valores.
         /// </returns>
         private Boolean validar()
         {

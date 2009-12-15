@@ -31,7 +31,9 @@ namespace iaai.alumno
             listado = db.listadoSeguro();
             cargarTabla();
         }
-
+        /// <summary>
+        /// Método que carga el listado de alumnos para enviar al seguro.
+        /// </summary>
         private void cargarTabla()
         {
             string[] row;
@@ -50,7 +52,11 @@ namespace iaai.alumno
                 indice = 0;
             }
         }
-
+        /// <summary>
+        /// Método que envía a impresión el listado de alumno
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void imprimir_Click(object sender, EventArgs e)
         {
             if (lista.RowCount > 0)
@@ -64,14 +70,22 @@ namespace iaai.alumno
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Método que configura y envía para impresión el listado de alumnos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MyPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             bool more = MyDataGridViewPrinter.DrawDataGridView(e.Graphics);
             if (more == true)
                 e.HasMorePages = true;
         }
-
+        /// <summary>
+        /// Método que permite ver una vista previa del listado de alumnos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void previa_Click(object sender, EventArgs e)
         {
             if (lista.RowCount > 0)
@@ -84,7 +98,10 @@ namespace iaai.alumno
                 }
             }
         }
-
+        /// <summary>
+        /// Configuración del listado para la impresión
+        /// </summary>
+        /// <returns></returns>
         private bool SetupThePrinting()
         {
             PrintDialog MyPrintDialog = new PrintDialog();

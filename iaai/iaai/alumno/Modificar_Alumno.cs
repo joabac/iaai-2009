@@ -42,7 +42,7 @@ namespace iaai.alumno
 
 
         /// <summary>
-        /// Constructor de ventana Modifica Alumno
+        /// Constructor de Modificar_Alumno
         /// </summary>
         public ModificarAlumno()
         {
@@ -148,8 +148,8 @@ namespace iaai.alumno
         /// <summary>
         /// Se validan los datos personales del alumno y se muestran los errores si existen
         /// </summary>
-        /// <returns>true: si no tiene errores
-        ///          false: si tiene errores
+        /// <returns>true: si se cargaron todos los valores obligatorios y si éstos son válidos
+        ///          false: si falta algún dato obligatorio o si tiene algún error en el formato o valores
         /// </returns>
         private Boolean validar()
         {
@@ -353,7 +353,11 @@ namespace iaai.alumno
             if (Owner != null)
                 Owner.Enabled = true;
         }
-
+        /// <summary>
+        /// Método que envía los datos para que sean actualizados en Base de Datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modificarResponsable_Click(object sender, EventArgs e)
         {
             if (fecha_nacimiento.Text.Contains(' '))

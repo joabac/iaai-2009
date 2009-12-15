@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using iaai.metodos_comunes;
 
 namespace iaai.alumno
-{
+{   ///Clase Consulta_Alumno
     public partial class Consulta_Alumno : Form
     {
         Data_base.Data_base db = new iaai.Data_base.Data_base();

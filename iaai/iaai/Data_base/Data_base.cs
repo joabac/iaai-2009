@@ -64,8 +64,8 @@ namespace iaai.Data_base
         /// </summary>
         /// <param name="dni"></param>
         /// <returns>
-        /// true: si no lo encontro
-        /// false: si lo encontro
+        /// true: si no se encuentra
+        /// false: si se encuentra
         /// </returns>
         public bool buscarDniAlumno(string dni)
         {
@@ -97,12 +97,11 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Se valida que no exista el responsable en la base de datos.
+        /// Método que retorna el DNI del responsable 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">int: id_responsable</param>
         /// <returns>
-        /// true: si no lo encontro
-        /// false: si lo encontro
+        /// string: DNI responsable
         /// </returns>
         public string obtenerDniResponsable(int id)
         {
@@ -138,9 +137,9 @@ namespace iaai.Data_base
        /// </summary>
        /// <param name="dni"></param>
        /// <returns>
-       /// true: si no lo encontro
-       /// false: si lo encontro
-       /// </returns>
+        /// true: si no se encuentra
+        /// false: si se encuentra
+        /// </returns>
         public bool buscarDniResponsable(string dni)
         {
             try
@@ -170,12 +169,12 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Da de alta un alumno en la base de datos
+        /// Método que da de alta un alumno en la base de datos
         /// </summary>
         /// <param name="a"></param>
         /// <returns>
-        /// true: si se subio a la base de datos
-        /// false:si no lo subio a la base de datos
+        /// true: si se subio correctamente a la base de datos
+        /// false:si no fue subido a la base de datos
         /// </returns>
         public bool altaAlumno(Alumno a)
         {
@@ -203,12 +202,12 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Da de alta un responsable en la base de datos
+        /// Método que da de alta un responsable en la base de datos
         /// </summary>
         /// <param name="r"></param>
         /// <returns>
-        /// true: si se subio a la base de datos
-        /// false:si no lo subio a la base de datos
+        /// true: si fue subido correctamente a la base de datos
+        /// false:si no fue subido a la base de datos
         /// </returns>
         public bool altaResponsable(Responsable r)
         {
@@ -232,13 +231,14 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Busca un responsable especificando una porcion de consulta SQL
+        /// Busca un responsable en base de datos
         /// </summary>
         /// <param name="consulta">
-        /// consulta: 
+        /// consulta: string con la condición de búsqueda en la base de datos para recuperar los datos de los responsables
         /// </param>
         /// <returns>
-        /// ?
+        /// List<List<string>>: lista con datos de los responsables que son recuperados según 
+        /// las condiciones dadas en el parámetro "consulta".
         /// </returns>
         public List<List<string>> buscarResponsable(string consulta)
         {
@@ -275,17 +275,17 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Modifica un alumno en la base de datos
+        /// Método que modifica un alumno en la base de datos
         /// </summary>
         /// <param name="alumno">
-        /// Se debe ingresar un instancia de Alumno
+        /// Objeto Alumno con los datos modificados.
         /// </param>
         /// <param name="dni_viejo">
-        /// Se espera el dni registrado en base actualmente
+        /// Se espera el dni registrado en base para indexar la modificación en base de datos
         /// </param>
         /// <returns>
-        /// {true= si se dio la modificación del alumno}  
-        /// {false= si no se pudo modificar}
+        /// true: si fue modificado el alumno
+        /// false: si no fue modificado el alumno.
         /// </returns>
         public bool modificarAlumno(Alumno alumno, string dni_viejo)
         {
@@ -321,17 +321,17 @@ namespace iaai.Data_base
         }
 
         /// <summary>
-        /// Modifica un responsable en la base de datos
+        /// Método que modifica un responsable en la base de datos
         /// </summary>
         /// <param name="responsable">
-        /// Se debe ingresar un instancia de Responsable
+        /// Obejto Responsable con los datos modificados
         /// </param>
         /// <param name="dni_viejo">
-        /// Se espera el dni registrado actualmente en base de datos
+        /// Se espera el dni registrado en base para indexar la modificación en base de datos
         /// </param>
         /// <returns>
-        /// {true= si se dio la modificación del responsable}  
-        /// {false= si no se pudo modificar}
+        /// true: si fue modificado el responsable
+        /// false: si no fue modificado el responsable
         /// </returns>
         public bool modificarResponsable(Responsable responsable, string dni_viejo)
         {
@@ -370,8 +370,9 @@ namespace iaai.Data_base
         /// Busca un alumno en base de datos
         /// </summary>
         /// <param name="dni">recibe el dni del alumno a buscar</param>
-        /// <returns>Alumno si encontro el alumno buscado
-        /// null: si no encontro el dni solicitado</returns>
+        /// <returns>
+        /// Alumno: si encontro el alumno buscado
+        /// null: si no encontro el alumno según el dni solicitado</returns>
         public Alumno Buscar_Alumno(string dni)
         {
             Alumno alumno = new Alumno();
@@ -453,8 +454,9 @@ namespace iaai.Data_base
         /// Busca un responsable en base de datos
         /// </summary>
         /// <param name="dni">recibe el dni del responsable a buscar</param>
-        /// <returns>Responsable si encontro el responsable buscado
-        /// null: si no encontro el dni solicitado</returns>
+        /// <returns>
+        /// Responsable: si encontro el responsable buscado
+        /// null: si no encontro el responsable según el dni solicitado</returns>
         public Responsable Buscar_Responsable(string dni)
         {
             Responsable responsable = new Responsable();
@@ -610,7 +612,8 @@ namespace iaai.Data_base
         /// Ejecuta comando del tipo del especificando consulta completa
         /// </summary>
         /// <param name="consulta">recibe cualquier tipod e consulta en formato string</param>
-        /// <returns>true: pudo completar la consulta 
+        /// <returns>
+        /// true: pudo completar la consulta 
         /// false: no pudo completar consulta</returns>
         /// <remarks>Solo se utiliza para ejecutar consultas genericas o simples</remarks>
         public bool consulta(string consulta)
@@ -643,7 +646,7 @@ namespace iaai.Data_base
         }
 
         /// <summary>
-        /// Busca el consjunto de profesores dados de baja del sistema
+        /// Busca el conjunto de profesores dados de baja del sistema
         /// </summary>
         /// <returns>Lista de profesores inactivos</returns>
         public List<Profesor> Buscar_Profesor_inactivos()
@@ -913,9 +916,11 @@ namespace iaai.Data_base
         /// <summary>
         /// Marca como eliminado un alumno de la base de datos
         /// </summary>
-        /// <param name="dni">String del alumno a elimnar</param>
+        /// <param name="dni">String: DNI del alumno a elimnar</param>
         /// <remarks>este debe ser valido y existir en la base</remarks>
-        /// <returns>true: si pudo eliminar false: si no pudo realizar la eliminacion</returns>
+        /// <returns>
+        /// true: si pudo eliminar 
+        /// false: si no pudo realizar la eliminación</returns>
         public bool eliminarAlumno(String dni)
         {
             try
@@ -945,9 +950,11 @@ namespace iaai.Data_base
         /// <summary>
         /// Marca como eliminado un responsable de la base de datos
         /// </summary>
-        /// <param name="dni">String del responsable a elimnar</param>
+        /// <param name="dni">String: DNI del responsable a elimnar</param>
         /// <remarks>este debe ser valido y existir en la base</remarks>
-        /// <returns>true: si pudo eliminar false: si no pudo realizar la eliminacion</returns>
+        /// <returns>
+        /// true: si pudo eliminar 
+        /// false: si no pudo realizar la eliminacion</returns>
         public bool eliminarResponsable(String dni)
         {
             try
@@ -976,12 +983,14 @@ namespace iaai.Data_base
         }
 
         /// <summary>
-        /// Borra de la base de datos responsable un responsable que fue dado de alta y posteriormente 
-        /// el alta del alumno no concluyó correctamente. (validando de que no haya ningún alumno referenciado por él)
+        /// Método que borra de la base de datos un responsable que fue dado de alta pero que luego
+        /// no fue asignado a ningún alumno, producto de cancelar el alta de un alumno o por haber dado de alta
+        /// más de un responsable en la carga de un alumno.
         /// </summary>
-        /// <param name="id">String del responsable a elimnar</param>
-        /// <returns>true: si pudo eliminar 
-        /// false: si no pudo realizar la eliminacion</returns>
+        /// <param name="id">String: id del responsable a elimnar</param>
+        /// <returns>
+        /// true: si se pudo eliminar 
+        /// false: si no se pudo realizar la eliminacion</returns>
         public bool deshacerResponsable(int id)
         {
             try
@@ -1098,7 +1107,7 @@ namespace iaai.Data_base
         /// <summary>
         /// Arma el listado de alumnos del curso pasado como parametro para la toma de asistencia
         /// </summary>
-        /// <param name="curso">int del curso del cual se quiere obtener el listado de alumnos</param>
+        /// <param name="curso">int: id del curso del cual se quiere obtener el listado de alumnos</param>
         /// <returns>
         /// List de Strings
         /// </returns>
@@ -1135,12 +1144,14 @@ namespace iaai.Data_base
         /// <summary>
         /// Valida que el responsable no tenga asociado un alumno
         /// </summary>
+        /// <remarks> Utilizado para deshacer la carga de un responsable que no fue asignado.
+        /// Se valida por seguridad, para no eliminar una referencia activa en la base de datos, quedando ésta inconsistente.</remarks>
         /// <param name="id">
-        /// Se debe ingresar un dni valido en formato String
+        /// int: dni valido.
         /// </param>
         /// <returns>
-        ///{true= si no tiene alumnos asociados}  
-        ///{false= si tiene alumnos asociados} 
+        ///true= si no tiene alumnos asociados
+        ///false= si tiene alumnos asociados
         /// </returns>
         internal bool validoEliminarResponsable(int id)
         {
@@ -2295,7 +2306,7 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// recupera cursos especiales
+        /// Método que recupera cursos especiales
         /// </summary>
         /// <param name="curso">id del curso especial a buscar</param>
         /// <returns>List de string de cursos especiales</returns>
@@ -2356,11 +2367,11 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Listado de materias
+        /// Método que retorna un Listado de materias
         /// </summary>
-        /// <param name="id_materia"></param>
-        /// <param name="turno"></param>
-        /// <returns></returns>
+        /// <param name="id_materia">string: id de la materia especificada</param>
+        /// <param name="turno">string: id del turno seleccionado</param>
+        /// <returns>Lsta de Materias</returns>
         public List<List<string>> getListadoMateria(string id_materia, string turno)
         {
             List<List<string>> listado = new List<List<string>>();
@@ -2646,10 +2657,10 @@ namespace iaai.Data_base
 
 
         /// <summary>
-        /// Retorna el listado de cursosEspeciales para un area en especial 
+        /// Mpetodo que retorna el listado de cursosEspeciales para un area en especial 
         /// </summary>
         /// <returns>
-        /// Retorna una lista de Cursos existentes asociados al area
+        /// Lista de Cursos
         /// </returns>
         public List<CursosEsp> getCursoEspecial(string area)
         {
