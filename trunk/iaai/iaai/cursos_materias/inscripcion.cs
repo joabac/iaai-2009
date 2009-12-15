@@ -286,7 +286,7 @@ namespace iaai.cursos_materias
                                         string turno_inscripto = db.obtener_turno(materia_actual.id_materia,nuevo.id_matricula);
                                         if(turno_inscripto.Contains(comboTurno.SelectedItem.ToString()))
                                         {
-                                        dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                                            dataGrid_Listado.Rows[dataGrid_Listado.RowCount - 1].DefaultCellStyle.BackColor = Color.LightBlue;
                                         }
                                         else
                                         {
