@@ -33,7 +33,7 @@ namespace iaai
         
         private void acercaDeIAAIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            MessageBox.Show(this,"Trabajo práctico: Metodos agiles 2009\r\n\r\nIntegrantes:\r\nBacigalupo, Joaquin\r\nMilesi, Matias\r\nMiserniuk, Nicolas\r\nIriarte Diego","Acerca de IAAI",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void altaAlumnoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -184,8 +184,11 @@ namespace iaai
             Inscripcion inscripcion = new Inscripcion();
             inscripcion.Parent = this.Parent;
             inscripcion.MdiParent = this;
+            
 
-            inscripcion.Show();
+            inscripcionesToolStripMenuItem.Enabled = false;
+            inscripcion.Show(this);
+            
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -193,6 +196,21 @@ namespace iaai
             this.Close();
         }
 
+
+        /// <summary>
+        /// Habilita el tol tip de inscripciones
+        /// </summary>
+        public void enable_inscripcion()
+        {
+            inscripcionesToolStripMenuItem.Enabled = true;
+        }
+
+        private void ayudaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string cadena = "C:/iaai/iaai/iaai/Resources/DocProject1.chm";
+            Help.ShowHelp(this,cadena);
+        }
+        
       
 
         

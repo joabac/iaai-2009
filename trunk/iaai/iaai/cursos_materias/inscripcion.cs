@@ -27,6 +27,8 @@ namespace iaai.cursos_materias
 #pragma warning disable
         List<Curso> listadoCursos = null;
 #pragma warning enable
+        Menu_inicial menuInicio;
+
 
         /// <summary>
         /// El alumno que se maneja dentro del formulario y sobre el cual se realizan 
@@ -92,7 +94,12 @@ namespace iaai.cursos_materias
 
                     
                 }
+                combo_profesorados.SelectedIndex = 0;
+                comboTurno.SelectedIndex = 0;
 
+                radioButtonPorDni.Checked = true;
+                radioButtonPorApellido.Checked = false;
+                panel1.Visible = false;
                 
             }
             catch(Exception excep){
@@ -100,12 +107,7 @@ namespace iaai.cursos_materias
                 MessageBox.Show(excep.Message,"Excepción",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
 
-            combo_profesorados.SelectedIndex = 0;
-            comboTurno.SelectedIndex = 0;
-
-            radioButtonPorDni.Checked = true;
-            radioButtonPorApellido.Checked = false;
-            panel1.Visible = false;
+            
         }
 
 
@@ -1611,19 +1613,31 @@ namespace iaai.cursos_materias
         private void bt_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            menuInicio.enable_inscripcion();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+            menuInicio.enable_inscripcion();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            menuInicio.enable_inscripcion();
         }
 
+        public void Show(Menu_inicial menu) 
+        {
+            menuInicio = menu;
+            this.Show();
+        }
 
+        private void Inscripcion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            menuInicio.enable_inscripcion();
+        }
         
        
 

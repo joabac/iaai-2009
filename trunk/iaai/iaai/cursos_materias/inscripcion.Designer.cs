@@ -1015,6 +1015,7 @@
             this.Text = "Inscripcion";
             this.Load += new System.EventHandler(this.Inscripcion_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buscar);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Inscripcion_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
