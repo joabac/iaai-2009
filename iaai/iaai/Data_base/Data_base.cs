@@ -631,7 +631,7 @@ namespace iaai.Data_base
                 if (this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
-                    MessageBox.Show("Error de escritura en base de Datos al dar de alta un profesor: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error de escritura en base de Datos al realizar consulta: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
@@ -1970,20 +1970,13 @@ namespace iaai.Data_base
                                 MyCommand.ExecuteNonQuery();
                             }
                             
-                            //else
-                            //{
-                              //  MyCommand.CommandText = ("delete from registro_materia where id_matricula = " + matricula + " and id_materia = " + materia_actual.id_materia);
-                               // MyCommand.ExecuteNonQuery();
-                            
-                           // }
-                            //transaccion.Commit();
+                        
                         }
                         else{  //si quedara inscripto
 
                             if (disponible > 0)
                             {
-                                MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno," +
-                                                         " condicion) values " +
+                                MyCommand.CommandText = ("insert into registro_materia (id_matricula, id_materia, fecha, hora, id_turno,condicion) values " +
                                                          "(" + matricula + "," + materia_actual.id_materia + ",'" + DateTime.Now.Date.ToString("yyyy-MM-dd") +
                                                          "','" + DateTime.Now.ToString("HH:mm:ss") + "'," + materia_actual.get_id_turno(turno) +
                                                          ", 'inscripto' )");
@@ -3002,7 +2995,7 @@ namespace iaai.Data_base
 
 
 
-                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                
                 MyCommand.CommandText = "select id_registro_curso_especial,condicion " +
                                              "from registro_curso_especial " +
                                              "where id_matricula = " + matricula +

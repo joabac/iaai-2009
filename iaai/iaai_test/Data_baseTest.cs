@@ -1385,6 +1385,9 @@ namespace iaai_test
 
             Assert.AreEqual(actual, resultado);
 
+            //restauro el estado anterior
+            target.consulta("delete from matricula where id_alumno = 18 and id_curso_especial = 3");
+
         }
 
         /// <summary>
@@ -1409,6 +1412,7 @@ namespace iaai_test
 
             Assert.AreEqual(actual, resultado);
 
+            target.consulta("delete from matricula where id_alumno = 18 and id_curso = 11");
         }
 
         
@@ -1605,7 +1609,7 @@ namespace iaai_test
         [TestMethod()]
         public void condicionTest()
         {
-            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
             
             int id_mat = 1; 
             int id_matricula = 42; 
@@ -1638,17 +1642,34 @@ namespace iaai_test
         [TestMethod()]
         public void cambiarTurnoTest()
         {
-            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
             
-            int id_materia = 0; 
-            int matricula = 0; 
-            int id_turno_actual = 0; 
-            int id_turno_nuevo = 0; 
-            bool expected = false; 
+            int id_materia = 3; //una materia que tiene  dos turnos disponibles
+            int matricula = 42; //el alumno de prueba
+            int id_turno_actual = 3; 
+            int id_turno_nuevo = 6; 
+
+            string turno = target.obtener_turno(id_materia,42);
+
+            Assert.AreEqual("mañana",turno); //verificamos que esta en turno mañana
+
+            bool expected = true; 
             bool actual;
+            
+
+            //cambiamos el turno
             actual = target.cambiarTurno(id_materia, matricula, id_turno_actual, id_turno_nuevo);
+            
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+
+            turno = target.obtener_turno(id_materia, 42); //verificamos que se cambio el turno
+
+            Assert.AreEqual("noche",turno);
+
+
+            target.consulta("update registro_materia set id_turno = 3 where id_matricula = 42 and id_materia = 3 and id_turno = 6");
+
         }
 
         /// <summary>
@@ -2136,18 +2157,81 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirMateriasTest()
         {
-            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            target.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+
+            Alumno nuevo = new Alumno();
+            nuevo.id_alumno = 18;
+            nuevo.id_matricula = 42;
+            string turno = string.Empty;
+            int id_profesorado = 1; 
+
+            //armo materias para pasar como parametro
+            List<Materia> mat_select = new List<Materia>();
+            Materia materia1 = new Materia();
+            materia1.turno_materia = target.getTurno(4);
+            materia1.id_materia = 4;
+            materia1.turno = "tarde";
+            materia1.id_profesorado = 1;
+            materia1.nivel = 2;
+            materia1.nombre = "TEORÍA Y PRÁCTICA DE LA TRADUCCIÓN";
+            materia1.condicion = "inscripto";
+
+            Materia materia2 = new Materia();
+            materia2.turno_materia = target.getTurno(6);
+            materia2.id_materia = 6;
+            materia2.turno = "tarde";
+            materia2.id_profesorado = 1;
+            materia2.nivel = 2;
+            materia2.nombre = "GRAMÁTICA INGLESA III";
+            materia2.condicion = "inscripto";
+
+            mat_select.Add(materia1);
+            mat_select.Add(materia2);
+
+
+            //armo el resultado esperado
+            Inscripto resultado = new Inscripto();
+            resultado.condicion = "inscripto";
+            resultado.materia_inscripta = mat_select[0];
+            resultado.turno = "tarde";
+
+            Inscripto resultado2 = new Inscripto();
+            resultado2.condicion = "condicional";
+            resultado2.materia_inscripta = mat_select[1];
+            resultado2.turno = "tarde";
+
+             
+            List<Inscripto> expected = new List<Inscripto>();
+            expected.Add(resultado);
+            expected.Add(resultado2);
+
+
+            List<Inscripto> actual;
+            
+            //inscribo las materias
+            actual = target.inscribirMaterias(nuevo, id_profesorado, mat_select, "tarde");
+              
+            int indice = 0;
+
+            //chequeo las materias
+            foreach(Inscripto elemento in actual)
+            {
+                Assert.AreEqual(expected[indice].condicion, elemento.condicion);
+                Assert.AreEqual(expected[indice].materia_inscripta.id_materia, elemento.materia_inscripta.id_materia);
+                Assert.AreEqual(expected[indice].turno, elemento.turno);
+                
+                indice++;
+            }
             
 
-            Alumno nuevo = null; 
-            int id_profesorado = 0; 
-            List<Materia> mat_select = null; 
-            string turno = string.Empty; 
-            List<Inscripto> expected = null; 
-            List<Inscripto> actual;
-            actual = target.inscribirMaterias(nuevo, id_profesorado, mat_select, turno);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            //vuelvo la base de datos a su estado original
+            foreach(Inscripto elemento in actual)
+            {
+                
+                target.consulta("delete from registro_materia where id_inscripcion_materia = " + elemento.id_inscripcion_materia);
+            
+            }
         }
 
         /// <summary>
@@ -2156,16 +2240,57 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirCursosEspecialesTest()
         {
-            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
-            
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            target.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
 
-            Alumno nuevo = null; 
-            CursosEsp curso_select = null; 
-            InscriptoCursoEsp expected = null; 
+
+            Alumno nuevo = new Alumno();
+            nuevo.id_alumno = 18;
+            nuevo.id_matricula = 42;
+            
+            //++++++++++++++++++++ Genero cursos para inscribir ++++++++++++++
+            CursosEsp curso_select = new CursosEsp();
+            curso_select.id_curso = 3;
+            curso_select.area = 2;
+            curso_select.condicion = "inscripto";
+
+            CursosEsp curso_select2 = new CursosEsp();
+            curso_select2.id_curso = 4;
+            curso_select2.area = 2;
+            curso_select2.condicion = "inscripto";
+
+
+            //+++++++++++++++++++ Genero el resultado esperado ++++++++++++++++
+            InscriptoCursoEsp expected = new InscriptoCursoEsp();
+            expected.curso_inscripto = curso_select;
+            expected.condicion = "inscripto";      //deberia quedar inscripto
+
+            InscriptoCursoEsp expected2 = new InscriptoCursoEsp();
+            expected2.curso_inscripto = curso_select2;
+            expected2.condicion = "condicional";   //deberia quedar condicional
+
             InscriptoCursoEsp actual;
+            InscriptoCursoEsp actual2;
+
+            //ejecuto el metodo
             actual = target.inscribirCursosEspeciales(nuevo, curso_select);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            actual2 = target.inscribirCursosEspeciales(nuevo, curso_select2);
+
+            //testeo los resultados
+            Assert.AreNotEqual(null, actual);
+            Assert.AreEqual(expected.condicion, actual.condicion);
+            Assert.AreEqual(expected.curso_inscripto.id_curso, actual.curso_inscripto.id_curso);
+
+            Assert.AreNotEqual(null, actual2);
+            Assert.AreEqual(expected2.condicion, actual2.condicion);
+            Assert.AreEqual(expected2.curso_inscripto.id_curso, actual2.curso_inscripto.id_curso);
+
+            target.consulta("delete from registro_curso_especial where id_registro_curso_especial = "+actual.id_inscripcion_curso+
+                                " and id_curso_especial = " + actual.curso_inscripto.id_curso);
+
+            target.consulta("delete from registro_curso_especial where id_registro_curso_especial = " + actual2.id_inscripcion_curso +
+                                " and id_curso_especial = " + actual2.curso_inscripto.id_curso);
+
         }
 
         /// <summary>
@@ -2181,9 +2306,9 @@ namespace iaai_test
             Curso curso_select = null; 
             Inscripto_curso expected = null; 
             Inscripto_curso actual;
-            //actual = target.inscribirCursos(nuevo, curso_select);
-            //Assert.AreEqual(expected, actual);
-            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            actual = target.inscribirCursos(nuevo, curso_select);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
         /// <summary>
