@@ -923,13 +923,39 @@ namespace iaai.Data_base
         /// false: si no pudo realizar la eliminación</returns>
         public bool eliminarAlumno(String dni)
         {
+            List<string> matriculas = new List<string>();
             try
             {
                 this.open_db();
-                /*MySqlCommand MyReadCommand("select id_alumno from alumno where dni like '" + dni + "'", conexion);
+
+                //extraigo los id_matricula del alumno a eliminar
+                MySqlCommand MyReadCommand = new MySqlCommand("select m.id_matricula from matricula as m, alumno as a where a.dni = '" + dni + "' and a.id_alumno = m.id_alumno", conexion);
                 MySqlDataReader reader = MyReadCommand.ExecuteReader();
-                int id_alumn = Convert.ToInt32(reader[0].ToString());
-                */
+                //seteo como inactivo al alumno en todas las materias, cursos y demás donde esté inscripto el alumno
+                while (reader.Read())
+                {
+                    matriculas.Add(reader[0].ToString());
+                }
+                reader.Close();
+                MySqlCommand MyCommand2;
+                MySqlCommand MyCommand3;
+                MySqlCommand MyCommand4;
+                foreach(string mat in matriculas)
+                {
+                    MyCommand2 = new MySqlCommand("update registro_curso set condicion = 'inactivo' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand2.ExecuteNonQuery();
+
+                    MyCommand3 = new MySqlCommand("update registro_curso_especial set condicion ='inactivo' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand3.ExecuteNonQuery();
+
+                    MyCommand4 = new MySqlCommand("update registro_materia set condicion = 'inactivo' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand4.ExecuteNonQuery();
+
+                }
+
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 0 " +
                                                            "where dni like '" + dni + "'", conexion);
                 MyCommand.ExecuteNonQuery();
