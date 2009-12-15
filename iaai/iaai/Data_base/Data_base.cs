@@ -237,7 +237,7 @@ namespace iaai.Data_base
         /// consulta: string con la condición de búsqueda en la base de datos para recuperar los datos de los responsables
         /// </param>
         /// <returns>
-        /// List<List<string>>: lista con datos de los responsables que son recuperados según 
+        /// List: lista con datos de los responsables que son recuperados según 
         /// las condiciones dadas en el parámetro "consulta".
         /// </returns>
         public List<List<string>> buscarResponsable(string consulta)
