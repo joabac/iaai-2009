@@ -265,7 +265,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModificarResponsable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModificarProfesor";
+            this.Text = "Modificar Responsable";
             this.ResumeLayout(false);
             this.PerformLayout();
 
