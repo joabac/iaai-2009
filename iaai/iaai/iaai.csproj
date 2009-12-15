@@ -292,6 +292,7 @@
     <Content Include="Documentos de referencia\codigo fuente\validar_e_mail.txt" />
     <Content Include="icono.ico" />
     <None Include="Resources\Aethlet_Reprise_by_archanN.jpg" />
+    <None Include="Resources\DocProject1.chm" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
