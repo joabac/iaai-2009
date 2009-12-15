@@ -86,6 +86,8 @@ namespace iaai.profesor
                 {
                     MessageBox.Show("El profesor no ha sido eliminado");
                 }
+
+                
             }
 
         }
