@@ -2246,18 +2246,22 @@ namespace iaai_test
 
             Alumno nuevo = new Alumno();
             nuevo.id_alumno = 18;
-            nuevo.id_matricula = 42;
+            
             
             //++++++++++++++++++++ Genero cursos para inscribir ++++++++++++++
             CursosEsp curso_select = new CursosEsp();
             curso_select.id_curso = 3;
             curso_select.area = 2;
             curso_select.condicion = "inscripto";
+            curso_select.nombre = "Pintura al oleo";
+            
 
             CursosEsp curso_select2 = new CursosEsp();
-            curso_select2.id_curso = 4;
+            curso_select2.id_curso = 5;
             curso_select2.area = 2;
             curso_select2.condicion = "inscripto";
+            curso_select2.nombre = "Pintura paisajes";
+
 
 
             //+++++++++++++++++++ Genero el resultado esperado ++++++++++++++++
@@ -2273,10 +2277,19 @@ namespace iaai_test
             InscriptoCursoEsp actual2;
 
             //ejecuto el metodo
+            nuevo.id_matricula = target.generarMatriculaCursoEspecial(nuevo.id_alumno, 3); //genero la matricula para el curso
+            int matricula1 = nuevo.id_matricula;
+
             actual = target.inscribirCursosEspeciales(nuevo, curso_select);
+
+            //ejecuto la inscripcion del segundo curso
+            nuevo.id_matricula = target.generarMatriculaCursoEspecial(nuevo.id_alumno, 5); //genero la matricula para este curso
+            int matricula2 = nuevo.id_matricula;
+
             actual2 = target.inscribirCursosEspeciales(nuevo, curso_select2);
 
-            //testeo los resultados
+
+            //+++++++++++++++++++++++++++++++  testeo los resultados +++++
             Assert.AreNotEqual(null, actual);
             Assert.AreEqual(expected.condicion, actual.condicion);
             Assert.AreEqual(expected.curso_inscripto.id_curso, actual.curso_inscripto.id_curso);
@@ -2285,12 +2298,16 @@ namespace iaai_test
             Assert.AreEqual(expected2.condicion, actual2.condicion);
             Assert.AreEqual(expected2.curso_inscripto.id_curso, actual2.curso_inscripto.id_curso);
 
+
+
+            //restauro la base a su estado anterior
             target.consulta("delete from registro_curso_especial where id_registro_curso_especial = "+actual.id_inscripcion_curso+
                                 " and id_curso_especial = " + actual.curso_inscripto.id_curso);
+            target.consulta("delete from matricula where id_matricula = " + matricula1);
 
             target.consulta("delete from registro_curso_especial where id_registro_curso_especial = " + actual2.id_inscripcion_curso +
                                 " and id_curso_especial = " + actual2.curso_inscripto.id_curso);
-
+            target.consulta("delete from matricula where id_matricula = " + matricula2);
         }
 
         /// <summary>
@@ -2299,16 +2316,72 @@ namespace iaai_test
         [TestMethod()]
         public void inscribirCursosTest()
         {
-            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;"); // TODO: Inicializar en un valor adecuado
-            
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            target.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
 
-            Alumno nuevo = null; 
-            Curso curso_select = null; 
-            Inscripto_curso expected = null; 
+
+            Alumno nuevo = new Alumno();
+            nuevo.id_alumno = 18;
+
+
+            //++++++++++++++++++++ Genero cursos para inscribir ++++++++++++++
+            Curso curso_select = new Curso();
+            curso_select.id_curso = 14;
+            curso_select.id_area = 3;
+            curso_select.condicion = "inscripto";
+            curso_select.nombre = "Danzas Españolas Inicial";
+
+            Curso curso_select2 = new Curso();
+            curso_select2.id_curso = 16;
+            curso_select2.id_area = 3;
+            curso_select2.condicion = "inscripto";
+            curso_select2.nombre = "Danzas Folkloricas Inicial";
+
+
+            //+++++++++++++++++++ Genero el resultado esperado ++++++++++++++++
+            Inscripto_curso expected = new Inscripto_curso();
+            expected.curso_inscripto = curso_select;
+            expected.condicion = "inscripto";      //deberia quedar inscripto
+
+            Inscripto_curso expected2 = new Inscripto_curso();
+            expected2.curso_inscripto = curso_select2;
+            expected2.condicion = "condicional";   //deberia quedar condicional
+
             Inscripto_curso actual;
+            Inscripto_curso actual2;
+
+            //ejecuto el metodo
+            nuevo.id_matricula = target.generarMatriculaCurso(nuevo.id_alumno, 14); //genero la matricula para el curso
+            int matricula1 = nuevo.id_matricula;
+
             actual = target.inscribirCursos(nuevo, curso_select);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+
+            //ejecuto la inscripcion del segundo curso
+            nuevo.id_matricula = target.generarMatriculaCurso(nuevo.id_alumno, 16); //genero la matricula para este curso
+            int matricula2 = nuevo.id_matricula;
+
+            actual2 = target.inscribirCursos(nuevo, curso_select2);
+
+
+            //+++++++++++++++++++++++++++++++  testeo los resultados +++++
+            Assert.AreNotEqual(null, actual);
+            Assert.AreEqual(expected.condicion, actual.condicion);
+            Assert.AreEqual(expected.curso_inscripto.id_curso, actual.curso_inscripto.id_curso);
+
+            Assert.AreNotEqual(null, actual2);
+            Assert.AreEqual(expected2.condicion, actual2.condicion);
+            Assert.AreEqual(expected2.curso_inscripto.id_curso, actual2.curso_inscripto.id_curso);
+
+
+
+            //restauro la base a su estado anterior
+            target.consulta("delete from registro_curso where id_registro_curso = " + actual.id_inscripcion_curso +
+                                " and id_curso = " + actual.curso_inscripto.id_curso);
+            target.consulta("delete from matricula where id_matricula = " + matricula1);
+
+            target.consulta("delete from registro_curso where id_registro_curso = " + actual2.id_inscripcion_curso +
+                                " and id_curso = " + actual2.curso_inscripto.id_curso);
+            target.consulta("delete from matricula where id_matricula = " + matricula2);
         }
 
         /// <summary>

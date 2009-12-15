@@ -1947,7 +1947,7 @@ namespace iaai.Data_base
 
                         }
 
-                        if (disponible == 0)
+                        if (disponible <= 0)
                         { //si el disponible es 0 
                             DialogResult resultado;
                             if (materia_actual.condicion.Contains("condicional"))
@@ -2528,7 +2528,7 @@ namespace iaai.Data_base
                     disponible = verificarCupoCurso(curso_select.id_curso);
                 }
 
-                if (disponible == 0)
+                if (disponible <= 0)
                 { //si el disponible es 0 
                     DialogResult resultado;
                     if (curso_select.condicion.Contains("condicional"))
@@ -2943,7 +2943,7 @@ namespace iaai.Data_base
                     disponible = verificarCupoCursoEspecial(curso_select.id_curso);
                 }
 
-                if (disponible == 0)
+                if (disponible <= 0)
                 { //si el disponible es 0 
                     DialogResult resultado;
                     if (curso_select.condicion.Contains("condicional"))
