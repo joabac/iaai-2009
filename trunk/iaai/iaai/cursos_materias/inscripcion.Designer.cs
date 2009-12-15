@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
@@ -107,6 +107,12 @@
             this.reporte_inscripcion = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso_especial = new System.Drawing.Printing.PrintDocument();
             this.reporte_curso = new System.Drawing.Printing.PrintDocument();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Listado)).BeginInit();
@@ -287,8 +293,8 @@
             this.dataGrid_Listado.AllowUserToDeleteRows = false;
             this.dataGrid_Listado.AllowUserToResizeColumns = false;
             this.dataGrid_Listado.AllowUserToResizeRows = false;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_Listado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_Listado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGrid_Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -371,6 +377,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.dataGrid_cursos);
             this.tabPage2.Controls.Add(this.buttonInscribir);
@@ -400,8 +409,8 @@
             // 
             this.dataGrid_cursos.AllowUserToAddRows = false;
             this.dataGrid_cursos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_cursos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGrid_cursos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid_cursos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid_cursos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -416,8 +425,8 @@
             this.dataGrid_cursos.Location = new System.Drawing.Point(198, 3);
             this.dataGrid_cursos.MultiSelect = false;
             this.dataGrid_cursos.Name = "dataGrid_cursos";
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGrid_cursos.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGrid_cursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrid_cursos.Size = new System.Drawing.Size(370, 342);
             this.dataGrid_cursos.TabIndex = 2;
@@ -431,7 +440,7 @@
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewCheckBoxColumn1.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn1.Width = 60;
+            this.dataGridViewCheckBoxColumn1.Width = 61;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -524,6 +533,9 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(this.label28);
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.dataGridView_CurEsp);
             this.tabPage3.Controls.Add(this.button_Inscribe_Curso_Especial);
@@ -550,8 +562,8 @@
             // 
             this.dataGridView_CurEsp.AllowUserToAddRows = false;
             this.dataGridView_CurEsp.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView_CurEsp.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView_CurEsp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_CurEsp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_CurEsp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -576,7 +588,7 @@
             this.inscribir.HeaderText = "Selección";
             this.inscribir.Name = "inscribir";
             this.inscribir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inscribir.Width = 60;
+            this.inscribir.Width = 61;
             // 
             // nombre_curso_esp
             // 
@@ -827,7 +839,7 @@
             this.label11.Location = new System.Drawing.Point(2, 15);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
-            this.label11.TabIndex = 69;
+            this.label11.TabIndex = 1;
             this.label11.Text = "Nombre";
             // 
             // nombre
@@ -878,7 +890,7 @@
             this.panel_datos.Location = new System.Drawing.Point(6, 149);
             this.panel_datos.Name = "panel_datos";
             this.panel_datos.Size = new System.Drawing.Size(251, 205);
-            this.panel_datos.TabIndex = 8;
+            this.panel_datos.TabIndex = 0;
             // 
             // alta
             // 
@@ -902,6 +914,78 @@
             // reporte_curso
             // 
             this.reporte_curso.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print_reporte_curso);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(316, 348);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(66, 15);
+            this.label23.TabIndex = 14;
+            this.label23.Text = "No Inscripto";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Khaki;
+            this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(249, 348);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(64, 15);
+            this.label24.TabIndex = 13;
+            this.label24.Text = "Condicional";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(199, 348);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(49, 15);
+            this.label25.TabIndex = 12;
+            this.label25.Text = "Inscripto";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(315, 348);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(66, 15);
+            this.label26.TabIndex = 17;
+            this.label26.Text = "No Inscripto";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Khaki;
+            this.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(248, 348);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(64, 15);
+            this.label27.TabIndex = 16;
+            this.label27.Text = "Condicional";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(198, 348);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(49, 15);
+            this.label28.TabIndex = 15;
+            this.label28.Text = "Inscripto";
             // 
             // Inscripcion
             // 
@@ -1019,5 +1103,11 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
     }
 }
