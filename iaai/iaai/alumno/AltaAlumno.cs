@@ -127,15 +127,17 @@ namespace iaai.alumno
                 if (metodo.ValidarDni(dni.Text) == true)
                 {
                     //si el alumno ya fue dado de alta en el sistema
-                    if (!db.buscarDniAlumno(dni.Text))
+                    if (!db.buscarDniAlumno(dni.Text) && !db.esAlumnoActivo(dni.Text))
                     {
-                        string cadena = "El DNI del alumno a ingresar ya existe en Base de Datos, \n "+
-                            "en estado 'Inactivo'.\n"+
+                        string cadena = "El DNI del alumno a ingresar ya existe en Base de Datos, \n " +
+                            "en estado 'Inactivo'.\n" +
                             "¿Desea volver a activar este alumno?";
                         string titulo = "Alumno Existente en Base de Datos";
-                        if (MessageBox.Show(cadena,titulo, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                        if (MessageBox.Show(cadena, titulo, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
                         {
-                            error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
+                            //error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
+                            MessageBox.Show("El alumno ya fue dado de alta en el sistema.");
+                            return false;
                         }
                         else
                         {
@@ -145,8 +147,8 @@ namespace iaai.alumno
                                     "Las inscripciones antiguas pertenecientes a este \n" +
                                     "alumno tendran el estado CONDICIONAL. \n" +
                                     "Para modificarlas  deberá ingresar al formulario \n" +
-                                    "de Inscripciones.\n"+
-                                    "A continuación se mostrará, a modo de consulta, \n"+
+                                    "de Inscripciones.\n" +
+                                    "A continuación se mostrará, a modo de consulta, \n" +
                                     "los datos del alumno que acaba de activarse");
                                 Consulta_Alumno recuperado = new Consulta_Alumno(dni.Text);
                                 recuperado.Show();
@@ -156,7 +158,15 @@ namespace iaai.alumno
                                 return false;
 
                             }
-                       }
+                        }
+                    }
+                    else
+                    {
+                        if (!db.buscarDniAlumno(dni.Text) && db.esAlumnoActivo(dni.Text))
+                        {
+                            MessageBox.Show("El alumno ya fue dado de alta en el sistema.");
+                            return false;
+                        }
                     }
                 }
                 else

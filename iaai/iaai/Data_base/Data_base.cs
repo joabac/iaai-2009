@@ -95,6 +95,40 @@ namespace iaai.Data_base
             return true;
         }
 
+        /// <summary>
+        /// Método retorna si el alumno está como inactivo o activo.
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns>
+        /// true:si el alumno es activo (activo = 1)
+        /// flase:si el alumno es activo (activo = 1)</returns>
+        public bool esAlumnoActivo(string dni)
+        {
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni = '" + dni + "' and activo = '0'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+
+                if (MyDataReader.Read())
+                {
+                    conexion.Close();
+                    return false;
+                }
+                else
+                {
+                    conexion.Close();
+                    return true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al buscar el alumno: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return true;
+        }
 
         /// <summary>
         /// Método que retorna el DNI del responsable 
