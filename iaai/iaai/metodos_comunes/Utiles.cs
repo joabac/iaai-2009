@@ -193,6 +193,8 @@ namespace iaai.metodos_comunes
         {
             if (cadena == "")
                 return false;
+            if (cadena.Length > 50)
+                return false;
 
             bool valido = true;
 
@@ -221,6 +223,9 @@ namespace iaai.metodos_comunes
         public bool validar_Escuela_Año(String cadena)
         {
             if (cadena == "")
+                return false;
+
+            if (cadena.Length > 1)
                 return false;
 
             bool valido = true;
@@ -259,7 +264,8 @@ namespace iaai.metodos_comunes
         {
 
             bool valido = true;
-
+            if (cadena.Length > 100)
+                return false;
 
 
             foreach (char c in cadena)

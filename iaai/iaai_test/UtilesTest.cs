@@ -251,6 +251,18 @@ namespace iaai_test
             expected = true;
             actual = target.validar_Nombre_App(cadena);
             Assert.AreEqual(expected, actual);
+
+            //validación respecto a la longitud de la cadena (debe ser menor a 50)
+            cadena = "Anrés Ñares D`Luca Joaquin Gonzalez Navarro Eleazar";//51 caracteres
+            expected = false;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //validación respecto a la longitud de la cadena (debe ser menor a 50)
+            cadena = "Anrés Ñare D`Luca Joaquin Gonzalez Navarro Eleazar";//50 caracteres
+            expected = true;
+            actual = target.validar_Nombre_App(cadena);
+            Assert.AreEqual(expected, actual);
             
 
 
@@ -299,8 +311,22 @@ namespace iaai_test
             actual = target.validar_Direccion(cadena);
             Assert.AreEqual(expected, actual);
 
+            //validación en cuanto a la longitud de la cadena
+            cadena = "Anrés Ñares D`Luca Joaquin Gonzalez Navarro Eleazar Anrés Ñares D`Luca Joaquin Gonzalez Navarro Eleazar";//103 caracteres
+            expected = false;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //validación en cuanto a la longitud de la cadena
+            cadena = "Anrés Ñares D`Luca Joaquin Gonzalez Navarro Eleazar Anrés Ñare D`Luca Joaquin Gonzalez Navarro Eleaz";//100 caracteres
+            expected = true;
+            actual = target.validar_Direccion(cadena);
+            Assert.AreEqual(expected, actual);
+
             
         }
+
+
 
         /// <summary>
         ///Una prueba de validar_Telefono

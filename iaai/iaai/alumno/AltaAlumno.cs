@@ -221,20 +221,23 @@ namespace iaai.alumno
             
  
             //Validación nombre escuela
-            if (escuela_nombre.Text.Length > 0)
+            if (escuela_nombre.Text.Length > 0 && escuela_nombre.Text.Length <= 100)
             {
                 //si ingreso la escuela, controlo que ingrese el año de cursado
                 if(escuela_año.Text.Length == 0)
                     error = error + "Ingrese el año de cursado. \r\n";
                 else
                     if(!metodo.validar_Escuela_Año(escuela_año.Text))
-                        error = error + "Formato del año de cursado no válido\n              (Debe ingresar sólo números). \r\n";
+                        error = error + "Formato del año de cursado no válido\n              (Debe ingresar sólo un dígito). \r\n";
             } 
             else if (escuela_año.Text.Length > 0)
             {
                 if (!metodo.validar_Escuela_Año(escuela_año.Text))
                     error = error + "Formato incorrecto para el año de cursado. \r\n";
-                error = error + "Ingrese el nombre de la escuela. \n";
+                if (escuela_nombre.Text.Length <= 100) 
+                    error = error + "Ingrese el nombre de la escuela. \n";
+                else
+                    error = error + "Nombre de la escuela demasiado extenso. \n";
             }
 
             
