@@ -143,11 +143,11 @@ namespace iaai.alumno
                         {
                             if (db.activarAlumnoEliminado(dni.Text))
                             {
-                                MessageBox.Show("El alumno fue reactivado en el sistema. \n" +
+                                MessageBox.Show("El alumno fue reactivado en el sistema. \r\n" +
                                     "Las inscripciones antiguas pertenecientes a este \n" +
-                                    "alumno tendran el estado CONDICIONAL. \n" +
+                                    "alumno tendran el estado CONDICIONAL. \r\n" +
                                     "Para modificarlas  deberá ingresar al formulario \n" +
-                                    "de Inscripciones.\n" +
+                                    "de Inscripciones.\r\n" +
                                     "A continuación se mostrará, a modo de consulta, \n" +
                                     "los datos del alumno que acaba de activarse");
                                 Consulta_Alumno recuperado = new Consulta_Alumno(dni.Text);
@@ -155,8 +155,12 @@ namespace iaai.alumno
                                 if (Owner != null)
                                     Owner.Enabled = true;
                                 this.Close();
-                                return false;
+                                return true; //se activo con exito
 
+                            }
+                            else 
+                            { 
+                                return false; 
                             }
                         }
                     }
@@ -442,7 +446,10 @@ namespace iaai.alumno
 
             InitializeComponent();
 
+                
                 db.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+                
+
                 apellido.Text = datos[0];
                 nombre.Text = datos[1];
                 dni.Text = datos[2];
