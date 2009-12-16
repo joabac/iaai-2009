@@ -217,7 +217,7 @@ namespace iaai.alumno
 
             
             //Validación nombre escuela
-            if (escuela_nombre.Text.Length > 0)
+            if (escuela_nombre.Text.Length > 0 && escuela_nombre.Text.Length <= 100)
             {
                 //si ingreso la escuela, controlo que ingrese el año de cursado
                 if (escuela_año.Text.Length == 0)
@@ -230,7 +230,10 @@ namespace iaai.alumno
             {
                 if (!metodo.validar_Escuela_Año(escuela_año.Text))
                     error = error + "Formato incorrecto para el año de cursado. \r\n";
-                error = error + "Ingrese el nombre de la escuela. \n";
+                if (escuela_nombre.Text.Length <= 100)
+                    error = error + "Ingrese el nombre de la escuela. \n";
+                else
+                    error = error + "Nombre de la escuela demasiado extenso. \n";
             }
             bool validar = fecha_nacimiento.Text.Contains(' ');
             if (!validar)//si la fecha esta ingresada
