@@ -422,7 +422,30 @@ namespace iaai.alumno
             return exito;
         }
 
-        
+
+        /// <summary>
+        /// Utilizar solo para realizacion de pruebas 
+        /// </summary>
+        /// <param name="datos"></param>
+        public AltaAlumno(List<string> datos )
+        {
+
+            InitializeComponent();
+
+                db.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+                apellido.Text = datos[0];
+                nombre.Text = datos[1];
+                dni.Text = datos[2];
+                fecha_nacimiento.Text = datos[3];
+                telefono_carac.Text = datos[4];
+                telefono_numero.Text = datos[5];
+                direccion.Text = datos[6];
+                email.Text = datos[7];
+                escuela_nombre.Text = datos[8];
+                escuela_año.Text = datos[9];
+            
+        }
+
 
     }
 }
