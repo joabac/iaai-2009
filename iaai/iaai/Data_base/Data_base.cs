@@ -912,6 +912,67 @@ namespace iaai.Data_base
             return true;
             
         }
+        /// <summary>
+        /// Método que reactiva un alumno dado de baja en el sistema, ya que sus datos perduran en dicha Base de datos.
+        /// Éste método setea las materias a las que el alumno se había inscripto pero con el estado "condicional"
+        /// </summary>
+        /// <param name="dni">string: dni válido de un alumno en base de datos (inactivo)</param>
+        public Boolean activarAlumnoEliminado(string dni)
+        {
+            List<string> matriculas = new List<string>();
+            try
+            {
+                this.open_db();
+
+                //extraigo los id_matricula del alumno a reactivar
+                MySqlCommand MyReadCommand = new MySqlCommand("select m.id_matricula from matricula as m, alumno as a where a.dni = '" + dni + "' and a.id_alumno = m.id_alumno and a.activo = 0", conexion);
+                MySqlDataReader reader = MyReadCommand.ExecuteReader();
+                // cargo la lista de matrículas que tiene el alumno a reactivar.
+                while (reader.Read())
+                {
+                    matriculas.Add(reader[0].ToString());
+                }
+                reader.Close();
+                MySqlCommand MyCommand2;
+                MySqlCommand MyCommand3;
+                MySqlCommand MyCommand4;
+                //seteo como condicional al alumno en todas las materias, cursos y demás donde haya estado inscripto.
+                foreach (string mat in matriculas)
+                {
+                    MyCommand2 = new MySqlCommand("update registro_curso set condicion = 'condicional' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand2.ExecuteNonQuery();
+
+                    MyCommand3 = new MySqlCommand("update registro_curso_especial set condicion ='condicional' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand3.ExecuteNonQuery();
+
+                    MyCommand4 = new MySqlCommand("update registro_materia set condicion = 'condicional' " +
+                                                             "where id_matricula like '" + mat + "'", conexion);
+                    MyCommand4.ExecuteNonQuery();
+
+                }
+
+                MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 1 " +
+                                                           "where dni like '" + dni + "'", conexion);
+                MyCommand.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            return true;
+
+        }
+
 
         /// <summary>
         /// Marca como eliminado un alumno de la base de datos

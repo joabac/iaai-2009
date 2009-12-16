@@ -24,6 +24,38 @@ namespace iaai.alumno
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Constructor de la clase Consulta_Alumno
+        /// </summary>
+        /// <param name="dni_reactivado">string: dni valido del alumno reactivado</param>
+        public Consulta_Alumno(string dni_reactivado)
+        {
+            InitializeComponent();
+            //si el formato del dni es correcto
+            if (metodo.ValidarDni(dni_reactivado) == true)
+            {
+                //si el alumno ya fue dado de alta en el sistema
+                if (!db.buscarDniAlumno(dni_reactivado))
+                {
+                    alumno = db.Buscar_Alumno(dni_reactivado);
+                    //asigno los datos al objeto Alumno
+                    nombre.Text = alumno.getNombre();
+                    apellido.Text = alumno.getApellido();
+                    dni.Text = alumno.getDni();
+                    fecha_nacimiento.Text = alumno.getFecha_nac().ToString();
+                    if (!alumno.getTelefono_carac().ToString().Equals("0"))
+                        telefono_carac.Text = alumno.getTelefono_carac().ToString();
+                    telefono_numero.Text = alumno.getTelefono_numero().ToString();
+                    direccion.Text = alumno.getDireccion();
+                    escuela_nombre.Text = alumno.getEscuela_nombre();
+                    if (!alumno.getEscuela_año().ToString().Equals("0"))
+                        escuela_año.Text = alumno.getEscuela_año().ToString();
+                    if (alumno.getEmail() != null)
+                        email.Text = alumno.getEmail();
+
+                }
+            }
+        }
 
 
         private void Consulta_Alumno_Load(object sender, EventArgs e)
