@@ -82,6 +82,7 @@ namespace iaai_test
             esperado = false;
             Assert.AreEqual(esperado, formulario.cargar());
             formulario.Dispose();
+            datos_A_Cargar.Clear();
 
 
             //un alumno valido
