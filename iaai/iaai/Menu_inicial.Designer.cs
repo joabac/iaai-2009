@@ -244,14 +244,14 @@ namespace iaai
             // ayudaToolStripMenuItem1
             // 
             this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
-            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
-            this.ayudaToolStripMenuItem1.Text = "Ayuda";
+            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.ayudaToolStripMenuItem1.Text = "Referencia de Codigo";
             this.ayudaToolStripMenuItem1.Click += new System.EventHandler(this.ayudaToolStripMenuItem1_Click);
             // 
             // acercaDeIAAIToolStripMenuItem
             // 
             this.acercaDeIAAIToolStripMenuItem.Name = "acercaDeIAAIToolStripMenuItem";
-            this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.acercaDeIAAIToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.acercaDeIAAIToolStripMenuItem.Text = "Acerca de IAAI";
             this.acercaDeIAAIToolStripMenuItem.Click += new System.EventHandler(this.acercaDeIAAIToolStripMenuItem_Click);
             // 
