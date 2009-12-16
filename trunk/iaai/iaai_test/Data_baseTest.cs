@@ -2433,16 +2433,19 @@ namespace iaai_test
         public void getMateriasAlumnoTest()
         {
             Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
-            
+            target.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
 
             int id_profesorado = 1; 
             int id_alumno = 18; 
-            int expected = 2;  //solo 1 porque en la otra esta condicional
+            int expected = 2;  
 
             List<Materia> actual;
             actual = target.getMateriasAlumno(id_profesorado, id_alumno);
             Assert.AreEqual(expected, actual.Count);
-            Assert.AreEqual("LENGUA INGLESA II", actual[0].nombre);
+            Assert.AreEqual("LENGUA INGLESA I", actual[0].nombre);
+            Assert.AreEqual("LENGUA INGLESA II", actual[1].nombre);
+
+
 
             
              id_profesorado = 2; 
