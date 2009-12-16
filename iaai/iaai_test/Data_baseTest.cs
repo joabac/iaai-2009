@@ -1905,7 +1905,7 @@ namespace iaai_test
             Assert.AreEqual(expected, actual);
 
 
-            id_curso = 4; //grabado en madera
+            id_curso = 2; //grabado en madera
             int not_expected = 0;  //deberia ser mayor a cero
             int not_expected2 = -1;
 
@@ -2645,7 +2645,7 @@ namespace iaai_test
             //alumno existente cargado para probar
             Alumno nuevo = new Alumno();
             nuevo.id_alumno = 149;
-            nuevo.setDni("44444444");
+            nuevo.setDni("98765432");
             
 
             //++++++++++++++++++++ Genero cursos donde está inscripto ++++++++++++++
