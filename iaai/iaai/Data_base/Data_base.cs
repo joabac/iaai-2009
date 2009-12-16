@@ -18,7 +18,7 @@ namespace iaai.Data_base
     
     class Data_base 
     {
-        string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
+        string cadena_coneccion = "server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;";
 
         
         MySqlConnection conexion = null;

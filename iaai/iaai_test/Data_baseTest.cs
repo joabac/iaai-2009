@@ -2516,5 +2516,196 @@ namespace iaai_test
 
             Assert.AreEqual(expect, actual);
         }
+
+
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //                                                            //
+        //               PRUEBAS ALUMNO (MAYOR DE EDAD)               //
+        //               ELIMINAR Y REACTIVAR                         //
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+        /// <summary>
+        ///Una prueba de inscribirCursos
+        ///</summary>
+        [TestMethod()]
+        public void eliminarReactivarAlumnoInscripto()
+        {
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            target.connectionString("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+
+            //alumno existente cargado para probar
+            Alumno nuevo = new Alumno();
+            nuevo.id_alumno = 149;
+            nuevo.setDni("44444444");
+            
+
+            //++++++++++++++++++++ Genero cursos donde está inscripto ++++++++++++++
+            Curso curso_select = new Curso();
+            curso_select.id_curso = 10;
+            curso_select.id_area = 2;
+            curso_select.condicion = "inscripto";
+            curso_select.nombre = "Artes Visuales Inicial";
+
+            Curso curso_select2 = new Curso();
+            curso_select2.id_curso = 11;
+            curso_select2.id_area = 2;
+            curso_select2.condicion = "condicional";
+            curso_select2.nombre = "Artes Visuales Especialización";
+
+            //++++++++++++++++++++ Genero cursos especiales donde está inscripto ++++++++++++++
+            CursosEsp curso_esp_select = new CursosEsp();
+            curso_esp_select.id_curso = 4;
+            curso_esp_select.area = 2;
+            curso_esp_select.condicion = "inscripto";
+            curso_esp_select.nombre = "Grabado en Madera";
+
+            CursosEsp curso_esp_select2 = new CursosEsp();
+            curso_esp_select2.id_curso = 5;
+            curso_esp_select2.area = 2;
+            curso_esp_select2.condicion = "condicional";
+            curso_esp_select2.nombre = "Pintura paisajes";
+
+            //++++++++++++++++++++ Genero materias donde está inscripto ++++++++++++++
+            Materia mat = new Materia();
+            mat.id_materia = 1;
+            mat.condicion = "inscripto";
+            mat.nombre = "LENGUA INGLESA I";
+            mat.id_profesorado = 1;
+            mat.turno = "mañana";
+
+            Materia mat2 = new Materia();
+            mat2.id_materia = 3;
+            mat2.condicion = "condicional";
+            mat2.nombre = "LENGUA INGLESA II";
+            mat2.id_profesorado = 1;
+            mat2.turno = "mañana";
+
+            Materia mat3 = new Materia();
+            mat3.id_materia = 5;
+            mat3.condicion = "condicional";
+            mat3.nombre = "FONOLOGÍA II PRÁCTICA DE LABORATORIO ";
+            mat3.id_profesorado = 1;
+            mat3.turno = "mañana";
+
+            //+++++++++++++++++++ Genero el resultado esperado ++++++++++++++++
+            //retorna un alumno si quien tiene el dni especificado se encuentra activo en base de datos
+            Alumno recupera_alumno = target.Buscar_Alumno(nuevo.getDni());
+
+            //si está inscripto al curso Artes Visuales inicial
+            bool recuperado_curso = target.inscriptoACurso(nuevo, curso_select, "inscripto");
+            //si está inscripto al curso Artes Visuales especialización
+            bool recuperado_curso2 = target.inscriptoACurso(nuevo, curso_select2, "condicional");
+
+            //si está inscripo al curso especial Grabado en madera
+            bool recuperado_curso_esp = target.esta_Inscripto_CursoEsp(curso_esp_select.id_curso, nuevo.id_alumno, "inscripto");
+            //si está inscripo al curso especial Pintura Paisajes
+            bool recuperado_curso_esp2 = target.esta_Inscripto_CursoEsp(curso_esp_select2.id_curso, nuevo.id_alumno, "condicional");
+
+            //si está inscripo a la materia LENGUA INGLESA I
+            bool recuperado_mat = target.esta_Inscripto_Materia(mat.id_profesorado, mat.id_materia, nuevo.id_alumno, mat.turno, "inscripto");
+            //si está inscripo a la materia LENGUA INGLESA II
+            bool recuperado_mat2 = target.esta_Inscripto_Materia(mat2.id_profesorado, mat2.id_materia, nuevo.id_alumno, mat2.turno, "condicional");
+            //si está inscripo a la materia FONOLOGÍA II PRÁCTICA DE LABORATORIO 
+            bool recuperado_mat3 = target.esta_Inscripto_Materia(mat3.id_profesorado, mat3.id_materia, nuevo.id_alumno, mat3.turno, "condicional");
+
+
+            //+++++++++++++++++++++++++++++++  testeo los resultados +++++
+            Assert.AreEqual(nuevo.getId_alumno(),recupera_alumno.getId_alumno());
+            Assert.AreEqual(true, recuperado_curso);
+            Assert.AreEqual(true, recuperado_curso2);
+            Assert.AreEqual(true, recuperado_curso_esp);
+            Assert.AreEqual(true, recuperado_curso_esp2);
+            Assert.AreEqual(true, recuperado_mat);
+            Assert.AreEqual(true, recuperado_mat2);
+            Assert.AreEqual(true, recuperado_mat3);
+
+            //Elimino el alumno de la base de datos
+            target.eliminarAlumno(nuevo.getDni());
+
+            recupera_alumno = target.Buscar_Alumno(nuevo.getDni());
+
+            //Compruebo que los estados de las materias y cursos donde estaba inscripto tengan la condición = "inactivo"
+            //si está inscripto al curso Artes Visuales inicial
+            recuperado_curso = target.inscriptoACurso(nuevo, curso_select, "inactivo");
+            //si está inscripto al curso Artes Visuales especialización
+            recuperado_curso2 = target.inscriptoACurso(nuevo, curso_select2, "inactivo");
+
+            //si está inscripo al curso especial Grabado en madera
+            recuperado_curso_esp = target.esta_Inscripto_CursoEsp(curso_esp_select.id_curso, nuevo.id_alumno, "inactivo");
+            //si está inscripo al curso especial Pintura Paisajes
+            recuperado_curso_esp2 = target.esta_Inscripto_CursoEsp(curso_esp_select2.id_curso, nuevo.id_alumno, "inactivo");
+
+            //si está inscripo a la materia LENGUA INGLESA I
+            recuperado_mat = target.esta_Inscripto_Materia(mat.id_profesorado, mat.id_materia, nuevo.id_alumno, mat.turno, "inactivo");
+            //si está inscripo a la materia LENGUA INGLESA II
+            recuperado_mat2 = target.esta_Inscripto_Materia(mat2.id_profesorado, mat2.id_materia, nuevo.id_alumno, mat2.turno, "inactivo");
+            //si está inscripo a la materia FONOLOGÍA II PRÁCTICA DE LABORATORIO 
+            recuperado_mat3 = target.esta_Inscripto_Materia(mat3.id_profesorado, mat3.id_materia, nuevo.id_alumno, mat3.turno, "inactivo");
+
+            //+++++++++++++++++++++++++++++++  testeo los resultados +++++
+            Assert.AreEqual(null, recupera_alumno);
+            Assert.AreEqual(true, recuperado_curso);
+            Assert.AreEqual(true, recuperado_curso2);
+            Assert.AreEqual(true, recuperado_curso_esp);
+            Assert.AreEqual(true, recuperado_curso_esp2);
+            Assert.AreEqual(true, recuperado_mat);
+            Assert.AreEqual(true, recuperado_mat2);
+            Assert.AreEqual(true, recuperado_mat3);
+
+
+            //Se reactiva el alumno eliminado, cambiando la condición de materias y cursos a "condicional"
+            target.activarAlumnoEliminado(nuevo.getDni());
+
+            recupera_alumno = target.Buscar_Alumno(nuevo.getDni());
+
+            //Compruebo que los estados de las materias y cursos donde estaba inscripto tengan la condición = "condicional"
+            //si está inscripto al curso Artes Visuales inicial
+            recuperado_curso = target.inscriptoACurso(nuevo, curso_select, "condicional");
+            //si está inscripto al curso Artes Visuales especialización
+            recuperado_curso2 = target.inscriptoACurso(nuevo, curso_select2, "condicional");
+
+            //si está inscripo al curso especial Grabado en madera
+            recuperado_curso_esp = target.esta_Inscripto_CursoEsp(curso_esp_select.id_curso, nuevo.id_alumno, "condicional");
+            //si está inscripo al curso especial Pintura Paisajes
+            recuperado_curso_esp2 = target.esta_Inscripto_CursoEsp(curso_esp_select2.id_curso, nuevo.id_alumno, "condicional");
+
+            //si está inscripo a la materia LENGUA INGLESA I
+            recuperado_mat = target.esta_Inscripto_Materia(mat.id_profesorado, mat.id_materia, nuevo.id_alumno, mat.turno, "condicional");
+            //si está inscripo a la materia LENGUA INGLESA II
+            recuperado_mat2 = target.esta_Inscripto_Materia(mat2.id_profesorado, mat2.id_materia, nuevo.id_alumno, mat2.turno, "condicional");
+            //si está inscripo a la materia FONOLOGÍA II PRÁCTICA DE LABORATORIO 
+            recuperado_mat3 = target.esta_Inscripto_Materia(mat3.id_profesorado, mat3.id_materia, nuevo.id_alumno, mat3.turno, "condicional");
+
+            //+++++++++++++++++++++++++++++++  testeo los resultados +++++
+            Assert.AreEqual(nuevo.getId_alumno(), recupera_alumno.getId_alumno());
+            Assert.AreEqual(true, recuperado_curso);
+            Assert.AreEqual(true, recuperado_curso2);
+            Assert.AreEqual(true, recuperado_curso_esp);
+            Assert.AreEqual(true, recuperado_curso_esp2);
+            Assert.AreEqual(true, recuperado_mat);
+            Assert.AreEqual(true, recuperado_mat2);
+            Assert.AreEqual(true, recuperado_mat3);
+
+
+
+
+
+            //restauro la base a su estado anterior
+            target.consulta("update registro_curso set condicion = 'condicional' where id_registro_curso = '30'" +
+                                " and id_curso = '11'");
+            target.consulta("update registro_curso set condicion = 'inscripto' where id_registro_curso = '31'" +
+                                " and id_curso = '10'");
+            target.consulta("update registro_curso_especial set condicion = 'inscripto' where id_registro_curso_especial = '38'" +
+                                 " and id_curso_especial = '4'");
+            target.consulta("update registro_curso_especial set condicion = 'condicional' where id_registro_curso_especial = '39'" +
+                                 " and id_curso_especial = '5'");
+            target.consulta("update registro_materia set condicion = 'inscripto' where id_inscripcion_materia = '75'" +
+                                             " and id_materia = '1'");
+            target.consulta("update registro_materia set condicion = 'condicional' where id_inscripcion_materia = '76'" +
+                                             " and id_materia = '3'");
+            target.consulta("update registro_materia set condicion = 'condicional' where id_inscripcion_materia = '77'" +
+                                             " and id_materia = '5'");
+        }
+
     }
 }
