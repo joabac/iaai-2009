@@ -2520,6 +2520,112 @@ namespace iaai_test
             Assert.AreEqual(expect, actual);
         }
 
+        /// <summary>
+        ///Una prueba de getListadoCursos
+        ///</summary>
+        [TestMethod()]
+        public void getListadoCursosTest()
+        {
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
+            int not_expected = 0;
+            string id_curso = "1";//tiene un inscripto
+            List<List<string>> actual;
+            actual = target.getListadoCursos(id_curso);
+            Assert.AreNotEqual(not_expected, actual.Count);
+
+            
+            id_curso = "4"; //tiene un inscripto como condicional
+            actual = target.getListadoCursos(id_curso);
+            Assert.AreEqual(null, actual);
+
+            
+            id_curso = "2"; //no tiene incriptos
+            actual = target.getListadoCursos(id_curso);
+            Assert.AreEqual(null, actual);
+
+
+        }
+
+        /// <summary>
+        ///Una prueba de getListadoCursosEspeciales
+        ///</summary>
+        [TestMethod()]
+        public void getListadoCursosEspTest()
+        {
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
+            int not_expected = 0;
+            string id_curso_esp = "1";//tiene un inscripto
+            List<List<string>> actual;
+            actual = target.getListadoCursosEspeciales(id_curso_esp);
+            Assert.AreNotEqual(not_expected, actual.Count);
+
+
+            id_curso_esp = "2"; //tiene un inscripto como condicional
+            actual = target.getListadoCursosEspeciales(id_curso_esp);
+            Assert.AreEqual(null, actual);
+
+
+            id_curso_esp = "3"; //no tiene incriptos
+            actual = target.getListadoCursosEspeciales(id_curso_esp);
+            Assert.AreEqual(null, actual);
+
+
+        }
+
+        /// <summary>
+        ///Una prueba de getListadoMateria
+        ///</summary>
+        [TestMethod()]
+        public void getListadoMateriaTest()
+        {
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+
+            int not_expected = 0;
+            string id_materia = "3";
+            string turno = "mañana";//tiene un inscripto
+            List<List<string>> actual;
+            actual = target.getListadoMateria(id_materia, turno);
+            Assert.AreNotEqual(not_expected, actual.Count);
+
+
+            id_materia = "5"; //tiene un inscripto como condicional
+            turno = "mañana";
+            actual = target.getListadoMateria(id_materia, turno);
+            Assert.AreEqual(null, actual);
+
+
+            id_materia = "6"; //no tiene incriptos
+            turno = "mañana";
+            actual = target.getListadoMateria(id_materia, turno);
+            Assert.AreEqual(null, actual);
+
+
+        }
+
+        /// <summary>
+        ///Una prueba de listadoSeguro
+        ///</summary>
+        [TestMethod()]
+        public void getListadoSeguroTest()
+        {
+            Data_base target = new Data_base("server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;");
+            
+            int not_expected = 0;
+            List<List<string>> actual;
+            actual = target.listadoSeguro();//hay alumno activos en la base de datos
+            Assert.AreNotEqual(not_expected, actual.Count);
+
+            int expected = 2;
+            actual = target.listadoSeguro();//hay 2 alumno activos en la base de datos
+            Assert.AreEqual(expected, actual.Count);
+
+        }
+
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
         //                                                            //
