@@ -2442,8 +2442,8 @@ namespace iaai_test
             List<Materia> actual;
             actual = target.getMateriasAlumno(id_profesorado, id_alumno);
             Assert.AreEqual(expected, actual.Count);
-            Assert.AreEqual("LENGUA INGLESA I", actual[0].nombre);
-            Assert.AreEqual("LENGUA INGLESA II", actual[1].nombre);
+            Assert.AreEqual("LENGUA INGLESA II", actual[0].nombre);
+            Assert.AreEqual("LENGUA INGLESA I", actual[1].nombre);
 
 
 
