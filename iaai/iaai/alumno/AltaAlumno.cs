@@ -363,6 +363,30 @@ namespace iaai.alumno
 
         private void aceptar_Click(object sender, EventArgs e)
         {
+
+            cargar();
+        }
+
+
+
+        /// <summary>
+        /// Retorna el ultimo alumno que se cargo desde este formulario
+        /// </summary>
+        /// <returns></returns>
+        public Alumno get_cargado() {
+
+            return alumno_cargado;
+        }
+
+
+
+        /// <summary>
+        /// rutina de carga de alumno
+        /// </summary>
+        /// <returns></returns>
+        public bool cargar()
+        {
+
             if (validar())
             {
                 guardarDatos();
@@ -375,8 +399,8 @@ namespace iaai.alumno
                     if (responsable != -1 && altasResp.Contains(responsable))
                         altasResp.RemoveAt(altasResp.IndexOf(responsable));
                     db.deshacerResponsableLista(altasResp);//elimina los responsables ingresados y no asignados
-                                                           //a ningún alumno cargado.
-                    
+                    //a ningún alumno cargado.
+
                 }
                 if (db.altaAlumno(alumno_cargado))
                 {
@@ -389,24 +413,13 @@ namespace iaai.alumno
                 {
                     alumno_cargado = null;
                     MessageBox.Show("Ocurrió un error en base de datos.");
-                    
+
                     exito = false;
                 }
 
 
             }
-            
         }
-
-        /// <summary>
-        /// Retorna el ultimo alumno que se cargo desde este formulario
-        /// </summary>
-        /// <returns></returns>
-        public Alumno get_cargado() {
-
-            return alumno_cargado;
-        }
-
 
         
 
