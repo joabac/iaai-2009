@@ -499,7 +499,28 @@ namespace iaai_test
 
             cadena = new DateTime(año,DateTime.Now.Month,dia_menos).ToString("dd/MM/yyyy");
             
-            expected = 0;
+            expected = 0; //menor de edad
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            //como si hoy cumple 21
+            año = DateTime.Now.Year - 21;
+            cadena = new DateTime(año, DateTime.Now.Month, DateTime.Now.Day).ToString("dd/MM/yyyy");
+
+            expected = 1;  //mayor de edad
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            //como si ya los cumplio ayer
+
+            año = DateTime.Now.Year - 21;
+            dia_menos = DateTime.Now.Subtract(TimeSpan.FromDays(1)).Day;
+
+            cadena = new DateTime(año, DateTime.Now.Month, DateTime.Now.Day).ToString("dd/MM/yyyy");
+
+            expected = 1; //mayor de edad
             actual = target.validar_Fecha_Nacimiento(cadena);
             Assert.AreEqual(expected, actual);
 
