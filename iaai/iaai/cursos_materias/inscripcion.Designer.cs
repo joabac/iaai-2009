@@ -476,7 +476,7 @@
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewCheckBoxColumn1.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn1.Width = 60;
+            this.dataGridViewCheckBoxColumn1.Width = 61;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -660,7 +660,7 @@
             this.inscribir.HeaderText = "Selección";
             this.inscribir.Name = "inscribir";
             this.inscribir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inscribir.Width = 60;
+            this.inscribir.Width = 61;
             // 
             // nombre_curso_esp
             // 

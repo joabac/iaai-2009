@@ -78,7 +78,7 @@ namespace iaai
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(651, 24);
-            this.menu.TabIndex = 0;
+            this.menu.TabIndex = 1;
             this.menu.Tag = "Funciones del Sistema";
             this.menu.Text = "menu";
             // 

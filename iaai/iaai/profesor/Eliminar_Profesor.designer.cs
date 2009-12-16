@@ -32,7 +32,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonAceptar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -53,21 +52,12 @@
             this.textBoxDni = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(116, 94);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 13);
-            this.textBox1.TabIndex = 0;
-            // 
             // buttonBuscar
             // 
             this.buttonBuscar.Location = new System.Drawing.Point(247, 39);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
-            this.buttonBuscar.TabIndex = 1;
+            this.buttonBuscar.TabIndex = 2;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
@@ -77,7 +67,7 @@
             this.buttonAceptar.Location = new System.Drawing.Point(427, 232);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(75, 23);
-            this.buttonAceptar.TabIndex = 2;
+            this.buttonAceptar.TabIndex = 3;
             this.buttonAceptar.Text = "Aceptar";
             this.buttonAceptar.UseVisualStyleBackColor = true;
             this.buttonAceptar.Click += new System.EventHandler(this.buttonAceptar_Click);
@@ -87,7 +77,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(526, 231);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 3;
+            this.buttonCancelar.TabIndex = 4;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -98,7 +88,7 @@
             this.label9.Location = new System.Drawing.Point(338, 138);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
-            this.label9.TabIndex = 67;
+            this.label9.TabIndex = 0;
             this.label9.Text = "Dirección";
             // 
             // direccion
@@ -108,7 +98,8 @@
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
             this.direccion.Size = new System.Drawing.Size(137, 20);
-            this.direccion.TabIndex = 60;
+            this.direccion.TabIndex = 0;
+            this.direccion.TabStop = false;
             // 
             // label7
             // 
@@ -116,7 +107,7 @@
             this.label7.Location = new System.Drawing.Point(443, 112);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(10, 13);
-            this.label7.TabIndex = 66;
+            this.label7.TabIndex = 0;
             this.label7.Text = "-";
             // 
             // fecha_nacimiento
@@ -127,7 +118,8 @@
             this.fecha_nacimiento.Name = "fecha_nacimiento";
             this.fecha_nacimiento.ReadOnly = true;
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
-            this.fecha_nacimiento.TabIndex = 57;
+            this.fecha_nacimiento.TabIndex = 0;
+            this.fecha_nacimiento.TabStop = false;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -136,7 +128,7 @@
             this.label6.Location = new System.Drawing.Point(96, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
-            this.label6.TabIndex = 65;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Apellido";
             // 
             // apellido
@@ -146,7 +138,8 @@
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(137, 20);
-            this.apellido.TabIndex = 55;
+            this.apellido.TabIndex = 0;
+            this.apellido.TabStop = false;
             // 
             // label4
             // 
@@ -154,7 +147,7 @@
             this.label4.Location = new System.Drawing.Point(32, 171);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 13);
-            this.label4.TabIndex = 64;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Fecha de Nacimiento";
             // 
             // telefono_carac
@@ -164,7 +157,8 @@
             this.telefono_carac.Name = "telefono_carac";
             this.telefono_carac.ReadOnly = true;
             this.telefono_carac.Size = new System.Drawing.Size(41, 20);
-            this.telefono_carac.TabIndex = 58;
+            this.telefono_carac.TabIndex = 0;
+            this.telefono_carac.TabStop = false;
             // 
             // label3
             // 
@@ -172,7 +166,7 @@
             this.label3.Location = new System.Drawing.Point(341, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 63;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Teléfono";
             // 
             // telefono_numero
@@ -182,7 +176,8 @@
             this.telefono_numero.Name = "telefono_numero";
             this.telefono_numero.ReadOnly = true;
             this.telefono_numero.Size = new System.Drawing.Size(74, 20);
-            this.telefono_numero.TabIndex = 59;
+            this.telefono_numero.TabIndex = 0;
+            this.telefono_numero.TabStop = false;
             // 
             // label10
             // 
@@ -190,7 +185,7 @@
             this.label10.Location = new System.Drawing.Point(96, 116);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
-            this.label10.TabIndex = 62;
+            this.label10.TabIndex = 0;
             this.label10.Text = "Nombre";
             // 
             // nombre
@@ -201,7 +196,8 @@
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(137, 20);
-            this.nombre.TabIndex = 54;
+            this.nombre.TabIndex = 0;
+            this.nombre.TabStop = false;
             // 
             // label1
             // 
@@ -209,7 +205,7 @@
             this.label1.Location = new System.Drawing.Point(356, 167);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 56;
+            this.label1.TabIndex = 0;
             this.label1.Text = "e-mail";
             // 
             // email
@@ -219,15 +215,15 @@
             this.email.Name = "email";
             this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(100, 20);
-            this.email.TabIndex = 61;
+            this.email.TabIndex = 0;
+            this.email.TabStop = false;
             // 
             // textBoxDni
             // 
             this.textBoxDni.Location = new System.Drawing.Point(127, 41);
             this.textBoxDni.Name = "textBoxDni";
             this.textBoxDni.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDni.TabIndex = 68;
-            this.textBoxDni.TabStop = false;
+            this.textBoxDni.TabIndex = 1;
             // 
             // Eliminar_Profesor
             // 
@@ -252,7 +248,6 @@
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonBuscar);
-            this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Eliminar_Profesor";
             this.Text = "EliminarProfesor";
@@ -263,7 +258,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Button buttonAceptar;
         private System.Windows.Forms.Button buttonCancelar;
