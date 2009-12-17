@@ -138,7 +138,7 @@ namespace iaai.cursos_materias
 
 
 
-                if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 
+                if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3
                     && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
                 {
                     //busco los profesores activos que cumplan con la condicion ingresada
@@ -165,6 +165,39 @@ namespace iaai.cursos_materias
                             busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
                             busca_apellido.DroppedDown = true; //despliego el listado
                             caracter.KeyChar = '\0';
+                        }
+                    }
+                }
+                else 
+                {
+
+                    if (caracter.KeyChar == '*' && caracter.KeyChar != '\r' && caracter.KeyChar != '\b') 
+                    {
+                        //busco los profesores activos que cumplan con la condicion ingresada
+                        alumnos_encontrados = db.Buscar_Alumno_Por_apellido("%");
+
+
+                        if (alumnos_encontrados != null) //si existe algun profesor con la condicion ingresada
+                        {
+                            if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
+                            {
+                                busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
+                            }
+
+                            foreach (Alumno alum in alumnos_encontrados) //para cada valor ingresado 
+                            {
+                                //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
+                                busca_apellido.Items.Add(alum.getApellido() + ", " + alum.getNombre());
+                            }
+
+
+                            //si la lista no esta desplegada
+                            if (busca_apellido.DroppedDown == false)
+                            {
+                                busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
+                                busca_apellido.DroppedDown = true; //despliego el listado
+                                caracter.KeyChar = '\0';
+                            }
                         }
                     }
                 }
@@ -499,6 +532,14 @@ namespace iaai.cursos_materias
                                 email.Text = buscado.getEmail();
                                 panel_datos.Enabled = true;
                                 nuevo = buscado;
+
+                                if (tabControl1.SelectedIndex == 0)
+                                    carga_Materias();
+                                if (tabControl1.SelectedIndex == 1)
+                                    carga_Cursos();
+                                if (tabControl1.SelectedIndex == 2)
+                                    checkedList_CurEsp();
+                                
                             }
                             else
                             {

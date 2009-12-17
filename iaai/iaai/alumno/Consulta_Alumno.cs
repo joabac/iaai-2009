@@ -202,6 +202,42 @@ namespace iaai.alumno
                         }
                     }
                 }
+                else 
+                {
+
+                    if (caracter.KeyChar == '*' && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
+                    {
+                        //busco los alumnos activos que cumplan con la condicion ingresada
+                        alumnos_encontrados = db.Buscar_Alumno_Por_apellido("%");
+
+
+                        if (alumnos_encontrados != null) //si existe algun alumno con la condicion ingresada
+                        {
+                            if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
+                            {
+                                busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
+                            }
+
+                            foreach (Alumno alumno in alumnos_encontrados) //para cada valor ingresado 
+                            {
+                                //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
+                                busca_apellido.Items.Add(alumno.getApellido() + ", " + alumno.getNombre());
+                            }
+
+
+                            //si la lista no esta desplegada
+                            if (busca_apellido.DroppedDown == false)
+                            {
+                                busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
+                                busca_apellido.DroppedDown = true; //despliego el listado
+                                caracter.KeyChar = '\0';
+                            }
+                        }
+                    }
+                
+                }
+
+
             }
 #pragma warning disable
             catch (Exception e) //si hay errorres de indice o de carga de listados capturo la excepcion

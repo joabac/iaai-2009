@@ -130,11 +130,10 @@ namespace iaai.profesor
                         busca_apellido.DroppedDown = false;
                 }
 
-
-
                 if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
                 {
                     //busco los profesores activos que cumplan con la condicion ingresada
+
                     profes_encontrados = db.Buscar_Profesor_Por_apellido(busca_apellido.Text + caracter.KeyChar);
 
 
@@ -160,6 +159,38 @@ namespace iaai.profesor
                             caracter.KeyChar = '\0';
                         }
                     }
+                }
+                else 
+                {
+                    if (busca_apellido.Text == "*")
+                    {
+                        profes_encontrados = db.Buscar_Profesor_Por_apellido("%");
+
+
+                        if (profes_encontrados != null) //si existe algun profesor con la condicion ingresada
+                        {
+                            if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
+                            {
+                                busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
+                            }
+
+                            foreach (Profesor profe in profes_encontrados) //para cada valor ingresado 
+                            {
+                                //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
+                                busca_apellido.Items.Add(profe.getApellido() + ", " + profe.getNombre());
+                            }
+
+
+                            //si la lista no esta desplegada
+                            if (busca_apellido.DroppedDown == false)
+                            {
+                                busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
+                                busca_apellido.DroppedDown = true; //despliego el listado
+                                caracter.KeyChar = '\0';
+                            }
+                        }
+                    }
+                
                 }
             }
 #pragma warning disable
