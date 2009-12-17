@@ -3,9 +3,9 @@ namespace iaai.alumno
 {
 
     /// <summary>
-    /// Configuracion de Form de ListadoAsistencia
+    /// Configuracion de Form de ListadoCondicionales
     /// </summary>
-    partial class ListadoAsistencia
+    partial class ListadoCondicionales
     {
         /// <summary>
         /// Required designer variable.
@@ -366,7 +366,7 @@ namespace iaai.alumno
             this.label8.TabIndex = 26;
             this.label8.Text = "Materia";
             // 
-            // ListadoAsistencia
+            // ListadoCondicionales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -398,7 +398,7 @@ namespace iaai.alumno
             this.Controls.Add(this.imprimir);
             this.Controls.Add(this.lista);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ListadoAsistencia";
+            this.Name = "ListadoCondicionales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de Condicionales";
             ((System.ComponentModel.ISupportInitialize)(this.lista)).EndInit();
