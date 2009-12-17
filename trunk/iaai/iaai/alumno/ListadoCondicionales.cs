@@ -98,7 +98,7 @@ namespace iaai.alumno
         {
             if (lista.RowCount > 0)
             {
-                lista.Columns[3].Visible = true;
+                
                 if (SetupThePrinting())
                 {
                     PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
@@ -106,7 +106,7 @@ namespace iaai.alumno
                     MyPrintPreviewDialog.ShowDialog();
                 }
             }
-            lista.Columns[3].Visible = false;
+            
         }
         /// <summary>
         /// Método que genera el listado y lo configura para la impresión
