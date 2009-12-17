@@ -19,8 +19,10 @@ namespace iaai.alumno
     public partial class AltaAlumno : Form
     {
         private string error = "";
-        private int responsable = -1;
+        private int responsable {get; set;}
         
+        
+
         Utiles metodo = new Utiles();
 #pragma warning disable
         bool exito = false;
@@ -56,6 +58,7 @@ namespace iaai.alumno
         public AltaAlumno()
         {
             InitializeComponent();
+            responsable= -1;
         }
         
         /// <summary>
@@ -65,6 +68,7 @@ namespace iaai.alumno
         /// <returns></returns>
         public void Show(int i) 
         {
+            responsable=-1;
             Owner.Enabled = false;
             this.ShowDialog();
         }
@@ -104,6 +108,7 @@ namespace iaai.alumno
         {
             //Validación nombre
             List<string> error = new List<string>();
+            int fecha_valida = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
 
 
             //Validación en Base de datos de alumno existente
@@ -147,59 +152,6 @@ namespace iaai.alumno
                     error.Add("Formato de apellido no válido");
             }
                 
-            /*
-            
-                
-                    //si el alumno ya fue dado de alta en el sistema
-                    if (!db.buscarDniAlumno(dni.Text) && !db.esAlumnoActivo(dni.Text))
-                    {
-                        string cadena = "El DNI del alumno a ingresar ya existe en Base de Datos, \n " +
-                            "en estado 'Inactivo'.\n" +
-                            "¿Desea volver a activar este alumno?";
-                        string titulo = "Alumno Existente en Base de Datos";
-                        if (MessageBox.Show(cadena, titulo, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
-                        {
-                            //error = error + "El alumno ya fue dado de alta en el sistema. \r\n";
-                            MessageBox.Show("El alumno ya fue dado de alta en el sistema.");
-                            return false;
-                        }
-                        else
-                        {
-                            if (db.activarAlumnoEliminado(dni.Text))
-                            {
-                                MessageBox.Show("El alumno fue reactivado en el sistema. \r\n" +
-                                    "Las inscripciones antiguas pertenecientes a este \n" +
-                                    "alumno tendran el estado CONDICIONAL. \r\n" +
-                                    "Para modificarlas  deberá ingresar al formulario \n" +
-                                    "de Inscripciones.\r\n" +
-                                    "A continuación se mostrará, a modo de consulta, \n" +
-                                    "los datos del alumno que acaba de activarse");
-                                Consulta_Alumno recuperado = new Consulta_Alumno(dni.Text);
-                                recuperado.Show();
-                                if (Owner != null)
-                                    Owner.Enabled = true;
-                                this.Close();
-                                return true; //se activo con exito
-
-                            }
-                            else 
-                            { 
-                                return error; 
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (!db.buscarDniAlumno(dni.Text) && db.esAlumnoActivo(dni.Text))
-                        {
-                            MessageBox.Show("El alumno ya fue dado de alta en el sistema.");
-                            return error;
-                        }
-                    }
-                }
-                
-            }*/
-
 
             //Validación fecha de nacimiento
             if (fecha_nacimiento.Text.Contains(' '))
@@ -208,8 +160,8 @@ namespace iaai.alumno
             {
                 //Validación fecha de nacimiento
                 //retorna si el alumno es mayor o menor de 21 años en caso de ser correcto el formato
-                int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
-                if (resultado == -1)
+                
+                if (fecha_valida == -1)
                     error.Add("Formato de fecha de nacimiento no válido.");
                 else
                 {
@@ -257,27 +209,35 @@ namespace iaai.alumno
             }
 
 
-            
- 
-            if (escuela_nombre.Text.Length > 0 && escuela_nombre.Text.Length <= 100)
+
+            if (fecha_valida != -1 && Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) > DateTime.Today)
             {
-                if (metodo.validar_Direccion(escuela_nombre.Text))
+                if (escuela_nombre.Text.Length == 0)
+                    error.Add("El alumno es menor debe ingresar la escuela a la que concurre");
+            }
+            
+                if (escuela_nombre.Text.Length > 0 && escuela_nombre.Text.Length <= 100)
                 {
-                    //si ingreso la escuela, controlo que ingrese el año de cursado
-                    if (escuela_año.Text.Length == 0)
-                        error.Add("Ingrese el año de cursado.");
+                    if (metodo.validar_Direccion(escuela_nombre.Text))
+                    {
+                        //si ingreso la escuela, controlo que ingrese el año de cursado
+                        if (escuela_año.Text.Length == 0)
+                            error.Add("Ingrese el año de cursado.");
+                        else
+                        {
+                            if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                                error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
+                        }
+                    }
                     else
                     {
-                        if (!metodo.validar_Escuela_Año(escuela_año.Text))
-                            error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
+
+                        error.Add("Nombre de escuela no valido.");
                     }
                 }
-                else 
-                {
-
-                    error.Add("Nombre de escuela no valido.");
-                }
-            } 
+            
+            
+           
             
             if (escuela_año.Text.Length > 0)
             {
@@ -375,18 +335,43 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void agregarResponsable_Click(object sender, EventArgs e)
         {
+            
+
+            List<string> resultado = new List<string>();
+
+            resultado = cargaResponsable(); 
+
+            if (resultado.Count > 0)
+            {
+              
+                string mensaje = "";
+
+                foreach (string subMensaje in resultado)
+                {
+                    mensaje += subMensaje + "\r\n";
+
+                }
+                MessageBox.Show("Se produjeron errores: \r\n" + mensaje);
+            }
+        }
+
+
+        public List<string> cargaResponsable() 
+        {
+
+            List<string> retorno = new List<string>();;
             //Validación de la fecha de nacimiento
             //Se valida si fue ingresada, y si el alumno es menor de 21 años.
             if (fecha_nacimiento.Text.Contains(' '))
             {
-                MessageBox.Show("Ingrese la fecha de nacimiento");
+                retorno.Add("Ingrese la fecha de nacimiento");
             }
             else
                 if (metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text) == 0 || metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text) == 1)
                 {
                     if (Convert.ToDateTime(fecha_nacimiento.Text).AddYears(21) < DateTime.Today)
                     {
-                        MessageBox.Show("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
+                        retorno.Add("No se puede asignar un responsable \n a un alumno mayor de 21 años.");
                     }
                     else
                     {
@@ -399,8 +384,11 @@ namespace iaai.alumno
                 }
                 else
                 {
-                    MessageBox.Show("Formato de fecha de nacimiento no válido. \r\n");
+                    retorno.Add("Formato de fecha de nacimiento no válido.");
                 }
+
+            return retorno;
+        
         }
 
         private void aceptar_Click(object sender, EventArgs e)
@@ -438,6 +426,11 @@ namespace iaai.alumno
             return alumno_cargado;
         }
 
+        public void respons() 
+        {
+        
+        
+        }
 
 
         /// <summary>
@@ -512,7 +505,17 @@ namespace iaai.alumno
                 email.Text = datos[7];
                 escuela_nombre.Text = datos[8];
                 escuela_año.Text = datos[9];
-            
+
+                if (datos.Count == 11)
+                {
+                    responsable = Convert.ToInt32(datos[10]);
+                    altasResp.Add(responsable);
+                }
+                else
+                {
+                    responsable = -1;
+                }
+                    
         }
 
 

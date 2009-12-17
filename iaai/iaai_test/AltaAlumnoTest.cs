@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using iaai.Data_base;
 using System.Threading;
 using System;
+using iaai.responsable;
 
 
 
@@ -88,7 +89,7 @@ namespace iaai_test
             //************************* Prueba de cada ruta de control de formatos y contenido ***************
             //************************************************************************************************
             //un dni no valido 6 numeros
-            string[] errores_formato = {"Perez","Jose","3885935","25/09/1981","0342","4856321","Pazo 325","correo@correo.com","",""};          
+            string[] errores_formato = {"Perez","Jose","388593","25/09/1981","0342","4856321","Pazo 325","correo@correo.com","",""};          
             datos_A_Cargar.AddRange(errores_formato);
             AltaAlumno formulario = new AltaAlumno(datos_A_Cargar);
             
@@ -324,7 +325,7 @@ namespace iaai_test
 
             //*****************************************************************
             //sin año de cursado
-            string[] errores_formato14 = { "Peres", "Jose", "28859353", "25/12/1980", "0342", "123456", "Paso 345", "correo@correo.com", "Carbo 3", "" };
+            string[] errores_formato14 = { "Peres", "Jose", "28859353", "25/12/1980", "0342", "123456", "Paso 345", "correo@correo.com", "Carbo 3", ""};
             datos_A_Cargar.AddRange(errores_formato14);
             formulario = new AltaAlumno(datos_A_Cargar);
 
@@ -473,6 +474,77 @@ namespace iaai_test
             resultado.Clear();
 
 
+
+ //**************************** Validaciones de logica de alta responsable ***********
+            //-------------------------------------------------------------------------------------------------
+
+            //intento cargar responsable a alumno sin fecha de nacimiento
+            string[] respo_test = { "Perez", "Matias", "28859355", "", "0342", "4856321", "Pazo 325", "correo@correo.com", "", "" };
+            datos_A_Cargar.AddRange(respo_test);
+
+
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+            esperado = "Ingrese la fecha de nacimiento";
+
+            resultado = formulario.cargaResponsable();  //verifico las rutas de alta responsable
+            Assert.AreEqual(esperado, resultado[0].ToString());
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+
+            //--------------------------------------------------------------------------------------------------
+            //intento cargar responsable a alumno mayor de edad
+            string[] respo_test1 = { "Perez", "Matias", "28859355", DateTime.Now.Subtract(TimeSpan.FromDays(10000)).ToString("dd/MM/yyyy"), "0342", "4856321", "Pazo 325", "correo@correo.com", "", "" };
+            datos_A_Cargar.AddRange(respo_test1);
+
+
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+            esperado = "No se puede asignar un responsable \n a un alumno mayor de 21 años.";
+
+            resultado = formulario.cargaResponsable();  //verifico las rutas de alta responsable
+            Assert.AreEqual(esperado, resultado[0].ToString());
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+
+
+            //--------------------------------------------------------------------------------------------------
+            //un alumno valido menor de edad sin datos de escuela
+            string[] respo_test2 = { "Perez", "Matias", "28859355", DateTime.Now.Subtract(TimeSpan.FromDays(4000)).ToString("dd/MM/yyyy"), "0342", "4856321", "Pazo 325", "correo@correo.com", "", "", "2" };
+            datos_A_Cargar.AddRange(respo_test2);
+
+
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+            esperado = "El alumno es menor debe ingresar la escuela a la que concurre";
+
+            resultado = formulario.cargar();
+            Assert.AreEqual(esperado, resultado[0].ToString());
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+
+
+            //--------------------------------------------------------------------------------------------------
+            //un alumno valido menor de edad sin datos de escuela
+            string[] respo_test4 = { "Perez", "Matias", "28859355", DateTime.Now.Subtract(TimeSpan.FromDays(4000)).ToString("dd/MM/yyyy"), "0342", "4856321", "Pazo 325", "correo@correo.com", "Carbo 3", "","2" };
+            datos_A_Cargar.AddRange(respo_test4);
+
+
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+            esperado = "Ingrese el año de cursado.";
+
+            resultado = formulario.cargar();
+            Assert.AreEqual(esperado, resultado[0].ToString());
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+
+
+
             //****************************** Pruebas de consistencia de logica ****************///
 //-------------------------------------------------------------------------------------------------
             //un alumno valido
@@ -578,12 +650,56 @@ namespace iaai_test
             resultado.Clear();
 
 
+          
+            
+            //********************  prueba de logica de carga de alumno menor de edad ****************
+//----------------------------------------------------------------------------------------------------
+            //Genero un responsable para poder cargar el alumno menor de edad
+            
+            IDictionary<string, object> datos = new Dictionary<string, object>();
+
+            //se generan los dato del Responsable a dar de alta
+            datos["nombre"] = "Roberto";
+            datos["apellido"] = "Perez";
+            datos["dni"] = "20856325";
+            datos["fecha_nac"] = "1970-12-01";
+            datos["telefono_carac"] = "0342";
+            datos["telefono_numero"] = "4856321";
+            datos["direccion"] = "Pazo 325";
+            datos["email"] = "correo@correo.com";
+
+            Responsable respo = new Responsable(datos);  //se crea el objeto Responsable
+
+            db.altaResponsable(respo); //Alta del Responsable
+            Responsable padre = db.Buscar_Responsable("20856325");  //recupero el responable
+
+            if (padre != null)
+            {
+                //un alumno valido menor de edad
+                string[] respo_test3 = { "Perez", "Matias", "28859355", "25/09/2000", "0342", "4856321", "Pazo 325", "correo@correo.com", "Carbo 3", "4", padre.getId_responsable().ToString() };
+                datos_A_Cargar.AddRange(respo_test3);
+
+
+                formulario = new AltaAlumno(datos_A_Cargar);
+
+                esperado = "El alumno fue dado de alta con éxito.";
+
+                resultado = formulario.cargar();  
+                Assert.AreEqual(esperado, resultado[0].ToString());
+                formulario.Dispose();
+                datos_A_Cargar.Clear();
+                resultado.Clear();
+            }
+            else
+                Assert.Fail("Error en Preparación de Prueba: No se pudo cargar el responable");
 
 //----------------------------------------------------------------------------------------------------
 
 
 
-            db.consulta("delete from alumno where dni = 28859353");
+            db.consulta("delete from alumno where dni like '28859353'"); //borro alumno mayor
+            db.consulta("delete from alumno where dni like '28859355'"); //borro laumno menor
+            db.consulta("delete from responsable where dni like '20856325' "); //borro responsable generado
 
 
         }
