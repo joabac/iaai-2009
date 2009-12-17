@@ -23,7 +23,8 @@ namespace iaai.alumno
         DataGridViewPrinter MyDataGridViewPrinter;
         List<List<string>> cursos = null;
         List<List<string>> cursosEsp = null;
-        List<List<string>> materias = null;
+        List<Materia> materias = null;
+        List<Profesorado> profesorados = null;
 
         /// <summary>
         /// Constructor de ListadoAsistencia Form
@@ -284,19 +285,21 @@ namespace iaai.alumno
         private void cargarProfesorados()
         {
             combo_niveles.Items.Clear();
-            if (materias == null)
+
+            profesorados = db.getCarreras();
+            if (profesorados != null)
             {
-                materias = db.getMaterias();
-            }
-            foreach (List<string> m in materias)
-            {
-                if (!combo_profesorados.Items.Contains(m[0]))
+                foreach (Profesorado prof in profesorados)
                 {
-                    combo_profesorados.Items.Add(m[0]);
+
+                    combo_profesorados.Items.Add(prof.nombre);
+
                 }
+
+
+                combo_profesorados.SelectedIndex = 0;
             }
-            combo_niveles.Text = null;
-            comboTurno.Text = null;
+
         }
         /// <summary>
         /// Método que obtiene las Materias de la base de datos y las carga a los comboBox correspondientes
@@ -304,21 +307,35 @@ namespace iaai.alumno
         private void cargarMaterias()
         {
             comboMaterias.Items.Clear();
-
-            if (comboTurno.SelectedItem != null)
+            if (materias != null)
             {
-                foreach (List<string> m in materias)
-                {
-                    if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null)
-                    {
-                        if (combo_profesorados.SelectedItem.ToString().Equals(m[0]) && combo_niveles.SelectedItem.ToString().Equals(m[4]) && comboTurno.SelectedItem.ToString().Equals(m[5]))
-                        {
-                            comboMaterias.Items.Add(m[3]);
-                        }
-                    }
-                }
+                if (materias.Count > 0)
+                    materias.Clear();
             }
-            comboMaterias.Text = null;
+
+                if (combo_profesorados.Text != "" && combo_niveles.Text != "" && comboTurno.Text != "" )
+                {
+                    materias = db.getMaterias(combo_profesorados.Text, combo_niveles.Text, comboTurno.Text);
+                    if (materias != null && materias.Count > 0)
+                    {
+                        foreach (Materia mat_actual in materias)
+                        {
+
+                            comboMaterias.Items.Add(mat_actual.nombre);
+
+                        }
+                        comboMaterias.SelectedIndex = 0;
+                    }
+
+                    else
+                    {
+                        comboMaterias.Text = "Sin materias";
+                        
+                    }
+                    
+                }
+            
+            
 
         }
 
@@ -456,9 +473,9 @@ namespace iaai.alumno
             }
             else if (seleccionMateria.Checked)
             {
-                if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null && comboMaterias.SelectedItem != null)
+                if (combo_profesorados.SelectedItem != "" && combo_niveles.SelectedItem != "" && comboTurno.SelectedItem != "" && comboMaterias.SelectedItem != "")
                 {
-                    listado = db.getListadoMateria(obtenerIdMateria(), comboTurno.SelectedItem.ToString());
+                    listado = db.getListadoMateria(obtenerIdMateria().ToString(), comboTurno.SelectedItem.ToString());
                     if (listado != null)
                         cargarTabla();
                     else
@@ -503,14 +520,17 @@ namespace iaai.alumno
         /// Obtiene el id de la Materia seleccionado en los comboBoxs de  Profesorado
         /// </summary>
         /// <returns></returns>
-        private string obtenerIdMateria()
+        private int obtenerIdMateria()
         {
-            foreach (List<string> m in materias)
+
+            int id_materia = -1;
+            if (comboMaterias != null && comboMaterias.Items.Count > 0) 
             {
-                if (m[0].Equals(combo_profesorados.SelectedItem.ToString()) && m[4].Equals(combo_niveles.SelectedItem.ToString()) && m[3].Equals(comboMaterias.SelectedItem.ToString()))
-                    return m[2];
+
+                id_materia = materias[comboMaterias.SelectedIndex].id_materia;
             }
-            return "-1";
+
+            return id_materia;
         }
         /// <summary>
         /// Método que carga el comboBox Niveles según la opción seleccionada el en comboBox Area
@@ -539,26 +559,27 @@ namespace iaai.alumno
         {
             combo_niveles.Items.Clear();
             comboMaterias.Items.Clear();
+
+            if (materias != null) 
+            {
+                if (materias.Count > 0)
+                    materias.Clear();
+            }
             if (combo_profesorados.SelectedItem != null)
             {
-                foreach (List<string> m in materias)
-                {
-                    if (m[0].Equals(combo_profesorados.SelectedItem.ToString()))
-                    {
-                        for (int i = 1; i <= Convert.ToInt32(m[1]); i++)
-                        {
-                            combo_niveles.Items.Add(i);
-                        }
-                        break;
-                    }
-                }
                 
-
-                combo_niveles.SelectedItem = null;
-                comboTurno.SelectedItem = null;
-                comboMaterias.SelectedItem = null;
+                for (int i = 1; i <= profesorados[combo_profesorados.SelectedIndex].niveles; i++)
+                {
+                            combo_niveles.Items.Add(i);
+                }
+                combo_niveles.SelectedIndex = 0;
+                       
             }
-        }
+
+               
+       }
+    
+
         /// <summary>
         /// Método que carga el comboBox Materia según la opción seleccionada el en comboBox Turno
         /// </summary>
@@ -566,7 +587,13 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void comboTurno_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (materias != null)
+            {
+                if (materias.Count > 0)
+                    materias.Clear();
+            }
             cargarMaterias();
+
         }
         /// <summary>
         /// Método que carga el comboBox Niveles según la opción seleccionada el en comboBox en Profesorado
@@ -575,9 +602,15 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void combo_niveles_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            comboTurno.SelectedItem = null;
+                    
+            if (materias != null)
+            {
+                if (materias.Count > 0)
+                    materias.Clear();
+            }
+            comboTurno.SelectedIndex = 0;
             comboMaterias.Items.Clear();
-            comboMaterias.Text = null;
+            cargarMaterias();
         }
 
         
