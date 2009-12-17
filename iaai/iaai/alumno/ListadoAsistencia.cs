@@ -305,13 +305,16 @@ namespace iaai.alumno
         {
             comboMaterias.Items.Clear();
 
-            foreach (List<string> m in materias)
+            if (comboTurno.SelectedItem != null)
             {
-                if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null)
+                foreach (List<string> m in materias)
                 {
-                    if (combo_profesorados.SelectedItem.ToString().Equals(m[0]) && combo_niveles.SelectedItem.ToString().Equals(m[4]))
+                    if (combo_profesorados.SelectedItem != null && combo_niveles.SelectedItem != null && comboTurno.SelectedItem != null)
                     {
-                        comboMaterias.Items.Add(m[3]);
+                        if (combo_profesorados.SelectedItem.ToString().Equals(m[0]) && combo_niveles.SelectedItem.ToString().Equals(m[4]) && comboTurno.SelectedItem.ToString().Equals(m[5]))
+                        {
+                            comboMaterias.Items.Add(m[3]);
+                        }
                     }
                 }
             }

@@ -18,7 +18,10 @@ namespace iaai.Data_base
     
     class Data_base 
     {
-        string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
+
+        string cadena_coneccion = "server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;";
+
+        //string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
 
         
         MySqlConnection conexion = null;
@@ -2321,9 +2324,9 @@ namespace iaai.Data_base
                     this.open_db();
 
 
-                MySqlCommand MyCommand = new MySqlCommand("select p.nombre, p.niveles, m.id_materia, m.nombre, m.nivel " +
-                                                          "from profesorado p, materia m " +
-                                                          "where m.id_profesorado = p.id_profesorado", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select p.nombre, p.niveles, m.id_materia, m.nombre, m.nivel, t.turno " +
+                                                          "from profesorado p, materia m, turno t " +
+                                                          "where m.id_profesorado = p.id_profesorado AND t.id_materia = m.id_materia", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 List<string> materia;
@@ -2338,6 +2341,7 @@ namespace iaai.Data_base
                         materia.Add(reader[2].ToString());//id materia
                         materia.Add(reader[3].ToString());//nombre materia
                         materia.Add(reader[4].ToString());//nivel de la materia
+                        materia.Add(reader[5].ToString());//turnos de la materia
 
                         materias.Add(materia);
 
