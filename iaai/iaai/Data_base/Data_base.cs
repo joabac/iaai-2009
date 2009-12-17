@@ -19,9 +19,9 @@ namespace iaai.Data_base
     class Data_base 
     {
 
-        string cadena_coneccion = "server=localhost;user=iaai;database=iaai_pruebas;port=3306;password=iaai;";
+        
 
-        //string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
+        string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
 
         
         MySqlConnection conexion = null;
@@ -4140,7 +4140,7 @@ namespace iaai.Data_base
             return materias;
         }
 
-        internal List<List<string>> getListadoCondicionalesCursos(string p)
+        internal List<List<string>> getListadoCondicionalesCursos(string curso)
         {
             List<List<string>> listado = new List<List<string>>();
 
@@ -4195,7 +4195,7 @@ namespace iaai.Data_base
             return listado;
         }
 
-        internal List<List<string>> getListadoCondicionalesCursosEspeciales(string p)
+        internal List<List<string>> getListadoCondicionalesCursosEspeciales(string curso)
         {
             List<List<string>> listado = new List<List<string>>();
 
@@ -4250,7 +4250,7 @@ namespace iaai.Data_base
             return listado;
         }
 
-        internal List<List<string>> getListadoCondicionalesMateria(string p, string p_2)
+        internal List<List<string>> getListadoCondicionalesMateria(string id_materia, string turno)
         {
             List<List<string>> listado = new List<List<string>>();
 
