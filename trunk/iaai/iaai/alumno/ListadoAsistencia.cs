@@ -434,6 +434,8 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void generar_Click(object sender, EventArgs e)
         {
+            if (comboMaterias.Text != "Sin materias")
+            {
             listado = null;
             if (seleccionCurso.Checked)
             {
@@ -445,6 +447,7 @@ namespace iaai.alumno
                     else
                     {
                         lista.Rows.Clear();
+                        
                         MessageBox.Show("No existen alumnos inscriptos para el curso seleccionado.");
                     }
                 }
@@ -489,6 +492,10 @@ namespace iaai.alumno
                     MessageBox.Show("Debe seleccionar un profesorado, un nivel, un turno \ny una materia para obtener el listado.");
                 }
             }
+            
+           }
+            else
+                MessageBox.Show("Debe seleccionar una materia");
         }
         /// <summary>
         /// Obtiene el id del Curso seleccionado en los comboBoxs
