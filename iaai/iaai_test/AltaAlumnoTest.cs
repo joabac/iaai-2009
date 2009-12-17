@@ -501,19 +501,29 @@ namespace iaai_test
 
         }
 
+
+        /// <summary>
+        /// metodo auxiliar para generar cadenas largas
+        /// </summary>
+        /// <param name="longitud">la longitud a generar</param>
+        /// <returns>cadena tipo string de longitud requerida</returns>
         string generarCadenaLarga(int longitud) 
         {
 
-            List<string> cadena = new List<string>();
+            List<char> cadena = new List<char>();
 
 
-            for (int i = 1; i == longitud; i++) 
+
+            for (int i = 1; i <= longitud; i++) 
             {
 
-                cadena.Add("a");
+                cadena.Add('a');
             }
 
-            return cadena.ToArray().ToString();
+            String salida = new String(cadena.ToArray());
+            
+
+            return salida;
         }
     }
 }
