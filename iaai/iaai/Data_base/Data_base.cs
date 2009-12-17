@@ -21,7 +21,8 @@ namespace iaai.Data_base
 
         
 
-        string cadena_coneccion = "server=localhost;user=root;database=iaai;port=3306;password=root;";
+        string cadena_coneccion = "server=localhost;user=iaai;database=iaai;port=3306;password=iaai;";
+
 
         
         MySqlConnection conexion = null;
