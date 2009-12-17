@@ -492,6 +492,26 @@ namespace iaai_test
             expected = -1;
             actual = target.validar_Fecha_Nacimiento(cadena);
             Assert.AreEqual(expected, actual);
+
+
+            //formato no valido
+            cadena = "12/05/";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+            //formato no valido
+            cadena = "";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
+
+
+            //formato no valido
+            cadena = "12/05/20009";
+            expected = -1;
+            actual = target.validar_Fecha_Nacimiento(cadena);
+            Assert.AreEqual(expected, actual);
             
             //calculo 21 años para atras desde hoy menos 1 dia para que sea menor de edad
             int año = DateTime.Now.Year - 21;

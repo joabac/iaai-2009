@@ -269,9 +269,9 @@ namespace iaai.alumno
             } 
             else if (escuela_año.Text.Length > 0)
             {
-                //if (!metodo.validar_Escuela_Año(escuela_año.Text))
-                //    error.Add("Formato incorrecto para el año de cursado."); //ya lo valide erriba
-                if (escuela_nombre.Text.Length <= 100) 
+                if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                    error.Add("Formato incorrecto para el año de cursado."); 
+                if (escuela_nombre.Text.Length == 0) 
                     error.Add("Ingrese el nombre de la escuela.");
                 else
                     error.Add("Nombre de la escuela demasiado extenso.");
