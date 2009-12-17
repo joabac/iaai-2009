@@ -97,35 +97,59 @@ namespace iaai.alumno
         /// Método que valida los datos del formulario
         /// </summary>
         /// <returns>
-        /// true: si se ingresaron todos los datos obligatorios y éstos son válidos (formato y valores) 
-        /// false: si falta algún dato obligatorio o si alguno no respeta el formato o tiene valores no permitidos.
+        /// List<string> lista de errores
         /// </returns>
-        private Boolean validar()
+        
+        private List<string> validar()
         {
             //Validación nombre
-            error = "";
+            List<string> error = new List<string>();
+
+
+            //Validación en Base de datos de alumno existente
+            //Validación DNI
+            if (dni.Text.Length == 0)
+            {
+                error .Add("Ingrese el DNI.");
+            }
+            else
+             {
+                 if (metodo.ValidarDni(dni.Text) == true) //si el formato del dni es correcto
+                 {
+                     if (!db.buscarDniAlumno(dni.Text))
+                     {
+                         if (db.esAlumnoActivo(dni.Text)) //si esta ene l sistema pero como inactivo
+                            error.Add("El DNI ingresado ya se encuentra\nregistrado en el sistema.");
+                         else    
+                            error.Add("El DNI ingresado pertenece a un alumno marcado como inactivo.");
+                     }
+                     
+                 }
+                 else
+                 {
+                     error.Add("El DNI ingresado no es válido.");
+                 }
+            }
+
             if (nombre.Text.Length == 0)
-                error = error + "Ingrese el Nombre. \r\n";
+                error.Add("Ingrese el Nombre.");
             else
             {
                 if (!metodo.validar_Nombre_App(nombre.Text))
-                    error = error + "Formato de nombre no válido \r\n";
+                    error.Add("Formato de nombre no válido");
             }
             //Validación apellido
             if (apellido.Text.Length == 0)
-                error = error + "Ingrese el Apellido. \r\n";
+                error.Add("Ingrese el Apellido.");
             else
             {
                 if (!metodo.validar_Nombre_App(apellido.Text))
-                    error = error + "Formato de apellido no válido \r\n";
+                    error.Add("Formato de apellido no válido");
             }
-            //Validación DNI
-            if (dni.Text.Length == 0)
-                error = error + "Ingrese el DNI. \r\n";
-            else
-            {       //si el formato del dni es correcto
-                if (metodo.ValidarDni(dni.Text) == true)
-                {
+                
+            /*
+            
+                
                     //si el alumno ya fue dado de alta en el sistema
                     if (!db.buscarDniAlumno(dni.Text) && !db.esAlumnoActivo(dni.Text))
                     {
@@ -160,7 +184,7 @@ namespace iaai.alumno
                             }
                             else 
                             { 
-                                return false; 
+                                return error; 
                             }
                         }
                     }
@@ -169,25 +193,24 @@ namespace iaai.alumno
                         if (!db.buscarDniAlumno(dni.Text) && db.esAlumnoActivo(dni.Text))
                         {
                             MessageBox.Show("El alumno ya fue dado de alta en el sistema.");
-                            return false;
+                            return error;
                         }
                     }
                 }
-                else
-                {
-                    error = error + "El DNI ingresado no es válido. \r\n";
-                }
-            }
+                
+            }*/
+
+
             //Validación fecha de nacimiento
             if (fecha_nacimiento.Text.Contains(' '))
-                error = error + "Ingrese la fecha de nacimiento. \r\n";
+                error.Add("Ingrese la fecha de nacimiento.");
             else
             {
                 //Validación fecha de nacimiento
                 //retorna si el alumno es mayor o menor de 21 años en caso de ser correcto el formato
                 int resultado = metodo.validar_Fecha_Nacimiento(fecha_nacimiento.Text);
                 if (resultado == -1)
-                    error = error + "Formato de fecha de nacimiento no válido. \r\n";
+                    error.Add("Formato de fecha de nacimiento no válido.");
                 else
                 {
                     bool validar = fecha_nacimiento.Text.Contains(' ');
@@ -199,7 +222,7 @@ namespace iaai.alumno
                         {
                             if (responsable == -1)
                             {
-                                error = error + "Debe asignar un responsable. \n";
+                                error.Add("Debe asignar un responsable.");
                             }
                         }
 
@@ -209,28 +232,28 @@ namespace iaai.alumno
 
             //Validación número de teléfono
             if (telefono_numero.Text.Length == 0)
-                error = error + "Ingrese el teléfono. \r\n";
+                error.Add("Ingrese el teléfono.");
             else
             {
                 if (!metodo.validar_Telefono(telefono_numero.Text))
-                    error = error + "Formato de número de teléfono no válido \r\n";
+                    error.Add("Formato de número de teléfono no válido");
             }
 
             //Validación característica telefónica
             if (telefono_carac.Text.Length != 0)
             {
                 if (!metodo.validar_Caracteristica(telefono_carac.Text))
-                    error = error + "Formato de la Característica telefónica no válido \r\n";
+                    error.Add("Formato de la Característica telefónica no válido");
             }
         
 
             //Validación de la dirección
             if (direccion.Text.Length == 0)
-                error = error + "Ingrese la dirección. \r\n";
+                error.Add("Ingrese la dirección.");
             else
             {
                 if (!metodo.validar_Direccion(direccion.Text))
-                    error = error + "Formato de dirección no válido \r\n";
+                    error.Add("Formato de dirección no válido");
             }
             
  
@@ -239,43 +262,35 @@ namespace iaai.alumno
             {
                 //si ingreso la escuela, controlo que ingrese el año de cursado
                 if(escuela_año.Text.Length == 0)
-                    error = error + "Ingrese el año de cursado. \r\n";
+                    error.Add("Ingrese el año de cursado.");
                 else
                     if(!metodo.validar_Escuela_Año(escuela_año.Text))
-                        error = error + "Formato del año de cursado no válido\n              (Debe ingresar sólo un dígito). \r\n";
+                        error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
             } 
             else if (escuela_año.Text.Length > 0)
             {
-                if (!metodo.validar_Escuela_Año(escuela_año.Text))
-                    error = error + "Formato incorrecto para el año de cursado. \r\n";
+                //if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                //    error.Add("Formato incorrecto para el año de cursado."); //ya lo valide erriba
                 if (escuela_nombre.Text.Length <= 100) 
-                    error = error + "Ingrese el nombre de la escuela. \n";
+                    error.Add("Ingrese el nombre de la escuela.");
                 else
-                    error = error + "Nombre de la escuela demasiado extenso. \n";
+                    error.Add("Nombre de la escuela demasiado extenso.");
             }
 
             
             if (email.Text.Length != 0)
                 if (!metodo.validar_email(email.Text))
-                    error = error + "Formato de email no valido\r\n";
+                    error.Add("Formato de email no valido");
 
-            //Si existe algún error se arma el mensaje para mostrar al usuario
-            if (error.Length > 0)
-            {
-                error = "Se han producido errores: \r\n" + error;
-                MessageBox.Show(error);
-                return false;
-            }
-            //Validación en Base de datos de alumno existente
-            if (db.buscarDniAlumno(dni.Text))
-                return true;
-            else
-            {
-                error = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
-                MessageBox.Show(error);
-                return false;
-            }
+            
+
+              
+                return error; //retorno el resultado de la validacion
+            
+            
        }
+
+
 
         /// <summary>
         /// Asigna el id de responsable a un alumno
@@ -377,9 +392,18 @@ namespace iaai.alumno
 
         private void aceptar_Click(object sender, EventArgs e)
         {
+            List<string> resultado = new List<string>();
 
-            cargar();
+            resultado = cargar();
+
+            if (resultado[0].Contains("El alumno fue dado de alta con éxito."))
+            {
+                MessageBox.Show(resultado.ToArray().ToString());
+            }
+            else
+               MessageBox.Show("Se produjeron errores: " + resultado.ToArray().ToString());
         }
+
 
 
 
@@ -398,11 +422,14 @@ namespace iaai.alumno
         /// rutina de carga de alumno
         /// </summary>
         /// <returns></returns>
-        public bool cargar()
+        public List<string> cargar()
         {
+            List<string> retorno = validar();
 
-            if (validar())
+            if (retorno.Count == 0) 
             {
+                //si no hay errores--->
+
                 guardarDatos();
 
                 alumno_cargado = new Alumno(datos);
@@ -418,22 +445,25 @@ namespace iaai.alumno
                 }
                 if (db.altaAlumno(alumno_cargado))
                 {
-                    MessageBox.Show("El alumno fué dado de alta con éxito.");
+                    retorno.Add("El alumno fue dado de alta con éxito.");
                     exito = true;
 
-                    this.Close(); ;
+                    this.Close(); 
                 }
                 else
                 {
                     alumno_cargado = null;
-                    MessageBox.Show("Ocurrió un error en base de datos.");
+                    retorno.Add("Ocurrió un error en base de datos.");
 
                     exito = false;
                 }
 
 
             }
-            return exito;
+            
+               
+            return retorno;
+            
         }
 
 

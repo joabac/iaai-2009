@@ -74,7 +74,7 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni = '" + dni + "'", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni like '" + dni + "'", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
                 
                 if (MyDataReader.Read())
@@ -103,13 +103,13 @@ namespace iaai.Data_base
         /// <param name="dni"></param>
         /// <returns>
         /// true:si el alumno es activo (activo = 1)
-        /// flase:si el alumno es activo (activo = 1)</returns>
+        /// flase:si el alumno NO es activo (activo = 0)</returns>
         public bool esAlumnoActivo(string dni)
         {
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni = '" + dni + "' and activo = '0'", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select dni from alumno where dni like '" + dni + "' and activo = '0'", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
 
                 if (MyDataReader.Read())
@@ -181,7 +181,7 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where dni = '" + dni + "'", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where dni like '" + dni + "'", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
                 if (MyDataReader.Read())
                 {
@@ -577,7 +577,7 @@ namespace iaai.Data_base
             try
             {
                 this.open_db();
-                MySqlCommand MyCommand = new MySqlCommand("select dni from profesor where dni = '" + dni_profesor + "'", conexion);
+                MySqlCommand MyCommand = new MySqlCommand("select dni from profesor where dni like '" + dni_profesor + "'", conexion);
                 MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
                 
                 if (MyDataReader.Read())
