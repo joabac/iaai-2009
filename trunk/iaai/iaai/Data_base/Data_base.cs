@@ -4080,6 +4080,229 @@ namespace iaai.Data_base
 
             return turno_trabajo;            
         }
+
+        internal List<Materia> getMaterias(string prof, string nivel, string turno)
+        {
+            List<Materia> materias = new List<Materia>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
+                MySqlCommand MyCommand = new MySqlCommand("select m.id_materia, m.id_profesorado, nivel, m.nombre " +
+                                                          "from materia m , turno t,profesorado p " +
+                                                          "where m.id_materia = t.id_materia and m.id_profesorado = p.id_profesorado and "+
+                                                          "p.nombre like '" + prof + "' and m.nivel = " + nivel +
+                                                          " and t.turno like '"+ turno +"'", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                Materia materia_tem = new Materia();
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        materia_tem.id_materia = Convert.ToInt32(reader[0].ToString());
+                        materia_tem.id_profesorado = Convert.ToInt32(reader[1].ToString());
+                        materia_tem.nivel = Convert.ToInt32(reader[2].ToString());
+                        materia_tem.nombre = reader[3].ToString();
+                        materia_tem.cargar();
+
+                        materias.Add(materia_tem); //agrega a la lista de retorno
+
+                        materia_tem = new Materia();
+
+                    }while(reader.Read());
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Materias: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return materias;
+        }
+
+        internal List<List<string>> getListadoCondicionalesCursos(string p)
+        {
+            List<List<string>> listado = new List<List<string>>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
+                                                          "from alumno as a, matricula as m, registro_curso r " +
+                                                          "where r.id_curso = '" + curso + "' AND r.condicion = 'condicional' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                List<string> alumno;
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        alumno = new List<string>();
+                        alumno.Add(reader[0].ToString());
+                        alumno.Add(reader[1].ToString());
+                        alumno.Add(reader[2].ToString());
+
+                        listado.Add(alumno);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado;
+        }
+
+        internal List<List<string>> getListadoCondicionalesCursosEspeciales(string p)
+        {
+            List<List<string>> listado = new List<List<string>>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+
+                MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
+                                                          "from alumno as a, matricula as m, registro_curso_especial r " +
+                                                          "where r.id_curso_especial = '" + curso + "' AND r.condicion = 'condicional' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                List<string> alumno;
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        alumno = new List<string>();
+                        alumno.Add(reader[0].ToString());
+                        alumno.Add(reader[1].ToString());
+                        alumno.Add(reader[2].ToString());
+
+                        listado.Add(alumno);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos Especiales: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado;
+        }
+
+        internal List<List<string>> getListadoCondicionalesMateria(string p, string p_2)
+        {
+            List<List<string>> listado = new List<List<string>>();
+
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    this.open_db();
+
+                MySqlCommand MyCommand = new MySqlCommand("select a.nombre, a.apellido, a.dni " +
+                                                          "from alumno a, registro_materia r, turno t, matricula m " +
+                                                          "where r.id_materia = '" + id_materia + "' AND t.turno = '" + turno + "' AND t.id_materia = '" + id_materia + "' AND t.id_turno = r.id_turno  AND r.condicion = 'condicional' AND r.id_matricula = m.id_matricula AND m.id_alumno = a.id_alumno", conexion);
+
+                MySqlDataReader reader = MyCommand.ExecuteReader();
+                List<string> alumno;
+
+                if (reader.Read())
+                {
+                    do
+                    {
+                        alumno = new List<string>();
+                        alumno.Add(reader[0].ToString());
+                        alumno.Add(reader[1].ToString());
+                        alumno.Add(reader[2].ToString());
+
+                        listado.Add(alumno);
+
+                    } while (reader.Read());
+
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos Cursos: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+            }
+
+
+            return listado;
+        }
     }
 
     
