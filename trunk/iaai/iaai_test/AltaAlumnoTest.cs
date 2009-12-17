@@ -472,6 +472,8 @@ namespace iaai_test
             datos_A_Cargar.Clear();
             resultado.Clear();
 
+
+            //****************************** Pruebas de consistencia de logica ****************///
 //-------------------------------------------------------------------------------------------------
             //un alumno valido
             string [] cadena2 = {"Perez","Jose","28859353","25/09/1981","0342","4856321","Pazo 325","correo@correo.com","",""};
@@ -538,6 +540,21 @@ namespace iaai_test
             datos_A_Cargar.Clear();
             resultado.Clear();
 
+//--------------------------------------------------------------------------------------------------
+            //intento volver a cargar el alumno que fue reactivado anteriormente con diferentes datos filiatorios
+            string[] cadena7 = { "D'luca", "Carlos", "28859353", "25/09/1981", "0342", "4856321", "Pazo 325", "correo@correo.com", "", "" };
+            datos_A_Cargar.AddRange(cadena7);
+
+
+            formulario = new AltaAlumno(datos_A_Cargar);
+            esperado = "El DNI ingresado ya se encuentra\nregistrado en el sistema.";
+
+            resultado = formulario.cargar();
+            Assert.AreEqual(esperado, resultado[0].ToString());
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+
 //-------------------------------------------------------------------------------------------------
             //eliminio nuevamente para volver a intentar cargar con otros datos filiatorios
             db.eliminarAlumno("28859353");
@@ -559,6 +576,12 @@ namespace iaai_test
             formulario.Dispose();
             datos_A_Cargar.Clear();
             resultado.Clear();
+
+
+
+//----------------------------------------------------------------------------------------------------
+
+
 
             db.consulta("delete from alumno where dni = 28859353");
 
