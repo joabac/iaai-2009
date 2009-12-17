@@ -175,8 +175,13 @@ namespace iaai_test
 
             formulario = new AltaAlumno(datos_A_Cargar);
             esperado = false;                              //debe generar error el alumno con ese dni esta activo
- 
+
+
             resultado = formulario.cargar();
+
+            
+            
+
             Assert.AreEqual(esperado, resultado);
             formulario.Dispose();
             datos_A_Cargar.Clear();

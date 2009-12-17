@@ -38,6 +38,8 @@ namespace iaai.Data_base
         public void connectionString(string cadena)
         {
             cadena_coneccion = cadena;
+            if (conexion != null)
+                conexion.ConnectionString = cadena;
         }
 
         public bool open_db(){
