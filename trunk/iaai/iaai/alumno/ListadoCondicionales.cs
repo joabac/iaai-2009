@@ -15,7 +15,7 @@ namespace iaai.alumno
     /// <summary>
     /// Clase ListadoAsistencia
     /// </summary>
-    public partial class ListadoAsistencia : Form
+    public partial class ListadoCondicionales : Form
     {
 
         Data_base.Data_base db = new iaai.Data_base.Data_base();
@@ -29,7 +29,7 @@ namespace iaai.alumno
         /// <summary>
         /// Constructor de ListadoAsistencia Form
         /// </summary>
-        public ListadoAsistencia()
+        public ListadoCondicionales()
         {
             InitializeComponent();
 
