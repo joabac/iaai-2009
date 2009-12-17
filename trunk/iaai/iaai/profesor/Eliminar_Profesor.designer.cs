@@ -50,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
             this.textBoxDni = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBuscar
@@ -125,7 +126,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(96, 142);
+            this.label6.Location = new System.Drawing.Point(96, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 0;
@@ -134,7 +135,7 @@
             // apellido
             // 
             this.apellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.apellido.Location = new System.Drawing.Point(146, 139);
+            this.apellido.Location = new System.Drawing.Point(146, 110);
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(137, 20);
@@ -182,7 +183,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(96, 116);
+            this.label10.Location = new System.Drawing.Point(96, 139);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 0;
@@ -192,7 +193,7 @@
             // 
             this.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nombre.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.nombre.Location = new System.Drawing.Point(146, 113);
+            this.nombre.Location = new System.Drawing.Point(146, 136);
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(137, 20);
@@ -225,11 +226,21 @@
             this.textBoxDni.Size = new System.Drawing.Size(100, 20);
             this.textBoxDni.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Documento";
+            // 
             // Eliminar_Profesor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 273);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxDni);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.direccion);
@@ -276,5 +287,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.TextBox textBoxDni;
+        private System.Windows.Forms.Label label2;
     }
 }
