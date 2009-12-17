@@ -573,20 +573,14 @@ namespace iaai_test
         /// <returns>cadena tipo string de longitud requerida</returns>
         string generarCadenaLarga(int longitud) 
         {
-
             List<char> cadena = new List<char>();
-
-
 
             for (int i = 1; i <= longitud; i++) 
             {
-
                 cadena.Add('a');
             }
-
             String salida = new String(cadena.ToArray());
             
-
             return salida;
         }
     }
