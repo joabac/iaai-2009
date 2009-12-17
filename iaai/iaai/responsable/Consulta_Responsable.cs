@@ -140,7 +140,8 @@ namespace iaai.responsable
 
 
 
-                if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3 && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
+                if (metodo.validar_Nombre_App(caracter.KeyChar.ToString()) && busca_apellido.Text.Length >= 3
+                    && caracter.KeyChar != '\r' && caracter.KeyChar != '\b')
                 {
                     //busco los responsables activos que cumplan con la condicion ingresada
                     responsables_encontrados = db.Buscar_Responsable_Por_apellido(busca_apellido.Text + caracter.KeyChar);
@@ -166,6 +167,40 @@ namespace iaai.responsable
                             busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
                             busca_apellido.DroppedDown = true; //despliego el listado
                             caracter.KeyChar = '\0';
+                        }
+                    }
+                }
+                else {
+
+                    if (caracter.KeyChar == '*')
+                    {
+
+                        //busco los responsables activos que cumplan con la condicion ingresada
+                        responsables_encontrados = db.Buscar_Responsable_Por_apellido("%");
+
+
+                        if (responsables_encontrados != null) //si existe algun responsable con la condicion ingresada
+                        {
+                            if (busca_apellido.Items.Count > 0) //si existen elementos anteriores
+                            {
+                                busca_apellido.Items.Clear();   //limpio el listado para cargar los nuevos elementos
+                            }
+
+                            foreach (Responsable responsable in responsables_encontrados) //para cada valor ingresado 
+                            {
+                                //agrego un item en el orden de la lista obtenida presentando solo apellido,nombre
+                                busca_apellido.Items.Add(responsable.getApellido() + ", " + responsable.getNombre());
+                            }
+
+
+                            //si la lista no esta desplegada
+                            if (busca_apellido.DroppedDown == false)
+                            {
+                                busca_apellido.SelectedIndex = 0; //selecciono el primer item de la lista
+                                busca_apellido.DroppedDown = true; //despliego el listado
+                                caracter.KeyChar = '\0';
+                            }
+
                         }
                     }
                 }

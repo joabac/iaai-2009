@@ -147,7 +147,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(355, 66);
+            this.label6.Location = new System.Drawing.Point(355, 39);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 49;
@@ -156,7 +156,7 @@
             // apellido
             // 
             this.apellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.apellido.Location = new System.Drawing.Point(405, 63);
+            this.apellido.Location = new System.Drawing.Point(405, 36);
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(181, 20);
@@ -223,7 +223,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(355, 40);
+            this.label10.Location = new System.Drawing.Point(355, 65);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 45;
@@ -232,7 +232,7 @@
             // nombre
             // 
             this.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nombre.Location = new System.Drawing.Point(405, 37);
+            this.nombre.Location = new System.Drawing.Point(405, 62);
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(181, 20);

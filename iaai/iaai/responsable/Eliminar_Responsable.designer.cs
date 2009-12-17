@@ -49,6 +49,7 @@
             this.textBoxDni = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBuscar
@@ -122,7 +123,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(96, 142);
+            this.label6.Location = new System.Drawing.Point(96, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 65;
@@ -131,7 +132,7 @@
             // apellido
             // 
             this.apellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.apellido.Location = new System.Drawing.Point(146, 139);
+            this.apellido.Location = new System.Drawing.Point(146, 110);
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(137, 20);
@@ -176,7 +177,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(96, 116);
+            this.label10.Location = new System.Drawing.Point(96, 141);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 62;
@@ -186,7 +187,7 @@
             // 
             this.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nombre.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.nombre.Location = new System.Drawing.Point(146, 113);
+            this.nombre.Location = new System.Drawing.Point(146, 138);
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(137, 20);
@@ -219,11 +220,21 @@
             this.email.Size = new System.Drawing.Size(137, 20);
             this.email.TabIndex = 70;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(59, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 71;
+            this.label1.Text = "Documento";
+            // 
             // EliminarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 255);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.email);
             this.Controls.Add(this.textBoxDni);
@@ -270,5 +281,6 @@
         private System.Windows.Forms.TextBox textBoxDni;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox email;
+        private System.Windows.Forms.Label label1;
     }
 }
