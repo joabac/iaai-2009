@@ -55,14 +55,15 @@ namespace iaai
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoDeCondicionalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // estado
             // 
-            this.estado.Location = new System.Drawing.Point(0, 348);
+            this.estado.Location = new System.Drawing.Point(0, 550);
             this.estado.Name = "estado";
-            this.estado.Size = new System.Drawing.Size(651, 22);
+            this.estado.Size = new System.Drawing.Size(799, 22);
             this.estado.TabIndex = 4;
             this.estado.Text = "estado";
             // 
@@ -77,7 +78,7 @@ namespace iaai
             this.salirToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(651, 24);
+            this.menu.Size = new System.Drawing.Size(799, 24);
             this.menu.TabIndex = 1;
             this.menu.Tag = "Funciones del Sistema";
             this.menu.Text = "menu";
@@ -89,7 +90,8 @@ namespace iaai
             this.altaResponsableToolStripMenuItem,
             this.inscripcionesToolStripMenuItem,
             this.listadoSeguroToolStripMenuItem,
-            this.listadoAsistenciaToolStripMenuItem});
+            this.listadoAsistenciaToolStripMenuItem,
+            this.listadoDeCondicionalesToolStripMenuItem});
             this.alumnosMenu.Name = "alumnosMenu";
             this.alumnosMenu.Size = new System.Drawing.Size(59, 20);
             this.alumnosMenu.Text = "Alumnos";
@@ -102,7 +104,7 @@ namespace iaai
             this.eliminarAlumnoToolStripMenuItem,
             this.consultarAlumnoToolStripMenuItem});
             this.altaAlumnoToolStripMenuItem.Name = "altaAlumnoToolStripMenuItem";
-            this.altaAlumnoToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.altaAlumnoToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.altaAlumnoToolStripMenuItem.Text = "Gestión alumnos";
             // 
             // altaAlumnoToolStripMenuItem1
@@ -140,7 +142,7 @@ namespace iaai
             this.eliminarResponsableToolStripMenuItem,
             this.consultarResponsableToolStripMenuItem});
             this.altaResponsableToolStripMenuItem.Name = "altaResponsableToolStripMenuItem";
-            this.altaResponsableToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.altaResponsableToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.altaResponsableToolStripMenuItem.Text = "Gestión responsables";
             // 
             // modificarResponsableToolStripMenuItem
@@ -167,21 +169,21 @@ namespace iaai
             // inscripcionesToolStripMenuItem
             // 
             this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
-            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
             this.inscripcionesToolStripMenuItem.Click += new System.EventHandler(this.inscripcionesToolStripMenuItem_Click);
             // 
             // listadoSeguroToolStripMenuItem
             // 
             this.listadoSeguroToolStripMenuItem.Name = "listadoSeguroToolStripMenuItem";
-            this.listadoSeguroToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.listadoSeguroToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.listadoSeguroToolStripMenuItem.Text = "Listado para seguro";
             this.listadoSeguroToolStripMenuItem.Click += new System.EventHandler(this.listadoSeguroToolStripMenuItem_Click);
             // 
             // listadoAsistenciaToolStripMenuItem
             // 
             this.listadoAsistenciaToolStripMenuItem.Name = "listadoAsistenciaToolStripMenuItem";
-            this.listadoAsistenciaToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.listadoAsistenciaToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.listadoAsistenciaToolStripMenuItem.Text = "Listados para asistencia";
             this.listadoAsistenciaToolStripMenuItem.Click += new System.EventHandler(this.listadoAsistenciaToolStripMenuItem_Click);
             // 
@@ -262,6 +264,13 @@ namespace iaai
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // listadoDeCondicionalesToolStripMenuItem
+            // 
+            this.listadoDeCondicionalesToolStripMenuItem.Name = "listadoDeCondicionalesToolStripMenuItem";
+            this.listadoDeCondicionalesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.listadoDeCondicionalesToolStripMenuItem.Text = "Listado de Condicionales";
+            this.listadoDeCondicionalesToolStripMenuItem.Click += new System.EventHandler(this.listadoDeCondicionalesToolStripMenuItem_Click);
+            // 
             // Menu_inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,7 +278,7 @@ namespace iaai
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::iaai.Properties.Resources.Aethlet_Reprise_by_archanN;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(651, 370);
+            this.ClientSize = new System.Drawing.Size(799, 572);
             this.Controls.Add(this.estado);
             this.Controls.Add(this.menu);
             this.DoubleBuffered = true;
@@ -316,6 +325,7 @@ namespace iaai
         private System.Windows.Forms.ToolStripMenuItem consultarAlumnoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarResponsableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listadoDeCondicionalesToolStripMenuItem;
 
 
 

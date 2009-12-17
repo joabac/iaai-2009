@@ -212,6 +212,17 @@ namespace iaai
             string cadena = "C:/iaai/iaai/iaai/Resources/DocProject1.chm";
             Help.ShowHelp(this,cadena);
         }
+
+        private void listadoDeCondicionalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListadoCondicionales inscripcion = new ListadoCondicionales();
+            inscripcion.Parent = this.Parent;
+            inscripcion.MdiParent = this;
+
+
+            inscripcionesToolStripMenuItem.Enabled = false;
+            inscripcion.Show(this);
+        }
         
       
 
