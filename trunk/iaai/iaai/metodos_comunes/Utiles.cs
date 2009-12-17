@@ -20,26 +20,42 @@ namespace iaai.metodos_comunes
         public bool ValidarDni(string dni)
         {
 
+            bool tieneLetra = false;
+
             if (dni.Length > 9)
                 return false;
             else
             {
-                if (dni.Length < 8)
+                if (dni.Length < 7)
                     return false;
             }
 
-            if (dni.Length == 9 ){
-                if (dni[8] != 'F' && dni[8] != 'M')
-                    return false;
-                
+
+            if (dni[dni.Length - 1] != 'F' && dni[dni.Length - 1] != 'M' && !char.IsDigit(dni[dni.Length - 1]))
+            {  //si el ultimo es un caracter debe ser o F o M
+                return false;
             }
-            
-            
-            for(int i=0;i<8; i++) 
+            else
+                tieneLetra = true;
+
+
+            if (tieneLetra == false)
             {
+                for (int i = 0; i < dni.Length - 1; i++) //verifico los caracteres
+                {
                     if (!char.IsDigit(dni[i]))
                         return false;
+                }
             }
+            else
+            {
+                for (int i = 0; i <= dni.Length - 2; i++) //verifico los caracteres hasta antes de la letra
+                {
+                    if (!char.IsDigit(dni[i]))
+                        return false;
+                }
+            }
+           
 
             return true;
         }

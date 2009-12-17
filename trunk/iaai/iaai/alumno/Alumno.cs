@@ -56,12 +56,12 @@ namespace iaai.alumno
             if (datos["escuela_nombre"] != null)
             {
                 escuela_nombre = (string)datos["escuela_nombre"];
-                escuela_año = int.Parse(datos["escuela_año"].ToString());
+                escuela_año = Convert.ToInt32(datos["escuela_año"].ToString());
             }
             
             direccion = (string)datos["direccion"];
             if (datos["id_responsable"] != null)
-                id_responsable = int.Parse(datos["id_responsable"].ToString());
+                id_responsable = Convert.ToInt32(datos["id_responsable"].ToString());
             if (datos["email"] != null)
                 email = datos["email"].ToString();
         }

@@ -148,54 +148,64 @@ namespace iaai_test
             Assert.AreEqual(esperado, actual);
             
 
-            dni="28889.394";
+            dni="28889.394";//cadena no valida
             esperado= false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "288593MF";
+            dni = "288593MF"; //cadena no valida
             esperado = false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "288593FM";
+            dni = "288593FM";//cadena no valida
             esperado = false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "288593";
+            dni = "288593"; //longitud de 6
             esperado = false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "288593F0123";
+            dni = "288593F0123"; //cadena no valida
             esperado = false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni= "28s89394";
+            dni= "28s89394"; //cadena no valida
             esperado =false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
 
-            dni = "28F893944";
+            dni = "28F893944"; //cadena no valida
             esperado = false;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "28893943F";  
+            dni = "28893943F";  //valido con letra
             esperado = true;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "28893943M";
+            dni = "28893943M"; //valido con letra
             esperado = true;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
-            dni = "12345678F0";
+            dni = "12345678F0"; //cadena no valida
             esperado = false;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "1234567"; //dni de 7digitos
+            esperado = true;
+            actual = target.ValidarDni(dni);
+            Assert.AreEqual(esperado, actual);
+
+            dni = "1234567M"; //dni de 7digitos con letra
+            esperado = true;
             actual = target.ValidarDni(dni);
             Assert.AreEqual(esperado, actual);
 
