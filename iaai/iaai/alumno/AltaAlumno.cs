@@ -255,25 +255,38 @@ namespace iaai.alumno
                 if (!metodo.validar_Direccion(direccion.Text))
                     error.Add("Formato de dirección no válido");
             }
+
+
             
  
-            //Validación nombre escuela
             if (escuela_nombre.Text.Length > 0 && escuela_nombre.Text.Length <= 100)
             {
-                //si ingreso la escuela, controlo que ingrese el año de cursado
-                if(escuela_año.Text.Length == 0)
-                    error.Add("Ingrese el año de cursado.");
-                else
-                    if(!metodo.validar_Escuela_Año(escuela_año.Text))
-                        error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
+                if (metodo.validar_Direccion(escuela_nombre.Text))
+                {
+                    //si ingreso la escuela, controlo que ingrese el año de cursado
+                    if (escuela_año.Text.Length == 0)
+                        error.Add("Ingrese el año de cursado.");
+                    else
+                    {
+                        if (!metodo.validar_Escuela_Año(escuela_año.Text))
+                            error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
+                    }
+                }
+                else 
+                {
+
+                    error.Add("Nombre de escuela no valido.");
+                }
             } 
-            else if (escuela_año.Text.Length > 0)
+            
+            if (escuela_año.Text.Length > 0)
             {
                 if (!metodo.validar_Escuela_Año(escuela_año.Text))
-                    error.Add("Formato incorrecto para el año de cursado."); 
-                if (escuela_nombre.Text.Length == 0) 
+                    error.Add("Formato de año de cursado no válido (Debe ingresar sólo un dígito).");
+                //Validación nombre escuela
+                if (escuela_nombre.Text.Length == 0)
                     error.Add("Ingrese el nombre de la escuela.");
-                else
+                else if (escuela_nombre.Text.Length > 100)
                     error.Add("Nombre de la escuela demasiado extenso.");
             }
 

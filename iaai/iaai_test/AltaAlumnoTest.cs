@@ -387,6 +387,24 @@ namespace iaai_test
             formulario.Dispose();
             datos_A_Cargar.Clear();
             resultado.Clear();
+            
+            //*****************************************************************
+            //nombre de la escuela no valido
+            string[] errores_formato22 = { "Peres", "Jose", "28859353", "25/12/1980", "0342", "123456", "Paso 345", "correo@correo.com", "A$trada", "2" };
+            datos_A_Cargar.AddRange(errores_formato22);
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+            esperado = "Nombre de escuela no valido.";
+
+
+            resultado = formulario.cargar();
+            Assert.AreEqual(esperado, resultado[0].ToString());
+
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
+            
+            
 
 
             //*****************************************************************
@@ -445,8 +463,9 @@ namespace iaai_test
             Assert.AreEqual("Formato de número de teléfono no válido", resultado[4].ToString());
             Assert.AreEqual("Formato de la Característica telefónica no válido", resultado[5].ToString());
             Assert.AreEqual("Formato de dirección no válido", resultado[6].ToString());
-            Assert.AreEqual("Formato de año de cursado no válido (Debe ingresar sólo un dígito).", resultado[7].ToString());
-            Assert.AreEqual("Formato de email no valido", resultado[8].ToString());
+            Assert.AreEqual("Nombre de escuela no valido.", resultado[7].ToString());
+            Assert.AreEqual("Formato de año de cursado no válido (Debe ingresar sólo un dígito).", resultado[8].ToString());
+            Assert.AreEqual("Formato de email no valido", resultado[9].ToString());
 
 
             formulario.Dispose();
