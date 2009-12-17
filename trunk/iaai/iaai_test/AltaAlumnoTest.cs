@@ -404,9 +404,54 @@ namespace iaai_test
             formulario.Dispose();
             datos_A_Cargar.Clear();
             resultado.Clear();
+
+
+
+            //*****************************************************************
+            //todos los campos vacios
+            string[] errores_formato19 = { "", "", "", "", "", "", "", "", "", "" };
+            datos_A_Cargar.AddRange(errores_formato19);
+            formulario = new AltaAlumno(datos_A_Cargar);
+
             
+            resultado = formulario.cargar();
+
+            Assert.AreEqual("Ingrese el DNI.", resultado[0].ToString());
+            Assert.AreEqual("Ingrese el Nombre.", resultado[1].ToString());
+            Assert.AreEqual("Ingrese el Apellido.", resultado[2].ToString());
+            Assert.AreEqual("Ingrese la fecha de nacimiento.", resultado[3].ToString());
+            Assert.AreEqual("Ingrese el teléfono.", resultado[4].ToString());
+            Assert.AreEqual("Ingrese la dirección.", resultado[5].ToString());
+                     
+           
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
 
 
+            //*****************************************************************
+            //todos los campos no validos
+            string[] errores_formato20 = { "234", "235", "234f", "2344", "sdf", "sdf", "ç`p4%", "345&/3º1*", "·$%/&fs4", "333" };
+            datos_A_Cargar.AddRange(errores_formato20);
+            formulario = new AltaAlumno(datos_A_Cargar);
+
+
+            resultado = formulario.cargar();
+
+            Assert.AreEqual("El DNI ingresado no es válido.", resultado[0].ToString());
+            Assert.AreEqual("Formato de nombre no válido", resultado[1].ToString());
+            Assert.AreEqual("Formato de apellido no válido", resultado[2].ToString());
+            Assert.AreEqual("Formato de fecha de nacimiento no válido.", resultado[3].ToString());
+            Assert.AreEqual("Formato de número de teléfono no válido", resultado[4].ToString());
+            Assert.AreEqual("Formato de la Característica telefónica no válido", resultado[5].ToString());
+            Assert.AreEqual("Formato de dirección no válido", resultado[6].ToString());
+            Assert.AreEqual("Formato de año de cursado no válido (Debe ingresar sólo un dígito).", resultado[7].ToString());
+            Assert.AreEqual("Formato de email no valido", resultado[8].ToString());
+
+
+            formulario.Dispose();
+            datos_A_Cargar.Clear();
+            resultado.Clear();
 
 //-------------------------------------------------------------------------------------------------
             //un alumno valido

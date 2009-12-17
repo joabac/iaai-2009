@@ -360,10 +360,13 @@ namespace iaai.metodos_comunes
         {
 
             bool valido= true;
-            
-            int pos = 0; 
 
-                for (int i = pos; i < 2; i++ )  
+            if (cadena != "" && cadena.Length == 10)
+            {
+
+                int pos = 0;
+
+                for (int i = pos; i < 2; i++)
                 {
                     if (char.IsDigit(cadena[i]))
                     {
@@ -373,17 +376,17 @@ namespace iaai.metodos_comunes
 
                     pos = i;
                 }
-                
+
                 pos += 1;
-                
-                if(cadena[pos] != '/')
+
+                if (cadena[pos] != '/')
                     return -1;  // encontro caracter no valido
 
                 //validado hasta XX/
 
                 pos += 1;
 
-                for (int j= pos; j < 5; j++)
+                for (int j = pos; j < 5; j++)
                 {
                     if (char.IsDigit(cadena[j]))
                     {
@@ -411,7 +414,12 @@ namespace iaai.metodos_comunes
                 }
 
                 //validado hasta XX/XX/XXXX
-            
+            }
+            else 
+            {
+                valido = false;  //no cumple el formato minimo de longitud
+            }
+
             if (valido) //si el formato es valido
             {
                 try
