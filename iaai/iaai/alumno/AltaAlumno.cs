@@ -401,7 +401,16 @@ namespace iaai.alumno
                 MessageBox.Show(resultado.ToArray().ToString());
             }
             else
-               MessageBox.Show("Se produjeron errores: " + resultado.ToArray().ToString());
+            {
+                string mensaje = "";
+
+                foreach (string subMensaje in resultado) 
+                {
+                    mensaje += subMensaje + "\r\n";
+                    
+                }
+                MessageBox.Show("Se produjeron errores: \r\n" + mensaje);
+            }
         }
 
 
