@@ -213,6 +213,7 @@ namespace iaai.responsable
                 else
                     consulta = "dni = '" + dniBusqueda.Text + "%'";
             }
+            consulta = " AND activo = '1'";
         }
 
         private void tablaResultado_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -257,6 +258,13 @@ namespace iaai.responsable
                 llenarTabla();
                 tablaResultado.Rows[0].Cells[6].Value = true;
             }
+        }
+
+        private void todos_Click(object sender, EventArgs e)
+        {
+            consulta = "activo = 1";
+            resultado = db.buscarResponsable(consulta);
+            llenarTabla();
         }
 
         
