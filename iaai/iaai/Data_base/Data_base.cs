@@ -172,6 +172,43 @@ namespace iaai.Data_base
             return dni_responsable;
         }
 
+        /// <summary>
+        /// Método que retorna el DNI del responsable 
+        /// </summary>
+        /// <param name="id">int: id_responsable</param>
+        /// <returns>
+        /// string: DNI responsable
+        /// </returns>
+        public string obtenerDniAlumno(int id)
+        {
+            string dni_responsable = "";
+            try
+            {
+                this.open_db();
+                MySqlCommand MyCommand = new MySqlCommand("select dni from responsable where id_responsable = '" + id + "'", conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                if (MyDataReader.Read())
+                {
+                    dni_responsable = MyDataReader[0].ToString();
+                    conexion.Close();
+                    return dni_responsable;
+                }
+                else
+                {
+                    conexion.Close();
+                    return null;
+                }
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error en base de Datos al buscar el dni del responsable: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dni_responsable;
+        }
+
+
        /// <summary>
         /// Se valida que no exista el responsable en la base de datos.
        /// </summary>
@@ -313,6 +350,57 @@ namespace iaai.Data_base
             return datos;
         }
 
+
+        /// <summary>
+        /// Busca un alumno inactivo en base de datos
+        /// </summary>
+        /// <param name="consulta">
+        /// consulta: string con la condición de búsqueda en la base de datos para recuperar los datos de los alumno
+        /// </param>
+        /// <returns>
+        /// List: lista con objetos alumnos que son recuperados según 
+        /// las condiciones dadas en el parámetro "consulta".
+        /// </returns>
+        public List<Alumno> buscarAlumnoInactivo(string consulta)
+        {
+            List<Alumno> datos = new List<Alumno>();
+            Alumno alu = new Alumno();
+
+            try
+            {
+                this.open_db();
+                
+                MySqlCommand MyCommand = new MySqlCommand("select * from alumno where " + consulta, conexion);
+                MySqlDataReader MyDataReader = MyCommand.ExecuteReader();
+                while (MyDataReader.Read())
+                {
+                    alu = new Alumno();
+                    alu.id_alumno = Convert.ToInt32(MyDataReader[0].ToString());
+                    alu.setNombre(MyDataReader[1].ToString());
+                    alu.setApellido(MyDataReader[2].ToString());
+                    alu.setDni(MyDataReader[3].ToString());
+                    alu.setFecha_nac(Convert.ToDateTime((MyDataReader[4].ToString())));
+                    alu.setTelefono_carac(MyDataReader[5].ToString());
+                    alu.setTelefono_numero(MyDataReader[6].ToString());
+                    alu.setEscuela_nombre(MyDataReader[7].ToString());
+                    alu.setEscuela_año(Convert.ToInt32(MyDataReader[8].ToString()));
+                    alu.setDireccion(MyDataReader[9].ToString());
+                    alu.setId_responsable(Convert.ToInt32(MyDataReader[10].ToString()));
+                    alu.setEmail(MyDataReader[12].ToString());
+
+                    datos.Add(alu);
+                }
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("Error de lectura en base de Datos al buscar el/los alumno/s: \r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            conexion.Close();
+            return datos;
+        }
 
         /// <summary>
         /// Método que modifica un alumno en la base de datos
@@ -992,7 +1080,6 @@ namespace iaai.Data_base
                     MyCommand4.ExecuteNonQuery();
 
                 }
-
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 1 " +
                                                            "where dni like '" + dni + "'", conexion);
                 MyCommand.ExecuteNonQuery();
@@ -1076,6 +1163,81 @@ namespace iaai.Data_base
             return true;
 
         }
+
+        /// <summary>
+        /// Método que retorna si el id del responsable pasado como parámetre corresponde a un responsable inactivo
+        /// </summary>
+        /// <param name="id_resp">string: id_responsable</param>
+        /// <returns>
+        /// true: si el responsables tiene activo = 0
+        /// flase: si el responsable tiene activo = 1</returns>
+        public bool responsableEsInactivo(string id_resp)
+        {
+            try
+            {
+                this.open_db();
+                
+                //extraigo los id_matricula del alumno a eliminar
+                MySqlCommand MyReadCommand = new MySqlCommand("select * from responsable where id_responsable = '" + id_resp + "' and activo = '0'", conexion);
+                MySqlDataReader re = MyReadCommand.ExecuteReader();
+                //seteo como inactivo al alumno en todas las materias, cursos y demás donde esté inscripto el alumno
+                if (re.Read())
+                {
+                    conexion.Close();
+                    return true;
+                }
+                else
+                {
+                    conexion.Close();
+                    return false;
+                }
+                
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de lectura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 
+                }
+                conexion.Close();
+                return false;
+            }
+            conexion.Close();
+        }
+
+        /// <summary>
+        /// Método que setea un reponsable como activo, luego de haber sido dado de baja
+        /// </summary>
+        /// <param name="id">string: id_responsable</param>
+        public void reactivarResponsable(String id)
+        {
+            try
+            {
+                this.open_db();
+                
+                MySqlCommand MyCommand = new MySqlCommand("update responsable set activo = 1 " +
+                                                           "where id_responsable like '" + id + "'", conexion);
+
+                MyCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (MySqlException e)
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                    MessageBox.Show("Error de escritura en base de Datos\r\n" + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+
+            }
+            
+
+        }
+
+
 
         /// <summary>
         /// Marca como eliminado un responsable de la base de datos

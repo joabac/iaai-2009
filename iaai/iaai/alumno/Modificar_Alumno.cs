@@ -23,6 +23,7 @@ namespace iaai.alumno
         Data_base.Data_base db = new iaai.Data_base.Data_base();
         Utiles metodo = new Utiles();
         string dni_viejo;
+        
 
         private int responsable = -1;
 
@@ -48,6 +49,8 @@ namespace iaai.alumno
         {
             InitializeComponent();
         }
+
+        
 
         /// <summary>
         /// Se modifican los datos personales de un alumno
@@ -355,6 +358,7 @@ namespace iaai.alumno
                 MessageBox.Show("Se eliminó el o los responsables dado de alta para el alta alumno cancelado.");
             if (Owner != null)
                 Owner.Enabled = true;
+
         }
         /// <summary>
         /// Método que envía los datos para que sean actualizados en Base de Datos

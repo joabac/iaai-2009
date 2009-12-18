@@ -222,6 +222,14 @@ namespace iaai
            
             condicionales.Show();
         }
+
+        private void recuperarAlumnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReactivarAlumno inactivos = new ReactivarAlumno();
+            inactivos.Parent = this.Parent;
+            inactivos.MdiParent = this;
+            inactivos.Show();
+        }
         
       
 
