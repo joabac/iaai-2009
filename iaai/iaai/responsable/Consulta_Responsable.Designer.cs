@@ -113,6 +113,7 @@
             this.direccion.ReadOnly = true;
             this.direccion.Size = new System.Drawing.Size(181, 20);
             this.direccion.TabIndex = 43;
+            this.direccion.TabStop = false;
             // 
             // label7
             // 
@@ -132,6 +133,7 @@
             this.fecha_nacimiento.ReadOnly = true;
             this.fecha_nacimiento.Size = new System.Drawing.Size(65, 20);
             this.fecha_nacimiento.TabIndex = 40;
+            this.fecha_nacimiento.TabStop = false;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -151,6 +153,7 @@
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(181, 20);
             this.apellido.TabIndex = 37;
+            this.apellido.TabStop = false;
             // 
             // label5
             // 
@@ -169,6 +172,7 @@
             this.dni.ReadOnly = true;
             this.dni.Size = new System.Drawing.Size(181, 20);
             this.dni.TabIndex = 38;
+            this.dni.TabStop = false;
             // 
             // label4
             // 
@@ -187,6 +191,7 @@
             this.telefono_carac.ReadOnly = true;
             this.telefono_carac.Size = new System.Drawing.Size(67, 20);
             this.telefono_carac.TabIndex = 41;
+            this.telefono_carac.TabStop = false;
             // 
             // label3
             // 
@@ -205,6 +210,7 @@
             this.telefono_numero.ReadOnly = true;
             this.telefono_numero.Size = new System.Drawing.Size(100, 20);
             this.telefono_numero.TabIndex = 42;
+            this.telefono_numero.TabStop = false;
             // 
             // label10
             // 
@@ -223,6 +229,7 @@
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(181, 20);
             this.nombre.TabIndex = 36;
+            this.nombre.TabStop = false;
             // 
             // panel1
             // 
@@ -268,6 +275,7 @@
             this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(181, 20);
             this.email.TabIndex = 55;
+            this.email.TabStop = false;
             // 
             // button2
             // 

@@ -124,7 +124,7 @@
             this.apellido.Location = new System.Drawing.Point(136, 78);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(137, 20);
-            this.apellido.TabIndex = 3;
+            this.apellido.TabIndex = 2;
             // 
             // label5
             // 
@@ -192,7 +192,7 @@
             this.nombre.Location = new System.Drawing.Point(136, 104);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(137, 20);
-            this.nombre.TabIndex = 2;
+            this.nombre.TabIndex = 3;
             // 
             // label1
             // 
