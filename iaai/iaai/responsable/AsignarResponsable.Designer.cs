@@ -51,12 +51,14 @@
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.nuevo = new System.Windows.Forms.Button();
+            this.todos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaResultado)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.todos);
             this.groupBox1.Controls.Add(this.buscar);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dniBusqueda);
@@ -100,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(175, 32);
+            this.label2.Location = new System.Drawing.Point(27, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 3;
@@ -108,7 +110,7 @@
             // 
             // apellidoBusqueda
             // 
-            this.apellidoBusqueda.Location = new System.Drawing.Point(225, 29);
+            this.apellidoBusqueda.Location = new System.Drawing.Point(77, 29);
             this.apellidoBusqueda.Name = "apellidoBusqueda";
             this.apellidoBusqueda.Size = new System.Drawing.Size(100, 20);
             this.apellidoBusqueda.TabIndex = 2;
@@ -116,7 +118,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 32);
+            this.label1.Location = new System.Drawing.Point(183, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 1;
@@ -124,7 +126,7 @@
             // 
             // nombreBusqueda
             // 
-            this.nombreBusqueda.Location = new System.Drawing.Point(64, 29);
+            this.nombreBusqueda.Location = new System.Drawing.Point(233, 29);
             this.nombreBusqueda.Name = "nombreBusqueda";
             this.nombreBusqueda.Size = new System.Drawing.Size(100, 20);
             this.nombreBusqueda.TabIndex = 0;
@@ -231,6 +233,16 @@
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
+            // todos
+            // 
+            this.todos.Location = new System.Drawing.Point(312, 71);
+            this.todos.Name = "todos";
+            this.todos.Size = new System.Drawing.Size(75, 23);
+            this.todos.TabIndex = 7;
+            this.todos.Text = "Todos";
+            this.todos.UseVisualStyleBackColor = true;
+            this.todos.Click += new System.EventHandler(this.todos_Click);
+            // 
             // AsignarResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,5 +285,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
         private System.Windows.Forms.DataGridViewCheckBoxColumn asignar;
+        private System.Windows.Forms.Button todos;
     }
 }

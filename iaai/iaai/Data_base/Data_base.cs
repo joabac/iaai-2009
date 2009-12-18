@@ -1111,6 +1111,7 @@ namespace iaai.Data_base
         /// false: si no pudo realizar la eliminación</returns>
         public bool eliminarAlumno(String dni)
         {
+            string id_respon = "";
             List<string> matriculas = new List<string>();
             try
             {
@@ -1123,11 +1124,25 @@ namespace iaai.Data_base
                 while (reader.Read())
                 {
                     matriculas.Add(reader[0].ToString());
+
                 }
+                reader.Close();
+                //extraigo los id_responsable del alumno a eliminar
+                MyReadCommand = new MySqlCommand("select id_responsable from alumno where dni = '" + dni + "'", conexion);
+                reader = MyReadCommand.ExecuteReader();
+                //guardo el id_responsable en una variable
+                while (reader.Read())
+                {
+                    id_respon = reader[0].ToString();
+
+                }
+                
                 reader.Close();
                 MySqlCommand MyCommand2;
                 MySqlCommand MyCommand3;
                 MySqlCommand MyCommand4;
+                MySqlCommand MyCommand5;
+                
                 foreach(string mat in matriculas)
                 {
                     MyCommand2 = new MySqlCommand("update registro_curso set condicion = 'inactivo' " +
@@ -1142,13 +1157,43 @@ namespace iaai.Data_base
                                                              "where id_matricula like '" + mat + "'", conexion);
                     MyCommand4.ExecuteNonQuery();
 
-                }
+                  
+                    
 
+
+                }
+                conexion.Close();
+                this.open_db();
                 MySqlCommand MyCommand = new MySqlCommand("update alumno set activo = 0 " +
                                                            "where dni like '" + dni + "'", conexion);
                 MyCommand.ExecuteNonQuery();
-                
+                reader.Close();
                 conexion.Close();
+                this.open_db();
+                //me fijo si el resposable del alumno a eliminar tenía otro alumno a su cargo
+                MySqlCommand MyReadCommand2 = new MySqlCommand("select dni from alumno where id_responsable = '" + id_respon + "' and activo = 1", conexion);
+                MySqlDataReader reader2 = MyReadCommand2.ExecuteReader();
+                
+                List<string> lista_alu_resp = new List<string>();
+                
+                while (reader2.Read())
+                {
+                    lista_alu_resp.Add(reader2[0].ToString());
+                }
+                
+                //lista_alu_resp.RemoveAt(lista_alu_resp.IndexOf(dni));
+                conexion.Close();
+                this.open_db();
+
+                if (!(lista_alu_resp.Count > 0))
+                {
+                    MyCommand5 = new MySqlCommand("update responsable set activo = '0' " +
+                                                         "where id_responsable = '" + id_respon + "'", conexion);
+                    MyCommand5.ExecuteNonQuery();
+                }
+
+                conexion.Close();
+
             }
             catch (MySqlException e)
             {
@@ -1160,6 +1205,7 @@ namespace iaai.Data_base
                 }
 
             }
+            conexion.Close();
             return true;
 
         }
@@ -1561,7 +1607,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
                                                           "from responsable " +
-                                                          "where apellido_respon like '" + apostrofos(apellido) + "%'", conexion);
+                                                          "where apellido_respon like '" + apostrofos(apellido) + "%' and activo  = '1'", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Responsable respon_tem = new Responsable();
