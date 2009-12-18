@@ -2442,12 +2442,20 @@ namespace iaai_test
             List<Materia> actual;
             actual = target.getMateriasAlumno(id_profesorado, id_alumno);
             Assert.AreEqual(expected, actual.Count);
-            Assert.AreEqual("LENGUA INGLESA II", actual[0].nombre);
-            Assert.AreEqual("LENGUA INGLESA I", actual[1].nombre);
 
+            int cuenta = 0;
+            foreach (Materia mat in actual)
+            {
+                if (mat.nombre == "LENGUA INGLESA II")
+                    cuenta += 1;
 
+                if (mat.nombre == "LENGUA INGLESA I")
+                    cuenta += 1;
+            }
 
-            
+            Assert.AreEqual(2, cuenta); //espero se hallan encontrado las dos materias
+
+                        
              id_profesorado = 2; 
              id_alumno = 18;
              List<Materia> esperado = null; //no esta inscripto a ninguna materia de este profesorado
