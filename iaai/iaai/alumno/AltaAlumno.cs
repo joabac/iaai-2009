@@ -18,7 +18,9 @@ namespace iaai.alumno
     /// </summary>
     public partial class AltaAlumno : Form
     {
+#pragma warning disable
         private string error = "";
+#pragma warning enable
         private int responsable {get; set;}
         
         

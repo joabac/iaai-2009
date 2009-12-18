@@ -34,10 +34,6 @@ namespace iaai.alumno
         private void InitializeComponent()
         {
             this.lista = new System.Windows.Forms.DataGridView();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.asistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imprimir = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.previa = new System.Windows.Forms.Button();
@@ -64,6 +60,11 @@ namespace iaai.alumno
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.comboMaterias = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.inscribe = new System.Windows.Forms.Button();
+            this.insc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,10 +76,10 @@ namespace iaai.alumno
             this.lista.AllowUserToResizeRows = false;
             this.lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.insc,
             this.nombre,
-            this.apellido,
-            this.dni,
-            this.asistencia});
+            this.apel,
+            this.dni});
             this.lista.Location = new System.Drawing.Point(12, 143);
             this.lista.MultiSelect = false;
             this.lista.Name = "lista";
@@ -87,39 +88,9 @@ namespace iaai.alumno
             this.lista.Size = new System.Drawing.Size(855, 426);
             this.lista.TabIndex = 13;
             // 
-            // nombre
-            // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // apellido
-            // 
-            this.apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            this.apellido.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dni
-            // 
-            this.dni.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dni.HeaderText = "Dni";
-            this.dni.Name = "dni";
-            this.dni.ReadOnly = true;
-            this.dni.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // asistencia
-            // 
-            this.asistencia.HeaderText = "Presentes";
-            this.asistencia.Name = "asistencia";
-            this.asistencia.Visible = false;
-            // 
             // imprimir
             // 
-            this.imprimir.Location = new System.Drawing.Point(705, 586);
+            this.imprimir.Location = new System.Drawing.Point(93, 586);
             this.imprimir.Name = "imprimir";
             this.imprimir.Size = new System.Drawing.Size(75, 23);
             this.imprimir.TabIndex = 15;
@@ -139,7 +110,7 @@ namespace iaai.alumno
             // 
             // previa
             // 
-            this.previa.Location = new System.Drawing.Point(624, 586);
+            this.previa.Location = new System.Drawing.Point(12, 586);
             this.previa.Name = "previa";
             this.previa.Size = new System.Drawing.Size(75, 23);
             this.previa.TabIndex = 14;
@@ -366,11 +337,50 @@ namespace iaai.alumno
             this.label8.TabIndex = 26;
             this.label8.Text = "Materia";
             // 
+            // inscribe
+            // 
+            this.inscribe.Location = new System.Drawing.Point(705, 586);
+            this.inscribe.Name = "inscribe";
+            this.inscribe.Size = new System.Drawing.Size(75, 23);
+            this.inscribe.TabIndex = 27;
+            this.inscribe.Text = "Inscribir";
+            this.inscribe.UseVisualStyleBackColor = true;
+            this.inscribe.Click += new System.EventHandler(this.inscribe_Click);
+            // 
+            // insc
+            // 
+            this.insc.HeaderText = "Inscribir";
+            this.insc.Name = "insc";
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // apel
+            // 
+            this.apel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.apel.HeaderText = "Apellido";
+            this.apel.Name = "apel";
+            this.apel.ReadOnly = true;
+            this.apel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dni
+            // 
+            this.dni.HeaderText = "Documento";
+            this.dni.Name = "dni";
+            this.dni.ReadOnly = true;
+            // 
             // ListadoCondicionales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 621);
+            this.Controls.Add(this.inscribe);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboMaterias);
             this.Controls.Add(this.comboTurno);
@@ -438,10 +448,11 @@ namespace iaai.alumno
         private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.ComboBox comboMaterias;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button inscribe;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn insc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apel;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;
-        private System.Windows.Forms.DataGridViewTextBoxColumn asistencia;
 
     }
 }

@@ -153,7 +153,7 @@ namespace iaai
 
         private void listadoAsistenciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListadoCondicionales listado_asistencia = new ListadoCondicionales();
+            ListadoAsistencia listado_asistencia = new ListadoAsistencia();
 
             listado_asistencia.Parent = this.Parent;
             listado_asistencia.MdiParent = this;

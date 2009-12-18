@@ -45,7 +45,9 @@ namespace iaai.alumno
 
             foreach (List<string> fila in listado)
             {
-                row = new string[3];
+                row = new string[4];
+                row[0] = "false";
+                indice++;
                 foreach (string dato in fila)
                 {
                     row[indice] = dato;
@@ -65,6 +67,7 @@ namespace iaai.alumno
             if (lista.RowCount > 0)
             {
                 lista.Columns[3].Visible = true;
+                lista.Columns[0].Visible = false;
                 if (SetupThePrinting())
                 {
                     MyPrintDocument.Print();
@@ -85,6 +88,7 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void MyPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+
             bool more = MyDataGridViewPrinter.DrawDataGridView(e.Graphics);
             if (more == true)
                 e.HasMorePages = true;
@@ -98,7 +102,7 @@ namespace iaai.alumno
         {
             if (lista.RowCount > 0)
             {
-                
+                lista.Columns[0].Visible = false;
                 if (SetupThePrinting())
                 {
                     PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
@@ -459,7 +463,7 @@ namespace iaai.alumno
                 }
                 else if (seleccionMateria.Checked)
                 {
-                    if (combo_profesorados.SelectedItem != "" && combo_niveles.SelectedItem != "" && comboTurno.SelectedItem != "" && comboMaterias.SelectedItem != "")
+                    if (combo_profesorados.SelectedItem.ToString() != "" && combo_niveles.SelectedItem.ToString() != "" && comboTurno.SelectedItem.ToString() != "" && comboMaterias.SelectedItem.ToString() != "")
                     {
                         listado = db.getListadoCondicionalesMateria(obtenerIdMateria().ToString(), comboTurno.SelectedItem.ToString());
                         if (listado != null)
@@ -604,6 +608,102 @@ namespace iaai.alumno
             cargarMaterias();
         }
 
+        private void inscribe_Click(object sender, EventArgs e)
+        {
+
+            if (lista.Rows.Count > 0)
+            {
+                List<string> resultado = new List<string>();
+                resultado = Inscribir(); ;
+
+                if (resultado[0].Contains("Los alumnos se inscribieron correctamente"))
+                {
+                    MessageBox.Show(resultado.ToArray().ToString());
+                }
+                else
+                {
+                    string mensaje = "";
+
+                    foreach (string subMensaje in resultado)
+                    {
+                        mensaje += subMensaje + "\r\n";
+
+                    }
+                    MessageBox.Show("Se produjeron errores: \r\n" + mensaje);
+                }
+            }
+            else
+                MessageBox.Show("Listado vacio","Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+
+        /// <summary>
+        /// Inscribe los alumnos seleccionados
+        /// </summary>
+        /// <returns>List de sucesos</returns>
+        public List<string> Inscribir() 
+        {
+
+            List<string> resultado = new List<string>();
+
+            List<Alumno> alumnos = new List<Alumno>();
+            Alumno alumn_tmp = new Alumno();
+            //recupero los alumnos seleccionados
+            foreach (DataGridViewRow fila in lista.Rows) 
+            {
+
+                if (Convert.ToBoolean(fila.Cells[0].Value.ToString()) == true) 
+                {
+                    alumn_tmp.setNombre(fila.Cells[1].Value.ToString());
+                    alumn_tmp.setApellido(fila.Cells[2].Value.ToString());
+                    alumn_tmp.setDni(fila.Cells[3].Value.ToString());
+                    alumnos.Add(alumn_tmp);
+
+                    alumn_tmp = new Alumno();
+                }
+            
+            }
+            if (alumnos.Count > 0)
+            {
+                if (alumnos.Count > 10)
+                {
+
+                    resultado.Add("Se debe crear un nuevo curso.");
+                }
+                else
+                {
+                    //rutina de inscripcion
+                    
+                    if(seleccionMateria.Checked == true){
+                        Alumno alumnoCompleto;
+                        int id_Turno = materias[comboMaterias.SelectedIndex].get_id_turno(comboTurno.Text);
+
+                        foreach (Alumno alumno_actual in alumnos) 
+                        {
+                            alumnoCompleto = db.Buscar_Alumno(alumno_actual.getDni());
+                            db.cambiarEstado(alumnoCompleto, materias[comboMaterias.SelectedIndex].id_materia,id_Turno );
+                    
+                        }
+                    }
+                    if (seleccionCurso.Checked == true) 
+                    { 
+                        
+                    
+                    }
+                    if (seleccionCursoE.Checked == true) 
+                    { 
+                    
+                    }
+                }
+            }
+            else
+            {
+                resultado.Add("Debe seleccionar al menos un alumno");
+            }
+            
+            return resultado;
+        
+        }
         
     }
 }
