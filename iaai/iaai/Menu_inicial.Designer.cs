@@ -56,7 +56,7 @@ namespace iaai
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeIAAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recuperarAlumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recuperarAlumnosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,8 +92,7 @@ namespace iaai
             this.inscripcionesToolStripMenuItem,
             this.listadoSeguroToolStripMenuItem,
             this.listadoAsistenciaToolStripMenuItem,
-            this.listadoDeCondicionalesToolStripMenuItem,
-            this.recuperarAlumnosToolStripMenuItem});
+            this.listadoDeCondicionalesToolStripMenuItem});
             this.alumnosMenu.Name = "alumnosMenu";
             this.alumnosMenu.Size = new System.Drawing.Size(67, 20);
             this.alumnosMenu.Text = "Alumnos";
@@ -104,7 +103,8 @@ namespace iaai
             this.altaAlumnoToolStripMenuItem1,
             this.modificarAlumnoToolStripMenuItem,
             this.eliminarAlumnoToolStripMenuItem,
-            this.consultarAlumnoToolStripMenuItem});
+            this.consultarAlumnoToolStripMenuItem,
+            this.recuperarAlumnosToolStripMenuItem1});
             this.altaAlumnoToolStripMenuItem.Name = "altaAlumnoToolStripMenuItem";
             this.altaAlumnoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.altaAlumnoToolStripMenuItem.Text = "Gestión alumnos";
@@ -112,28 +112,28 @@ namespace iaai
             // altaAlumnoToolStripMenuItem1
             // 
             this.altaAlumnoToolStripMenuItem1.Name = "altaAlumnoToolStripMenuItem1";
-            this.altaAlumnoToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+            this.altaAlumnoToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
             this.altaAlumnoToolStripMenuItem1.Text = "Alta Alumno";
             this.altaAlumnoToolStripMenuItem1.Click += new System.EventHandler(this.altaAlumnoToolStripMenuItem1_Click);
             // 
             // modificarAlumnoToolStripMenuItem
             // 
             this.modificarAlumnoToolStripMenuItem.Name = "modificarAlumnoToolStripMenuItem";
-            this.modificarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.modificarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.modificarAlumnoToolStripMenuItem.Text = "Modificar Alumno";
             this.modificarAlumnoToolStripMenuItem.Click += new System.EventHandler(this.modificarAlumnoToolStripMenuItem_Click);
             // 
             // eliminarAlumnoToolStripMenuItem
             // 
             this.eliminarAlumnoToolStripMenuItem.Name = "eliminarAlumnoToolStripMenuItem";
-            this.eliminarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.eliminarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.eliminarAlumnoToolStripMenuItem.Text = "Eliminar Alumno";
             this.eliminarAlumnoToolStripMenuItem.Click += new System.EventHandler(this.eliminarAlumnoToolStripMenuItem_Click);
             // 
             // consultarAlumnoToolStripMenuItem
             // 
             this.consultarAlumnoToolStripMenuItem.Name = "consultarAlumnoToolStripMenuItem";
-            this.consultarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.consultarAlumnoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.consultarAlumnoToolStripMenuItem.Text = "Consultar Alumno";
             this.consultarAlumnoToolStripMenuItem.Click += new System.EventHandler(this.consultarAlumnoToolStripMenuItem_Click);
             // 
@@ -273,12 +273,12 @@ namespace iaai
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // recuperarAlumnosToolStripMenuItem
+            // recuperarAlumnosToolStripMenuItem1
             // 
-            this.recuperarAlumnosToolStripMenuItem.Name = "recuperarAlumnosToolStripMenuItem";
-            this.recuperarAlumnosToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.recuperarAlumnosToolStripMenuItem.Text = "Recuperar Alumnos";
-            this.recuperarAlumnosToolStripMenuItem.Click += new System.EventHandler(this.recuperarAlumnosToolStripMenuItem_Click);
+            this.recuperarAlumnosToolStripMenuItem1.Name = "recuperarAlumnosToolStripMenuItem1";
+            this.recuperarAlumnosToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.recuperarAlumnosToolStripMenuItem1.Text = "Recuperar Alumnos";
+            this.recuperarAlumnosToolStripMenuItem1.Click += new System.EventHandler(this.recuperarAlumnosToolStripMenuItem1_Click);
             // 
             // Menu_inicial
             // 
@@ -335,7 +335,7 @@ namespace iaai
         private System.Windows.Forms.ToolStripMenuItem consultarResponsableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoDeCondicionalesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recuperarAlumnosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recuperarAlumnosToolStripMenuItem1;
 
 
 
