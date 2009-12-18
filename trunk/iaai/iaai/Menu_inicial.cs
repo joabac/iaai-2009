@@ -230,6 +230,14 @@ namespace iaai
             inactivos.MdiParent = this;
             inactivos.Show();
         }
+
+        private void recuperarAlumnosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ReactivarAlumno inactivos = new ReactivarAlumno();
+            inactivos.Parent = this.Parent;
+            inactivos.MdiParent = this;
+            inactivos.Show();
+        }
         
       
 
