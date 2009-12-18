@@ -99,6 +99,7 @@
             this.direccion.ReadOnly = true;
             this.direccion.Size = new System.Drawing.Size(137, 20);
             this.direccion.TabIndex = 60;
+            this.direccion.TabStop = false;
             // 
             // label7
             // 
@@ -118,6 +119,7 @@
             this.fecha_nacimiento.ReadOnly = true;
             this.fecha_nacimiento.Size = new System.Drawing.Size(68, 20);
             this.fecha_nacimiento.TabIndex = 57;
+            this.fecha_nacimiento.TabStop = false;
             this.fecha_nacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // label6
@@ -137,6 +139,7 @@
             this.apellido.ReadOnly = true;
             this.apellido.Size = new System.Drawing.Size(137, 20);
             this.apellido.TabIndex = 55;
+            this.apellido.TabStop = false;
             // 
             // label4
             // 
@@ -155,6 +158,7 @@
             this.telefono_carac.ReadOnly = true;
             this.telefono_carac.Size = new System.Drawing.Size(41, 20);
             this.telefono_carac.TabIndex = 58;
+            this.telefono_carac.TabStop = false;
             // 
             // label3
             // 
@@ -173,6 +177,7 @@
             this.telefono_numero.ReadOnly = true;
             this.telefono_numero.Size = new System.Drawing.Size(74, 20);
             this.telefono_numero.TabIndex = 59;
+            this.telefono_numero.TabStop = false;
             // 
             // label10
             // 
@@ -192,14 +197,14 @@
             this.nombre.ReadOnly = true;
             this.nombre.Size = new System.Drawing.Size(137, 20);
             this.nombre.TabIndex = 54;
+            this.nombre.TabStop = false;
             // 
             // textBoxDni
             // 
             this.textBoxDni.Location = new System.Drawing.Point(127, 41);
             this.textBoxDni.Name = "textBoxDni";
             this.textBoxDni.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDni.TabIndex = 68;
-            this.textBoxDni.TabStop = false;
+            this.textBoxDni.TabIndex = 0;
             // 
             // label2
             // 
@@ -219,6 +224,7 @@
             this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(137, 20);
             this.email.TabIndex = 70;
+            this.email.TabStop = false;
             // 
             // label1
             // 
