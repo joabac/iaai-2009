@@ -357,6 +357,7 @@ namespace iaai.alumno
                 combo_niveles.SelectedItem = null;
                 comboTurno.SelectedItem = null;
                 comboMaterias.SelectedItem = null;
+                cargaDataGrid();
             }
         }
         /// <summary>
@@ -386,6 +387,7 @@ namespace iaai.alumno
                 combo_niveles.SelectedItem = null;
                 comboTurno.SelectedItem = null;
                 comboMaterias.SelectedItem = null;
+                cargaDataGrid();
             }
         }
         /// <summary>
@@ -413,6 +415,7 @@ namespace iaai.alumno
                 combo_niveles.Enabled = true;
                 comboTurno.Enabled = true;
                 comboMaterias.Enabled = true;
+                cargaDataGrid();
             }
         }
         /// <summary>
@@ -422,69 +425,92 @@ namespace iaai.alumno
         /// <param name="e"></param>
         private void generar_Click(object sender, EventArgs e)
         {
+             List<string> resultado = new List<string>();
+             
             if (comboMaterias.Text != "Sin materias")
             {
-                listado = null;
-                if (seleccionCurso.Checked)
-                {
-                    if (comboBoxArea.SelectedItem != null && curso.SelectedItem != null && curso_nivel.SelectedItem != null)
-                    {
-                        listado = db.getListadoCondicionalesCursos(obtenerIdCurso());
-                        if (listado != null)
-                            cargarTabla();
-                        else
-                        {
-                            lista.Rows.Clear();
-                            MessageBox.Show("No existen alumnos inscriptos para el curso seleccionado.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe seleccionar un área, un nivel y un curso para obtener el listado.");
-                    }
-                }
-                else if (seleccionCursoE.Checked)
-                {
-                    if (comboBoxArea_esp.SelectedItem != null && cursoE.SelectedItem != null)
-                    {
-                        listado = db.getListadoCondicionalesCursosEspeciales(obtenerIdCursoEsp());
-                        if (listado != null)
-                            cargarTabla();
-                        else
-                        {
-                            lista.Rows.Clear();
-                            MessageBox.Show("No existen alumnos inscriptos para el curso seleccionado.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe seleccionar un área y un curso especial para obtener el listado.");
-                    }
-                }
-                else if (seleccionMateria.Checked)
-                {
-                    if (combo_profesorados.SelectedItem.ToString() != "" && combo_niveles.SelectedItem.ToString() != "" && comboTurno.SelectedItem.ToString() != "" && comboMaterias.SelectedItem.ToString() != "")
-                    {
-                        listado = db.getListadoCondicionalesMateria(obtenerIdMateria().ToString(), comboTurno.SelectedItem.ToString());
-                        if (listado != null)
-                            cargarTabla();
-                        else
-                        {
-                            lista.Rows.Clear();
-                            MessageBox.Show("No existen alumnos inscriptos para la materia seleccionada.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe seleccionar un profesorado, un nivel, un turno \ny una materia para obtener el listado.");
-                    }
-                }
+               resultado =  cargaDataGrid();
+
+               if (resultado.Count > 0) 
+               {
+                   foreach (string elemento in resultado) 
+                   {
+
+                       MessageBox.Show(elemento + "\r\n");
+                   }
+               }
             }
             else {
 
                 MessageBox.Show("Debe seleccionar una materia");
             }
         }
+
+        public List<string> cargaDataGrid() 
+        {
+            listado = null;
+            lista.Rows.Clear();
+            List<string> retorno = new List<string>();
+
+            if (seleccionCurso.Checked)
+            {
+                if (comboBoxArea.SelectedItem != null && curso.SelectedItem != null && curso_nivel.SelectedItem != null)
+                {
+                    listado = db.getListadoCondicionalesCursos(obtenerIdCurso());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                    {
+                        lista.Rows.Clear();
+                        retorno.Add("No existen alumnos inscriptos para el curso seleccionado.");
+                    }
+                }
+                else
+                {
+                    retorno.Add("Debe seleccionar un área, un nivel y un curso para obtener el listado.");
+                }
+            }
+            else if (seleccionCursoE.Checked)
+            {
+                if (comboBoxArea_esp.SelectedItem != null && cursoE.SelectedItem != null)
+                {
+                    listado = db.getListadoCondicionalesCursosEspeciales(obtenerIdCursoEsp());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                    {
+                        lista.Rows.Clear();
+                        retorno.Add("No existen alumnos inscriptos para el curso seleccionado.");
+                    }
+                }
+                else
+                {
+                    retorno.Add("Debe seleccionar un área y un curso especial para obtener el listado.");
+                }
+            }
+            else if (seleccionMateria.Checked)
+            {
+                if (combo_profesorados.SelectedItem.ToString() != "" && combo_niveles.SelectedItem.ToString() != "" && comboTurno.SelectedItem.ToString() != "" && comboMaterias.SelectedItem.ToString() != "")
+                {
+                    listado = db.getListadoCondicionalesMateria(obtenerIdMateria().ToString(), comboTurno.SelectedItem.ToString());
+                    if (listado != null)
+                        cargarTabla();
+                    else
+                    {
+                        lista.Rows.Clear();
+                        retorno.Add("No existen alumnos inscriptos para la materia seleccionada.");
+                    }
+                }
+                else
+                {
+                    retorno.Add("Debe seleccionar un profesorado, un nivel, un turno \ny una materia para obtener el listado.");
+                }
+            }
+
+            return retorno;
+        
+        }
+
         /// <summary>
         /// Obtiene el id del Curso seleccionado en los comboBoxs
         /// </summary>
@@ -616,9 +642,10 @@ namespace iaai.alumno
                 List<string> resultado = new List<string>();
                 resultado = Inscribir(); ;
 
-                if (resultado[0].Contains("Los alumnos se inscribieron correctamente"))
+                if (resultado[0].Contains("Los alumnos fueron inscriptos correctamente"))
                 {
-                    MessageBox.Show(resultado.ToArray().ToString());
+                    MessageBox.Show(resultado[0].ToString());
+                    cargaDataGrid();
                 }
                 else
                 {
@@ -673,9 +700,10 @@ namespace iaai.alumno
                 else
                 {
                     //rutina de inscripcion
-                    
+                    Alumno alumnoCompleto;
+
                     if(seleccionMateria.Checked == true){
-                        Alumno alumnoCompleto;
+                        
                         int id_Turno = materias[comboMaterias.SelectedIndex].get_id_turno(comboTurno.Text);
 
                         foreach (Alumno alumno_actual in alumnos) 
@@ -684,15 +712,27 @@ namespace iaai.alumno
                             db.cambiarEstado(alumnoCompleto, materias[comboMaterias.SelectedIndex].id_materia,id_Turno );
                     
                         }
+                        resultado.Add("Los alumnos fueron inscriptos correctamente");
                     }
                     if (seleccionCurso.Checked == true) 
-                    { 
-                        
-                    
+                    {
+                        foreach (Alumno alumno_actual in alumnos)
+                        {
+                            alumnoCompleto = db.Buscar_Alumno(alumno_actual.getDni());
+                            db.cambiarEstadoCurso(alumnoCompleto,Convert.ToInt32(obtenerIdCurso()));
+
+                        }
+                        resultado.Add("Los alumnos fueron inscriptos correctamente");
                     }
                     if (seleccionCursoE.Checked == true) 
-                    { 
-                    
+                    {
+                        foreach (Alumno alumno_actual in alumnos)
+                        {
+                            alumnoCompleto = db.Buscar_Alumno(alumno_actual.getDni());
+                            db.cambiarEstadoCursoEsp(alumnoCompleto, Convert.ToInt32(obtenerIdCursoEsp()));
+
+                        }
+                        resultado.Add("Los alumnos fueron inscriptos correctamente");
                     }
                 }
             }
