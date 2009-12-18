@@ -476,7 +476,7 @@ namespace iaai.alumno
             }
             else if (seleccionMateria.Checked)
             {
-                if (combo_profesorados.SelectedItem != "" && combo_niveles.SelectedItem != "" && comboTurno.SelectedItem != "" && comboMaterias.SelectedItem != "")
+                if (combo_profesorados.SelectedItem.ToString() != "" && combo_niveles.SelectedItem.ToString() != "" && comboTurno.SelectedItem.ToString() != "" && comboMaterias.SelectedItem.ToString() != "")
                 {
                     listado = db.getListadoMateria(obtenerIdMateria().ToString(), comboTurno.SelectedItem.ToString());
                     if (listado != null)
