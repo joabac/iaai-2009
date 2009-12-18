@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
+
 
 namespace iaai.metodos_comunes
 {
@@ -374,7 +376,7 @@ namespace iaai.metodos_comunes
         /// </returns>
         public int validar_Fecha_Nacimiento(String cadena)
         {
-
+            
             bool valido= true;
 
             if (cadena != "" && cadena.Length == 10)
@@ -441,7 +443,7 @@ namespace iaai.metodos_comunes
                 try
                 {
                     DateTime fecha_Naciemiento = Convert.ToDateTime(cadena); //convierto a date time
-
+                    
                     if (fecha_Naciemiento.AddYears(21) > DateTime.Now) //controlo por mayoria de edad
                         return 0; // si menor  de edad pero fecha correcta retorno 0
                     else
