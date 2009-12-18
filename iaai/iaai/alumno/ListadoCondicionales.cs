@@ -692,7 +692,7 @@ namespace iaai.alumno
             }
             if (alumnos.Count > 0)
             {
-                if (alumnos.Count > 10)
+                if (lista.Rows.Count > 10)
                 {
 
                     resultado.Add("Se debe crear un nuevo curso.");
