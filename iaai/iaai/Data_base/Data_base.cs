@@ -916,8 +916,8 @@ namespace iaai.Data_base
 
                 //hay que ver como hacer para que coincida el tipo fecha con el de la base de datos
                 MySqlCommand MyCommand = new MySqlCommand("select nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
-                                                          "from profesor " +
-                                                          "where apellido like '"+apostrofos(apellido)+"%' and activo = 1", conexion);
+                                                          "from profesor " +                                                         
+                                                          "where apellido like '"+apostrofos(apellido)+"%' and activo = 1 order by apellido", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Profesor profesor_tem = new Profesor();
@@ -1537,7 +1537,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_alumno,nombre, apellido, dni, telefono_carac, telefono_numero, fecha_nac, direccion, escuela_nombre, escuela_año, id_responsable, email " +
                                                           "from alumno " +
-                                                          "where apellido like '" + apostrofos(apellido) +"%' and activo = true", conexion);
+                                                          "where apellido like '" + apostrofos(apellido) +"%' and activo = true order by apellido", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Alumno alum_tem = new Alumno();
@@ -1607,7 +1607,7 @@ namespace iaai.Data_base
 
                 MySqlCommand MyCommand = new MySqlCommand("select id_responsable,nombre_respon, apellido_respon, dni, telefono_carac, telefono_numero, fecha_nac, direccion, email " +
                                                           "from responsable " +
-                                                          "where apellido_respon like '" + apostrofos(apellido) + "%' and activo  = '1'", conexion);
+                                                          "where apellido_respon like '" + apostrofos(apellido) + "%' and activo  = '1' order by apellido_respon", conexion);
 
                 MySqlDataReader reader = MyCommand.ExecuteReader();
                 Responsable respon_tem = new Responsable();
